@@ -126,19 +126,14 @@ onUnmounted(() => {
   >
     <section class="mx-auto w-full max-w-[1180px]">
       <article
-        class="relative -rotate-[0.4deg] jv-border-rough bg-jv-white p-5 shadow-brutal sm:p-7 md:p-9"
+        class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7 md:p-9"
       >
-        <span
-          class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-          aria-hidden="true"
-        ></span>
-
         <!-- Header: title + music toggle -->
         <header class="flex items-start justify-between gap-4">
           <div class="min-w-0 flex-1">
             <p
               v-if="quizTitle"
-              class="mb-2 inline-flex max-w-full items-center gap-2 rotate-[-0.6deg] rounded-full border-[2px] border-jv-ink bg-jv-yellow px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-brutal-sm sm:text-[12px]"
+              class="mb-2 inline-flex max-w-full items-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-soft-sm sm:text-[12px]"
               :title="quizTitle"
             >
               <span
@@ -161,7 +156,7 @@ onUnmounted(() => {
 
           <button
             type="button"
-            class="grid size-10 shrink-0 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:size-11"
+            class="grid size-10 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-11"
             :aria-label="music ? 'Mute music' : 'Unmute music'"
             @click="toggleMusic"
           >
@@ -172,7 +167,7 @@ onUnmounted(() => {
 
         <!-- Coral progress bar -->
         <div
-          class="mt-5 h-3 w-full overflow-hidden rounded-full border-[2px] border-jv-ink bg-jv-white sm:mt-6"
+          class="mt-5 h-3 w-full overflow-hidden rounded-full border border-jv-line bg-jv-white sm:mt-6"
           aria-hidden="true"
         >
           <div
@@ -195,7 +190,7 @@ onUnmounted(() => {
           <NuxtImg
             :src="question.resource"
             :alt="question.question"
-            class="max-h-[260px] w-auto border-[3px] border-jv-ink bg-jv-white object-contain shadow-brutal-sm"
+            class="max-h-[260px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
           />
         </div>
         <div v-else-if="question.question_media === 'code'" class="mt-5">
@@ -208,7 +203,7 @@ onUnmounted(() => {
             v-for="(answer, key) in options"
             :key="key"
             :class="[
-              'relative flex w-full items-center gap-3 border-[2px] border-jv-ink px-3 py-3 shadow-brutal-sm sm:gap-4 sm:px-4 sm:py-4',
+              'relative flex w-full items-center gap-3 border border-jv-line px-3 py-3 shadow-soft-sm sm:gap-4 sm:px-4 sm:py-4',
               answer.isAnswer
                 ? 'bg-jv-mint'
                 : Number(key) === Number(selectedAnswer)
@@ -226,13 +221,13 @@ onUnmounted(() => {
           >
             <span
               v-if="selectedAnswer && Number(key) === Number(selectedAnswer)"
-              class="absolute -top-3 right-3 inline-flex items-center gap-1 rounded-full border-[2px] border-jv-ink bg-jv-yellow px-2 py-0.5 font-body text-[10px] font-black uppercase tracking-wider text-jv-ink shadow-brutal-sm sm:text-[11px]"
+              class="absolute -top-3 right-3 inline-flex items-center gap-1 rounded-full border border-jv-line bg-jv-yellow px-2 py-0.5 font-body text-[10px] font-black uppercase tracking-wider text-jv-ink shadow-soft-sm sm:text-[11px]"
             >
               Your pick
             </span>
             <span
               v-if="answer.isAnswer"
-              class="grid size-10 shrink-0 place-items-center rounded-[6px] border-[2px] border-jv-ink bg-jv-white text-jv-ink sm:size-11"
+              class="grid size-10 shrink-0 place-items-center rounded-[6px] border border-jv-line bg-jv-white text-jv-ink sm:size-11"
               aria-label="Correct answer"
             >
               <Check class="size-5" :stroke-width="3" />
@@ -241,14 +236,14 @@ onUnmounted(() => {
               v-else-if="
                 selectedAnswer && Number(key) === Number(selectedAnswer)
               "
-              class="grid size-10 shrink-0 place-items-center rounded-[6px] border-[2px] border-jv-ink bg-jv-white text-jv-coral sm:size-11"
+              class="grid size-10 shrink-0 place-items-center rounded-[6px] border border-jv-line bg-jv-white text-jv-coral sm:size-11"
               aria-label="Your incorrect answer"
             >
               <X class="size-5" :stroke-width="3" />
             </span>
             <span
               v-else
-              class="grid size-10 shrink-0 place-items-center rounded-[6px] border-[2px] border-jv-ink bg-jv-white font-feature text-[14px] font-black text-jv-ink sm:size-11 sm:text-[16px]"
+              class="grid size-10 shrink-0 place-items-center rounded-[6px] border border-jv-line bg-jv-white font-feature text-[14px] font-black text-jv-ink sm:size-11 sm:text-[16px]"
             >
               {{ String.fromCharCode(64 + Number(key)) }}
             </span>
@@ -279,13 +274,11 @@ onUnmounted(() => {
 
         <!-- Admin: skip / finish -->
         <template v-if="isAdmin">
-          <div
-            class="mt-6 border-t-[2px] border-dashed border-jv-ink/30 sm:mt-7"
-          ></div>
+          <div class="mt-6 border-t border-dashed border-jv-line sm:mt-7"></div>
           <div class="mt-4 flex justify-end">
             <button
               type="button"
-              class="inline-flex h-10 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:h-11 sm:px-6 sm:text-[15px]"
+              class="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-50 sm:h-11 sm:px-6 sm:text-[15px]"
               :disabled="isSkip"
               @click="handleSkipTimer"
             >
@@ -301,10 +294,7 @@ onUnmounted(() => {
         </template>
 
         <!-- Tabs (admin only) -->
-        <div
-          v-if="isAdmin"
-          class="mt-6 border-b-[2px] border-jv-ink/15 sm:mt-7"
-        >
+        <div v-if="isAdmin" class="mt-6 border-b border-jv-line sm:mt-7">
           <div class="flex">
             <button
               type="button"
@@ -352,7 +342,7 @@ onUnmounted(() => {
             v-for="(user, index) in rankList"
             :key="user.username || index"
             :class="[
-              'flex items-center gap-3 border-[2px] border-jv-ink px-3 py-2.5 shadow-brutal-sm sm:gap-4 sm:px-4 sm:py-3',
+              'flex items-center gap-3 border border-jv-line px-3 py-2.5 shadow-soft-sm sm:gap-4 sm:px-4 sm:py-3',
               user.username === userName ? 'bg-jv-yellow-soft' : 'bg-jv-white',
             ]"
           >
@@ -363,7 +353,7 @@ onUnmounted(() => {
             </span>
             <span
               :class="[
-                'grid size-10 shrink-0 place-items-center overflow-hidden rounded-[6px] border-[2px] border-jv-ink sm:size-11',
+                'grid size-10 shrink-0 place-items-center overflow-hidden rounded-[6px] border border-jv-line sm:size-11',
                 avatarBgFor(index),
               ]"
             >
@@ -404,7 +394,7 @@ onUnmounted(() => {
 
           <div
             v-if="rankList.length === 0"
-            class="mx-auto mt-2 flex w-fit items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
+            class="mx-auto mt-2 flex w-fit items-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
           >
             <span
               class="size-2 rounded-full bg-jv-ink/30"
@@ -417,7 +407,7 @@ onUnmounted(() => {
         <!-- Chart -->
         <div
           v-if="isAdmin && analysisTab === 'chart'"
-          class="mt-5 border-[2px] border-jv-ink bg-jv-white p-4 shadow-brutal-sm sm:mt-6 sm:p-5"
+          class="mt-5 border border-jv-line bg-jv-white p-4 shadow-soft-sm sm:mt-6 sm:p-5"
         >
           <AnswerSubmissionChart
             :options="options"

@@ -1,17 +1,9 @@
 <template>
   <article
-    class="group relative flex min-h-[342px] flex-col bg-jv-white p-3 shadow-brutal-sm jv-border-rough sm:min-h-[360px] sm:p-4 md:min-h-[372px] md:p-5"
-    :class="[
-      tiltClass,
-      compact ? 'lg:min-h-[330px] lg:p-3 xl:min-h-[352px] xl:p-4' : '',
-    ]"
+    class="group relative flex min-h-[342px] flex-col bg-jv-white p-3 shadow-soft-sm jv-border-rough sm:min-h-[360px] sm:p-4 md:min-h-[372px] md:p-5"
+    :class="compact ? 'lg:min-h-[330px] lg:p-3 xl:min-h-[352px] xl:p-4' : ''"
   >
-    <span
-      class="absolute left-1/2 top-[-13px] h-4 w-8 -translate-x-1/2 rotate-[-2deg] bg-jv-salmon opacity-90"
-      aria-hidden="true"
-    ></span>
-
-    <div class="relative border-[2px] border-jv-ink bg-jv-slate p-2">
+    <div class="relative border border-jv-line bg-jv-slate p-2">
       <div
         class="relative h-[104px] overflow-hidden sm:h-[112px] md:h-[124px]"
         :class="compact ? 'lg:h-[96px] xl:h-[112px]' : ''"
@@ -52,7 +44,7 @@
       <span class="truncate">{{ questionCount }} Questions</span>
     </span>
 
-    <div class="mt-3 border-t-2 border-dashed border-jv-ink/15 pt-3">
+    <div class="mt-3 border-t border-dashed border-jv-line pt-3">
       <div
         class="mt-3 grid gap-2"
         :class="isPlayedQuiz ? 'grid-cols-1' : 'grid-cols-2'"
@@ -92,14 +84,13 @@ const props = defineProps({
   },
 });
 
-const { coverUrl, fallbackUrl, tiltClass: coverTiltClass } = useQuizCover();
+const { coverUrl, fallbackUrl } = useQuizCover();
 
 const title = computed(() => decodeURI(props.details?.title || ""));
 const description = computed(() => props.details?.description?.String || "");
 const questionCount = computed(() => props.details?.total_questions || 0);
 const image = computed(() => coverUrl(props.details));
 const fallback = computed(() => fallbackUrl(props.details));
-const tiltClass = computed(() => coverTiltClass(props.details));
 const createdAtLabel = computed(() =>
   props.details?.created_at ? useGetTime(props.details.created_at) : ""
 );

@@ -19,7 +19,7 @@
     </NavigationLink>
 
     <div
-      class="flex h-10 w-10 items-center justify-center jv-border-rough bg-jv-coral text-white text-[16px] font-black shadow-brutal-sm rotate-[1deg]"
+      class="flex h-10 w-10 items-center justify-center jv-border-rough bg-jv-coral text-white text-[16px] font-black shadow-soft-sm"
     >
       {{ props.page }}
     </div>

@@ -52,13 +52,8 @@ const stats = computed(() => [
 <template>
   <section class="mx-auto w-full max-w-[1180px]" aria-label="Your statistics">
     <article
-      class="relative rotate-[0.3deg] jv-border-rough bg-jv-white p-5 shadow-brutal sm:p-7"
+      class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7"
     >
-      <span
-        class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-        aria-hidden="true"
-      ></span>
-
       <header>
         <h2
           class="font-headings text-[22px] leading-none text-jv-ink sm:text-[28px]"
@@ -77,13 +72,13 @@ const stats = computed(() => [
           v-for="(stat, index) in stats"
           :key="stat.label"
           :class="[
-            'flex items-center gap-2.5 border-[2px] border-jv-ink bg-jv-white px-2.5 py-3 shadow-brutal-sm sm:gap-3 sm:px-4 sm:py-4',
-            index % 2 === 0 ? 'rotate-[-0.4deg]' : 'rotate-[0.4deg]',
+            'flex items-center gap-2.5 border border-jv-line bg-jv-white px-2.5 py-3 shadow-soft-sm sm:gap-3 sm:px-4 sm:py-4',
+            index % 2 === 0 ? '' : '',
           ]"
         >
           <span
             :class="[
-              'grid size-9 shrink-0 place-items-center rounded-[6px] border-[2px] border-jv-ink sm:size-11',
+              'grid size-9 shrink-0 place-items-center rounded-[6px] border border-jv-line sm:size-11',
               stat.bg,
             ]"
             aria-hidden="true"

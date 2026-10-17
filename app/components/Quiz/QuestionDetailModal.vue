@@ -140,11 +140,11 @@ onBeforeUnmount(() => {
       @click.self="close"
     >
       <div
-        class="flex max-h-[92vh] w-full max-w-[1000px] rotate-[-0.4deg] flex-col border-[4px] border-jv-ink bg-jv-white shadow-brutal-lg"
+        class="flex max-h-[92vh] w-full max-w-[1000px] flex-col border-[4px] border-jv-line bg-jv-white shadow-soft-lg"
       >
         <!-- Dark header: back button + 4-stat strip -->
         <div
-          class="flex flex-col gap-4 border-b-[3px] border-jv-ink bg-jv-ink px-5 py-4 text-jv-white sm:flex-row sm:items-center sm:justify-between sm:px-6"
+          class="flex flex-col gap-4 border-b border-jv-line bg-jv-ink px-5 py-4 text-jv-white sm:flex-row sm:items-center sm:justify-between sm:px-6"
         >
           <button
             type="button"
@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
           </button>
 
           <div
-            class="grid grid-cols-2 gap-x-5 gap-y-2 border-[3px] border-jv-white/20 bg-jv-ink/60 px-4 py-2 sm:grid-cols-4 sm:gap-x-7"
+            class="grid grid-cols-2 gap-x-5 gap-y-2 border border-jv-white/20 bg-jv-ink/60 px-4 py-2 sm:grid-cols-4 sm:gap-x-7"
           >
             <div>
               <div
@@ -202,7 +202,7 @@ onBeforeUnmount(() => {
 
           <button
             type="button"
-            class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform hover:rotate-[6deg] sm:hidden"
+            class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform sm:hidden"
             aria-label="Close"
             @click="close"
           >
@@ -212,10 +212,10 @@ onBeforeUnmount(() => {
 
         <!-- Question title bar -->
         <div
-          class="flex items-center gap-3 border-b-[3px] border-jv-ink bg-jv-white px-5 py-4 sm:px-6"
+          class="flex items-center gap-3 border-b border-jv-line bg-jv-white px-5 py-4 sm:px-6"
         >
           <span
-            class="inline-flex items-center justify-center jv-border-rough bg-jv-yellow px-3 py-1.5 text-[14px] font-black text-jv-ink shadow-brutal-sm"
+            class="inline-flex items-center justify-center jv-border-rough bg-jv-yellow px-3 py-1.5 text-[14px] font-black text-jv-ink shadow-soft-sm"
           >
             Q{{ index }}
           </span>
@@ -230,10 +230,10 @@ onBeforeUnmount(() => {
         <div class="grid flex-1 grid-cols-1 overflow-hidden md:grid-cols-2">
           <!-- Correct column -->
           <section
-            class="flex min-h-0 flex-col border-b-[3px] border-jv-ink bg-[#eafff2] md:border-b-0 md:border-r-[3px]"
+            class="flex min-h-0 flex-col border-b border-jv-line bg-jv-mint/60 md:border-b-0 md:border-r"
           >
             <header
-              class="flex items-center justify-between gap-3 border-b-2 border-jv-ink/15 px-5 py-3"
+              class="flex items-center justify-between gap-3 border-b border-jv-line px-5 py-3"
             >
               <div class="inline-flex items-center gap-2">
                 <CheckCircle2
@@ -245,7 +245,7 @@ onBeforeUnmount(() => {
                 >
               </div>
               <span
-                class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-brutal-sm"
+                class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-soft-sm"
               >
                 {{ correctCount }} users
               </span>
@@ -262,7 +262,7 @@ onBeforeUnmount(() => {
                 <li
                   v-for="(u, i) in buckets.correct"
                   :key="`c-${u.username}-${i}`"
-                  class="flex items-center gap-3 jv-border-rough bg-jv-white px-3 py-2.5 shadow-brutal-sm"
+                  class="flex items-center gap-3 jv-border-rough bg-jv-white px-3 py-2.5 shadow-soft-sm"
                 >
                   <NuxtImg
                     :src="u.avatar"
@@ -270,7 +270,7 @@ onBeforeUnmount(() => {
                     width="40"
                     height="40"
                     loading="lazy"
-                    class="size-10 shrink-0 rounded-full border-[2px] border-jv-ink bg-jv-slate object-cover"
+                    class="size-10 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover"
                   />
                   <div class="min-w-0 flex-1">
                     <div
@@ -301,9 +301,9 @@ onBeforeUnmount(() => {
           </section>
 
           <!-- Incorrect column -->
-          <section class="flex min-h-0 flex-col bg-[#fff1f1]">
+          <section class="flex min-h-0 flex-col bg-jv-lavender/60">
             <header
-              class="flex items-center justify-between gap-3 border-b-2 border-jv-ink/15 px-5 py-3"
+              class="flex items-center justify-between gap-3 border-b border-jv-line px-5 py-3"
             >
               <div class="inline-flex items-center gap-2">
                 <XCircle class="size-5 text-jv-coral" :stroke-width="2.6" />
@@ -312,7 +312,7 @@ onBeforeUnmount(() => {
                 >
               </div>
               <span
-                class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-brutal-sm"
+                class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-soft-sm"
               >
                 {{ incorrectCount }} users
               </span>
@@ -329,7 +329,7 @@ onBeforeUnmount(() => {
                 <li
                   v-for="(u, i) in buckets.incorrect"
                   :key="`i-${u.username}-${i}`"
-                  class="flex items-center gap-3 jv-border-rough bg-jv-white px-3 py-2.5 shadow-brutal-sm"
+                  class="flex items-center gap-3 jv-border-rough bg-jv-white px-3 py-2.5 shadow-soft-sm"
                 >
                   <NuxtImg
                     :src="u.avatar"
@@ -337,7 +337,7 @@ onBeforeUnmount(() => {
                     width="40"
                     height="40"
                     loading="lazy"
-                    class="size-10 shrink-0 rounded-full border-[2px] border-jv-ink bg-jv-slate object-cover"
+                    class="size-10 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover"
                   />
                   <div class="min-w-0 flex-1">
                     <div

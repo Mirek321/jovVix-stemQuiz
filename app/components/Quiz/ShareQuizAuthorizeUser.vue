@@ -36,7 +36,7 @@ const showEditForm = () => {
 
 <template>
   <div
-    class="flex items-center justify-between gap-3 jv-border-rough border-[2px] border-jv-ink bg-jv-white px-3 py-3 shadow-brutal-sm"
+    class="flex items-center justify-between gap-3 jv-border-rough border border-jv-line bg-jv-white px-3 py-3 shadow-soft-sm"
   >
     <!-- User identity -->
     <div class="flex min-w-0 flex-1 items-center gap-3">
@@ -44,12 +44,12 @@ const showEditForm = () => {
         <NuxtImg
           src="https://api.dicebear.com/10.x/clay/svg?seed=Jade"
           alt="User avatar"
-          class="size-10 rounded-full border-[2px] border-jv-ink bg-jv-canvas"
+          class="size-10 rounded-full border border-jv-line bg-jv-canvas"
           width="40"
           height="40"
         />
         <span
-          class="absolute bottom-0 right-0 size-3 rounded-full border-2 border-jv-white bg-jv-accent-green"
+          class="absolute bottom-0 right-0 size-3 rounded-full border border-jv-white bg-jv-accent-green"
           aria-hidden="true"
         ></span>
       </span>
@@ -72,13 +72,13 @@ const showEditForm = () => {
     <!-- Permission + actions -->
     <div class="flex shrink-0 items-center gap-2">
       <span
-        class="rounded-full border-[2px] border-jv-ink bg-jv-yellow px-2.5 py-1 text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink"
+        class="rounded-full border border-jv-line bg-jv-yellow px-2.5 py-1 text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink"
       >
         {{ permissionLabel }}
       </span>
       <span
         v-if="props.isSelf"
-        class="rounded-full border-[2px] border-jv-ink bg-jv-canvas px-2.5 py-1 text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink"
+        class="rounded-full border border-jv-line bg-jv-canvas px-2.5 py-1 text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink"
       >
         You
       </span>
@@ -87,7 +87,7 @@ const showEditForm = () => {
           type="button"
           title="Edit Permission"
           aria-label="Edit permission"
-          class="grid size-8 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[3deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+          class="grid size-8 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
           @click="showEditForm"
         >
           <Pencil class="size-4" :stroke-width="2.4" />
@@ -96,7 +96,7 @@ const showEditForm = () => {
           type="button"
           title="Delete Permission"
           aria-label="Delete permission"
-          class="grid size-8 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-coral text-white shadow-brutal-sm transition-transform hover:rotate-[3deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+          class="grid size-8 place-items-center rounded-[8px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform"
           @click="emits('deleteUserPermission', props.user.id)"
         >
           <Trash2 class="size-4" :stroke-width="2.4" />

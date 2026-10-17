@@ -65,7 +65,7 @@ const isPicked = (order) => pickedSet.value.has(Number(order));
       v-for="(option, order) in props.options"
       :key="order"
       :class="[
-        'flex w-full items-center gap-3 border-[2px] border-jv-ink px-3 py-3 shadow-brutal-sm sm:gap-4 sm:px-4 sm:py-4',
+        'flex w-full items-center gap-3 border border-jv-line px-3 py-3 shadow-soft-sm sm:gap-4 sm:px-4 sm:py-4',
         isCorrect(order)
           ? 'bg-jv-mint'
           : isPicked(order)

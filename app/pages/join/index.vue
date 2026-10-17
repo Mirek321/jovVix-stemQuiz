@@ -48,15 +48,15 @@
       <!-- Session-ended notice (shown when redirected here from /join/play with an error) -->
       <div
         v-if="sessionNotice"
-        class="mb-5 w-full -rotate-[0.6deg]"
+        class="mb-5 w-full"
         role="alert"
         aria-live="polite"
       >
         <div
-          class="relative jv-border-rough bg-jv-white p-4 shadow-brutal-sm sm:p-5"
+          class="relative jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5"
         >
           <span
-            class="absolute -top-[10px] left-6 z-10 h-3 w-10 rotate-[2deg] bg-jv-coral"
+            class="absolute -top-[10px] left-6 z-10 h-3 w-10 bg-jv-coral"
             aria-hidden="true"
           ></span>
           <button
@@ -69,7 +69,7 @@
           </button>
           <div class="flex items-start gap-3 pr-6">
             <span
-              class="grid size-9 shrink-0 rotate-[-3deg] place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm"
+              class="grid size-9 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm"
               aria-hidden="true"
             >
               <AlertCircle class="size-4" :stroke-width="2.4" />
@@ -87,7 +87,7 @@
               </p>
               <NuxtLink
                 to="/"
-                class="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border-[2px] border-jv-ink bg-jv-coral px-4 font-body text-[12px] font-black text-white shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none sm:text-[13px]"
+                class="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-jv-line bg-jv-coral px-4 font-body text-[12px] font-black text-white shadow-soft-sm transition-transform sm:text-[13px]"
                 aria-label="Return to home"
               >
                 <Home class="size-3.5" :stroke-width="2.4" />
@@ -99,15 +99,15 @@
       </div>
 
       <!-- Card -->
-      <div class="relative rotate-1 w-full">
+      <div class="relative w-full">
         <!-- "clip" tab -->
         <span
-          class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border-2 border-jv-ink bg-jv-slate shadow-brutal-sm"
+          class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border border-jv-line bg-jv-slate shadow-soft-sm"
           aria-hidden="true"
         ></span>
 
         <div
-          class="bg-jv-white border-2 border-jv-ink shadow-brutal-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
+          class="bg-jv-white border border-jv-line shadow-soft-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
         >
           <!-- Heading -->
           <header class="flex flex-col items-center gap-1.5 mb-6">
@@ -155,7 +155,7 @@
                 Invitation Code
               </label>
               <div
-                class="flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+                class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
               >
                 <Hash
                   class="size-[18px] text-jv-ink/70 shrink-0"
@@ -173,7 +173,7 @@
                 />
                 <span
                   v-if="isCodeValid"
-                  class="grid place-items-center size-7 rounded-full bg-jv-mint text-jv-accent-green border-2 border-jv-ink/15 shrink-0"
+                  class="grid place-items-center size-7 rounded-full bg-jv-mint text-jv-accent-green border border-jv-line shrink-0"
                   aria-label="Valid code"
                 >
                   <Check class="size-4" :stroke-width="3" />
@@ -193,7 +193,7 @@
                 <!-- Avatar with reroll -->
                 <NavigationLink
                   type="button"
-                  class="relative size-[46px] shrink-0 !p-0 bg-jv-mint !rounded-none !jv-card overflow-hidden shadow-none hover:rotate-0 hover:scale-110"
+                  class="relative size-[46px] shrink-0 !p-0 bg-jv-mint !rounded-none !jv-card overflow-hidden shadow-none hover:scale-110"
                   :aria-label="`Generate new avatar (current: ${avatarName})`"
                   @click="rerollAvatar"
                 >
@@ -205,7 +205,7 @@
                     class="absolute inset-0 size-full object-cover"
                   />
                   <span
-                    class="absolute -bottom-1 -right-1 grid place-items-center size-5 rounded-full bg-jv-ink text-white border-2 border-jv-canvas"
+                    class="absolute -bottom-1 -right-1 grid place-items-center size-5 rounded-full bg-jv-ink text-white border border-jv-canvas"
                     aria-hidden="true"
                   >
                     <RefreshCw class="size-2.5" :stroke-width="2.5" />
@@ -214,7 +214,7 @@
 
                 <!-- Username -->
                 <div
-                  class="flex-1 flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3"
+                  class="flex-1 flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3"
                 >
                   <User
                     class="size-[18px] text-jv-ink/70 shrink-0"
@@ -236,7 +236,7 @@
             <!-- Welcome (signed in) -->
             <div
               v-else
-              class="flex items-center gap-2 bg-jv-yellow-soft border-2 border-jv-ink jv-card shadow-brutal-sm px-3 py-2.5"
+              class="flex items-center gap-2 bg-jv-yellow-soft border border-jv-line jv-card shadow-soft-sm px-3 py-2.5"
             >
               <User
                 class="size-[18px] text-jv-ink/70 shrink-0"

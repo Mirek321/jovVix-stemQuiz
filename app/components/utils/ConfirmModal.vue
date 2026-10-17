@@ -74,16 +74,11 @@ onUnmounted(() => {
         ></button>
 
         <div
-          class="jv-modal-card relative z-10 w-full max-w-[480px] -rotate-[0.4deg] jv-border-rough bg-jv-white p-5 shadow-brutal-lg sm:p-7"
+          class="jv-modal-card relative z-10 w-full max-w-[480px] jv-border-rough bg-jv-white p-5 shadow-soft-lg sm:p-7"
         >
-          <span
-            class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-            aria-hidden="true"
-          ></span>
-
           <button
             type="button"
-            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:right-4 sm:top-4"
+            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
             aria-label="Close"
             @click="handleClose(false)"
           >
@@ -92,7 +87,7 @@ onUnmounted(() => {
 
           <div class="flex items-start gap-3 pr-10 sm:gap-4 sm:pr-12">
             <span
-              class="grid size-11 shrink-0 -rotate-[3deg] place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm sm:size-12"
+              class="grid size-11 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm sm:size-12"
               aria-hidden="true"
             >
               <AlertTriangle class="size-5 sm:size-6" :stroke-width="2.4" />
@@ -113,7 +108,7 @@ onUnmounted(() => {
           </div>
 
           <div
-            class="mt-5 border-t-[2px] border-dashed border-jv-ink/25 sm:mt-6"
+            class="mt-5 border-t border-dashed border-jv-line sm:mt-6"
             aria-hidden="true"
           ></div>
 
@@ -122,14 +117,14 @@ onUnmounted(() => {
           >
             <button
               type="button"
-              class="inline-flex h-10 items-center justify-center rounded-full border-[2px] border-jv-ink bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-11 sm:px-6 sm:text-[15px]"
+              class="inline-flex h-10 items-center justify-center rounded-full border border-jv-line bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-6 sm:text-[15px]"
               @click="handleClose(false)"
             >
               {{ props.modelNegativeMessage }}
             </button>
             <button
               type="button"
-              class="inline-flex h-10 items-center justify-center rounded-full border-[2px] border-jv-ink bg-jv-coral px-5 font-body text-[14px] font-black text-white shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-11 sm:px-6 sm:text-[15px]"
+              class="inline-flex h-10 items-center justify-center rounded-full border border-jv-line bg-jv-coral px-5 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-11 sm:px-6 sm:text-[15px]"
               @click="handleClose(true)"
             >
               {{ props.modelPositiveMessage }}
@@ -158,6 +153,6 @@ onUnmounted(() => {
 .jv-modal-enter-from .jv-modal-card,
 .jv-modal-leave-to .jv-modal-card {
   opacity: 0;
-  transform: scale(0.92) rotate(-2deg);
+  transform: scale(0.96) translateY(8px);
 }
 </style>

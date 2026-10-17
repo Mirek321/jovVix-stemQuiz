@@ -2,9 +2,11 @@
 @import "tailwindcss";
 
 /* -----------------------------------------------------------------------------
- *  Use `bg-jv-*`, `text-jv-*`, `border-jv-*`,
- * `font-display/heading/body/feature`, `shadow-brutal[-sm|-lg]`, and the
- * `jv-card` utility for the hand-drawn asymmetric radius.
+ *  STEM Hub palette: #320c69 (ink / deep purple), #3facff (sky), #b291f3
+ *  (lavender), #ffaa22 (orange), #c39ad8 (mauve), #f5f2f4 (canvas).
+ *  Use `bg-jv-*`, `text-jv-*`, `border-jv-*` (`border-jv-line` for hairlines),
+ *  `font-display/headings/body`, `shadow-soft[-sm|-lg]`, and the `jv-card`
+ *  utility for the shared card radius.
  * -------------------------------------------------------------------------- */
 
 @theme inline {
@@ -50,6 +52,12 @@
   --color-jv-slate: var(--jv-slate);
   --color-jv-ink: var(--jv-ink);
   --color-jv-ink-2: var(--jv-ink-2);
+  --color-jv-line: var(--jv-line);
+  --color-jv-primary: var(--jv-primary);
+  --color-jv-sky: var(--jv-sky);
+  --color-jv-violet: var(--jv-violet);
+  --color-jv-orange: var(--jv-orange);
+  --color-jv-mauve: var(--jv-mauve);
   --color-jv-muted: var(--jv-muted);
   --color-jv-coral: var(--jv-coral);
   --color-jv-yellow: var(--jv-yellow);
@@ -66,15 +74,20 @@
   --color-jv-accent-orange: var(--jv-accent-orange);
   --color-jv-ivory: var(--jv-ivory);
 
-  /* Typography */
-  --font-body: "Nunito Sans", system-ui, sans-serif;
-  --font-feature: "Inter", system-ui, sans-serif;
-  --font-headings: "Shantell Sans", cursive, sans-serif;
+  /* Typography. Proxima Nova and Authentia Textured are licensed fonts: they
+   * are used when installed locally, otherwise the bundled fallbacks apply. */
+  --font-body: "Proxima Nova", "Nunito Sans", system-ui, sans-serif;
+  --font-feature: "Proxima Nova", "Nunito Sans", system-ui, sans-serif;
+  --font-headings: "Proxima Nova", "Nunito Sans", system-ui, sans-serif;
+  --font-display: "Authentia Textured", "Shantell Sans", cursive, sans-serif;
 
-  /* Hard offset shadows */
-  --shadow-brutal-sm: 2px 2px 0 0 var(--jv-ink);
-  --shadow-brutal: 4px 4px 0 0 var(--jv-ink);
-  --shadow-brutal-lg: 8px 8px 0 0 var(--jv-ink);
+  /* Soft elevation, tinted with the brand ink */
+  --shadow-soft-sm: 0 1px 2px rgb(50 12 105 / 0.06),
+    0 2px 6px rgb(50 12 105 / 0.06);
+  --shadow-soft: 0 2px 4px rgb(50 12 105 / 0.05),
+    0 8px 24px rgb(50 12 105 / 0.1);
+  --shadow-soft-lg: 0 4px 8px rgb(50 12 105 / 0.05),
+    0 20px 48px rgb(50 12 105 / 0.14);
 
   /* Animations */
   --animate-hourglass-flip: hourglass-flip 2.6s ease-in-out infinite;
@@ -95,40 +108,49 @@
 }
 
 :root {
+  /* Palette */
+  --jv-primary: #320c69;
+  --jv-sky: #3facff;
+  --jv-violet: #b291f3;
+  --jv-orange: #ffaa22;
+  --jv-mauve: #c39ad8;
+
   /* Surfaces */
-  --jv-canvas: #fdfbf7;
+  --jv-canvas: #f5f2f4;
   --jv-white: #ffffff;
-  --jv-slate: #f1f5f9;
+  --jv-slate: #ece6f0;
 
   /* Ink */
-  --jv-ink: #2d2d2d;
-  --jv-ink-2: #2d2a26;
-  --jv-muted: #555555;
+  --jv-ink: #320c69;
+  --jv-ink-2: #2a0a58;
+  --jv-muted: #6b5a85;
+  --jv-line: rgb(50 12 105 / 0.12);
 
-  /* Brand fills */
-  --jv-coral: #ff6b6b;
-  --jv-yellow: #fde047;
-  --jv-yellow-2: #fef08a;
-  --jv-yellow-soft: #fdf2a5;
-  --jv-mint: #d1fae5;
-  --jv-mint-2: #cdecd8;
-  --jv-salmon: #f8a1a3;
-  --jv-lavender: #e4dff4;
-  --jv-charcoal: #2d2d2d;
-  --jv-ivory: #f0ebd8;
+  /* Brand fills (legacy names mapped onto the palette) */
+  --jv-coral: var(--jv-primary);
+  --jv-yellow: var(--jv-orange);
+  --jv-yellow-2: #ffc766;
+  --jv-yellow-soft: #ffe8c2;
+  --jv-mint: #d9efff;
+  --jv-mint-2: #bfe3ff;
+  --jv-salmon: var(--jv-mauve);
+  --jv-lavender: #ece3fc;
+  --jv-charcoal: var(--jv-primary);
+  --jv-ivory: #efe9f1;
 
-  /* Accent text (per-feature category) */
-  --jv-accent-green: #43b581;
-  --jv-accent-gold: #d4b524;
-  --jv-accent-red: #d9534f;
-  --jv-accent-purple: #8a7bb8;
-  --jv-accent-orange: #d97b4f;
+  /* Accent text (per-feature category). Green and red stay as functional
+   * correct / wrong signals. */
+  --jv-accent-green: #1f9d6b;
+  --jv-accent-gold: #e08e00;
+  --jv-accent-red: #e5484d;
+  --jv-accent-purple: #7a52d6;
+  --jv-accent-orange: #e08e00;
 
   --background: var(--jv-canvas);
   --foreground: var(--jv-ink);
-  --border: var(--jv-ink);
-  --ring: var(--jv-ink);
-  --radius: 0.5rem;
+  --border: var(--jv-line);
+  --ring: var(--jv-violet);
+  --radius: 0.75rem;
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -178,6 +200,24 @@
   h5,
   h6 {
     font-family: var(--font-headings);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--jv-ink);
+  }
+
+  /* Low-specificity default so explicit font-[n] utilities still win. */
+  .font-headings {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--jv-violet);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--jv-lavender);
     color: var(--jv-ink);
   }
 }
@@ -207,44 +247,41 @@
   @apply text-[16px] leading-[24px] tracking-normal font-normal;
 }
 @utility main-heading {
-  @apply font-headings text-jv-canvas text-[32px] min-[420px]:text-[40px] sm:text-[48px] md:text-[54px] lg:text-[48px] xl:text-6xl leading-[1.1];
+  @apply font-display text-jv-canvas text-[32px] min-[420px]:text-[40px] sm:text-[48px] md:text-[54px] lg:text-[48px] xl:text-6xl leading-[1.1];
 }
 
-/* Hand-drawn asymmetric radius used on all cards/buttons */
+/* Shared card radius */
 @utility jv-card {
-  border-top-left-radius: 7px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 7px;
+  border-radius: 14px;
 }
 
+/* Surfaces: hairline border + generous radius */
 @utility jv-border-uneven {
-  border: 3px solid var(--jv-ink);
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  border: 1px solid var(--jv-line);
+  border-radius: 999px;
 }
 
 @utility jv-border-rough {
-  border: 3px solid var(--jv-ink);
-  border-radius: 4px 12px 8px 6px / 10px 4px 12px 8px;
+  border: 1px solid var(--jv-line);
+  border-radius: 20px;
 }
 
 @utility jv-border-even {
-  border: 3px solid var(--jv-ink);
-  border-radius: 1px;
+  border: 1px solid var(--jv-line);
+  border-radius: 12px;
 }
 
-/* Carousel prev/next nav button — brutalist hand-drawn pill */
+/* Carousel prev/next nav button */
 @utility jv-carousel-nav {
   width: 2.75rem !important;
   height: 2.75rem !important;
   z-index: 30;
-  background-color: var(--jv-yellow) !important;
+  background-color: var(--jv-white) !important;
   color: var(--jv-ink) !important;
-  border: 3px solid var(--jv-ink) !important;
-  border-radius: 12px 6px 14px 8px !important;
-  box-shadow: 3px 3px 0 0 var(--jv-ink) !important;
+  border: 1px solid var(--jv-line) !important;
+  border-radius: 999px !important;
+  box-shadow: var(--shadow-soft) !important;
   opacity: 0;
-  transform: rotate(-2deg);
   transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -253,13 +290,12 @@
 }
 
 .jv-carousel-nav:hover {
-  transform: rotate(3deg) !important;
-  box-shadow: 5px 5px 0 0 var(--jv-ink) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-soft-lg) !important;
 }
 
 .jv-carousel-nav:active {
-  transform: rotate(-2deg) translate(2px, 2px) !important;
-  box-shadow: 0 0 0 0 var(--jv-ink) !important;
+  transform: scale(0.96) !important;
 }
 
 .group:hover .jv-carousel-nav,
@@ -279,23 +315,14 @@
   stroke-width: 2.6 !important;
 }
 
-/* Hero yellow highlight behind "Live Engagement" — mimics a felt-tip highlighter */
+/* Hero highlight behind "Live Engagement" — a soft orange marker band */
 @utility jv-highlight {
   background-image: linear-gradient(
-      104deg,
-      rgba(253, 224, 71, 0) 0.9%,
-      rgb(253, 224, 71) 2.4%,
-      rgba(253, 224, 71, 0.5) 5.8%,
-      rgba(253, 224, 71, 0.1) 93%,
-      rgba(253, 224, 71, 0.7) 96%,
-      rgba(253, 224, 71, 0) 98%
-    ),
-    linear-gradient(
-      183deg,
-      rgba(253, 224, 71, 0) 0%,
-      rgba(253, 224, 71, 0.3) 7.9%,
-      rgba(253, 224, 71, 0) 15%
-    );
+    transparent 58%,
+    rgb(255 170 34 / 0.45) 58%,
+    rgb(255 170 34 / 0.45) 92%,
+    transparent 92%
+  );
 }
 
 @utility jv-grid {

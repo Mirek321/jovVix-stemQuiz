@@ -2,14 +2,14 @@
   <main class="min-h-screen bg-jv-canvas px-4 py-5 sm:px-6 md:px-8 md:py-6">
     <div
       v-if="quizError?.data?.code == 401"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
     >
       {{ navigateTo("/account/login") }}
     </div>
 
     <div
       v-else-if="quizError"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
     >
       {{ quizError.message || quizError }}
     </div>
@@ -27,7 +27,7 @@
             </h1>
             <span
               v-if="isPublicQuiz"
-              class="inline-flex rotate-[-2deg] items-center gap-1.5 border-[3px] border-jv-ink bg-jv-mint px-3 py-1.5 text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink shadow-brutal-sm sm:text-[14px]"
+              class="inline-flex items-center gap-1.5 border border-jv-line bg-jv-mint px-3 py-1.5 text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink shadow-soft-sm sm:text-[14px]"
               aria-label="Public quiz"
             >
               <Globe class="size-4" :stroke-width="2.6" />
@@ -35,7 +35,7 @@
             </span>
           </div>
           <div
-            class="ml-1 mt-1 h-3 w-24 rounded-full border-b-[3px] border-jv-coral sm:ml-2 sm:w-32"
+            class="ml-1 mt-1 h-3 w-24 rounded-full border-b border-jv-coral sm:ml-2 sm:w-32"
           ></div>
           <p
             class="mt-3 max-w-2xl text-[16px] leading-[1.5] text-jv-muted sm:text-[18px]"
@@ -53,23 +53,23 @@
       </header>
 
       <div
-        class="flex flex-col gap-4 jv-border-rough bg-jv-white p-3 shadow-brutal-sm sm:p-4 lg:flex-row lg:items-center lg:justify-between"
+        class="flex flex-col gap-4 jv-border-rough bg-jv-white p-3 shadow-soft-sm sm:p-4 lg:flex-row lg:items-center lg:justify-between"
       >
         <div class="flex flex-wrap gap-2">
           <span
-            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-ink/35 bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
+            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
             Total Questions:
             <strong class="text-jv-ink">{{ questions.length }}</strong>
           </span>
           <span
-            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-ink/35 bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
+            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
             Survey Questions:
             <strong class="text-jv-ink">{{ totalSurveyQuestion }}</strong>
           </span>
           <span
-            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-ink/35 bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
+            class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
             Played Quiz:
             <strong class="text-jv-ink">{{
@@ -109,7 +109,7 @@
           <select
             v-model="settings.category_id"
             :disabled="settingsPending"
-            class="h-14 border-[3px] border-jv-ink bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm disabled:opacity-60"
+            class="h-14 border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm disabled:opacity-60"
           >
             <option value="">No category (shows under "Other")</option>
             <option
@@ -130,7 +130,7 @@
           </span>
           <label
             v-if="!settings.cover_image"
-            class="flex h-14 cursor-pointer items-center justify-center gap-2 border-[3px] border-dashed border-jv-ink/40 bg-jv-canvas px-4 text-[15px] font-semibold text-jv-muted transition-colors hover:bg-jv-yellow/20"
+            class="flex h-14 cursor-pointer items-center justify-center gap-2 border border-dashed border-jv-line bg-jv-canvas px-4 text-[15px] font-semibold text-jv-muted transition-colors hover:bg-jv-yellow/20"
           >
             <ImageIcon class="size-4 shrink-0" :stroke-width="2.3" />
             <span class="truncate">{{
@@ -146,12 +146,12 @@
           </label>
           <div
             v-else
-            class="flex h-14 items-center gap-3 border-[3px] border-jv-ink bg-jv-canvas px-3"
+            class="flex h-14 items-center gap-3 border border-jv-line bg-jv-canvas px-3"
           >
             <NuxtImg
               :src="settings.cover_image"
               alt="Cover image preview"
-              class="h-10 w-14 shrink-0 border-2 border-jv-ink object-cover"
+              class="h-10 w-14 shrink-0 border border-jv-line object-cover"
             />
             <span
               class="min-w-0 flex-1 truncate text-[14px] font-semibold text-jv-ink"
@@ -186,7 +186,7 @@
                   <TooltipTrigger as-child>
                     <button
                       type="button"
-                      class="inline-flex size-5 items-center justify-center rounded-full border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[2deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+                      class="inline-flex size-5 items-center justify-center rounded-full border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
                       aria-label="What does Points mean?"
                     >
                       <Info class="size-3" :stroke-width="2.6" />
@@ -210,7 +210,7 @@
                 :aria-describedby="
                   settingsErrors.points ? 'quiz-points-error' : undefined
                 "
-                class="h-10 w-14 border-[3px] border-jv-ink bg-jv-white px-2 text-center text-[16px] font-black text-jv-ink shadow-brutal-sm outline-none disabled:opacity-60"
+                class="h-10 w-14 border border-jv-line bg-jv-white px-2 text-center text-[16px] font-black text-jv-ink shadow-soft-sm outline-none disabled:opacity-60"
               />
               <span
                 v-if="settingsErrors.points"
@@ -231,7 +231,7 @@
                   <TooltipTrigger as-child>
                     <button
                       type="button"
-                      class="inline-flex size-5 items-center justify-center rounded-full border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[2deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+                      class="inline-flex size-5 items-center justify-center rounded-full border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
                       aria-label="What does Duration mean?"
                     >
                       <Info class="size-3" :stroke-width="2.6" />
@@ -254,7 +254,7 @@
                 :aria-describedby="
                   settingsErrors.duration ? 'quiz-duration-error' : undefined
                 "
-                class="h-10 w-16 border-[3px] border-jv-ink bg-jv-white px-2 text-center text-[16px] font-black text-jv-ink shadow-brutal-sm outline-none disabled:opacity-60"
+                class="h-10 w-16 border border-jv-line bg-jv-white px-2 text-center text-[16px] font-black text-jv-ink shadow-soft-sm outline-none disabled:opacity-60"
               />
               <span
                 v-if="settingsErrors.duration"
@@ -348,7 +348,7 @@
             :class="
               editingQuestionId === question.question_id
                 ? ''
-                : 'jv-border-rough bg-jv-white p-4 shadow-brutal-sm transition-transform hover:rotate-[0.25deg] sm:p-5'
+                : 'jv-border-rough bg-jv-white p-4 shadow-soft-sm transition-transform sm:p-5'
             "
           >
             <QuestionFormCard
@@ -430,7 +430,7 @@
                 <li
                   v-for="(option, key) in question.options"
                   :key="key"
-                  class="flex min-w-0 items-center gap-3 border-b border-jv-ink/10 py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
+                  class="flex min-w-0 items-center gap-3 border-b border-jv-line py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
                   :class="
                     isCorrectAnswer(question, key)
                       ? 'border-l-4 border-l-jv-accent-green bg-jv-accent-green/25 pl-2'
@@ -487,11 +487,11 @@
         @click.self="closeImportModal"
       >
         <form
-          class="w-full max-w-[680px] rotate-[-0.4deg] border-[4px] border-jv-ink bg-jv-white shadow-brutal-lg"
+          class="w-full max-w-[680px] border-[4px] border-jv-line bg-jv-white shadow-soft-lg"
           @submit.prevent="importCsv"
         >
           <div
-            class="flex items-center justify-between gap-4 border-b-[3px] border-jv-ink bg-jv-ink px-5 py-4 text-jv-white sm:px-6"
+            class="flex items-center justify-between gap-4 border-b border-jv-line bg-jv-ink px-5 py-4 text-jv-white sm:px-6"
           >
             <h2
               class="font-body text-[24px] font-black leading-none text-jv-white sm:text-[28px]"
@@ -500,7 +500,7 @@
             </h2>
             <button
               type="button"
-              class="grid size-9 place-items-center text-jv-white transition-transform hover:rotate-[6deg]"
+              class="grid size-9 place-items-center text-jv-white transition-transform"
               aria-label="Close import CSV modal"
               @click="closeImportModal"
             >
@@ -516,7 +516,7 @@
                 Choose CSV File <span class="text-jv-coral">*</span>
               </span>
               <span
-                class="flex h-14 cursor-pointer border-[3px] border-jv-ink bg-jv-canvas"
+                class="flex h-14 cursor-pointer border border-jv-line bg-jv-canvas"
               >
                 <span
                   class="inline-flex h-full items-center gap-2 bg-jv-ink px-4 text-[16px] font-black text-jv-white"
@@ -554,18 +554,18 @@
           </div>
 
           <div
-            class="flex flex-col-reverse gap-3 border-t-[3px] border-jv-ink bg-jv-canvas px-5 py-4 sm:flex-row sm:justify-end sm:px-8"
+            class="flex flex-col-reverse gap-3 border-t border-jv-line bg-jv-canvas px-5 py-4 sm:flex-row sm:justify-end sm:px-8"
           >
             <button
               type="button"
-              class="inline-flex h-12 items-center justify-center border-[3px] border-jv-ink bg-jv-white px-6 text-[17px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[-1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+              class="inline-flex h-12 items-center justify-center border border-jv-line bg-jv-white px-6 text-[17px] font-black text-jv-ink shadow-soft-sm transition-transform"
               @click="closeImportModal"
             >
               Cancel
             </button>
             <button
               type="submit"
-              class="inline-flex h-12 items-center justify-center border-[3px] border-jv-ink bg-jv-accent-green px-6 text-[17px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-60"
+              class="inline-flex h-12 items-center justify-center border border-jv-line bg-jv-accent-green px-6 text-[17px] font-black text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-60"
               :disabled="importPending"
             >
               {{ importPending ? "Adding..." : "Add Questions" }}
@@ -1064,13 +1064,13 @@ const handleStartQuiz = async () => {
   position: relative;
   opacity: 0.4 !important;
   background-color: var(--jv-white) !important;
-  border: 3px dashed var(--jv-coral) !important;
+  border: 2px dashed var(--jv-violet) !important;
   box-shadow: none !important;
   transform: none !important;
   transition: opacity 0.15s ease, border-color 0.15s ease;
 }
 
-/* Disable the hover tilt on the ghost while it's acting as drop placeholder. */
+/* Disable the hover lift on the ghost while it's acting as drop placeholder. */
 .question-ghost:hover {
   transform: none !important;
 }
@@ -1078,8 +1078,8 @@ const handleStartQuiz = async () => {
 /* Floating clone: the faded preview that follows the cursor. */
 .question-drag {
   opacity: 0.92 !important;
-  transform: rotate(1.5deg) !important;
-  box-shadow: 8px 8px 0 0 var(--jv-ink) !important;
+  transform: scale(1.02) !important;
+  box-shadow: var(--shadow-soft-lg) !important;
   cursor: grabbing !important;
 }
 

@@ -186,7 +186,7 @@ const handleDeleteCategory = async (category) => {
           Quiz Categories
         </h1>
         <div
-          class="ml-1 mt-1 h-3 w-24 rounded-full border-b-[3px] border-jv-yellow sm:ml-2 sm:w-28"
+          class="ml-1 mt-1 h-3 w-24 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-28"
           aria-hidden="true"
         ></div>
       </div>
@@ -196,7 +196,7 @@ const handleDeleteCategory = async (category) => {
       class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4 justify-between"
     >
       <label
-        class="flex h-11 w-full min-w-0 rotate-[1deg] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-brutal-sm sm:h-12 sm:max-w-[448px] sm:gap-3 sm:px-4"
+        class="flex h-11 w-full min-w-0 items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-soft-sm sm:h-12 sm:max-w-[448px] sm:gap-3 sm:px-4"
       >
         <Search class="size-5 shrink-0 text-jv-ink/40" :stroke-width="2.4" />
         <input
@@ -218,14 +218,14 @@ const handleDeleteCategory = async (category) => {
 
     <div
       v-if="categoriesPending"
-      class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
     >
       Loading...
     </div>
 
     <div
       v-else-if="categoriesError"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
     >
       {{ categoriesError.message }}
     </div>
@@ -275,12 +275,12 @@ const handleDeleteCategory = async (category) => {
       <div
         v-for="category in filteredCategories"
         :key="category.id"
-        class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_180px] gap-4 items-center jv-border-rough bg-jv-white px-5 py-4 shadow-brutal-sm hover:translate-y-[-2px] hover:shadow-brutal-md transition-all"
+        class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_180px] gap-4 items-center jv-border-rough bg-jv-white px-5 py-4 shadow-soft-sm hover:translate-y-[-2px] hover:shadow-soft-md transition-all"
       >
         <template v-if="editingId === category.id">
           <div class="flex min-w-0 items-center gap-3">
             <span
-              class="grid size-10 shrink-0 place-items-center border-2 border-jv-ink bg-jv-yellow/60 text-jv-ink"
+              class="grid size-10 shrink-0 place-items-center border border-jv-line bg-jv-yellow/60 text-jv-ink"
             >
               <Tag class="size-5" :stroke-width="2.4" />
             </span>
@@ -289,7 +289,7 @@ const handleDeleteCategory = async (category) => {
               type="text"
               required
               maxlength="50"
-              class="h-10 min-w-0 flex-1 border-[3px] border-jv-ink bg-jv-canvas px-3 text-[16px] font-semibold text-jv-ink outline-none"
+              class="h-10 min-w-0 flex-1 border border-jv-line bg-jv-canvas px-3 text-[16px] font-semibold text-jv-ink outline-none"
               @keyup.enter="handleUpdateCategory(category)"
               @keyup.esc="cancelEdit"
             />
@@ -299,7 +299,7 @@ const handleDeleteCategory = async (category) => {
             <button
               type="button"
               :disabled="savingEdit || !editingName"
-              class="grid size-9 shrink-0 place-items-center border-2 border-jv-ink bg-jv-mint text-jv-ink shadow-[1px_1px_0_#2D2D2D] transition-transform hover:rotate-[3deg] disabled:cursor-not-allowed disabled:opacity-60"
+              class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-mint text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-60"
               aria-label="Save category name"
               @click="handleUpdateCategory(category)"
             >
@@ -307,7 +307,7 @@ const handleDeleteCategory = async (category) => {
             </button>
             <button
               type="button"
-              class="grid size-9 shrink-0 place-items-center border-2 border-jv-ink bg-jv-white text-jv-ink shadow-[1px_1px_0_#2D2D2D] transition-transform hover:rotate-[3deg]"
+              class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
               aria-label="Cancel rename"
               @click="cancelEdit"
             >
@@ -319,7 +319,7 @@ const handleDeleteCategory = async (category) => {
         <template v-else>
           <div class="flex min-w-0 items-center gap-3">
             <span
-              class="grid size-10 shrink-0 place-items-center border-2 border-jv-ink bg-jv-yellow/60 text-jv-ink"
+              class="grid size-10 shrink-0 place-items-center border border-jv-line bg-jv-yellow/60 text-jv-ink"
             >
               <Tag class="size-5" :stroke-width="2.4" />
             </span>
@@ -344,7 +344,7 @@ const handleDeleteCategory = async (category) => {
           <div class="flex items-center gap-2 lg:justify-end">
             <button
               type="button"
-              class="grid size-9 shrink-0 place-items-center border-2 border-jv-ink bg-jv-white text-jv-ink shadow-[1px_1px_0_#2D2D2D] transition-transform hover:rotate-[3deg]"
+              class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
               aria-label="Rename category"
               @click="startEdit(category)"
             >
@@ -353,7 +353,7 @@ const handleDeleteCategory = async (category) => {
             <button
               type="button"
               :disabled="deletingId === category.id"
-              class="grid size-9 shrink-0 place-items-center border-2 border-jv-ink bg-jv-white text-jv-ink shadow-[1px_1px_0_#2D2D2D] transition-all hover:rotate-[3deg] hover:text-jv-coral disabled:cursor-wait disabled:opacity-60"
+              class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-all hover:text-jv-coral disabled:cursor-wait disabled:opacity-60"
               aria-label="Delete category"
               @click="handleDeleteCategory(category)"
             >

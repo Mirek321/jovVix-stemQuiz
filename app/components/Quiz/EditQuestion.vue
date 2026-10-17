@@ -11,7 +11,7 @@
         id="edit-question-text"
         v-model="editableQuestion.question"
         placeholder="Edit Question"
-        class="jv-card w-full border-2 border-jv-ink bg-jv-white px-4 py-3 font-body text-base font-bold text-jv-ink shadow-brutal-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
+        class="jv-card w-full border border-jv-line bg-jv-white px-4 py-3 font-body text-base font-bold text-jv-ink shadow-soft-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
       />
     </div>
 
@@ -20,7 +20,7 @@
       class="flex flex-col gap-3"
     >
       <label
-        class="jv-card flex w-fit cursor-pointer items-center gap-2 border-2 border-jv-ink bg-jv-yellow px-4 py-2 font-headings text-sm text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+        class="jv-card flex w-fit cursor-pointer items-center gap-2 border border-jv-line bg-jv-yellow px-4 py-2 font-headings text-sm text-jv-ink shadow-soft-sm transition-transform"
       >
         <Camera class="size-4" :stroke-width="2.4" />
         {{ processingImage ? "Processing…" : "Replace Image" }}
@@ -38,7 +38,7 @@
         <NuxtImg
           :src="editableQuestion.resource"
           :alt="editableQuestion.question"
-          class="max-h-[240px] w-auto border-2 border-jv-ink bg-jv-white object-contain shadow-brutal-sm"
+          class="max-h-[240px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
         />
       </div>
     </div>
@@ -54,14 +54,14 @@
       <div
         v-for="(option, order) in props.question.options"
         :key="order"
-        class="jv-card flex flex-col gap-3 border-2 border-jv-ink bg-jv-white p-4 shadow-brutal-sm"
+        class="jv-card flex flex-col gap-3 border border-jv-line bg-jv-white p-4 shadow-soft-sm"
       >
         <div
           v-if="props.question.options_media === 'image'"
           class="flex flex-col gap-2"
         >
           <label
-            class="jv-card flex w-fit cursor-pointer items-center gap-2 border-2 border-jv-ink bg-jv-yellow-soft px-3 py-1.5 font-headings text-xs text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+            class="jv-card flex w-fit cursor-pointer items-center gap-2 border border-jv-line bg-jv-yellow-soft px-3 py-1.5 font-headings text-xs text-jv-ink shadow-soft-sm transition-transform"
           >
             <Camera class="size-3.5" :stroke-width="2.4" />
             Option {{ order }}
@@ -79,7 +79,7 @@
             <NuxtImg
               :src="editableOptions[order]"
               :alt="option"
-              class="max-h-[160px] w-auto border-2 border-jv-ink bg-jv-white object-contain shadow-brutal-sm"
+              class="max-h-[160px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
             />
           </div>
         </div>
@@ -96,7 +96,7 @@
           v-if="editableQuestion.options_media === 'text'"
           v-model="editableOptions[order]"
           placeholder="Edit Option"
-          class="jv-card w-full border-2 border-jv-ink bg-jv-white px-3 py-2 font-body text-sm text-jv-ink shadow-brutal-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
+          class="jv-card w-full border border-jv-line bg-jv-white px-3 py-2 font-body text-sm text-jv-ink shadow-soft-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
         />
 
         <label
@@ -118,7 +118,7 @@
     <div class="flex justify-end">
       <button
         type="button"
-        class="jv-card inline-flex h-11 items-center justify-center gap-2 border-2 border-jv-ink bg-jv-coral px-6 font-headings text-base text-white shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+        class="jv-card inline-flex h-11 items-center justify-center gap-2 border border-jv-line bg-jv-coral px-6 font-headings text-base text-white shadow-soft-sm transition-transform"
         @click="updateQuestion"
       >
         <Save class="size-4" :stroke-width="2.4" />

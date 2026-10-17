@@ -5,11 +5,11 @@
     <div class="mx-auto flex w-full flex-col gap-8 sm:gap-10">
       <div
         v-if="!userPending && !userError && !userData.email_verify"
-        class="flex rotate-[-0.3deg] flex-col gap-3.5 jv-border-rough bg-jv-white p-3.5 shadow-brutal-sm sm:flex-row sm:items-center sm:p-4"
+        class="flex flex-col gap-3.5 jv-border-rough bg-jv-white p-3.5 shadow-soft-sm sm:flex-row sm:items-center sm:p-4"
         role="alert"
       >
         <span
-          class="flex size-9 shrink-0 items-center justify-center rounded-full border-[3px] border-jv-ink bg-jv-coral text-white"
+          class="flex size-9 shrink-0 items-center justify-center rounded-full border border-jv-line bg-jv-coral text-white"
         >
           <MailWarning class="size-5" :stroke-width="2.4" />
         </span>
@@ -38,7 +38,7 @@
           Profile Settings
         </h1>
         <div
-          class="ml-12 mt-1 h-3 w-28 rounded-full border-b-[3px] border-jv-yellow sm:ml-14 sm:w-32"
+          class="ml-12 mt-1 h-3 w-28 rounded-full border-b border-jv-yellow sm:ml-14 sm:w-32"
           aria-hidden="true"
         ></div>
       </div>
@@ -49,7 +49,7 @@
 
       <div
         v-if="userError"
-        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
         role="alert"
       >
         {{ userError.data }}
@@ -57,20 +57,20 @@
 
       <div
         v-else-if="userPending"
-        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
         Pending...
       </div>
 
       <template v-else>
-        <section class="jv-border-rough bg-jv-white shadow-brutal-lg">
+        <section class="jv-border-rough bg-jv-white shadow-soft-lg">
           <div class="p-5 sm:p-7 md:p-8">
             <div class="flex flex-col gap-5 md:flex-row md:items-center">
               <NuxtImg
                 :src="avatar"
                 width="112"
                 height="112"
-                class="size-24 shrink-0 rounded-full border-[3px] border-jv-ink bg-jv-slate object-cover shadow-brutal-sm sm:size-28"
+                class="size-24 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover shadow-soft-sm sm:size-28"
                 :alt="userData.full_name"
               />
 
@@ -123,7 +123,7 @@
           </div>
 
           <form
-            class="border-t-2 border-dashed border-jv-ink/15 p-5 sm:p-7 md:p-8"
+            class="border-t border-dashed border-jv-line p-5 sm:p-7 md:p-8"
             @submit.prevent="changeUserMetaData"
           >
             <div class="grid gap-5 md:grid-cols-2 md:gap-6">
@@ -137,7 +137,7 @@
                   id="first-name"
                   v-model="userData.first_name"
                   type="text"
-                  class="h-14 w-full border-2 border-jv-ink bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
+                  class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
                   placeholder="Pending..."
                   required
                   @focus="showCancleButton"
@@ -154,7 +154,7 @@
                   id="last-name"
                   v-model="userData.last_name"
                   type="text"
-                  class="h-14 w-full border-2 border-jv-ink bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
+                  class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
                   placeholder="Pending..."
                   required
                   @focus="showCancleButton"
@@ -172,7 +172,7 @@
                 id="email"
                 v-model="userData.email"
                 type="email"
-                class="h-14 w-full border-2 border-jv-ink bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none disabled:text-jv-ink/80"
+                class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none disabled:text-jv-ink/80"
                 placeholder="Pending..."
                 disabled
               />
@@ -180,7 +180,7 @@
 
             <div
               v-if="updateuserError"
-              class="mt-5 jv-border-rough bg-jv-white p-3 text-[15px] font-semibold text-jv-coral shadow-brutal-sm"
+              class="mt-5 jv-border-rough bg-jv-white p-3 text-[15px] font-semibold text-jv-coral shadow-soft-sm"
               role="alert"
             >
               {{ updateuserError.data }}
@@ -206,9 +206,9 @@
           </form>
         </section>
 
-        <section class="jv-border-rough bg-jv-white shadow-brutal-lg">
+        <section class="jv-border-rough bg-jv-white shadow-soft-lg">
           <div
-            class="flex flex-col gap-4 border-b-2 border-jv-ink p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6"
+            class="flex flex-col gap-4 border-b border-jv-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6"
           >
             <div class="min-w-0">
               <h2
@@ -226,7 +226,7 @@
               v-model="titleInput"
               type="text"
               placeholder="Search quiz"
-              class="h-12 w-full border-2 border-jv-ink bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none placeholder:text-jv-ink/35 focus:bg-jv-white sm:w-64"
+              class="h-12 w-full border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none placeholder:text-jv-ink/35 focus:bg-jv-white sm:w-64"
             />
           </div>
 
@@ -235,7 +235,7 @@
 
             <div
               v-else-if="quizError"
-              class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+              class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
               role="alert"
             >
               {{ quizError.data }}

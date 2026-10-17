@@ -5,13 +5,6 @@ const fallbackImages = [
   "/images/landing/homepage-public-quiz-4.png",
 ];
 
-const tiltClasses = [
-  "rotate-[-1deg]",
-  "rotate-[1deg]",
-  "rotate-[-0.4deg]",
-  "rotate-[0.6deg]",
-];
-
 const hashIndex = (value, length) => {
   if (!value) return 0;
   const str = String(value);
@@ -35,8 +28,5 @@ export const useQuizCover = () => {
         )}`
       : fallbackUrl(quiz);
 
-  const tiltClass = (quiz) =>
-    tiltClasses[hashIndex(quiz?.id, tiltClasses.length)];
-
-  return { coverUrl, fallbackUrl, tiltClass };
+  return { coverUrl, fallbackUrl };
 };

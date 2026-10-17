@@ -16,7 +16,7 @@
         <!-- Single running quiz: playful hand-drawn card -->
         <div
           v-if="!isMulti"
-          class="relative -rotate-2 hover:rotate-0 transition-transform duration-300 ease-out"
+          class="relative transition-transform duration-300 ease-out"
         >
           <span
             class="absolute -top-4 -right-3 text-jv-yellow rotate-12 pointer-events-none"
@@ -46,7 +46,7 @@
           </span>
 
           <div
-            class="relative bg-jv-white border-[3px] border-jv-ink shadow-brutal p-3.5 sm:p-4"
+            class="relative bg-jv-white border border-jv-line shadow-soft p-3.5 sm:p-4"
           >
             <div class="flex items-center gap-2 mb-2.5">
               <LivePulse />
@@ -68,7 +68,7 @@
               <button
                 type="button"
                 :disabled="resumingId === sessions[0].id"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 jv-border-even bg-jv-yellow px-3 py-2 text-[13px] sm:text-sm font-headings text-jv-ink shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:-rotate-1 disabled:opacity-60 disabled:cursor-not-allowed"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 jv-border-even bg-jv-yellow px-3 py-2 text-[13px] sm:text-sm font-headings text-jv-ink shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
                 @click="resumeQuiz(sessions[0])"
               >
                 <ExternalLink class="size-4" :stroke-width="2.4" />
@@ -77,7 +77,7 @@
               <button
                 type="button"
                 :disabled="stopping"
-                class="inline-flex items-center justify-center gap-1.5 jv-border-even bg-jv-coral px-3 py-2 text-[13px] sm:text-sm font-headings text-white shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:rotate-1 disabled:opacity-60 disabled:cursor-not-allowed"
+                class="inline-flex items-center justify-center gap-1.5 jv-border-even bg-jv-coral px-3 py-2 text-[13px] sm:text-sm font-headings text-white shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
                 aria-label="Stop quiz"
                 @click="openConfirm(sessions[0])"
               >
@@ -92,7 +92,7 @@
         <div v-else-if="!expanded" class="flex justify-end">
           <button
             type="button"
-            class="inline-flex items-center gap-2.5 jv-border-even bg-jv-white py-2.5 pl-3 pr-2.5 shadow-brutal transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:hover:-rotate-1"
+            class="inline-flex items-center gap-2.5 jv-border-even bg-jv-white py-2.5 pl-3 pr-2.5 shadow-soft transition-transform"
             :aria-expanded="false"
             aria-controls="running-quiz-panel"
             @click="expanded = true"
@@ -104,7 +104,7 @@
               Live · {{ sessions.length }} Quiz running
             </span>
             <span
-              class="grid size-6 place-items-center rounded-full bg-jv-yellow border-2 border-jv-ink"
+              class="grid size-6 place-items-center rounded-full bg-jv-yellow border border-jv-line"
               aria-hidden="true"
             >
               <ChevronUp class="size-3.5" :stroke-width="3" />
@@ -116,10 +116,10 @@
         <div
           v-else
           id="running-quiz-panel"
-          class="bg-jv-white border-[3px] border-jv-ink shadow-brutal overflow-hidden"
+          class="bg-jv-white border border-jv-line shadow-soft overflow-hidden"
         >
           <div
-            class="flex items-center gap-2 border-b-[3px] border-jv-ink bg-jv-yellow px-3 py-2.5"
+            class="flex items-center gap-2 border-b border-jv-line bg-jv-yellow px-3 py-2.5"
           >
             <LivePulse />
             <span
@@ -129,7 +129,7 @@
             </span>
             <button
               type="button"
-              class="grid size-8 place-items-center border-2 border-jv-ink bg-jv-white transition-transform active:translate-x-[1px] active:translate-y-[1px]"
+              class="grid size-8 place-items-center border border-jv-line bg-jv-white transition-transform"
               aria-label="Collapse running quizzes"
               @click="expanded = false"
             >
@@ -163,7 +163,7 @@
               <button
                 type="button"
                 :disabled="resumingId === item.id"
-                class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-yellow text-jv-ink shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:opacity-60 disabled:cursor-not-allowed"
+                class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
                 :aria-label="`Resume ${item.title || 'quiz'}`"
                 :title="`Resume ${item.title || 'quiz'}`"
                 @click="resumeQuiz(item)"
@@ -173,7 +173,7 @@
               <button
                 type="button"
                 :disabled="stopping"
-                class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-coral text-white shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:opacity-60 disabled:cursor-not-allowed"
+                class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-coral text-white shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
                 :aria-label="`Stop ${item.title || 'quiz'}`"
                 :title="`Stop ${item.title || 'quiz'}`"
                 @click="openConfirm(item)"
@@ -199,7 +199,7 @@
         @click.self="closeConfirm"
       >
         <div
-          class="w-full max-w-md jv-border-uneven bg-jv-white p-6 shadow-brutal"
+          class="w-full max-w-md jv-border-uneven bg-jv-white p-6 shadow-soft"
         >
           <h3
             id="stop-quiz-title"
@@ -221,7 +221,7 @@
           <div class="flex justify-end gap-3">
             <button
               type="button"
-              class="inline-flex items-center jv-border-even bg-jv-white px-4 py-2 text-sm font-headings text-jv-ink shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+              class="inline-flex items-center jv-border-even bg-jv-white px-4 py-2 text-sm font-headings text-jv-ink shadow-soft-sm transition-transform"
               :disabled="stopping"
               @click="closeConfirm"
             >
@@ -229,7 +229,7 @@
             </button>
             <button
               type="button"
-              class="inline-flex items-center gap-1.5 jv-border-even bg-jv-coral px-4 py-2 text-sm font-headings text-white shadow-brutal-sm transition-transform active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:opacity-60 disabled:cursor-not-allowed"
+              class="inline-flex items-center gap-1.5 jv-border-even bg-jv-coral px-4 py-2 text-sm font-headings text-white shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
               :disabled="stopping"
               @click="confirmStop"
             >
@@ -429,11 +429,11 @@ const confirmStop = async () => {
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 .dock-enter-from {
-  transform: translateY(120%) rotate(-8deg);
+  transform: translateY(120%);
   opacity: 0;
 }
 .dock-leave-to {
-  transform: translateY(60%) rotate(-4deg);
+  transform: translateY(60%);
   opacity: 0;
 }
 

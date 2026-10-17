@@ -19,7 +19,7 @@ const rankConfig = computed(() => {
       bg: "bg-jv-yellow",
       icon: Crown,
       label: "1st",
-      rotate: "rotate-[-1deg]",
+      rotate: "",
       scale: "sm:scale-110",
     };
   }
@@ -28,7 +28,7 @@ const rankConfig = computed(() => {
       bg: "bg-jv-salmon",
       icon: Medal,
       label: "2nd",
-      rotate: "rotate-[1deg]",
+      rotate: "",
       scale: "",
     };
   }
@@ -36,7 +36,7 @@ const rankConfig = computed(() => {
     bg: "bg-jv-mint",
     icon: Award,
     label: "3rd",
-    rotate: "rotate-[-0.5deg]",
+    rotate: "",
     scale: "",
   };
 });
@@ -51,7 +51,7 @@ const getOrdinal = (rank) => {
 <template>
   <article
     :class="[
-      'relative flex w-full max-w-[280px] flex-col items-center gap-3 jv-border-rough p-5 shadow-brutal-lg sm:gap-4 sm:p-6',
+      'relative flex w-full max-w-[280px] flex-col items-center gap-3 jv-border-rough p-5 shadow-soft-lg sm:gap-4 sm:p-6',
       rankConfig.bg,
       rankConfig.rotate,
       rankConfig.scale,
@@ -61,13 +61,8 @@ const getOrdinal = (rank) => {
     } with score ${props.winner.score}`"
     role="article"
   >
-    <span
-      class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[2deg] bg-jv-coral"
-      aria-hidden="true"
-    ></span>
-
     <div
-      class="inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-3 py-1 font-feature text-[14px] font-black text-jv-ink shadow-brutal-sm sm:text-[15px]"
+      class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1 font-feature text-[14px] font-black text-jv-ink shadow-soft-sm sm:text-[15px]"
     >
       <component
         :is="rankConfig.icon"
@@ -78,7 +73,7 @@ const getOrdinal = (rank) => {
     </div>
 
     <div
-      class="grid size-24 place-items-center overflow-hidden rounded-full border-[3px] border-jv-ink bg-jv-white shadow-brutal-sm sm:size-28"
+      class="grid size-24 place-items-center overflow-hidden rounded-full border border-jv-line bg-jv-white shadow-soft-sm sm:size-28"
     >
       <NuxtImg
         :src="avatar"
@@ -105,7 +100,7 @@ const getOrdinal = (rank) => {
     </div>
 
     <div
-      class="mt-1 inline-flex items-baseline gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-4 py-1.5 shadow-brutal-sm"
+      class="mt-1 inline-flex items-baseline gap-2 rounded-full border border-jv-line bg-jv-white px-4 py-1.5 shadow-soft-sm"
     >
       <span class="font-body text-[11px] font-bold text-jv-muted">SCORE</span>
       <span

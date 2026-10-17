@@ -1,9 +1,9 @@
 <template>
   <div
-    class="relative bg-jv-yellow/85 mx-auto w-full max-w-[1386px] jv-border-rough shadow-brutal-lg p-5 sm:p-6 md:p-8 text-center -rotate-1 mt-2 sm:mt-3"
+    class="relative bg-jv-yellow/85 mx-auto w-full max-w-[1386px] jv-border-rough shadow-soft-lg p-5 sm:p-6 md:p-8 text-center mt-2 sm:mt-3"
   >
     <div
-      class="mx-auto inline-flex size-11 sm:size-12 items-center justify-center bg-jv-coral text-white jv-border-rough shadow-brutal-sm rotate-3"
+      class="mx-auto inline-flex size-11 sm:size-12 items-center justify-center bg-jv-coral text-white jv-border-rough shadow-soft-sm"
       aria-hidden="true"
     >
       <Gamepad2 class="size-5 sm:size-6" />
@@ -24,7 +24,7 @@
     <form
       :action="`${baseUrl}/join`"
       method="get"
-      class="mt-4 sm:mt-5 flex flex-col sm:flex-row items-stretch gap-3 sm:gap-0 bg-white jv-border-rough shadow-brutal p-2 max-w-lg mx-auto"
+      class="mt-4 sm:mt-5 flex flex-col sm:flex-row items-stretch gap-3 sm:gap-0 bg-white jv-border-rough shadow-soft p-2 max-w-lg mx-auto"
     >
       <div class="flex items-center flex-1 gap-2 px-3 font-body text-jv-ink">
         <Hash size="18" class="text-jv-muted shrink-0" />
@@ -37,9 +37,7 @@
           class="w-full bg-transparent outline-none text-[16px] py-2 placeholder:text-jv-muted/70"
         />
       </div>
-      <Button type="submit" size="sm" :tilt="2" variant="accent">
-        Join Game
-      </Button>
+      <Button type="submit" size="sm" variant="accent"> Join Game </Button>
     </form>
   </div>
 </template>

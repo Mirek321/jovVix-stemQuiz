@@ -4,15 +4,15 @@ import { cva } from "class-variance-authority";
 export { default as Button } from "./Button.vue";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center font-headings text-center whitespace-nowrap jv-border-uneven shadow-brutal transition-transform transform transform-gpu backface-hidden active:shadow-none",
+  "inline-flex items-center justify-center font-headings font-semibold text-center whitespace-nowrap jv-border-uneven shadow-soft-sm transition-all duration-150 hover:-translate-y-px hover:shadow-soft active:translate-y-0 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
   {
     variants: {
       variant: {
-        default: "bg-jv-yellow-2 text-jv-ink",
+        default: "bg-jv-yellow text-jv-ink hover:bg-jv-yellow-2",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground",
-        secondary: "bg-jv-canvas text-jv-ink",
-        accent: "bg-jv-coral text-white",
+        secondary: "bg-jv-white text-jv-ink hover:bg-jv-lavender",
+        accent: "bg-jv-primary text-white hover:bg-jv-ink-2",
         ghost:
           "hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         destructive:
@@ -31,18 +31,10 @@ export const buttonVariants = cva(
         "icon-sm": "size-7 in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
       },
-      tilt: {
-        "-2": "hover:rotate-[-2deg]",
-        "-1": "hover:rotate-[-1deg]",
-        0: "hover:rotate-0",
-        1: "hover:rotate-[1deg]",
-        2: "hover:rotate-[2deg]",
-      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
-      tilt: 0,
     },
   }
 );
