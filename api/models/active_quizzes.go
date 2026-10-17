@@ -28,6 +28,7 @@ type ActiveQuiz struct {
 	CurrentQuestion      sql.NullString `json:"current_question" db:"current_question"`
 	IsQuestionActive     sql.NullBool   `json:"is_question_active" db:"is_question_active"`
 	QuestionDeliveryTime sql.NullTime   `json:"question_time" db:"question_delivery_time"`
+	Mode                 string         `json:"mode" db:"mode"`
 	CreatedAt            time.Time      `json:"created_at,omitempty" db:"created_at,omitempty"`
 	UpdatedAt            time.Time      `json:"updated_at,omitempty" db:"updated_at,omitempty"`
 }
@@ -39,6 +40,7 @@ type ActiveSessionSummary struct {
 	QuizID         uuid.UUID  `json:"quiz_id" db:"quiz_id"`
 	InvitationCode *int32     `json:"invitation_code" db:"invitation_code"`
 	ActivatedFrom  *time.Time `json:"activated_from" db:"activated_from"`
+	Mode           string     `json:"mode" db:"mode"`
 }
 
 // ActiveQuizModel implements quiz session related database operations
@@ -54,7 +56,7 @@ func InitActiveQuizModel(goqu *goqu.Database, logger *zap.Logger) *ActiveQuizMod
 	return &ActiveQuizModel{db: goqu, defaultUUID: uuid, logger: logger}
 }
 
-func (model *ActiveQuizModel) CreateActiveQuiz(title string, quizID string, adminID string, activatedTo sql.NullTime, activatedFrom sql.NullTime) (uuid.UUID, error) {
+func (model *ActiveQuizModel) CreateActiveQuiz(title string, quizID string, adminID string, activatedTo sql.NullTime, activatedFrom sql.NullTime, mode string) (uuid.UUID, error) {
 
 	if activatedFrom.Valid && activatedFrom.Time.Before(time.Now()) {
 		return model.defaultUUID, fmt.Errorf("session can not start with %s", activatedTo.Time)
@@ -77,6 +79,7 @@ func (model *ActiveQuizModel) CreateActiveQuiz(title string, quizID string, admi
 		"admin_id":       adminID,
 		"activated_to":   activatedTo,
 		"activated_from": activatedFrom,
+		"mode":           mode,
 	}
 
 	if activatedFrom.Valid {
@@ -113,13 +116,16 @@ func (model *ActiveQuizModel) GetSessionByCode(invitationCode string) (ActiveQui
 	return activeQuiz, nil
 }
 
-func (model *ActiveQuizModel) GetActiveQuizByQuizIDAndAdminID(quizID string, adminID string) (ActiveQuiz, error) {
+// GetActiveQuizByQuizIDAndAdminID returns the newest active session of the given
+// mode, so a live session is never reused as a self-paced one and vice versa.
+func (model *ActiveQuizModel) GetActiveQuizByQuizIDAndAdminID(quizID string, adminID string, mode string) (ActiveQuiz, error) {
 	var activeQuiz ActiveQuiz = ActiveQuiz{}
 
 	found, err := model.db.Select("*").From(ActiveQuizzesTable).Where(
 		goqu.I("quiz_id").Eq(quizID),
 		goqu.I("admin_id").Eq(adminID),
 		goqu.I("is_active").Eq(true),
+		goqu.I("mode").Eq(mode),
 	).Order(goqu.I("updated_at").Desc()).Limit(1).ScanStruct(&activeQuiz)
 
 	if err != nil {
@@ -136,7 +142,7 @@ func (model *ActiveQuizModel) GetActiveQuizByQuizIDAndAdminID(quizID string, adm
 func (model *ActiveQuizModel) GetActiveSessionsByAdminID(adminID string) ([]ActiveSessionSummary, error) {
 	sessions := []ActiveSessionSummary{}
 
-	err := model.db.Select("id", "title", "quiz_id", "invitation_code", "activated_from").
+	err := model.db.Select("id", "title", "quiz_id", "invitation_code", "activated_from", "mode").
 		From(ActiveQuizzesTable).
 		Where(
 			goqu.I("admin_id").Eq(adminID),
@@ -363,6 +369,30 @@ func activateSession(transactionObj *goqu.TxDatabase, maxTry int, sessionId uuid
 
 		return invitation_code, nil
 	}
+}
+
+// ActivateSession activates a not-yet-active session immediately (invitation
+// code, is_active, activated_from) without going through the admin socket.
+// Used for self-paced sessions, which have no live lobby.
+func (model *ActiveQuizModel) ActivateSession(sessionId uuid.UUID, userId string) (int, error) {
+	transactionObj, err := model.db.Begin()
+	if err != nil {
+		return -1, err
+	}
+
+	invitationCode, err := activateSession(transactionObj, 10, sessionId, userId)
+	if err != nil {
+		if rollbackErr := transactionObj.Rollback(); rollbackErr != nil {
+			model.logger.Error("error in transaction rollback during ActivateSession", zap.Error(rollbackErr))
+		}
+		return -1, err
+	}
+
+	if err := transactionObj.Commit(); err != nil {
+		return -1, err
+	}
+
+	return invitationCode, nil
 }
 
 func (model *ActiveQuizModel) Deactivate(id uuid.UUID) error {

@@ -46,7 +46,7 @@
         <NavigationLink
           url-name="Spustit kvíz"
           class="rounded-[999px] bg-jv-coral text-white"
-          @click="handleStartQuiz"
+          @click="askStartMode"
         >
           <Play class="size-4 fill-current" :stroke-width="2.4" />
         </NavigationLink>
@@ -578,6 +578,7 @@
     </Teleport>
 
     <ShareQuizModal v-model="shareModalOpen" :quiz-id="quizId" />
+    <StartModeModal v-model="startModeOpen" @select="handleStartQuiz" />
     <DeleteDialog
       v-model="deleteModalOpen"
       title="Smazat kvíz"
@@ -610,6 +611,7 @@ import draggable from "vuedraggable";
 import QuestionFormCard from "@/components/quiz-manage/QuestionFormCard.vue";
 import CodeBlockComponent from "@/components/CodeBlockComponent.vue";
 import ShareQuizModal from "@/components/Quiz/ShareQuizModal.vue";
+import StartModeModal from "@/components/Quiz/StartModeModal.vue";
 import constants from "~~/config/constants";
 import { readApiError } from "@/composables/apiError";
 import { useListUserstore } from "~/store/userlist";
@@ -654,6 +656,7 @@ const editingQuestionId = ref("");
 const savingQuestionId = ref("");
 const settingsPending = ref(false);
 const startingQuiz = ref(false);
+const startModeOpen = ref(false);
 
 const {
   refresh,
@@ -1015,16 +1018,19 @@ const handleShareQuiz = () => {
   shareModalOpen.value = true;
 };
 
-const handleStartQuiz = async () => {
+const askStartMode = () => {
   if (questions.value.length === 0) {
     toast.error("Před spuštěním kvízu přidej aspoň jednu otázku.");
     return;
   }
+  startModeOpen.value = true;
+};
 
+const handleStartQuiz = async (mode) => {
   try {
     startingQuiz.value = true;
     const response = await $fetch(
-      `${url.apiUrl}/quizzes/${quizId.value}/demo_session`,
+      `${url.apiUrl}/quizzes/${quizId.value}/demo_session?mode=${mode}`,
       {
         method: "POST",
         credentials: "include",

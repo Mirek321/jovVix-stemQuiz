@@ -193,6 +193,7 @@
 <script setup>
 import { computed, reactive, ref, watch } from "vue";
 import { Code2, ImageIcon, Type } from "lucide-vue-next";
+import { usePush } from "notivue";
 import NavigationLink from "../common/NavigationLink.vue";
 
 const { pickImageFile } = useImagePicker();
@@ -336,20 +337,44 @@ const existingImageLabel = (key) => {
   return `Nahrát obrázek pro možnost ${optionLetter(key)}`;
 };
 
+const toast = usePush();
+
 const submitForm = () => {
-  const nonEmptyOptionKeys = optionKeys.value.filter(
-    (key) => form.options[key] || form.options_media === "image"
+  const filledKeys = optionKeys.value.filter((key) =>
+    String(form.options[key] ?? "").trim()
   );
+
+  if (!form.question.trim() && !form.resource) {
+    toast.error("Zadej text otázky.");
+    return;
+  }
+  if (filledKeys.length < 2) {
+    toast.error("Vyplň aspoň dvě možnosti.");
+    return;
+  }
+  if (form.type === 1 && !filledKeys.includes(String(correctAnswer.value))) {
+    toast.error("Správná odpověď musí být jedna z vyplněných možností.");
+    return;
+  }
+
+  // Blank options are dropped and the rest renumbered 1..n, so players never
+  // see empty choices and the correct answer still points at the same text.
+  const options = {};
+  const renumbered = {};
+  filledKeys.forEach((key, index) => {
+    options[index + 1] = form.options[key];
+    renumbered[key] = index + 1;
+  });
   const answers =
     form.type === 1
-      ? [Number(correctAnswer.value)]
-      : nonEmptyOptionKeys.map((key) => Number(key));
+      ? [renumbered[String(correctAnswer.value)]]
+      : filledKeys.map((key) => renumbered[key]);
 
   emit("save", {
     payload: {
       question: form.question,
       type: Number(form.type),
-      options: { ...form.options },
+      options,
       answers,
       question_media: form.question_media,
       options_media: form.options_media,

@@ -315,6 +315,7 @@ import { usePush } from "notivue";
 import { useUsersStore } from "~~/store/users";
 import { useSessionStore } from "~~/store/session";
 import { getRandomAvatarName, getAvatarUrlByName } from "~~/composables/avatar";
+import { QUIZ_MODES } from "~~/composables/self_paced";
 import {
   Hash,
   User,
@@ -415,6 +416,7 @@ const quickUserPending = ref(false);
 const userPlayedQuiz = ref("");
 const sessionId = ref("");
 const quizTitle = ref("");
+const quizMode = ref(QUIZ_MODES.live);
 const avatarName = ref("Sophia");
 const avatarUrl = computed(() => getAvatarUrlByName(avatarName.value));
 
@@ -502,6 +504,7 @@ const join_quiz = async () => {
         if (response.status == 200) {
           userPlayedQuiz.value = response._data?.data?.user_played_quiz;
           sessionId.value = response._data?.data?.session_id;
+          quizMode.value = response._data?.data?.mode || QUIZ_MODES.live;
           quizTitle.value = response._data?.data?.quiz_title || "";
           if (quizTitle.value) {
             setActiveQuizTitle(quizTitle.value);
@@ -526,6 +529,7 @@ const join_quiz = async () => {
     firstname: firstname.value,
     userPlayedQuiz: userPlayedQuiz.value,
     sessionId: sessionId.value,
+    mode: quizMode.value,
   });
 
   router.push(`/join/play/${code.value}`);

@@ -643,6 +643,23 @@ func (qc *quizSocketController) Arrange(c *websocket.Conn) {
 		qc.logger.Info("connection closed by admin")
 	}()
 
+	// Self-paced sessions have no live lobby or question loop.
+	if session.Mode == constants.ModeSelfPaced {
+		response.Component = constants.Waiting
+		response.Action = constants.EventSelfPacedSession
+		response.Data = constants.ErrSelfPacedSessionAdminSocket
+
+		err := func() error {
+			arrangeMu.Lock()
+			defer arrangeMu.Unlock()
+			return utils.JSONSuccessWs(c, constants.EventSelfPacedSession, response)
+		}()
+		if err != nil {
+			qc.logger.Error("socket error sending self-paced session event", zap.Error(err))
+		}
+		return
+	}
+
 	// handle code sharing with admin
 	handleCodeGeneration(c, qc, session, &isConnected, &response, adminDisconnected, &arrangeMu)
 
@@ -1495,6 +1512,19 @@ func (qc *quizSocketController) SetAnswer(c *fiber.Ctx) error {
 	}
 	if !isParticipant {
 		return utils.JSONFail(c, http.StatusForbidden, "Odpovídat můžou jen účastníci sezení")
+	}
+
+	// Self-paced sessions have their own timing and validation rules.
+	session, err := qc.activeQuizModel.GetSession(sessionId)
+	if err != nil {
+		if err.Error() == constants.ErrSessionNotFound {
+			return utils.JSONFail(c, http.StatusBadRequest, constants.ErrSessionNotFound)
+		}
+		qc.logger.Error("error getting session during answer submit", zap.Error(err))
+		return utils.JSONFail(c, http.StatusInternalServerError, constants.UnknownError)
+	}
+	if session.Mode == constants.ModeSelfPaced {
+		return qc.setSelfPacedAnswer(c, session, currentQuizId)
 	}
 
 	var answer structs.ReqAnswerSubmit

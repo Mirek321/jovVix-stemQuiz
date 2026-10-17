@@ -349,3 +349,25 @@ const (
 	ChannelUserDisconnect = "user_disconnect"
 	ChannelSetAnswer      = "set_answer"
 )
+
+// Session modes
+const (
+	ModeLive      = "live"
+	ModeSelfPaced = "self_paced"
+
+	// SelfPacedGracePeriodSeconds tolerates network latency for late self-paced answers.
+	SelfPacedGracePeriodSeconds = 2
+
+	ModeQueryParam = "mode"
+
+	EventSelfPacedSession = "self_paced_session"
+
+	ErrInvalidSessionMode          = "Neplatný režim spuštění kvízu."
+	ErrSessionNotSelfPaced         = "Tohle sezení se nehraje vlastním tempem."
+	ErrSelfPacedQuizEnded          = "Kvíz už skončil."
+	ErrSelfPacedQuestionNotActive  = "Tahle otázka teď není aktivní."
+	ErrSelfPacedSessionAdminSocket = "Tenhle kvíz se hraje vlastním tempem."
+	ErrNotParticipant              = "Odpovídat můžou jen účastníci sezení"
+	ErrSessionStatusForbidden      = "Ke stavu tohohle sezení nemáš přístup."
+	ErrQuizHasNoQuestions          = "Kvíz nemá žádné otázky. Nejdřív nějakou přidej."
+)
