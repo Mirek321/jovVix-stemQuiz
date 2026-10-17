@@ -13,6 +13,10 @@ import { usePush } from "notivue";
 import { useUsersStore } from "~~/store/users";
 import { useUserPasswordRules } from "@/composables/user_password_rules";
 import NavigationLink from "@/components/common/NavigationLink.vue";
+import {
+  kratosMessageText,
+  kratosNodeMessagesText,
+} from "~/composables/kratosMessages";
 
 definePageMeta({
   layout: "auth",
@@ -26,12 +30,12 @@ useHead({
 });
 
 useSeoMeta({
-  title: "Sign Up - jovVix",
+  title: "Registrace – STEM_HUB",
   description:
-    "Create your free jovVix account to build and host interactive real-time quizzes, share them, and analyze results with detailed reports.",
-  ogTitle: "Sign Up - jovVix",
+    "Vytvoř si účet v systému STEM_HUB, připravuj a spouštěj interaktivní kvízy v reálném čase, sdílej je a analyzuj výsledky v podrobných reportech.",
+  ogTitle: "Registrace – STEM_HUB",
   ogDescription:
-    "Create your free jovVix account to build and host interactive real-time quizzes, share them, and analyze results with detailed reports.",
+    "Vytvoř si účet v systému STEM_HUB, připravuj a spouštěj interaktivní kvízy v reálném čase, sdílej je a analyzuj výsledky v podrobných reportech.",
   ogUrl: seoCanonical,
 });
 
@@ -59,7 +63,12 @@ const { passwordErrors } = useUserPasswordRules(password, firstname, lastname);
 const FIRSTNAME_MAX_LENGTH = 12;
 const firstnameLengthError = computed(() =>
   firstname.value && firstname.value.trim().length > FIRSTNAME_MAX_LENGTH
-    ? `First name must be ${FIRSTNAME_MAX_LENGTH} characters or fewer`
+    ? `Jméno může mít nejvýš ${czCount(
+        FIRSTNAME_MAX_LENGTH,
+        "znak",
+        "znaky",
+        "znaků"
+      )}.`
     : ""
 );
 const returnTo = ref(route.query.returnTo || "");
@@ -99,7 +108,7 @@ function onSubmit(event) {
           onResponseError({ response }) {
             if (response.status === 400) {
               toast.warning(
-                "Please fill out the form correctly, password or email was incorrect"
+                "Vyplň prosím formulář správně – e-mail nebo heslo nesedí."
               );
             }
           },
@@ -111,39 +120,31 @@ function onSubmit(event) {
               if (message.type === "error") {
                 if (message.text?.toLowerCase().includes("expired")) {
                   toast.error(
-                    "Your session has expired. Please start the registration process again."
+                    "Platnost relace vypršela. Začni prosím s registrací znovu."
                   );
                   return;
                 }
                 if (message.id === 4000007) {
                   console.log("messsae-------", message);
 
-                  toast.error("An account with the same email exists already!");
+                  toast.error("Účet s tímto e-mailem už existuje.");
                 } else {
-                  toast.error(message.text);
+                  toast.error(kratosMessageText(message));
                 }
               }
             });
             response?._data?.ui?.nodes?.forEach((node) => {
               if (node.attributes.name === "traits.email") {
-                errors.value.email = node.messages
-                  .map((message) => message.text)
-                  .join(", ");
+                errors.value.email = kratosNodeMessagesText(node.messages);
               }
               if (node.attributes.name === "password") {
-                errors.value.password = node.messages
-                  .map((message) => message.text)
-                  .join(", ");
+                errors.value.password = kratosNodeMessagesText(node.messages);
               }
               if (node.attributes.name === "traits.name.first") {
-                errors.value.firstname = node.messages
-                  .map((message) => message.text)
-                  .join(", ");
+                errors.value.firstname = kratosNodeMessagesText(node.messages);
               }
               if (node.attributes.name === "traits.name.last") {
-                errors.value.lastname = node.messages
-                  .map((message) => message.text)
-                  .join(", ");
+                errors.value.lastname = kratosNodeMessagesText(node.messages);
               }
             });
           },
@@ -217,7 +218,7 @@ async function setFlowIDAndCSRFToken() {
             <h1
               class="font-headings text-jv-ink text-[28px] sm:text-[34px] leading-none m-0 whitespace-nowrap"
             >
-              Create Account
+              Vytvořit účet
             </h1>
             <!-- Hand-drawn underline doodle -->
             <svg
@@ -241,7 +242,7 @@ async function setFlowIDAndCSRFToken() {
           <p
             class="font-body text-jv-ink/70 text-sm sm:text-base m-0 mt-1 text-center"
           >
-            Join the platform and start your journey in seconds.
+            Přidej se a za pár vteřin můžeš začít.
           </p>
         </header>
 
@@ -259,7 +260,7 @@ async function setFlowIDAndCSRFToken() {
               for="firstname"
               class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
             >
-              First Name
+              Jméno
             </label>
             <div
               class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -274,7 +275,7 @@ async function setFlowIDAndCSRFToken() {
                 type="text"
                 name="traits.name.first"
                 class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
-                placeholder="John"
+                placeholder="Jan"
                 required
               />
             </div>
@@ -293,7 +294,7 @@ async function setFlowIDAndCSRFToken() {
               for="lastname"
               class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
             >
-              Last Name
+              Příjmení
             </label>
             <div
               class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -308,7 +309,7 @@ async function setFlowIDAndCSRFToken() {
                 type="text"
                 name="traits.name.last"
                 class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
-                placeholder="Doe"
+                placeholder="Novák"
                 required
               />
             </div>
@@ -327,7 +328,7 @@ async function setFlowIDAndCSRFToken() {
               for="email"
               class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
             >
-              Email Address
+              E-mail
             </label>
             <div
               class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -342,7 +343,7 @@ async function setFlowIDAndCSRFToken() {
                 type="email"
                 name="traits.email"
                 class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
-                placeholder="you@example.com"
+                placeholder="ty@example.com"
                 required
               />
             </div>
@@ -361,7 +362,7 @@ async function setFlowIDAndCSRFToken() {
               for="password"
               class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
             >
-              Password
+              Heslo
             </label>
             <div
               class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -382,7 +383,7 @@ async function setFlowIDAndCSRFToken() {
               <button
                 type="button"
                 class="grid place-items-center size-6 text-jv-ink/70 hover:text-jv-ink transition-colors"
-                :aria-label="showPassword ? 'Hide password' : 'Show password'"
+                :aria-label="showPassword ? 'Skrýt heslo' : 'Zobrazit heslo'"
                 @click="showPassword = !showPassword"
               >
                 <EyeOff
@@ -426,22 +427,22 @@ async function setFlowIDAndCSRFToken() {
           >
             <template v-if="!csrfToken || !registerURLWithFlowQuery">
               <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-              <span>Loading…</span>
+              <span>Načítání…</span>
             </template>
             <template v-else>
-              <span>Sign Up</span>
+              <span>Zaregistrovat se</span>
             </template>
           </NavigationLink>
         </form>
 
         <!-- Footer link -->
         <p class="text-center mt-5 font-body text-jv-ink/70 text-sm m-0">
-          Already have an account?
+          Už máš účet?
           <NuxtLink
             :to="signInLink"
             class="text-jv-coral underline underline-offset-4 decoration-2 hover:decoration-jv-coral font-semibold ml-1"
           >
-            Sign In
+            Přihlásit se
           </NuxtLink>
         </p>
       </div>

@@ -1479,13 +1479,13 @@ func (qc *quizSocketController) SetAnswer(c *fiber.Ctx) error {
 	currentQuizId, err := uuid.Parse(currentQuiz)
 	if err != nil {
 		qc.logger.Error("invalid UUID")
-		return utils.JSONFail(c, http.StatusBadRequest, "invalid UUID")
+		return utils.JSONFail(c, http.StatusBadRequest, "Neplatné UUID")
 	}
 
 	user, ok := quizUtilsHelper.ConvertType[models.User](c.Locals(constants.ContextUser))
 	if !ok {
 		qc.logger.Error("Unable to convert to user-model type from locals")
-		return utils.JSONFail(c, http.StatusInternalServerError, "Unable to convert to user-model type from locals")
+		return utils.JSONFail(c, http.StatusInternalServerError, "Nepodařilo se načíst údaje uživatele")
 	}
 
 	isParticipant, err := qc.userPlayedQuizModel.IsParticipant(user.ID, currentQuizId, sessionId)
@@ -1494,7 +1494,7 @@ func (qc *quizSocketController) SetAnswer(c *fiber.Ctx) error {
 		return utils.JSONFail(c, http.StatusInternalServerError, constants.UnknownError)
 	}
 	if !isParticipant {
-		return utils.JSONFail(c, http.StatusForbidden, "only session participants can submit answers")
+		return utils.JSONFail(c, http.StatusForbidden, "Odpovídat můžou jen účastníci sezení")
 	}
 
 	var answer structs.ReqAnswerSubmit
@@ -1529,14 +1529,14 @@ func (qc *quizSocketController) SetAnswer(c *fiber.Ctx) error {
 	translatedAnswerKeys, err := qc.userQuizResponseModel.TranslateAnswerKeys(currentQuizId, answer.QuestionId, answer.AnswerKeys)
 	if err != nil {
 		qc.logger.Error("error translating player answer keys", zap.Error(err))
-		return utils.JSONFail(c, http.StatusBadRequest, "invalid answer option")
+		return utils.JSONFail(c, http.StatusBadRequest, "Neplatná možnost odpovědi")
 	}
 	answer.AnswerKeys = translatedAnswerKeys
 
 	answers, answerPoints, answerDurationInSeconds, questionType, err := qc.questionModel.GetAnswersPointsDurationType(answer.QuestionId.String())
 	if err != nil {
 		qc.logger.Error("error while get answer, points, duration and type")
-		return utils.JSONFail(c, http.StatusBadRequest, "error while get answer, points, duration and type")
+		return utils.JSONFail(c, http.StatusBadRequest, "Nepodařilo se načíst údaje otázky")
 	}
 
 	// calculate points
@@ -1598,7 +1598,7 @@ func (ctrl *quizSocketController) ListActiveSessions(c *fiber.Ctx) error {
 func (ctrl *quizSocketController) Terminate(c *fiber.Ctx) error {
 	sessionId := c.Query(constants.SessionIDParam)
 	if sessionId == "" {
-		return utils.JSONFail(c, http.StatusBadRequest, "session_id is required")
+		return utils.JSONFail(c, http.StatusBadRequest, "Chybí parametr session_id")
 	}
 
 	userId := quizUtilsHelper.GetString(c.Locals(constants.ContextUid))

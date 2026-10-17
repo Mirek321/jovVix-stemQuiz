@@ -198,7 +198,7 @@ func (ctrl *QuestionController) CreateQuestion(c *fiber.Ctx) error {
 	}
 
 	if len(questionIds) == 0 {
-		return utils.JSONError(c, http.StatusInternalServerError, "question not created")
+		return utils.JSONError(c, http.StatusInternalServerError, "Otázku se nepodařilo vytvořit")
 	}
 
 	ctrl.logger.Debug("QuestionController.CreateQuestion success", zap.Any("QuestionId", questionIds[0]))
@@ -323,7 +323,7 @@ func (ctrl *QuestionController) UpdateQuestionById(c *fiber.Ctx) error {
 	}
 
 	ctrl.logger.Debug("QuizController.UpdateQuestionById success", zap.Any("QuestionId", QuestionId))
-	return utils.JSONSuccess(c, http.StatusOK, "question update success")
+	return utils.JSONSuccess(c, http.StatusOK, "Otázka byla upravena")
 }
 
 // DeleteQuestionById to delete question only if no active quiz is present.

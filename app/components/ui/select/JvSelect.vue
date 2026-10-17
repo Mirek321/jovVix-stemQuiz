@@ -17,7 +17,7 @@ const props = defineProps({
   modelValue: { type: String, default: "" },
   // Either {value, label} objects or plain strings.
   options: { type: Array, required: true },
-  placeholder: { type: String, default: "Choose…" },
+  placeholder: { type: String, default: "Vyber…" },
   disabled: { type: Boolean, default: false },
   class: { type: String, default: "" },
   // A native label does not name a button based select, so the trigger needs its

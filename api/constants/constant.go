@@ -37,7 +37,7 @@ const (
 
 // Email templetes
 const (
-	QuizEmailSubject = "You have been invited to a quiz"
+	QuizEmailSubject = "Máš pozvánku do kvízu"
 )
 
 // Success messages
@@ -46,52 +46,52 @@ const (
 // Fail messages
 // ...
 const (
-	UsernameRequired = "username is required"
+	UsernameRequired = "Zadej uživatelské jméno"
 )
 
 // Error messages
 const (
-	ErrGetUser                     = "error while getting user"
-	ErrLoginUser                   = "error while logging in the user"
-	ErrInsertUser                  = "error while creating user, please try after sometime"
-	ErrDeleteUser                  = "error while deleting user, please try after sometime"
+	ErrGetUser                     = "Nepodařilo se načíst uživatele"
+	ErrLoginUser                   = "Přihlášení se nezdařilo"
+	ErrInsertUser                  = "Nepodařilo se vytvořit uživatele, zkus to prosím později"
+	ErrDeleteUser                  = "Nepodařilo se smazat uživatele, zkus to prosím později"
 	ErrConvertTypeUser             = "Unable to convert to user-model type from locals"
 	ErrHealthCheckDb               = "error while checking health of database"
-	ErrUnauthenticated             = "error verifying user identity"
-	ErrUnauthorized                = "access denied. You do not have the necessary permissions."
-	ErrShareNotAllowed             = "you do not have permission to share this quiz"
-	ErrCannotChangeOwnAccess       = "you cannot change your own access to this quiz"
-	ErrSharedQuizNotFound          = "shared quiz permission not found"
-	ErrGetSharedQuiz               = "error while getting shared quiz permission"
-	ErrKratosAuth                  = "error while fetching user from kratos"
-	ErrKratosDataInsertion         = "error while inserting user data came from kratos"
-	ErrKratosIDEmpty               = "error no session_id found in kratos cookie"
-	ErrKratosCookieTime            = "error while parsing the expiration time of the cookie"
-	ErrRegisterQuiz                = "error while creating quiz"
-	ErrCreatingDemoQuiz            = "error while creating demo quiz"
-	ErrQuizNotPublic               = "this quiz is not public"
-	ErrGetTotalJoinUser            = "error while getting count of user joined in quiz"
-	ErrShareQuiz                   = "error while sharing quiz"
-	ErrListShareQuiz               = "error while getting list of shared quizzes"
-	ErrFetchAuthorizedUsersError   = "Error fetching authorized users for the selected quiz."
-	ErrCheckQuizCreatorExists      = "error while checking quiz creator exists or not"
-	ErrGetQuizPermission           = "error while getting quiz pemrmission for user"
-	ErrUpdateUserPermissionForQuiz = "error while updating user permission for particular quiz"
-	ErrDeleteUserPermissionForQuiz = "error while deleting user permission for particular quiz"
-	ErrGetStreakCount              = "error while getting streaks count"
-	ErrListCategories              = "error while listing quiz categories"
-	ErrCreateCategory              = "error while creating quiz category"
-	ErrUpdateCategory              = "error while updating quiz category"
-	ErrDeleteCategory              = "error while deleting quiz category"
-	ErrCategoryNotFound            = "quiz category not found"
-	ErrCategoryAlreadyExists       = "a category with this name already exists"
-	ErrInvalidCoverImage           = "cover image must be an image"
-	ErrCoverImageTooLarge          = "cover image is too large"
+	ErrUnauthenticated             = "Nepodařilo se ověřit tvou identitu"
+	ErrUnauthorized                = "Přístup odepřen. Nemáš potřebná oprávnění."
+	ErrShareNotAllowed             = "Nemáš oprávnění sdílet tento kvíz"
+	ErrCannotChangeOwnAccess       = "Nemůžeš měnit svůj vlastní přístup k tomuto kvízu"
+	ErrSharedQuizNotFound          = "Oprávnění ke sdílenému kvízu nebylo nalezeno"
+	ErrGetSharedQuiz               = "Nepodařilo se načíst oprávnění ke sdílenému kvízu"
+	ErrKratosAuth                  = "Nepodařilo se načíst uživatele z přihlašovací služby"
+	ErrKratosDataInsertion         = "Nepodařilo se uložit údaje uživatele z přihlašovací služby"
+	ErrKratosIDEmpty               = "Přihlášení nebylo nalezeno, přihlas se prosím znovu"
+	ErrKratosCookieTime            = "Nepodařilo se ověřit platnost přihlášení"
+	ErrRegisterQuiz                = "Nepodařilo se vytvořit kvíz"
+	ErrCreatingDemoQuiz            = "Nepodařilo se vytvořit ukázkový kvíz"
+	ErrQuizNotPublic               = "Tento kvíz není veřejný"
+	ErrGetTotalJoinUser            = "Nepodařilo se zjistit počet připojených uživatelů"
+	ErrShareQuiz                   = "Nepodařilo se sdílet kvíz"
+	ErrListShareQuiz               = "Nepodařilo se načíst seznam sdílených kvízů"
+	ErrFetchAuthorizedUsersError   = "Nepodařilo se načíst uživatele s přístupem k vybranému kvízu."
+	ErrCheckQuizCreatorExists      = "Nepodařilo se ověřit autora kvízu"
+	ErrGetQuizPermission           = "Nepodařilo se načíst tvoje oprávnění ke kvízu"
+	ErrUpdateUserPermissionForQuiz = "Nepodařilo se upravit oprávnění uživatele ke kvízu"
+	ErrDeleteUserPermissionForQuiz = "Nepodařilo se odebrat oprávnění uživatele ke kvízu"
+	ErrGetStreakCount              = "Nepodařilo se načíst počet sérií"
+	ErrListCategories              = "Nepodařilo se načíst kategorie kvízů"
+	ErrCreateCategory              = "Nepodařilo se vytvořit kategorii"
+	ErrUpdateCategory              = "Nepodařilo se upravit kategorii"
+	ErrDeleteCategory              = "Nepodařilo se smazat kategorii"
+	ErrCategoryNotFound            = "Kategorie nebyla nalezena"
+	ErrCategoryAlreadyExists       = "Kategorie s tímto názvem už existuje"
+	ErrInvalidCoverImage           = "Titulní obrázek musí být obrázek"
+	ErrCoverImageTooLarge          = "Titulní obrázek je příliš velký"
 )
 
 // Bad Request Message
 const (
-	BadRequestSharedQuizIdNotFound = "no shared_quiz_id found"
+	BadRequestSharedQuizIdNotFound = "Chybí parametr shared_quiz_id"
 )
 
 // default Events
@@ -103,11 +103,11 @@ const (
 const (
 	// socket
 	MiddlewareError     = "middleware_error"
-	ErrorTypeConversion = "type conversion failed"
+	ErrorTypeConversion = "Nepodařilo se zpracovat data"
 
 	// http/https
-	ErrNotAllowed              = "not allowed to access Resource"
-	ErrUserRequiredToCheckRole = "user not logged in"
+	ErrNotAllowed              = "Nemáš přístup k tomuto zdroji"
+	ErrUserRequiredToCheckRole = "Nejsi přihlášený"
 
 	// csv
 	FileName                    = "file_name"
@@ -121,32 +121,32 @@ const (
 	DefaultCsvPoints            = 1
 	SheetName                   = "demo"
 	QuizTitle                   = "quiz_title"
-	QuizTitleRequired           = "Please enter a quiz title."
+	QuizTitleRequired           = "Zadej název kvízu."
 	QuizTitleMaxLength          = 50
-	ErrQuizTitleTooLong         = "Your quiz title is too long. Please make it shorter (maximum 50 characters)."
-	ErrGettingAttachment        = "error in getting file"
-	ErrFileSizeExceed           = "The file is too large to upload. Please select a smaller file."
-	ErrFileIsNotInSupportedType = "file has no supported type"
-	ErrProblemInUploadFile      = "there was some error in file upload"
-	ErrValidatingColumns        = "file columns not in proper format"
-	ErrParsingFile              = "error in parsing file"
-	ErrRowsReachesToMaxCount    = "rows limit exceed"
-	ErrSurveyAnswerLength       = "in survey correct answer should contain all the options as correct"
-	ErrSingleAnswerLength       = "in single answer there should be only one correct answer"
-	ErrQuestionType             = "please provide a proper question type"
-	ErrQuestionId               = "question type id not exists"
-	ErrAppendQuestionsFailed    = "could not add the questions to this quiz"
-	ErrEmptyFile                = "The uploaded file is empty. Please choose a file with content."
-	ErrUnsupportedFileType      = "The uploaded file is not a valid CSV. Please check the format and try again."
-	ErrEmptyQuestionText        = "question text is required"
-	ErrInsufficientOptions      = "at least 2 options are required"
-	ErrEmptyCorrectAnswer       = "correct answer is required"
-	ErrInvalidCorrectAnswer     = "correct answer must be a number referencing an existing option"
-	ErrInvalidPoints            = "points must be a whole number within the allowed range"
-	ErrInvalidCSVRows           = "the uploaded CSV has invalid rows, please fix them and try again"
-	ErrInvalidQuestionTimeLimit = "question time limit is not configured properly"
-	ErrInvalidQuestionMedia     = "question media must be one of: text, image, code"
-	ErrInvalidOptionsMedia      = "options media must be one of: text, image, code"
+	ErrQuizTitleTooLong         = "Název kvízu je příliš dlouhý. Zkrať ho prosím (maximálně 50 znaků)."
+	ErrGettingAttachment        = "Nepodařilo se načíst soubor"
+	ErrFileSizeExceed           = "Soubor je příliš velký. Vyber prosím menší soubor."
+	ErrFileIsNotInSupportedType = "Nepodporovaný typ souboru"
+	ErrProblemInUploadFile      = "Při nahrávání souboru došlo k chybě"
+	ErrValidatingColumns        = "Sloupce v souboru nemají správný formát"
+	ErrParsingFile              = "Soubor se nepodařilo zpracovat"
+	ErrRowsReachesToMaxCount    = "Soubor má příliš mnoho řádků"
+	ErrSurveyAnswerLength       = "u ankety musí být vyplněna aspoň jedna správná odpověď"
+	ErrSingleAnswerLength       = "u otázky s jednou odpovědí musí být právě jedna správná odpověď"
+	ErrQuestionType             = "zadej platný typ otázky"
+	ErrQuestionId               = "Tento typ otázky neexistuje"
+	ErrAppendQuestionsFailed    = "Otázky se nepodařilo přidat do kvízu"
+	ErrEmptyFile                = "Nahraný soubor je prázdný. Vyber soubor s obsahem."
+	ErrUnsupportedFileType      = "Nahraný soubor není platný soubor CSV. Zkontroluj formát a zkus to znovu."
+	ErrEmptyQuestionText        = "chybí text otázky"
+	ErrInsufficientOptions      = "jsou potřeba aspoň 2 možnosti"
+	ErrEmptyCorrectAnswer       = "chybí správná odpověď"
+	ErrInvalidCorrectAnswer     = "správná odpověď musí být číslo existující možnosti"
+	ErrInvalidPoints            = "body musí být celé číslo v povoleném rozsahu"
+	ErrInvalidCSVRows           = "Soubor CSV obsahuje chybné řádky, oprav je a zkus to znovu."
+	ErrInvalidQuestionTimeLimit = "Časový limit otázek není správně nastavený"
+	ErrInvalidQuestionMedia     = "typ obsahu otázky musí být jeden z: text, image, code"
+	ErrInvalidOptionsMedia      = "typ obsahu možností musí být jeden z: text, image, code"
 
 	// quiz-id
 	QuizId       = "quiz_id"
@@ -195,26 +195,26 @@ const (
 	// Event 1. Authentication <admin side>
 	EventAuthentication  = "authentication"
 	ActionAuthentication = "authentication check"
-	Unauthenticated      = "unauthenticated to access resource"
-	InvalidCredentials   = "invalid credentials"
+	Unauthenticated      = "Pro přístup se musíš přihlásit"
+	InvalidCredentials   = "Neplatné přihlašovací údaje"
 
 	// Event 2. Authorization <admin/user side>
 	EventAuthorization  = "authorization"
 	ActionAuthorization = "check for access"
-	UserNotExist        = "user does not exists"
+	UserNotExist        = "Uživatel neexistuje"
 	Unauthorized        = "unauthorized to access resource"
 
 	// Event 3. Session Validation <admin>
 	EventSessionValidation  = "session_validation"
 	ActionSessionValidation = "session validation from server side"
-	ErrSessionNotFound      = "session unavailable"
+	ErrSessionNotFound      = "Sezení není dostupné"
 
 	// Event 4. UserSession Validation <admin/user>
 	EventUserSessionValidation   = "user_validation"
 	ActionUserSessionValidation  = "user session get or create"
 	CurrentUserQuiz              = "user_played_quiz"               // use by web
 	ErrUserQuizSessionValidation = "quiz-session-validation-failed" // use by web
-	ErrAdminCannotBeUser         = "host cannot be a player in their own quiz"
+	ErrAdminCannotBeUser         = "Moderátor nemůže hrát ve vlastním kvízu"
 
 	EventRedirectToAdmin     = "redirect_to_admin"
 	ActionCurrentUserIsAdmin = "current user is admin"
@@ -226,7 +226,7 @@ const (
 	QuizSessionInvitationCode     = "invitationCode"
 	SessionIDParam                = "session_id"
 	ActiveQuizObj                 = "current active quiz obj"
-	NoPlayerFound                 = "No player found"
+	NoPlayerFound                 = "Zatím se nepřipojil žádný hráč"
 	StartQuizByAdminNoPlayerFound = "start quiz by admin but no player found"
 	ActionSendUserData            = "send user join data"
 	JoinUserOnRunningQuiz         = "join_user_on_running_quiz"
@@ -234,16 +234,16 @@ const (
 	// Event 5. Join quiz <User>
 	EventJoinQuiz                  = "invitation_code_validation"
 	ActionJoinQuiz                 = "invitation code validation"
-	ErrInvitationCodeInWrongFormat = "invitation code is not in proper format"
+	ErrInvitationCodeInWrongFormat = "Kód kvízu nemá správný formát"
 	ErrInvitationCodeNotFound      = "invitation code not found" // use by web
 	ErrSessionWasCompleted         = "session was completed"     // use by web
-	ErrMaxTryToGenerateCode        = "maximum times excide to generate code"
+	ErrMaxTryToGenerateCode        = "Nepodařilo se vygenerovat kód kvízu, zkus to znovu"
 
 	UserName          = "username"
 	UserUkey          = "users_username_ukey"
 	Join              = "join access"
-	QuizStartsSoon    = "Quiz will start soon"
-	ErrUsernameExists = "username already exists"
+	QuizStartsSoon    = "Kvíz brzy začne"
+	ErrUsernameExists = "Toto uživatelské jméno už existuje"
 
 	// Event 6. Start quiz <admin>
 	EventUserJoined       = "user joined"
@@ -255,7 +255,7 @@ const (
 	ActionSendQuestion             = "send single question to user"
 	QuizQuestionStatus             = "quiz question status"
 	GetQuestions                   = "get quiz questions"
-	NextQuestionWillServeSoon      = "Next question will be coming soon"
+	NextQuestionWillServeSoon      = "Další otázka už brzy"
 	ErrInGettingQuestion           = "error during getting question"
 	ErrInGettingTotalQuestionCount = "error during getting total question count"
 
@@ -268,15 +268,15 @@ const (
 	ActionAnserSubmittedByUser = "answer submitted by user"
 
 	// Event 8. Submit answer
-	ErrQuizNotFound           = "error current quiz not found"
-	ErrAnswerSubmit           = "error malfunction in inputs"
-	ErrAnswerAlreadySubmitted = "answer already submitted"
-	ErrQuestionNotActive      = "question can not receive answers anymore"
+	ErrQuizNotFound           = "Kvíz nebyl nalezen"
+	ErrAnswerSubmit           = "Neplatné údaje odpovědi"
+	ErrAnswerAlreadySubmitted = "Odpověď už byla odeslána"
+	ErrQuestionNotActive      = "Na tuto otázku už nejde odpovídat"
 	ErrPublishAnswer          = "error while publishing answer in redis"
 
 	// Event skip
 	EventSkipAsked  = "ask_skip" // use by web
-	WarnSkip        = "Some players haven't submitted their answers yet. Would you like to skip?"
+	WarnSkip        = "Někteří hráči ještě neodpověděli. Chceš otázku přeskočit?"
 	EventForceSkip  = "ask_force_skip"
 	EventSkipTimer  = "skip_timer"
 	EventPauseQuiz  = "pause_quiz"
@@ -290,11 +290,11 @@ const (
 	EventTerminateQuiz  = "terminate_quiz"
 	ActionTerminateQuiz = "terminate quiz after completing"
 
-	ErrActiveDeleteQuiz = "Cannot terminate the quiz while it is still active."
+	ErrActiveDeleteQuiz = "Tuto akci nelze provést, dokud kvíz probíhá."
 
 	// Event 10. unhandled event
 	UnknownError  = "unknown_error"
-	ErrJWTExpired = "JWT token expired, Please try again later"
+	ErrJWTExpired = "Platnost tokenu vypršela, zkus to prosím znovu"
 
 	// Event 11. ping
 	EventPing = "ping"

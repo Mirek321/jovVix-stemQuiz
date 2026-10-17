@@ -120,7 +120,7 @@ describe("QuestionSpace test", () => {
     wrapper = mountComponent();
     const skipButton = wrapper.find("button.btn-primary");
     expect(skipButton.exists()).toBe(true);
-    expect(skipButton.text()).toContain("Skip");
+    expect(skipButton.text()).toContain("Přeskočit");
   });
 
   it("renders admin finish button when last question", async () => {
@@ -133,6 +133,6 @@ describe("QuestionSpace test", () => {
     wrapper = mountComponent();
     const finishButton = wrapper.find("button.btn-primary");
     expect(finishButton.exists()).toBe(true);
-    expect(finishButton.text()).toContain("Finish");
+    expect(finishButton.text()).toContain("Ukončit");
   });
 });

@@ -152,7 +152,7 @@ onBeforeUnmount(() => {
             @click="close"
           >
             <ArrowLeft class="size-5" :stroke-width="2.6" />
-            Back to all questions
+            Zpět na všechny otázky
           </button>
 
           <div
@@ -162,7 +162,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Participants
+                Účastníci
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-white">
                 {{ participants }}
@@ -172,17 +172,17 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Avg. time
+                Prům. čas
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-white">
-                {{ avgTimeSec }} sec
+                {{ avgTimeSec }} s
               </div>
             </div>
             <div>
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Correct
+                Správně
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-accent-green">
                 {{ correctCount }}
@@ -192,7 +192,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Wrong
+                Špatně
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-coral">
                 {{ incorrectCount }}
@@ -203,7 +203,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform sm:hidden"
-            aria-label="Close"
+            aria-label="Zavřít"
             @click="close"
           >
             <X class="size-6" :stroke-width="2.4" />
@@ -217,7 +217,7 @@ onBeforeUnmount(() => {
           <span
             class="inline-flex items-center justify-center jv-border-rough bg-jv-yellow px-3 py-1.5 text-[14px] font-black text-jv-ink shadow-soft-sm"
           >
-            Q{{ index }}
+            Otázka {{ index }}
           </span>
           <h2
             class="font-headings text-[22px] leading-tight text-jv-ink sm:text-[26px]"
@@ -241,13 +241,13 @@ onBeforeUnmount(() => {
                   :stroke-width="2.6"
                 />
                 <span class="text-[15px] font-black text-jv-ink"
-                  >Answered correctly</span
+                  >Odpověděli správně</span
                 >
               </div>
               <span
                 class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-soft-sm"
               >
-                {{ correctCount }} users
+                {{ czCount(correctCount, "hráč", "hráči", "hráčů") }}
               </span>
             </header>
 
@@ -256,7 +256,7 @@ onBeforeUnmount(() => {
                 v-if="!correctCount"
                 class="py-8 text-center text-[14px] font-semibold text-jv-muted"
               >
-                No one answered correctly.
+                Nikdo neodpověděl správně.
               </div>
               <ul v-else class="flex flex-col gap-2.5">
                 <li
@@ -281,11 +281,11 @@ onBeforeUnmount(() => {
                     <div
                       class="mt-0.5 truncate text-[12px] font-semibold text-jv-muted"
                     >
-                      Selected {{ u.letter
+                      Vybral/a {{ u.letter
                       }}<template v-if="u.optionText">
                         · {{ u.optionText }}</template
                       ><template v-if="u.responseTimeSec">
-                        in {{ u.responseTimeSec }} sec</template
+                        za {{ u.responseTimeSec }} s</template
                       >
                     </div>
                   </div>
@@ -293,7 +293,7 @@ onBeforeUnmount(() => {
                     class="inline-flex shrink-0 items-center gap-1 text-[13px] font-black text-jv-accent-green"
                   >
                     <CheckCircle2 class="size-4" :stroke-width="2.6" />
-                    Correct
+                    Správně
                   </span>
                 </li>
               </ul>
@@ -308,13 +308,13 @@ onBeforeUnmount(() => {
               <div class="inline-flex items-center gap-2">
                 <XCircle class="size-5 text-jv-coral" :stroke-width="2.6" />
                 <span class="text-[15px] font-black text-jv-ink"
-                  >Answered incorrectly</span
+                  >Odpověděli špatně</span
                 >
               </div>
               <span
                 class="jv-border-rough bg-jv-white px-2.5 py-0.5 text-[13px] font-black text-jv-ink shadow-soft-sm"
               >
-                {{ incorrectCount }} users
+                {{ czCount(incorrectCount, "hráč", "hráči", "hráčů") }}
               </span>
             </header>
 
@@ -323,7 +323,7 @@ onBeforeUnmount(() => {
                 v-if="!incorrectCount"
                 class="py-8 text-center text-[14px] font-semibold text-jv-muted"
               >
-                No one answered incorrectly.
+                Nikdo neodpověděl špatně.
               </div>
               <ul v-else class="flex flex-col gap-2.5">
                 <li
@@ -348,11 +348,11 @@ onBeforeUnmount(() => {
                     <div
                       class="mt-0.5 truncate text-[12px] font-semibold text-jv-muted"
                     >
-                      Picked {{ u.letter
+                      Vybral/a {{ u.letter
                       }}<template v-if="u.optionText">
                         · {{ u.optionText }}</template
                       ><template v-if="u.responseTimeSec">
-                        in {{ u.responseTimeSec }} sec</template
+                        za {{ u.responseTimeSec }} s</template
                       >
                     </div>
                   </div>

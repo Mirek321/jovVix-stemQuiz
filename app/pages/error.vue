@@ -4,16 +4,16 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Page Not Found - jovVix",
+  title: "Stránka nenalezena – STEM_HUB",
   description:
-    "The page you are looking for could not be found. Return to jovVix to host or join a quiz.",
+    "Stránku, kterou hledáš, se nepodařilo najít. Vrať se do systému STEM_HUB a spusť kvíz nebo se k nějakému připoj.",
   robots: "noindex, nofollow",
 });
 
 const route = useRoute();
 
 const status = ref(
-  route.query.status || "Something went wrong. Please try again later."
+  route.query.status || "Něco se pokazilo. Zkus to prosím později."
 );
 const message = ref(route.query.error);
 </script>

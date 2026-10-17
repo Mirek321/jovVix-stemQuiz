@@ -6,9 +6,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Results - jovVix",
+  title: "Výsledky kvízu – STEM_HUB",
   description:
-    "Review detailed results and analytics for a completed quiz session on jovVix.",
+    "Podrobné výsledky a analýza dokončeného kvízu v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -66,7 +66,7 @@ watch(
             class="size-3 animate-pulse rounded-full bg-jv-coral"
             aria-hidden="true"
           ></span>
-          Loading quiz results...
+          Načítám výsledky kvízu…
         </div>
 
         <div v-else class="flex flex-col gap-6">

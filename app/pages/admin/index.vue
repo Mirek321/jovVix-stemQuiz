@@ -16,17 +16,17 @@
 
         <div class="min-w-0 flex-1">
           <h2 class="font-headings text-[18px] leading-tight text-jv-ink">
-            Your email isn't verified yet
+            Tvůj e-mail ještě není ověřený
           </h2>
           <p class="mt-1 text-[14px] font-semibold text-jv-ink/75">
-            Verify your email, or your account will be deleted after 30 days.
+            Ověř si e-mail, jinak bude tvůj účet po 30 dnech smazán.
           </p>
         </div>
 
         <NavigationLink
-          url-name="Verify Yourself"
+          url-name="Ověřit e-mail"
           class="shrink-0 rounded-[999px] bg-jv-mint"
-          title="Click to verify your email"
+          title="Klikni a ověř svůj e-mail"
           @click="handleEmailVerification"
         />
       </div>
@@ -35,7 +35,7 @@
         <h1
           class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
         >
-          Profile Settings
+          Nastavení profilu
         </h1>
         <div
           class="ml-12 mt-1 h-3 w-28 rounded-full border-b border-jv-yellow sm:ml-14 sm:w-32"
@@ -59,7 +59,7 @@
         v-else-if="userPending"
         class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
-        Pending...
+        Načítání…
       </div>
 
       <template v-else>
@@ -89,15 +89,13 @@
                 <div class="mt-5 flex flex-wrap gap-3">
                   <NavigationLink
                     :url-name="
-                      userData.email_verify
-                        ? 'Email Verified'
-                        : 'Verify Yourself'
+                      userData.email_verify ? 'E-mail ověřen' : 'Ověřit e-mail'
                     "
                     :disabled="userData.email_verify"
                     :title="
                       userData.email_verify
-                        ? 'Email already verified'
-                        : 'Click to verify your email'
+                        ? 'E-mail je už ověřený'
+                        : 'Klikni a ověř svůj e-mail'
                     "
                     :class="
                       userData.email_verify
@@ -107,13 +105,13 @@
                     @click="handleEmailVerification"
                   />
                   <NavigationLink
-                    url-name="Change Password"
+                    url-name="Změnit heslo"
                     class="rounded-[999px]"
                     @click="handleChangePasswordClick"
                   />
 
                   <NavigationLink
-                    url-name="Delete Account"
+                    url-name="Smazat účet"
                     class="rounded-[999px] bg-jv-coral text-white"
                     @click="deleteAccount"
                   />
@@ -131,14 +129,14 @@
                 <span
                   class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-muted"
                 >
-                  First Name
+                  Jméno
                 </span>
                 <input
                   id="first-name"
                   v-model="userData.first_name"
                   type="text"
                   class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
-                  placeholder="Pending..."
+                  placeholder="Načítání…"
                   required
                   @focus="showCancleButton"
                 />
@@ -148,14 +146,14 @@
                 <span
                   class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-muted"
                 >
-                  Last Name
+                  Příjmení
                 </span>
                 <input
                   id="last-name"
                   v-model="userData.last_name"
                   type="text"
                   class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-colors placeholder:text-jv-ink/35 focus:bg-jv-white"
-                  placeholder="Pending..."
+                  placeholder="Načítání…"
                   required
                   @focus="showCancleButton"
                 />
@@ -166,14 +164,14 @@
               <span
                 class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-muted"
               >
-                Email
+                E-mail
               </span>
               <input
                 id="email"
                 v-model="userData.email"
                 type="email"
                 class="h-14 w-full border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none disabled:text-jv-ink/80"
-                placeholder="Pending..."
+                placeholder="Načítání…"
                 disabled
               />
             </label>
@@ -198,7 +196,7 @@
 
               <NavigationLink
                 v-if="cancleButton"
-                url-name="Cancel"
+                url-name="Zrušit"
                 class="bg-jv-white text-jv-ink"
                 @click="hideCancleButton"
               />
@@ -214,18 +212,18 @@
               <h2
                 class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[32px]"
               >
-                Played Quizzes
+                Odehrané kvízy
               </h2>
               <p
                 class="mt-1 text-[14px] font-semibold text-jv-muted sm:text-[15px]"
               >
-                Review every quiz you've played so far.
+                Přehled všech kvízů, které jsi zatím hrál/a.
               </p>
             </div>
             <input
               v-model="titleInput"
               type="text"
-              placeholder="Search quiz"
+              placeholder="Hledat kvíz"
               class="h-12 w-full border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none placeholder:text-jv-ink/35 focus:bg-jv-white sm:w-64"
             />
           </div>
@@ -305,9 +303,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Admin Dashboard - jovVix",
+  title: "Profil – STEM_HUB",
   description:
-    "Manage your quizzes, sessions, and reports from the jovVix admin dashboard.",
+    "Spravuj svůj profil a prohlédni si odehrané kvízy v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -327,7 +325,7 @@ const avatar = computed(() => {
 });
 
 const saveButtonText = computed(() =>
-  updateuserPending.value ? "Pending..." : "Save Changes"
+  updateuserPending.value ? "Ukládám…" : "Uložit změny"
 );
 
 const {
@@ -375,12 +373,12 @@ const totalPages = computed(() => Math.ceil(playedQuizCount.value / 10));
 const emptyState = computed(() =>
   title.value
     ? {
-        title: "No Match Found !",
-        message: `No played quiz matches "${title.value}".`,
+        title: "Nic nenalezeno",
+        message: `Žádný odehraný kvíz neodpovídá „${title.value}“.`,
       }
     : {
-        title: "No Quiz Played By You !",
-        message: "Join a quiz and it will show up here.",
+        title: "Zatím jsi nehrál/a žádný kvíz",
+        message: "Připoj se ke kvízu a objeví se tady.",
       }
 );
 
@@ -453,7 +451,7 @@ const hideCancleButton = () => {
 };
 
 const deleteAccount = async () => {
-  const isconfirm = confirm("are you sure?");
+  const isconfirm = confirm("Opravdu chceš smazat svůj účet?");
   if (isconfirm) {
     try {
       await $fetch(`${url.apiUrl}/kratos/user`, {
@@ -461,12 +459,12 @@ const deleteAccount = async () => {
         headers: headers,
         credentials: "include",
       });
-      toast.success("user deleted succesfully!");
+      toast.success("Účet byl smazán.");
       setUserData(null);
       navigateTo("/");
     } catch (error) {
       console.error("Failed to delete the user", error);
-      toast.error("Failed to delete the user.");
+      toast.error("Účet se nepodařilo smazat.");
     }
   }
 };
@@ -481,7 +479,7 @@ const isPrivilegeSessionValid = () => {
 
 const handleChangePasswordClick = async () => {
   if (!isPrivilegeSessionValid()) {
-    toast.warning("Please re-enter your password to continue.");
+    toast.warning("Pro pokračování znovu zadej své heslo.");
     navigateTo("/account/login?returnTo=/account/change-password");
     return;
   }
@@ -536,7 +534,7 @@ const handleEmailVerification = async () => {
     }, 300);
   } catch (error) {
     console.error(error);
-    toast.error("Failed to start verification");
+    toast.error("Ověření se nepodařilo spustit.");
   }
 };
 </script>

@@ -27,12 +27,12 @@ useHead({
 });
 
 useSeoMeta({
-  title: "jovVix - Real-time Quiz Platform",
+  title: "STEM_HUB – kvízy na akcích",
   description:
-    "Create and host real-time interactive quizzes with jovVix. Engage your audience with live multiplayer games, instant scoring, and shareable results.",
-  ogTitle: "jovVix - Real-time Quiz Platform",
+    "Kvízový systém STEM_HUB pro naše akce. Připoj se kódem a soutěž v živém kvízu s okamžitým bodováním.",
+  ogTitle: "STEM_HUB – kvízy na akcích",
   ogDescription:
-    "Create and host real-time interactive quizzes with jovVix. Engage your audience with live multiplayer games, instant scoring, and shareable results.",
+    "Kvízový systém STEM_HUB pro naše akce. Připoj se kódem a soutěž v živém kvízu s okamžitým bodováním.",
   ogType: "website",
   ogUrl: canonicalUrl,
   ogImage: shareImageUrl,

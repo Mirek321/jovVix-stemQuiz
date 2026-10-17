@@ -28,10 +28,10 @@
             <span
               v-if="isPublicQuiz"
               class="inline-flex items-center gap-1.5 border border-jv-line bg-jv-mint px-3 py-1.5 text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink shadow-soft-sm sm:text-[14px]"
-              aria-label="Public quiz"
+              aria-label="Veřejný kvíz"
             >
               <Globe class="size-4" :stroke-width="2.6" />
-              Public
+              Veřejný
             </span>
           </div>
           <div
@@ -40,11 +40,11 @@
           <p
             class="mt-3 max-w-2xl text-[16px] leading-[1.5] text-jv-muted sm:text-[18px]"
           >
-            {{ quizDescription || "No description added yet." }}
+            {{ quizDescription || "Zatím bez popisu." }}
           </p>
         </div>
         <NavigationLink
-          url-name="Start Quiz"
+          url-name="Spustit kvíz"
           class="rounded-[999px] bg-jv-coral text-white"
           @click="handleStartQuiz"
         >
@@ -59,19 +59,19 @@
           <span
             class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
-            Total Questions:
+            Počet otázek:
             <strong class="text-jv-ink">{{ questions.length }}</strong>
           </span>
           <span
             class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
-            Survey Questions:
+            Anketní otázky:
             <strong class="text-jv-ink">{{ totalSurveyQuestion }}</strong>
           </span>
           <span
             class="inline-flex items-center gap-1.5 rounded-[6px] border border-dashed border-jv-line bg-jv-white px-3 py-2 text-[14px] font-semibold text-jv-muted"
           >
-            Played Quiz:
+            Odehráno:
             <strong class="text-jv-ink">{{
               quizData?.data?.quiz_played_count || 0
             }}</strong>
@@ -80,14 +80,14 @@
 
         <div class="flex flex-wrap gap-2 sm:justify-end">
           <NavigationLink
-            url-name="Delete Quiz"
+            url-name="Smazat kvíz"
             class="bg-jv-white text-jv-coral border-none shadow-none"
             @click="deleteModalOpen = true"
           >
             <Trash2 class="size-4" :stroke-width="2.4" />
           </NavigationLink>
           <NavigationLink
-            url-name="Share Quiz"
+            url-name="Sdílet kvíz"
             class="bg-jv-white"
             @click="handleShareQuiz"
           >
@@ -104,14 +104,14 @@
           <span
             class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
           >
-            Category
+            Kategorie
           </span>
           <select
             v-model="settings.category_id"
             :disabled="settingsPending"
             class="h-14 border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm disabled:opacity-60"
           >
-            <option value="">No category (shows under "Other")</option>
+            <option value="">Bez kategorie (zobrazí se v „Ostatní“)</option>
             <option
               v-for="category in categories"
               :key="category.id"
@@ -126,7 +126,7 @@
           <span
             class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
           >
-            Cover Image
+            Titulní obrázek
           </span>
           <label
             v-if="!settings.cover_image"
@@ -134,7 +134,9 @@
           >
             <ImageIcon class="size-4 shrink-0" :stroke-width="2.3" />
             <span class="truncate">{{
-              processingCover ? "Processing image…" : "Upload cover image"
+              processingCover
+                ? "Zpracovávám obrázek…"
+                : "Nahrát titulní obrázek"
             }}</span>
             <input
               type="file"
@@ -150,18 +152,18 @@
           >
             <NuxtImg
               :src="settings.cover_image"
-              alt="Cover image preview"
+              alt="Náhled titulního obrázku"
               class="h-10 w-14 shrink-0 border border-jv-line object-cover"
             />
             <span
               class="min-w-0 flex-1 truncate text-[14px] font-semibold text-jv-ink"
             >
-              {{ coverImageName || "Current cover image" }}
+              {{ coverImageName || "Aktuální titulní obrázek" }}
             </span>
             <button
               type="button"
               class="grid size-8 shrink-0 place-items-center text-jv-ink transition-colors hover:text-jv-coral"
-              aria-label="Remove cover image"
+              aria-label="Odebrat titulní obrázek"
               :disabled="settingsPending"
               @click="removeCoverImage"
             >
@@ -181,22 +183,22 @@
               class="inline-flex items-center gap-2 text-[15px] font-semibold text-jv-muted"
             >
               <span class="inline-flex items-center gap-1.5">
-                Points
+                Body
                 <Tooltip>
                   <TooltipTrigger as-child>
                     <button
                       type="button"
                       class="inline-flex size-5 items-center justify-center rounded-full border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
-                      aria-label="What does Points mean?"
+                      aria-label="Co znamenají body?"
                     >
                       <Info class="size-3" :stroke-width="2.6" />
                     </button>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" align="start">
-                    Points awarded in full for each correct answer, adding
-                    points &times; 100 to a player's score. On top of that,
-                    every correct answer earns 500 base points plus a speed
-                    bonus of up to 400, and answer streaks add more.
+                    Body se udělují celé za každou správnou odpověď a ke skóre
+                    hráče přidají body &times; 100. Navíc každá správná odpověď
+                    přináší 500 základních bodů plus bonus za rychlost až 400 a
+                    další body přidávají série správných odpovědí.
                   </TooltipContent>
                 </Tooltip>
               </span>
@@ -226,21 +228,21 @@
               class="inline-flex items-center gap-2 text-[15px] font-semibold text-jv-muted"
             >
               <span class="inline-flex items-center gap-1.5">
-                Duration (seconds)
+                Časový limit (s)
                 <Tooltip>
                   <TooltipTrigger as-child>
                     <button
                       type="button"
                       class="inline-flex size-5 items-center justify-center rounded-full border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
-                      aria-label="What does Duration mean?"
+                      aria-label="Co znamená časový limit?"
                     >
                       <Info class="size-3" :stroke-width="2.6" />
                     </button>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" align="start">
-                    Time in seconds each player has to answer a question before
-                    it auto-skips. Shorter durations make the quiz faster-paced
-                    but harder.
+                    Kolik sekund má každý hráč na odpověď, než se otázka
+                    automaticky přeskočí. Kratší limit kvíz zrychlí, ale zároveň
+                    ztíží.
                   </TooltipContent>
                 </Tooltip>
               </span>
@@ -275,20 +277,20 @@
         >
           <NavigationLink
             v-if="canEditQuiz && hasUnsavedSettings"
-            url-name="Save Changes"
+            url-name="Uložit změny"
             class="rounded-[999px] bg-jv-white"
             :disabled="settingsPending"
             @click="saveSettings"
           />
           <NavigationLink
-            url-name="Import Question by .CSV"
+            url-name="Importovat otázky z CSV"
             class="rounded-[999px] bg-jv-white"
             @click="importModalOpen = true"
           >
             <Upload class="size-4" :stroke-width="2.4" />
           </NavigationLink>
           <NavigationLink
-            url-name="Add Question"
+            url-name="Přidat otázku"
             class="rounded-[999px] bg-jv-accent-green text-white"
             @click="openNewQuestionForm"
           >
@@ -313,10 +315,10 @@
           <h2
             class="font-headings text-[30px] leading-tight text-jv-ink sm:text-[36px]"
           >
-            No questions yet
+            Zatím žádné otázky
           </h2>
           <p class="mt-2 text-[17px] text-jv-muted">
-            Create one manually or import a CSV to start building this quiz.
+            Vytvoř otázku ručně nebo naimportuj CSV a začni tvořit kvíz.
           </p>
         </div>
       </section>
@@ -368,7 +370,7 @@
                     v-if="canEditQuiz"
                     type="button"
                     class="drag-handle mt-1 grid size-7 shrink-0 cursor-grab place-items-center rounded text-jv-muted hover:bg-jv-canvas hover:text-jv-ink active:cursor-grabbing"
-                    aria-label="Drag to reorder"
+                    aria-label="Přetažením změníš pořadí"
                     @click.stop
                   >
                     <GripVertical class="size-4" :stroke-width="2.4" />
@@ -377,7 +379,7 @@
                     <p
                       class="text-[12px] font-bold uppercase tracking-[0.14em] text-jv-coral"
                     >
-                      Question {{ index + 1 }}
+                      Otázka {{ index + 1 }}
                     </p>
                     <h2
                       class="mt-1 break-words text-[20px] font-bold leading-snug text-jv-ink sm:text-[22px]"
@@ -389,14 +391,14 @@
                 <div v-if="canEditQuiz" class="flex shrink-0 gap-2">
                   <NavigationLink
                     class="rounded-full size-10 px-2 py-1 sm:px-2 sm:py-1 md:px-2 md:py-1"
-                    aria-label="Edit question"
+                    aria-label="Upravit otázku"
                     @click.stop="startEditQuestion(question)"
                   >
                     <Pencil class="size-4" :stroke-width="2.4" />
                   </NavigationLink>
                   <NavigationLink
                     class="rounded-full bg-jv-coral text-white size-10 px-2 py-1 sm:px-2 sm:py-1 md:px-2 md:py-1"
-                    aria-label="Delete question"
+                    aria-label="Smazat otázku"
                     @click.stop="deleteQuestion(question.question_id)"
                   >
                     <Trash2 class="size-4" :stroke-width="2.4" />
@@ -450,7 +452,7 @@
                   >
                     <NuxtImg
                       :src="option"
-                      :alt="`Option ${optionLabel(key)}`"
+                      :alt="`Možnost ${optionLabel(key)}`"
                       class="max-h-32 w-auto max-w-full object-contain"
                     />
                   </div>
@@ -496,12 +498,12 @@
             <h2
               class="font-body text-[24px] font-black leading-none text-jv-white sm:text-[28px]"
             >
-              Add Question to Quiz
+              Přidat otázky do kvízu
             </h2>
             <button
               type="button"
               class="grid size-9 place-items-center text-jv-white transition-transform"
-              aria-label="Close import CSV modal"
+              aria-label="Zavřít okno importu CSV"
               @click="closeImportModal"
             >
               <X class="size-6" :stroke-width="2.4" />
@@ -513,7 +515,7 @@
               <span
                 class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
               >
-                Choose CSV File <span class="text-jv-coral">*</span>
+                Vyber soubor CSV <span class="text-jv-coral">*</span>
               </span>
               <span
                 class="flex h-14 cursor-pointer border border-jv-line bg-jv-canvas"
@@ -522,12 +524,12 @@
                   class="inline-flex h-full items-center gap-2 bg-jv-ink px-4 text-[16px] font-black text-jv-white"
                 >
                   <Upload class="size-4" :stroke-width="2.4" />
-                  Choose File
+                  Vybrat soubor
                 </span>
                 <span
                   class="flex min-w-0 flex-1 items-center px-4 text-[15px] font-semibold text-jv-muted"
                 >
-                  {{ csvFileName || "No file chosen" }}
+                  {{ csvFileName || "Není vybrán žádný soubor" }}
                 </span>
                 <input
                   type="file"
@@ -539,12 +541,12 @@
               </span>
             </label>
             <p class="text-[15px] leading-[1.6] text-jv-muted">
-              Upload a CSV file containing additional questions. New rows will
-              be appended to this quiz.
+              Nahraj soubor CSV s dalšími otázkami. Nové řádky se přidají na
+              konec kvízu.
             </p>
             <NavigationLink
               url="/files/demo.csv"
-              url-name="Download Sample"
+              url-name="Stáhnout ukázku"
               external
               download="demo.csv"
               class="w-fit rounded-[999px] bg-jv-white"
@@ -561,14 +563,14 @@
               class="inline-flex h-12 items-center justify-center border border-jv-line bg-jv-white px-6 text-[17px] font-black text-jv-ink shadow-soft-sm transition-transform"
               @click="closeImportModal"
             >
-              Cancel
+              Zrušit
             </button>
             <button
               type="submit"
               class="inline-flex h-12 items-center justify-center border border-jv-line bg-jv-accent-green px-6 text-[17px] font-black text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-60"
               :disabled="importPending"
             >
-              {{ importPending ? "Adding..." : "Add Questions" }}
+              {{ importPending ? "Přidávám…" : "Přidat otázky" }}
             </button>
           </div>
         </form>
@@ -578,9 +580,9 @@
     <ShareQuizModal v-model="shareModalOpen" :quiz-id="quizId" />
     <DeleteDialog
       v-model="deleteModalOpen"
-      title="Delete quiz"
+      title="Smazat kvíz"
       :message="deleteQuizMessage"
-      confirm-label="Delete quiz"
+      confirm-label="Smazat kvíz"
       @confirm-delete="deleteQuiz"
     />
   </main>
@@ -625,8 +627,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Edit Quiz - jovVix",
-  description: "Edit quiz details and manage questions for your jovVix quiz.",
+  title: "Upravit kvíz – STEM_HUB",
+  description: "Uprav detaily kvízu a spravuj jeho otázky v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -697,11 +699,11 @@ onMounted(() => {
 });
 
 const questions = computed(() => quizData.value?.data?.data || []);
-const quizTitle = computed(() => quizData.value?.data?.quiz_title || "Quiz");
+const quizTitle = computed(() => quizData.value?.data?.quiz_title || "Kvíz");
 
 const deleteQuizMessage = computed(
   () =>
-    `Deleting "${quizTitle.value}" also removes its questions, every session hosted from it, and all player scores and responses. This cannot be undone.`
+    `Smazáním kvízu „${quizTitle.value}“ odstraníš i všechny jeho otázky, všechny odehrané hry a skóre i odpovědi hráčů. Tuto akci nejde vrátit.`
 );
 const quizDescription = computed(
   () => quizData.value?.data?.quiz_description?.String || ""
@@ -736,14 +738,14 @@ const settingsErrors = computed(() => {
     points < constants.MinimumPoints ||
     points > constants.MaximumPoints
   ) {
-    errors.points = `Points must be between ${constants.MinimumPoints} and ${constants.MaximumPoints}.`;
+    errors.points = `Body musí být v rozmezí ${constants.MinimumPoints} až ${constants.MaximumPoints}.`;
   }
   if (
     !Number.isInteger(duration) ||
     duration < constants.MinimumDurationInSeconds ||
     duration > constants.MaximumDurationInSeconds
   ) {
-    errors.duration = `Duration must be between ${constants.MinimumDurationInSeconds} and ${constants.MaximumDurationInSeconds} seconds.`;
+    errors.duration = `Časový limit musí být v rozmezí ${constants.MinimumDurationInSeconds} až ${constants.MaximumDurationInSeconds} sekund.`;
   }
 
   return errors;
@@ -870,10 +872,10 @@ const saveSettings = async () => {
       credentials: "include",
       body,
     });
-    toast.success("Quiz settings updated.");
+    toast.success("Nastavení kvízu bylo uloženo.");
     refresh();
   } catch (error) {
-    toast.error(readApiError(error, "Failed to update quiz settings."));
+    toast.error(readApiError(error, "Nastavení kvízu se nepodařilo uložit."));
   } finally {
     settingsPending.value = false;
   }
@@ -894,12 +896,12 @@ const saveNewQuestion = async ({ payload }) => {
       body: payloadWithDefaults,
     });
 
-    toast.success("Question added successfully.");
+    toast.success("Otázka byla přidána.");
     showNewQuestionForm.value = false;
     showAddAnother.value = true;
     refresh();
   } catch (error) {
-    toast.error(readApiError(error, "Failed to add question."));
+    toast.error(readApiError(error, "Otázku se nepodařilo přidat."));
   } finally {
     savingNewQuestion.value = false;
   }
@@ -924,18 +926,18 @@ const saveExistingQuestion = async (question, { payload }) => {
       }
     );
 
-    toast.success("Question updated successfully.");
+    toast.success("Otázka byla uložena.");
     editingQuestionId.value = "";
     refresh();
   } catch (error) {
-    toast.error(readApiError(error, "Failed to update question."));
+    toast.error(readApiError(error, "Otázku se nepodařilo uložit."));
   } finally {
     savingQuestionId.value = "";
   }
 };
 
 const deleteQuestion = async (questionId) => {
-  if (!window.confirm("Delete this question?")) return;
+  if (!window.confirm("Opravdu chceš smazat tuto otázku?")) return;
 
   try {
     await $fetch(
@@ -946,10 +948,10 @@ const deleteQuestion = async (questionId) => {
         credentials: "include",
       }
     );
-    toast.success("Question deleted successfully.");
+    toast.success("Otázka byla smazána.");
     refresh();
   } catch (error) {
-    toast.error(readApiError(error, "Failed to delete question."));
+    toast.error(readApiError(error, "Otázku se nepodařilo smazat."));
   }
 };
 
@@ -960,10 +962,10 @@ const deleteQuiz = async () => {
       headers,
       credentials: "include",
     });
-    toast.success("Quiz deleted successfully.");
+    toast.success("Kvíz byl smazán.");
     router.push("/admin/quiz/list-quiz");
   } catch (error) {
-    toast.error(readApiError(error, "Failed to delete quiz."));
+    toast.error(readApiError(error, "Kvíz se nepodařilo smazat."));
   }
 };
 
@@ -981,7 +983,7 @@ const closeImportModal = () => {
 
 const importCsv = async () => {
   if (!csvFile.value) {
-    toast.error("Please select a CSV file.");
+    toast.error("Vyber soubor CSV.");
     return;
   }
 
@@ -999,11 +1001,11 @@ const importCsv = async () => {
       credentials: "include",
     });
 
-    toast.success("Questions imported successfully.");
+    toast.success("Otázky byly naimportovány.");
     closeImportModal();
     refresh();
   } catch (error) {
-    toast.error(readApiError(error, "Failed to import CSV."));
+    toast.error(readApiError(error, "CSV se nepodařilo naimportovat."));
   } finally {
     importPending.value = false;
   }
@@ -1015,7 +1017,7 @@ const handleShareQuiz = () => {
 
 const handleStartQuiz = async () => {
   if (questions.value.length === 0) {
-    toast.error("Add at least one question before starting the quiz.");
+    toast.error("Před spuštěním kvízu přidej aspoň jednu otázku.");
     return;
   }
 
@@ -1034,7 +1036,7 @@ const handleStartQuiz = async () => {
 
     const activeQuizId = response?.data;
     if (!activeQuizId) {
-      toast.error("Error while starting quiz.");
+      toast.error("Kvíz se nepodařilo spustit.");
       return;
     }
 
@@ -1047,7 +1049,7 @@ const handleStartQuiz = async () => {
     sessionStore.setSession(activeQuizId);
     router.push(`/admin/arrange/${activeQuizId}`);
   } catch (error) {
-    toast.error(readApiError(error, "Error while starting quiz."));
+    toast.error(readApiError(error, "Kvíz se nepodařilo spustit."));
   } finally {
     startingQuiz.value = false;
   }

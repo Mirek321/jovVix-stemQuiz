@@ -85,12 +85,12 @@ defineExpose({ open, close });
         class="qr-fullscreen fixed inset-0 z-[60] flex flex-col items-center justify-center gap-6 bg-jv-canvas px-6 py-8 sm:gap-10 sm:px-10 sm:py-12"
         role="dialog"
         aria-modal="true"
-        aria-label="Scan QR code"
+        aria-label="Naskenuj QR kód"
         @click="handleBackdropClick"
       >
         <button
           type="button"
-          aria-label="Close fullscreen"
+          aria-label="Zavřít celou obrazovku"
           class="absolute right-4 top-4 grid size-12 place-items-center rounded-[10px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform sm:right-6 sm:top-6 sm:size-14"
           @click.stop="close"
         >
@@ -104,7 +104,7 @@ defineExpose({ open, close });
           <p
             class="font-body text-[12px] font-black uppercase tracking-[0.2em] text-jv-muted sm:text-[14px]"
           >
-            Scan to join
+            Naskenuj a připoj se
           </p>
           <div
             class="qr-card-fullscreen grid place-items-center bg-jv-white p-4 shadow-soft-lg jv-border-rough sm:p-6"
@@ -125,7 +125,7 @@ defineExpose({ open, close });
               <span
                 class="font-body text-[10px] font-black uppercase tracking-[0.14em] text-jv-muted sm:text-[12px]"
               >
-                Quiz code
+                Kód kvízu
               </span>
               <span
                 class="qr-code-text font-feature text-[28px] font-black leading-none text-jv-coral sm:text-[36px]"
@@ -139,7 +139,7 @@ defineExpose({ open, close });
               <span
                 class="font-body text-[10px] font-black uppercase tracking-[0.14em] text-jv-muted sm:text-[12px]"
               >
-                Join at
+                Připoj se na
               </span>
               <span
                 class="break-all font-body text-[18px] font-extrabold text-jv-ink sm:text-[22px]"
@@ -151,7 +151,7 @@ defineExpose({ open, close });
           <p
             class="mt-2 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
           >
-            Click anywhere outside or press Esc to exit
+            Pro zavření klikni mimo nebo stiskni Esc
           </p>
         </div>
       </div>

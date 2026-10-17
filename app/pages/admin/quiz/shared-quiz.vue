@@ -7,8 +7,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Shared Quizzes - jovVix",
-  description: "Manage quizzes you have shared with others on jovVix.",
+  title: "Sdílené kvízy – STEM_HUB",
+  description: "Spravuj kvízy, které v systému STEM_HUB sdílíš s ostatními.",
   robots: "noindex, nofollow",
 });
 
@@ -32,11 +32,10 @@ const quizErrorMessage = computed(() => {
 
   const code = error.data?.code ?? error.statusCode;
   if (code === 401) {
-    return "Your session has expired. Please log in again to see the quizzes you have shared.";
+    return "Tvoje přihlášení vypršelo. Přihlas se znovu a uvidíš kvízy, které sdílíš.";
   }
   return (
-    error.data?.message ||
-    "Couldn't load the quizzes you have shared. Please try again."
+    error.data?.message || "Sdílené kvízy se nepodařilo načíst. Zkus to znovu."
   );
 });
 </script>
@@ -66,13 +65,13 @@ const quizErrorMessage = computed(() => {
           <h1
             class="font-headings text-[26px] leading-tight text-jv-ink sm:text-[32px]"
           >
-            No Quiz Shared By You!
+            Zatím nesdílíš žádný kvíz
           </h1>
           <p class="font-body text-sm italic text-jv-muted sm:text-base">
-            Share your first quiz.
+            Nasdílej svůj první kvíz.
           </p>
           <NavigationButton
-            title="Share Quiz"
+            title="Sdílet kvíz"
             navigate-to="/admin/quiz/list-quiz"
           />
         </div>
@@ -82,7 +81,7 @@ const quizErrorMessage = computed(() => {
             <h1
               class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[36px]"
             >
-              Quiz Shared By Me
+              Kvízy, které sdílím
             </h1>
           </header>
           <QuizListCard

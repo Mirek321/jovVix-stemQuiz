@@ -72,7 +72,7 @@ func (sqctrl *SharedQuizzes) ShareQuiz(c *fiber.Ctx) error {
 	quizId := c.Params(constants.QuizId)
 	sqctrl.logger.Debug("SharedQuizzes.ShareQuiz called", zap.Any("quizId", quizId), zap.Any("userId", user.ID))
 	if quizId == "" {
-		return utils.JSONError(c, http.StatusBadRequest, "No quiz_id found")
+		return utils.JSONError(c, http.StatusBadRequest, "Chybí parametr quiz_id")
 	}
 
 	sqctrl.logger.Debug("validate req", zap.Any("Body", c.Body()))
@@ -132,7 +132,7 @@ func (sqctrl *SharedQuizzes) ListQuizAuthorizedUsers(c *fiber.Ctx) error {
 	quizId := c.Params(constants.QuizId)
 	sqctrl.logger.Debug("SharedQuizzes.ListQuizAuthorizedUsers called", zap.Any("quizId", quizId))
 	if quizId == "" {
-		return utils.JSONError(c, http.StatusBadRequest, "No quiz_id found")
+		return utils.JSONError(c, http.StatusBadRequest, "Chybí parametr quiz_id")
 	}
 
 	quizAuthorizedUsers, err := sqctrl.sharedQuizzesModel.ListQuizAuthorizedUsersByQuizId(quizId)
@@ -222,7 +222,7 @@ func (sqctrl *SharedQuizzes) UpdateUserPermissionOfQuiz(c *fiber.Ctx) error {
 	}
 	sqctrl.logger.Debug("SharedQuizzes.UpdateUserPermissionOfQuiz success", zap.Any("shareQuizReq", shareQuizReq))
 
-	return utils.JSONSuccess(c, http.StatusOK, "User permission updated successfully!")
+	return utils.JSONSuccess(c, http.StatusOK, "Oprávnění uživatele bylo upraveno")
 }
 
 // DeleteUserPermissionOfQuiz to Delete authorized user permission for perticular quiz.
@@ -257,7 +257,7 @@ func (sqctrl *SharedQuizzes) DeleteUserPermissionOfQuiz(c *fiber.Ctx) error {
 	}
 	sqctrl.logger.Debug("SharedQuizzes.DeleteUserPermissionOfQuiz success", zap.Any("sharedQuizId", sharedQuizId))
 
-	return utils.JSONSuccess(c, http.StatusOK, "User permission deleted successfully!")
+	return utils.JSONSuccess(c, http.StatusOK, "Oprávnění uživatele bylo odebráno")
 }
 
 // ListSharedQuizzes to List shared quiz for perticular user (only shared with the user or shared by the user).
@@ -292,7 +292,7 @@ func (sqctrl *SharedQuizzes) ListSharedQuizzes(c *fiber.Ctx) error {
 		// Quizzes shared with the user
 		sharedTo = user.Email
 	default:
-		return utils.JSONError(c, http.StatusBadRequest, "Invalid request type. Use 'shared_by_me' or 'shared_with_me'.")
+		return utils.JSONError(c, http.StatusBadRequest, "Neplatný typ požadavku. Použij 'shared_by_me' nebo 'shared_with_me'.")
 	}
 
 	sharedQuizzes, err := sqctrl.sharedQuizzesModel.ListSharedQuizzes(sharedBy, sharedTo)

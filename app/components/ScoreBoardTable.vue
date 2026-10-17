@@ -31,15 +31,15 @@ const avatarBgFor = (index) => avatarAccents[index % avatarAccents.length];
 
 const rankBadgeFor = (rank) => {
   const r = Number(rank);
-  if (r === 1) return { icon: Crown, bg: "bg-jv-yellow", aria: "First place" };
-  if (r === 2) return { icon: Medal, bg: "bg-jv-salmon", aria: "Second place" };
-  if (r === 3) return { icon: Award, bg: "bg-jv-mint", aria: "Third place" };
+  if (r === 1) return { icon: Crown, bg: "bg-jv-yellow", aria: "1. místo" };
+  if (r === 2) return { icon: Medal, bg: "bg-jv-salmon", aria: "2. místo" };
+  if (r === 3) return { icon: Award, bg: "bg-jv-mint", aria: "3. místo" };
   return null;
 };
 </script>
 
 <template>
-  <section aria-label="Final rankings">
+  <section aria-label="Konečné pořadí">
     <article
       class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7 md:p-8"
     >
@@ -48,12 +48,12 @@ const rankBadgeFor = (rank) => {
           <h2
             class="font-headings text-[26px] leading-none text-jv-ink sm:text-[32px]"
           >
-            Rankings
+            Pořadí
           </h2>
           <p
             class="mt-1.5 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
           >
-            Final scoreboard
+            Konečné pořadí
           </p>
         </div>
         <p
@@ -63,9 +63,7 @@ const rankBadgeFor = (rank) => {
             class="size-2 rounded-full bg-jv-coral"
             aria-hidden="true"
           ></span>
-          {{ props.scoreboardData.length }} player{{
-            props.scoreboardData.length === 1 ? "" : "s"
-          }}
+          {{ czCount(props.scoreboardData.length, "hráč", "hráči", "hráčů") }}
         </p>
       </header>
 
@@ -106,7 +104,7 @@ const rankBadgeFor = (rank) => {
           <span
             v-else
             class="w-8 shrink-0 text-center font-feature text-[16px] font-black text-jv-ink tabular-nums sm:w-10 sm:text-[20px]"
-            :aria-label="`Rank ${user.rank}`"
+            :aria-label="`${user.rank}. místo`"
           >
             {{ user.rank }}
           </span>
@@ -119,7 +117,7 @@ const rankBadgeFor = (rank) => {
           >
             <NuxtImg
               :src="getAvatarUrlByName(user?.img_key)"
-              :alt="`${user.firstname || user.username || 'Player'} avatar`"
+              :alt="`Avatar hráče ${user.firstname || user.username || 'Hráč'}`"
               width="48"
               height="48"
               loading="lazy"
@@ -137,7 +135,7 @@ const rankBadgeFor = (rank) => {
                 class="inline-flex shrink-0 items-center gap-1 rounded-full border border-jv-line bg-jv-white px-2 py-0.5 font-feature text-[10px] font-black uppercase tracking-[0.12em] text-jv-ink"
               >
                 <Star class="size-3" :stroke-width="2.6" />
-                You
+                Ty
               </span>
               <span
                 v-else-if="
@@ -152,7 +150,7 @@ const rankBadgeFor = (rank) => {
 
           <span
             class="shrink-0 font-feature text-[16px] font-black tabular-nums text-jv-ink sm:text-[20px]"
-            :aria-label="`Score ${user.score}`"
+            :aria-label="`Skóre ${user.score}`"
           >
             {{ user.score }}
           </span>
@@ -167,7 +165,7 @@ const rankBadgeFor = (rank) => {
           class="size-2 rounded-full bg-jv-ink/30"
           aria-hidden="true"
         ></span>
-        No rankings yet
+        Zatím žádné pořadí
       </div>
     </article>
   </section>

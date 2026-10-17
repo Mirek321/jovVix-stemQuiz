@@ -41,7 +41,7 @@ const { orientation, canScrollNext, scrollNext } = useCarousel();
   >
     <slot>
       <ArrowRight />
-      <span class="sr-only">Next Slide</span>
+      <span class="sr-only">Další snímek</span>
     </slot>
   </Button>
 </template>

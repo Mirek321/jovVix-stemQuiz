@@ -9,7 +9,7 @@
           class="size-3 animate-pulse rounded-full bg-jv-coral"
           aria-hidden="true"
         ></span>
-        Loading question...
+        Načítání otázky…
       </div>
 
       <div
@@ -40,8 +40,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Edit Question - jovVix",
-  description: "Edit and configure an individual quiz question on jovVix.",
+  title: "Upravit otázku – STEM_HUB",
+  description: "Uprav a nastav jednotlivou otázku kvízu v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 

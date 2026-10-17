@@ -13,7 +13,7 @@
         >
           <Compass class="size-3.5 sm:size-4" :stroke-width="2.6" />
         </span>
-        <span>Explore Public Quizzes</span>
+        <span>Procházet veřejné kvízy</span>
       </h3>
     </div>
 
@@ -103,25 +103,31 @@ const publicQuizzes = computed(() => data.value?.data || []);
 
 const { coverUrl, fallbackUrl } = useQuizCover();
 
+const OTHER_CATEGORY = "Ostatní";
+
 const groupedQuizzes = computed(() => {
   const groups = new Map();
   for (const quiz of publicQuizzes.value) {
-    const name = nullableString(quiz.category_name) || "Other";
+    const name = nullableString(quiz.category_name) || OTHER_CATEGORY;
     if (!groups.has(name)) groups.set(name, []);
     groups.get(name).push(quiz);
   }
-  // Alphabetical, with the uncategorized "Other" group always last.
+  // Alphabetical, with the uncategorized "Ostatní" group always last.
   return [...groups.entries()]
     .sort(([a], [b]) => {
-      if (a === "Other") return 1;
-      if (b === "Other") return -1;
-      return a.localeCompare(b);
+      if (a === OTHER_CATEGORY) return 1;
+      if (b === OTHER_CATEGORY) return -1;
+      return a.localeCompare(b, "cs");
     })
     .map(([name, quizzes]) => ({ name, quizzes }));
 });
 
 const categoryAnchorId = (name) =>
-  `public-quiz-category-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  `public-quiz-category-${name
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")}`;
 
 const scrollToCategory = (name) => {
   document
@@ -181,7 +187,7 @@ const handleStartQuiz = async (quizId) => {
 
     const sessionId = response?.data;
     if (!sessionId) {
-      toast.error("Error while starting quiz.");
+      toast.error("Kvíz se nepodařilo spustit.");
       return;
     }
 
@@ -191,9 +197,7 @@ const handleStartQuiz = async (quizId) => {
     // `public=1` preserves the public-session flow for a guest host.
     await router.push(`/admin/arrange/${sessionId}?public=1`);
   } catch (error) {
-    toast.error(
-      error?.data?.message || error?.message || "Error while starting quiz."
-    );
+    toast.error(error?.data?.message || "Kvíz se nepodařilo spustit.");
   } finally {
     startingQuizId.value = "";
   }

@@ -5,9 +5,9 @@ export default function usecopyToClipboard(text) {
   navigator.clipboard
     .writeText(text)
     .then(() => {
-      toast.success("Copied to clipboard");
+      toast.success("Zkopírováno do schránky");
     })
     .catch((error) => {
-      toast.warning("Error copying to clipboard", error);
+      toast.warning("Kopírování do schránky se nezdařilo", error);
     });
 }

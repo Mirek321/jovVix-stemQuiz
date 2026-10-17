@@ -14,12 +14,12 @@ import { Skeleton } from "@/components/ui/skeleton";
         <h1
           class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
         >
-          Quiz Lobby
+          Čekárna
         </h1>
         <p
           class="mx-auto mt-2 max-w-[680px] text-[15px] leading-[1.5] text-jv-muted sm:text-[18px] md:text-[20px]"
         >
-          Share the code with players. The quiz will start when you're ready!
+          Pošli kód hráčům. Kvíz spustíš, až budeš připravený!
         </p>
       </header>
 
@@ -38,7 +38,7 @@ import { Skeleton } from "@/components/ui/skeleton";
             <h2
               class="font-headings text-[30px] leading-tight text-jv-ink min-[420px]:text-[34px] sm:text-[42px] lg:text-[48px]"
             >
-              Ready, Steady, Go!
+              Připravit, pozor, start!
             </h2>
 
             <div
@@ -50,7 +50,7 @@ import { Skeleton } from "@/components/ui/skeleton";
                 <p
                   class="shrink-0 font-body text-[12px] font-black uppercase tracking-[0.08em] text-jv-muted"
                 >
-                  Join at
+                  Připoj se na
                 </p>
                 <Skeleton
                   class="h-[20px] w-[200px] max-w-full rounded-[4px] bg-jv-ink/10 sm:h-[24px] sm:w-[260px]"
@@ -78,7 +78,7 @@ import { Skeleton } from "@/components/ui/skeleton";
                   <p
                     class="shrink-0 font-body text-[12px] font-black uppercase tracking-[0.08em] text-jv-muted"
                   >
-                    Quiz code
+                    Kód kvízu
                   </p>
                   <Skeleton
                     class="h-[24px] w-[160px] max-w-full rounded-[4px] bg-jv-ink/10 sm:h-[28px] sm:w-[180px]"
@@ -96,7 +96,7 @@ import { Skeleton } from "@/components/ui/skeleton";
               <span
                 class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
-              <span class="shrink-0">Or scan QR code</span>
+              <span class="shrink-0">Nebo naskenuj QR kód</span>
               <span
                 class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
@@ -118,7 +118,7 @@ import { Skeleton } from "@/components/ui/skeleton";
                 class="mt-4 flex items-center justify-center gap-2 text-center font-body text-[12px] leading-[1.4] text-jv-muted sm:text-[13px]"
               >
                 <Info class="size-4" :stroke-width="2.3" />
-                <span>Host can start the quiz at any time</span>
+                <span>Kvíz můžeš spustit kdykoli</span>
               </p>
             </div>
           </div>
@@ -139,7 +139,7 @@ import { Skeleton } from "@/components/ui/skeleton";
               <h2
                 class="min-w-0 break-words font-headings text-[28px] leading-tight text-jv-ink min-[420px]:text-[32px] sm:text-[42px] xl:text-[48px]"
               >
-                Participants
+                Hráči
               </h2>
             </div>
             <Skeleton
@@ -183,13 +183,13 @@ import { Skeleton } from "@/components/ui/skeleton";
               <p
                 class="font-body text-[18px] text-jv-muted sm:text-[22px] md:text-[24px]"
               >
-                Waiting for more players...
+                Čekáme na další hráče…
               </p>
             </div>
           </div>
         </aside>
       </div>
     </section>
-    <span class="sr-only">Loading quiz lobby…</span>
+    <span class="sr-only">Načítání čekárny…</span>
   </main>
 </template>

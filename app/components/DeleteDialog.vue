@@ -9,20 +9,19 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: "Delete Item",
+    default: "Smazat položku",
   },
   message: {
     type: String,
-    default:
-      "Once deleted, this item cannot be recovered. Do you want to proceed?",
+    default: "Smazanou položku už nepůjde obnovit. Chceš pokračovat?",
   },
   confirmLabel: {
     type: String,
-    default: "Delete",
+    default: "Smazat",
   },
   cancelLabel: {
     type: String,
-    default: "Cancel",
+    default: "Zrušit",
   },
 });
 

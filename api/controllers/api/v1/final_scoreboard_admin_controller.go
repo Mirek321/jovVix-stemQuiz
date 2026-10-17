@@ -50,13 +50,13 @@ func (fc *FinalScoreBoardAdminController) GetScoreForAdmin(ctx *fiber.Ctx) error
 
 	if !(activeQuizId != "" && len(activeQuizId) == 36) {
 		fc.logger.Debug("active quiz id is not valid - either empty string or it is not 36 characters long")
-		return utils.JSONFail(ctx, http.StatusBadRequest, errors.New("user play quiz should be valid string").Error())
+		return utils.JSONFail(ctx, http.StatusBadRequest, errors.New("ID odehraného kvízu musí být platný řetězec").Error())
 	}
 
 	finalScoreBoardData, err := fc.finalScoreBoardAdminModel.GetScoreForAdmin(activeQuizId)
 	if err != nil {
 		fc.logger.Error("Error while getting final scoreboard for admin", zap.Error(err))
-		return utils.JSONFail(ctx, http.StatusInternalServerError, errors.New("internal server error").Error())
+		return utils.JSONFail(ctx, http.StatusInternalServerError, errors.New("Interní chyba serveru").Error())
 	}
 
 	return utils.JSONSuccess(ctx, http.StatusOK, finalScoreBoardData)

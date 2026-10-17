@@ -55,14 +55,14 @@ const renderAsImage = computed(
     <span
       v-if="props.isCorrect"
       class="grid size-9 shrink-0 place-items-center rounded-xl bg-jv-accent-green text-white sm:size-11"
-      aria-label="Correct"
+      aria-label="Správně"
     >
       <Check class="size-4 sm:size-5" :stroke-width="3" />
     </span>
     <span
       v-else-if="props.isPicked"
       class="grid size-9 shrink-0 place-items-center rounded-xl bg-jv-accent-red text-white sm:size-11"
-      aria-label="Your incorrect answer"
+      aria-label="Tvoje špatná odpověď"
     >
       <X class="size-4 sm:size-5" :stroke-width="3" />
     </span>
@@ -77,7 +77,7 @@ const renderAsImage = computed(
       <div v-if="renderAsImage" class="flex items-center justify-center">
         <NuxtImg
           :src="props.option"
-          :alt="`Option ${props.order}`"
+          :alt="`Možnost ${props.order}`"
           class="max-h-[120px] w-auto object-contain"
         />
       </div>

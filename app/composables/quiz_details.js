@@ -1,3 +1,5 @@
+import { czPlural } from "~/composables/plural";
+
 export function useGetTime(targetTime) {
   const quizCreationTime = new Date(targetTime);
 
@@ -12,20 +14,20 @@ export function useGetTime(targetTime) {
   const monthsSinceCreation = Math.round(daysSinceCreation / 30);
   const yearsSinceCreation = Math.round(monthsSinceCreation / 12);
 
-  let message;
-  if (secondsSinceCreation < 60) {
-    return "This quiz was created just now.";
-  } else if (minutesSinceCreation < 60) {
-    message = `This quiz was created ${minutesSinceCreation} minutes ago`;
-  } else if (hoursSinceCreation < 24) {
-    message = `This quiz was created ${hoursSinceCreation} hours ago`;
-  } else if (daysSinceCreation < 30) {
-    message = `This quiz was created ${daysSinceCreation} days ago`;
-  } else if (monthsSinceCreation < 12) {
-    message = `This quiz was created ${monthsSinceCreation} months ago`;
-  } else {
-    message = `This quiz was created ${yearsSinceCreation} years ago`;
-  }
+  // "před" + instrumental: 1 → singular form, 2+ → plural form
+  const ago = (n, one, other) =>
+    `Vytvořeno před ${n} ${czPlural(n, one, other, other)}`;
 
-  return message;
+  if (secondsSinceCreation < 60) {
+    return "Vytvořeno právě teď";
+  } else if (minutesSinceCreation < 60) {
+    return ago(minutesSinceCreation, "minutou", "minutami");
+  } else if (hoursSinceCreation < 24) {
+    return ago(hoursSinceCreation, "hodinou", "hodinami");
+  } else if (daysSinceCreation < 30) {
+    return ago(daysSinceCreation, "dnem", "dny");
+  } else if (monthsSinceCreation < 12) {
+    return ago(monthsSinceCreation, "měsícem", "měsíci");
+  }
+  return ago(yearsSinceCreation, "rokem", "lety");
 }

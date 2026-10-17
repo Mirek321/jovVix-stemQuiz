@@ -32,7 +32,7 @@ describe("QuizListCard test", () => {
     // Check if title, description, and questions are rendered
     expect(wrapper.html()).toContain("Sample Quiz");
     expect(wrapper.html()).toContain("This is a sample description.");
-    expect(wrapper.html()).toContain("10 Questions");
+    expect(wrapper.html()).toContain("10 otázek");
   });
 
   it("renders the `UtilsStartQuiz` component when `isPlayedQuiz` is false", () => {
@@ -60,6 +60,6 @@ describe("QuizListCard test", () => {
   });
 
   it("displays the correct creation time", () => {
-    expect(wrapper.text()).toContain("2 days ago");
+    expect(wrapper.text()).toContain("před 2 dny");
   });
 });

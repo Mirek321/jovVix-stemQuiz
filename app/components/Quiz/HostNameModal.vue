@@ -87,7 +87,7 @@ onUnmounted(() => {
           type="button"
           class="absolute inset-0 cursor-default bg-jv-ink/60"
           :disabled="!allowClose || submitting"
-          aria-label="Close"
+          aria-label="Zavřít"
           @click="handleClose"
         ></button>
 
@@ -104,7 +104,7 @@ onUnmounted(() => {
             type="button"
             class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
             :disabled="submitting"
-            aria-label="Close"
+            aria-label="Zavřít"
             @click="handleClose"
           >
             <X class="size-4" :stroke-width="2.6" />
@@ -116,7 +116,7 @@ onUnmounted(() => {
                 id="hostNameModalLabel"
                 class="m-0 font-headings text-[28px] leading-none text-jv-ink sm:text-[34px]"
               >
-                Pick Your Name
+                Vyber si jméno
               </h1>
               <svg
                 class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-yellow"
@@ -137,7 +137,7 @@ onUnmounted(() => {
               </svg>
             </div>
             <p class="m-0 mt-1 font-body text-sm text-jv-ink/70 sm:text-base">
-              Players will see this name on the leaderboard
+              Hráči tohle jméno uvidí v žebříčku
             </p>
           </header>
 
@@ -147,13 +147,13 @@ onUnmounted(() => {
                 for="hostName"
                 class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
               >
-                Your Player Profile
+                Tvůj hráčský profil
               </label>
               <div class="flex items-stretch gap-2.5">
                 <NavigationLink
                   type="button"
                   class="relative size-[46px] shrink-0 overflow-hidden bg-jv-mint !p-0 shadow-none !jv-card !rounded-none hover:scale-110"
-                  :aria-label="`Generate new avatar (current: ${avatarName})`"
+                  :aria-label="`Vygenerovat nový avatar (aktuální: ${avatarName})`"
                   @click="rerollAvatar"
                 >
                   <NuxtImg
@@ -184,7 +184,7 @@ onUnmounted(() => {
                     type="text"
                     name="username"
                     maxlength="12"
-                    placeholder="Pick a name"
+                    placeholder="Zadej jméno"
                     autocomplete="off"
                     class="min-w-0 flex-1 border-0 bg-transparent font-body text-sm text-jv-ink outline-none placeholder:text-jv-ink/40 sm:text-base"
                   />
@@ -199,10 +199,10 @@ onUnmounted(() => {
             >
               <template v-if="submitting">
                 <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-                <span>Setting up…</span>
+                <span>Připravuju…</span>
               </template>
               <template v-else>
-                <span>Start Hosting</span>
+                <span>Spustit kvíz</span>
                 <ArrowRight class="size-[18px]" :stroke-width="2.4" />
               </template>
             </NavigationLink>

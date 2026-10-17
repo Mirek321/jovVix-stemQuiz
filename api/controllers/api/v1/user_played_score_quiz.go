@@ -128,7 +128,7 @@ func (ctrl *UserPlayedQuizeController) PlayedQuizValidation(c *fiber.Ctx) error 
 
 	if userId == "<nil>" {
 		ctrl.logger.Error("error while PlayedQuizValidation")
-		return utils.JSONFail(c, http.StatusInternalServerError, "userId is not found")
+		return utils.JSONFail(c, http.StatusInternalServerError, "Uživatel nebyl nalezen")
 	}
 
 	ctrl.logger.Debug("activeQuizModel.GetSessionByCode called", zap.Any("userId", userId))
@@ -139,7 +139,7 @@ func (ctrl *UserPlayedQuizeController) PlayedQuizValidation(c *fiber.Ctx) error 
 			return utils.JSONFail(c, http.StatusBadRequest, constants.ErrInvitationCodeNotFound)
 		}
 		ctrl.logger.Error("error in invitation code", zap.Error(err))
-		return utils.JSONFail(c, http.StatusInternalServerError, "error while get session by invitation code")
+		return utils.JSONFail(c, http.StatusInternalServerError, "Nepodařilo se najít sezení podle kódu kvízu")
 	}
 	ctrl.logger.Debug("activeQuizModel.activeQuizModel success", zap.Any("session", session))
 
@@ -164,7 +164,7 @@ func (ctrl *UserPlayedQuizeController) PlayedQuizValidation(c *fiber.Ctx) error 
 	err = ctrl.userQuizResponseModel.GetQuestionsCopy(userPlayedQuizId, session.ID)
 	if err != nil {
 		ctrl.logger.Error("error while get question copy", zap.Error(err))
-		return utils.JSONFail(c, http.StatusInternalServerError, "error while get question copy")
+		return utils.JSONFail(c, http.StatusInternalServerError, "Nepodařilo se načíst otázky")
 	}
 	ctrl.logger.Debug("userQuizResponseModel.GetQuestionsCopy success")
 

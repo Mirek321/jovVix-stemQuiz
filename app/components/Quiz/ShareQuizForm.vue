@@ -74,7 +74,7 @@ const handleSubmit = () => {
       <span
         class="text-[12px] font-black uppercase tracking-[0.16em] text-jv-ink"
       >
-        Email <span class="text-jv-coral">*</span>
+        E-mail <span class="text-jv-coral">*</span>
       </span>
       <input
         v-model="email"
@@ -91,17 +91,17 @@ const handleSubmit = () => {
       <span
         class="text-[12px] font-black uppercase tracking-[0.16em] text-jv-ink"
       >
-        Permission <span class="text-jv-coral">*</span>
+        Oprávnění <span class="text-jv-coral">*</span>
       </span>
       <select
         v-model="permission"
         required
         class="h-12 border border-jv-line bg-jv-white px-3 text-[15px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
       >
-        <option value="" disabled>Select permission level</option>
-        <option value="read">Read</option>
-        <option value="write">Write</option>
-        <option value="share">Manage</option>
+        <option value="" disabled>Vyber úroveň oprávnění</option>
+        <option value="read">Jen čtení</option>
+        <option value="write">Může upravovat</option>
+        <option value="share">Může spravovat</option>
       </select>
     </label>
 
@@ -111,7 +111,7 @@ const handleSubmit = () => {
       class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-5 font-body text-[15px] font-black text-white shadow-soft-sm transition-transform"
     >
       <Send class="size-4" :stroke-width="2.4" />
-      {{ props.id ? "Update Access" : "Share Quiz" }}
+      {{ props.id ? "Upravit přístup" : "Sdílet kvíz" }}
     </button>
   </form>
 </template>

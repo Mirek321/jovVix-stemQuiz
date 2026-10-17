@@ -26,7 +26,7 @@
       <template v-if="mounted">
         <NavigationLink
           url="/admin/quiz/list-quiz?create=1"
-          url-name="Create Quiz"
+          url-name="Vytvořit kvíz"
         >
           <Plus class="size-[18px]" />
         </NavigationLink>
@@ -54,7 +54,7 @@
             <span
               v-if="item.needsAttention"
               class="absolute right-3 top-1/2 size-2 -translate-y-1/2 rounded-full bg-jv-coral"
-              aria-label="Email not verified"
+              aria-label="E-mail není ověřený"
             ></span>
           </NavigationLink>
         </template>
@@ -98,7 +98,7 @@
           <PopoverTrigger as-child>
             <NavigationLink
               type="button"
-              aria-label="Profile menu"
+              aria-label="Nabídka profilu"
               class="rounded-full bg-white !p-2 border-0 shadow-none hover:bg-jv-ink/10 text-sm sm:text-base"
             >
               <MoreVertical class="size-5" :stroke-width="2.4" />
@@ -112,19 +112,19 @@
           >
             <NavigationLink
               type="button"
-              aria-label="Profile menu"
+              aria-label="Odhlásit se"
               class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:bg-jv-coral hover:border hover:jv-border-even hover:rounded-md"
               @click="handleDesktopLogout"
             >
               <LogOut class="size-4" :stroke-width="2.4" />
-              <span class="text-sm">Log Out</span>
+              <span class="text-sm">Odhlásit se</span>
             </NavigationLink>
           </PopoverContent>
         </Popover>
       </div>
       <template v-else>
-        <NavigationLink url="/account/login" url-name="Sign In" />
-        <NavigationLink url="/account/register" url-name="Sign Up" />
+        <NavigationLink url="/account/login" url-name="Přihlásit se" />
+        <NavigationLink url="/account/register" url-name="Zaregistrovat se" />
       </template>
     </div>
   </aside>
@@ -156,7 +156,7 @@
         type="button"
         class="grid size-10 place-items-center rounded-[10px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
         :aria-expanded="open"
-        aria-label="Toggle navigation menu"
+        :aria-label="open ? 'Zavřít nabídku' : 'Otevřít nabídku'"
         aria-controls="mobile-nav"
         @click="open = !open"
       >
@@ -192,7 +192,7 @@
           <span
             v-if="item.needsAttention"
             class="size-2 shrink-0 rounded-full bg-jv-coral"
-            aria-label="Email not verified"
+            aria-label="E-mail není ověřený"
           ></span>
         </NuxtLink>
         <div
@@ -216,7 +216,7 @@
             <PopoverTrigger as-child>
               <NavigationLink
                 type="button"
-                aria-label="Profile menu"
+                aria-label="Nabídka profilu"
                 class="rounded-full bg-white !p-2 border-0 shadow-none hover:bg-jv-ink/10 text-sm sm:text-base"
               >
                 <MoreVertical class="size-5" :stroke-width="2.4" />
@@ -229,12 +229,12 @@
             >
               <NavigationLink
                 type="button"
-                aria-label="Profile menu"
+                aria-label="Odhlásit se"
                 class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:bg-jv-coral hover:border hover:jv-border-even hover:rounded-md"
                 @click="handleMobileLogout"
               >
                 <LogOut class="size-4" :stroke-width="2.4" />
-                <span class="text-sm">Log Out</span>
+                <span class="text-sm">Odhlásit se</span>
               </NavigationLink>
             </PopoverContent>
           </Popover>
@@ -321,7 +321,7 @@ const canManageCategories = computed(
 );
 
 const userName = computed(
-  () => currentUser.value?.firstname || currentUser.value?.username || "Profile"
+  () => currentUser.value?.firstname || currentUser.value?.username || "Profil"
 );
 
 const userAvatar = computed(() =>
@@ -343,15 +343,15 @@ const isActiveRoute = (url) => {
 const navItems = computed(() => {
   if (showAdminNav.value) {
     return [
-      { label: "Home", url: "/", icon: Home, active: isActiveRoute("/") },
+      { label: "Domů", url: "/", icon: Home, active: isActiveRoute("/") },
       {
-        label: "Quizzes",
+        label: "Kvízy",
         url: "/admin/quiz/list-quiz",
         icon: HelpCircle,
         active: isActiveRoute("/admin/quiz/list-quiz"),
       },
       {
-        label: "Reports",
+        label: "Reporty",
         url: "/admin/reports",
         icon: BarChart3,
         active: isActiveRoute("/admin/reports"),
@@ -359,7 +359,7 @@ const navItems = computed(() => {
       ...(canManageCategories.value
         ? [
             {
-              label: "Categories",
+              label: "Kategorie",
               url: "/admin/categories",
               icon: Tag,
               active: isActiveRoute("/admin/categories"),
@@ -367,7 +367,7 @@ const navItems = computed(() => {
           ]
         : []),
       {
-        label: "Profile",
+        label: "Profil",
         url: "/admin",
         icon: UserRound,
         active: isActiveRoute("/admin"),
@@ -376,21 +376,21 @@ const navItems = computed(() => {
     ];
   }
 
-  return [{ label: "Home", url: "/", icon: Home, active: true }];
+  return [{ label: "Domů", url: "/", icon: Home, active: true }];
 });
 
 const mobileNavItems = computed(() => {
   if (showAdminNav.value) {
     return [
-      { label: "Home", url: "/", icon: Home, active: isActiveRoute("/") },
+      { label: "Domů", url: "/", icon: Home, active: isActiveRoute("/") },
       {
-        label: "Quizzes",
+        label: "Kvízy",
         url: "/admin/quiz/list-quiz",
         icon: HelpCircle,
         active: isActiveRoute("/admin/quiz/list-quiz"),
       },
       {
-        label: "Reports",
+        label: "Reporty",
         url: "/admin/reports",
         icon: BarChart3,
         active: isActiveRoute("/admin/reports"),
@@ -398,7 +398,7 @@ const mobileNavItems = computed(() => {
       ...(canManageCategories.value
         ? [
             {
-              label: "Categories",
+              label: "Kategorie",
               url: "/admin/categories",
               icon: Tag,
               active: isActiveRoute("/admin/categories"),
@@ -406,14 +406,14 @@ const mobileNavItems = computed(() => {
           ]
         : []),
       {
-        label: "Profile",
+        label: "Profil",
         url: "/admin",
         icon: UserRound,
         active: isActiveRoute("/admin"),
         needsAttention: emailVerified.value === false,
       },
       {
-        label: "Create Quiz",
+        label: "Vytvořit kvíz",
         url: "/admin/quiz/list-quiz?create=1",
         icon: Plus,
       },
@@ -421,11 +421,15 @@ const mobileNavItems = computed(() => {
   }
 
   return [
-    { label: "Home", url: "/", icon: Home, active: true },
-    { label: "Enter Code", url: "/join" },
-    { label: "Create Quiz", url: "/admin/quiz/list-quiz?create=1", icon: Plus },
-    { label: "Sign In", url: "/account/login" },
-    { label: "Sign Up", url: "/account/register" },
+    { label: "Domů", url: "/", icon: Home, active: true },
+    { label: "Zadat kód", url: "/join" },
+    {
+      label: "Vytvořit kvíz",
+      url: "/admin/quiz/list-quiz?create=1",
+      icon: Plus,
+    },
+    { label: "Přihlásit se", url: "/account/login" },
+    { label: "Zaregistrovat se", url: "/account/register" },
   ];
 });
 

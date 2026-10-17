@@ -37,7 +37,7 @@ describe("ListJoinUser test", () => {
   });
 
   it("shows the participant count when listUsers is not empty", () => {
-    expect(wrapper.find("h5").text()).toBe("2 Participants");
+    expect(wrapper.find("h5").text()).toBe("2 hráči");
   });
 
   it("renders user chips with correct data", () => {
@@ -55,10 +55,10 @@ describe("ListJoinUser test", () => {
     );
   });
 
-  it("shows 'Waiting for Participants' when listUsers is empty", async () => {
+  it("shows the waiting message when listUsers is empty", async () => {
     listUserStore.listUsers = [];
     await wrapper.vm.$nextTick();
-    expect(wrapper.find("h5").text()).toBe("Waiting for Participants..");
+    expect(wrapper.find("h5").text()).toBe("Čekáme na hráče…");
     expect(wrapper.findAll(".chip").length).toBe(0);
   });
 });

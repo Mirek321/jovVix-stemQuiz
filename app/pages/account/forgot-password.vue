@@ -14,12 +14,12 @@ useHead({
 });
 
 useSeoMeta({
-  title: "Reset Password - jovVix",
+  title: "Obnovit heslo – STEM_HUB",
   description:
-    "Reset your jovVix account password securely. Enter your email to receive a recovery link and regain access to your quiz dashboard.",
-  ogTitle: "Reset Password - jovVix",
+    "Bezpečně si obnov heslo ke svému účtu v systému STEM_HUB. Zadej e-mail, pošleme ti kód pro obnovení a znovu se dostaneš ke svým kvízům.",
+  ogTitle: "Obnovit heslo – STEM_HUB",
   ogDescription:
-    "Reset your jovVix account password securely. Enter your email to receive a recovery link and regain access to your quiz dashboard.",
+    "Bezpečně si obnov heslo ke svému účtu v systému STEM_HUB. Zadej e-mail, pošleme ti kód pro obnovení a znovu se dostaneš ke svým kvízům.",
   ogUrl: seoCanonical,
 });
 
@@ -31,7 +31,7 @@ const isLoading = ref(false);
 
 const handleForgotPassword = async () => {
   if (!email.value) {
-    toast.error("Please enter your email first!");
+    toast.error("Nejdřív zadej svůj e-mail.");
     return;
   }
 
@@ -71,7 +71,7 @@ const handleForgotPassword = async () => {
     navigateTo(`/recovery?flow=${recovery.id}`);
   } catch (error) {
     console.error(error);
-    toast.error("Something went wrong. Please try again.");
+    toast.error("Něco se pokazilo. Zkus to prosím znovu.");
   } finally {
     isLoading.value = false;
   }
@@ -94,7 +94,7 @@ const handleForgotPassword = async () => {
             <h1
               class="m-0 font-headings text-[26px] leading-none text-jv-ink sm:text-[32px]"
             >
-              Forgot Password
+              Zapomenuté heslo
             </h1>
             <svg
               class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-mint"
@@ -117,7 +117,7 @@ const handleForgotPassword = async () => {
           <p
             class="mt-2 text-center font-body text-sm text-jv-ink/70 sm:text-[15px]"
           >
-            Enter your email and we'll send you a reset code.
+            Zadej svůj e-mail a pošleme ti kód pro obnovení hesla.
           </p>
         </header>
 
@@ -130,7 +130,7 @@ const handleForgotPassword = async () => {
               for="email"
               class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
             >
-              Email Address
+              E-mail
             </label>
             <div
               class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
@@ -143,7 +143,7 @@ const handleForgotPassword = async () => {
                 id="email"
                 v-model="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="ty@example.com"
                 class="min-w-0 flex-1 border-0 bg-transparent font-body text-sm text-jv-ink outline-none placeholder:text-jv-ink/40 sm:text-base"
                 required
               />
@@ -155,7 +155,7 @@ const handleForgotPassword = async () => {
             :disabled="isLoading"
             class="jv-card mt-2 inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg"
           >
-            {{ isLoading ? "Sending..." : "Send Reset Code" }}
+            {{ isLoading ? "Odesílání…" : "Poslat kód" }}
             <ArrowRight v-if="!isLoading" class="size-5" :stroke-width="2.4" />
           </button>
         </form>
@@ -165,7 +165,7 @@ const handleForgotPassword = async () => {
             to="/account/login"
             class="font-bold text-jv-coral hover:underline"
           >
-            Back to Sign In
+            Zpět na přihlášení
           </NuxtLink>
         </div>
       </div>

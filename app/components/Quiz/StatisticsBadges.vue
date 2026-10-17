@@ -17,31 +17,31 @@ const props = defineProps({
 
 const stats = computed(() => [
   {
-    label: "Accuracy",
+    label: "Úspěšnost",
     value: `${props.userStatistics?.accuracy ?? 0}%`,
     icon: Target,
     bg: "bg-jv-yellow",
   },
   {
-    label: "Score",
+    label: "Skóre",
     value: props.userStatistics?.totalScore ?? 0,
     icon: Trophy,
     bg: "bg-jv-mint",
   },
   {
-    label: "Correct",
+    label: "Správně",
     value: props.userStatistics?.correctAnwers ?? 0,
     icon: CheckCircle2,
     bg: "bg-jv-mint-2",
   },
   {
-    label: "Incorrect",
+    label: "Špatně",
     value: props.userStatistics?.wrongAnwers ?? 0,
     icon: XCircle,
     bg: "bg-jv-salmon",
   },
   {
-    label: "Skipped",
+    label: "Přeskočeno",
     value: props.userStatistics?.unAttemptedQuestions ?? 0,
     icon: CircleSlash,
     bg: "bg-jv-lavender",
@@ -50,7 +50,7 @@ const stats = computed(() => [
 </script>
 
 <template>
-  <section class="mx-auto w-full max-w-[1180px]" aria-label="Your statistics">
+  <section class="mx-auto w-full max-w-[1180px]" aria-label="Tvoje statistiky">
     <article
       class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7"
     >
@@ -58,12 +58,12 @@ const stats = computed(() => [
         <h2
           class="font-headings text-[22px] leading-none text-jv-ink sm:text-[28px]"
         >
-          Your Stats
+          Tvoje statistiky
         </h2>
         <p
           class="mt-1.5 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
         >
-          How you performed
+          Jak se ti dařilo
         </p>
       </header>
 

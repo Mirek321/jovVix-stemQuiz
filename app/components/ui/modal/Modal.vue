@@ -77,7 +77,7 @@ onBeforeUnmount(() => {
         <button
           type="button"
           class="absolute inset-0 cursor-default bg-jv-ink/60"
-          aria-label="Close"
+          aria-label="Zavřít"
           @click="onBackdropClick"
         ></button>
 
@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
             v-if="!props.hideClose"
             type="button"
             class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
-            aria-label="Close"
+            aria-label="Zavřít"
             @click="close"
           >
             <X class="size-4" :stroke-width="2.6" />

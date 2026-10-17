@@ -20,19 +20,19 @@ describe("QuizAnalysisTabs.vue", () => {
 
   it("renders the correct title", () => {
     const title = wrapper.find("h3");
-    expect(title.text()).toBe("Quiz Analysis");
+    expect(title.text()).toBe("Analýza kvízu");
   });
 
   it("renders the navigation tabs", () => {
     const navItems = wrapper.findAll("li.nav-item");
     expect(navItems).toHaveLength(2);
-    expect(navItems[0].text()).toBe("Questions");
-    expect(navItems[1].text()).toBe("Participants");
+    expect(navItems[0].text()).toBe("Otázky");
+    expect(navItems[1].text()).toBe("Účastníci");
   });
 
   it("marks the correct tab as active based on `currentTab` prop", () => {
     const activeTab = wrapper.find(".nav-link.active");
-    expect(activeTab.text()).toBe("Questions");
+    expect(activeTab.text()).toBe("Otázky");
   });
 
   it("emits `changeTab` with the correct value when a tab is clicked", async () => {

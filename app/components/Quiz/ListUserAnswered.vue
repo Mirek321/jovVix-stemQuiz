@@ -88,7 +88,7 @@ const chipAccents = [
         class="size-2 shrink-0 rounded-full bg-jv-ink/30 sm:size-2.5"
         aria-hidden="true"
       ></span>
-      No one answered till now
+      Zatím nikdo neodpověděl
     </div>
 
     <div v-else class="flex flex-col items-center gap-5 sm:gap-6">
@@ -107,7 +107,14 @@ const chipAccents = [
             {{ answeredCount
             }}<span class="text-jv-muted">/{{ totalUser }}</span>
           </span>
-          players answered
+          {{
+            czPlural(
+              answeredCount,
+              "hráč odpověděl",
+              "hráči odpověděli",
+              "hráčů odpovědělo"
+            )
+          }}
         </p>
       </div>
 
@@ -126,7 +133,7 @@ const chipAccents = [
           >
             <NuxtImg
               :src="getAvatarUrlByName(user?.img_key)"
-              :alt="`${user?.first_name || user?.username || 'Player'} avatar`"
+              :alt="`Avatar hráče ${user?.first_name || user?.username || ''}`"
               width="48"
               height="48"
               loading="lazy"
@@ -148,7 +155,7 @@ const chipAccents = [
           </div>
           <span
             class="grid size-7 shrink-0 place-items-center rounded-full border border-jv-line bg-jv-mint sm:size-8"
-            aria-label="Answered"
+            aria-label="Odpověděl/a"
           >
             <Check class="size-4" :stroke-width="2.8" />
           </span>

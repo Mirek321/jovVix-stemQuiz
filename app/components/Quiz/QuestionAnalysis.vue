@@ -84,14 +84,14 @@ const renderQuestionImage = computed(
 const userResultChip = computed(() => {
   if (!props.question?.is_attend) {
     return {
-      label: "Not Attempted",
+      label: "Bez odpovědi",
       bg: "bg-jv-salmon",
       icon: CircleSlash,
     };
   }
   if (props.question?.question_type === "survey") {
     return {
-      label: "Attempted",
+      label: "Zodpovězeno",
       bg: "bg-jv-mint",
       icon: Check,
     };
@@ -100,7 +100,7 @@ const userResultChip = computed(() => {
   const picked = toIntSet(props.question?.selected_answer?.String);
   if (picked.size === 0) {
     return {
-      label: "Not Attempted",
+      label: "Bez odpovědi",
       bg: "bg-jv-salmon",
       icon: CircleSlash,
     };
@@ -108,8 +108,8 @@ const userResultChip = computed(() => {
   const isCorrect =
     picked.size === correct.size && [...picked].every((p) => correct.has(p));
   return isCorrect
-    ? { label: "Correct", bg: "bg-jv-mint", icon: Check }
-    : { label: "Incorrect", bg: "bg-jv-salmon", icon: X };
+    ? { label: "Správně", bg: "bg-jv-mint", icon: Check }
+    : { label: "Špatně", bg: "bg-jv-salmon", icon: X };
 });
 </script>
 
@@ -123,14 +123,14 @@ const userResultChip = computed(() => {
         v-if="props.order !== 0"
         class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-3 py-1 font-feature text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
-        Question {{ props.order }}
+        Otázka {{ props.order }}
       </span>
 
       <div v-if="props.isEditable" class="flex items-center gap-2">
         <button
           type="button"
           class="grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
-          title="Edit question"
+          title="Upravit otázku"
           @click="editQuestion(props.question?.question_id)"
         >
           <Pencil class="size-4" :stroke-width="2.4" />
@@ -138,15 +138,15 @@ const userResultChip = computed(() => {
         <button
           type="button"
           class="grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform"
-          title="Delete question"
+          title="Smazat otázku"
           @click="showDeleteDialog = true"
         >
           <Trash2 class="size-4" :stroke-width="2.4" />
         </button>
         <DeleteDialog
           v-model="showDeleteDialog"
-          title="Delete question"
-          message="Once deleted, this question cannot be recovered. Do you want to proceed?"
+          title="Smazat otázku"
+          message="Smazanou otázku už nepůjde obnovit. Chceš pokračovat?"
           @confirm-delete="deleteQuestion(props.question?.question_id)"
         />
       </div>
@@ -161,7 +161,7 @@ const userResultChip = computed(() => {
     <div v-if="renderQuestionImage" class="mt-4 flex justify-center">
       <NuxtImg
         :src="props.question?.resource"
-        alt="Question image"
+        alt="Obrázek k otázce"
         class="max-h-[220px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
       />
     </div>
@@ -177,14 +177,14 @@ const userResultChip = computed(() => {
         class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
         <Clock class="size-3.5" :stroke-width="2.4" />
-        AVG.
+        PRŮM.
         {{ Math.abs((props.question?.avg_response_time / 1000).toFixed(2)) }}s
         <span class="text-jv-muted">/ {{ props.question?.duration }}s</span>
       </span>
       <span
         class="inline-flex items-center rounded-full border border-jv-line bg-jv-lavender px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
-        {{ props.question?.type === 1 ? "M.C.Q." : "Survey" }}
+        {{ props.question?.type === 1 ? "Výběr odpovědi" : "Anketa" }}
       </span>
       <span
         :class="[
@@ -193,7 +193,7 @@ const userResultChip = computed(() => {
         ]"
       >
         <BarChart3 class="size-3.5" :stroke-width="2.4" />
-        {{ correctPercent.toFixed(0) }}% correct
+        {{ correctPercent.toFixed(0) }} % správně
       </span>
     </div>
 

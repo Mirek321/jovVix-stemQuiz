@@ -81,10 +81,10 @@ const optionRowClass = (quiz, key) => {
 
 const statusFor = (quiz) => {
   if (!quiz?.is_attend) {
-    return { label: "Skipped", tone: "text-jv-muted" };
+    return { label: "Přeskočeno", tone: "text-jv-muted" };
   }
   if (quiz?.question_type === "survey") {
-    return { label: "Submitted", tone: "text-jv-ink" };
+    return { label: "Odesláno", tone: "text-jv-ink" };
   }
   const correctSet = new Set(parseKeyList(quiz?.correct_answer));
   const selectedSet = new Set(parseKeyList(quiz?.selected_answer?.String));
@@ -93,15 +93,13 @@ const statusFor = (quiz) => {
     selectedSet.size === correctSet.size &&
     [...selectedSet].every((n) => correctSet.has(n))
   ) {
-    return { label: "Correct", tone: "text-jv-accent-green" };
+    return { label: "Správně", tone: "text-jv-accent-green" };
   }
-  return { label: "Incorrect", tone: "text-jv-coral" };
+  return { label: "Špatně", tone: "text-jv-coral" };
 };
 
 const responseLabel = (quiz) =>
-  quiz?.response_time > 0
-    ? `${(quiz.response_time / 1000).toFixed(2)} sec`
-    : "-";
+  quiz?.response_time > 0 ? `${(quiz.response_time / 1000).toFixed(2)} s` : "-";
 
 const onKeydown = (e) => {
   if (e.key === "Escape") isOpen.value = false;
@@ -165,7 +163,7 @@ onBeforeUnmount(() => {
           <div
             class="mt-0.5 text-[11px] font-black uppercase tracking-[0.14em] text-jv-muted"
           >
-            Rank
+            Pořadí
           </div>
         </div>
         <div class="text-center">
@@ -175,7 +173,7 @@ onBeforeUnmount(() => {
           <div
             class="mt-0.5 text-[11px] font-black uppercase tracking-[0.14em] text-jv-muted"
           >
-            Accuracy
+            Úspěšnost
           </div>
         </div>
         <div class="text-center">
@@ -185,7 +183,7 @@ onBeforeUnmount(() => {
           <div
             class="mt-0.5 text-[11px] font-black uppercase tracking-[0.14em] text-jv-muted"
           >
-            Score
+            Skóre
           </div>
         </div>
       </div>
@@ -272,7 +270,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[12px] font-bold uppercase tracking-[0.14em] text-jv-yellow"
               >
-                Questions Analysis
+                Analýza otázek
               </div>
             </div>
           </div>
@@ -284,7 +282,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Rank
+                Pořadí
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-white">
                 {{ analysis?.rank }}
@@ -294,7 +292,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Accuracy
+                Úspěšnost
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-accent-green">
                 {{ analysis?.accuracy }}%
@@ -304,7 +302,7 @@ onBeforeUnmount(() => {
               <div
                 class="text-[10px] font-black uppercase tracking-[0.14em] text-jv-white/60"
               >
-                Score
+                Skóre
               </div>
               <div class="mt-0.5 text-[18px] font-black text-jv-white">
                 {{ analysis?.totalScore }}
@@ -315,7 +313,7 @@ onBeforeUnmount(() => {
           <button
             type="button"
             class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform sm:hidden"
-            aria-label="Close"
+            aria-label="Zavřít"
             @click="isOpen = false"
           >
             <X class="size-6" :stroke-width="2.4" />
@@ -340,7 +338,7 @@ onBeforeUnmount(() => {
                   <p
                     class="text-[12px] font-bold uppercase tracking-[0.14em] text-jv-coral"
                   >
-                    Question {{ index + 1 }}
+                    Otázka {{ index + 1 }}
                   </p>
                   <h3
                     class="mt-1 break-words text-[20px] font-bold leading-snug text-jv-ink sm:text-[22px]"
@@ -356,7 +354,7 @@ onBeforeUnmount(() => {
                     <div
                       class="text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
                     >
-                      Response
+                      Odpověď
                     </div>
                     <div class="mt-0.5 text-[14px] font-bold text-jv-ink">
                       {{ responseLabel(quiz) }}
@@ -366,7 +364,7 @@ onBeforeUnmount(() => {
                     <div
                       class="text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
                     >
-                      Status
+                      Stav
                     </div>
                     <div
                       class="mt-0.5 text-[14px] font-bold"
@@ -416,7 +414,7 @@ onBeforeUnmount(() => {
                   >
                     <NuxtImg
                       :src="option"
-                      :alt="`Option ${optionLabel(key)}`"
+                      :alt="`Možnost ${optionLabel(key)}`"
                       class="max-h-32 w-auto max-w-full object-contain"
                     />
                   </div>
@@ -439,7 +437,7 @@ onBeforeUnmount(() => {
               v-if="!userQuestions.length"
               class="jv-border-rough bg-jv-white p-5 text-center text-[16px] font-semibold text-jv-muted shadow-soft-sm"
             >
-              No questions found for this participant.
+              Pro tohoto účastníka nebyly nalezeny žádné otázky.
             </div>
           </div>
         </div>

@@ -339,7 +339,7 @@ func TestExtractQuestionsFromCSV(t *testing.T) {
 		assert.Error(t, err)
 		assert.Empty(t, validQuestions)
 		// Row numbers are 1-based with the header as row 1.
-		assert.Contains(t, err.Error(), "row 3")
-		assert.Contains(t, err.Error(), "row 4")
+		assert.Contains(t, err.Error(), "řádek 3")
+		assert.Contains(t, err.Error(), "řádek 4")
 	})
 }

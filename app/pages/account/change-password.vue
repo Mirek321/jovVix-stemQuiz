@@ -14,7 +14,7 @@
             <h1
               class="m-0 font-headings text-[26px] leading-none text-jv-ink sm:text-[32px]"
             >
-              Change Password
+              Změnit heslo
             </h1>
             <svg
               class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-mint"
@@ -37,7 +37,7 @@
           <p
             class="mt-2 text-center font-body text-sm text-jv-ink/70 sm:text-[15px]"
           >
-            Please enter your new password.
+            Zadej své nové heslo.
           </p>
         </header>
 
@@ -50,7 +50,7 @@
               for="newPassword"
               class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
             >
-              New Password
+              Nové heslo
             </label>
             <div
               class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
@@ -63,7 +63,7 @@
                 id="newPassword"
                 v-model="password.new"
                 type="password"
-                placeholder="Enter new password"
+                placeholder="Zadej nové heslo"
                 class="min-w-0 flex-1 border-0 bg-transparent font-body text-sm text-jv-ink outline-none placeholder:text-jv-ink/40 sm:text-base"
                 required
               />
@@ -75,7 +75,7 @@
               for="confirmPassword"
               class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
             >
-              Confirm Password
+              Potvrzení hesla
             </label>
             <div
               class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
@@ -88,7 +88,7 @@
                 id="confirmPassword"
                 v-model="password.confirm"
                 type="password"
-                placeholder="Confirm new password"
+                placeholder="Zopakuj nové heslo"
                 class="min-w-0 flex-1 border-0 bg-transparent font-body text-sm text-jv-ink outline-none placeholder:text-jv-ink/40 sm:text-base"
                 required
               />
@@ -131,14 +131,14 @@
               type="submit"
               class="jv-card inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform sm:text-lg"
             >
-              Change Password
+              Změnit heslo
             </button>
             <button
               type="button"
               class="jv-card inline-flex h-11 items-center justify-center border border-jv-line bg-jv-white font-headings text-base text-jv-ink shadow-soft-sm transition-transform"
               @click="handleCancel"
             >
-              Cancel
+              Zrušit
             </button>
           </div>
         </form>
@@ -152,15 +152,16 @@ import { usePush } from "notivue";
 import { toRef } from "vue";
 import { Lock, AlertCircle } from "lucide-vue-next";
 import { useUserPasswordRules } from "@/composables/user_password_rules";
+import { kratosMessageText } from "~/composables/kratosMessages";
 
 definePageMeta({
   layout: "auth",
 });
 
 useSeoMeta({
-  title: "Change Password - jovVix",
+  title: "Změnit heslo – STEM_HUB",
   description:
-    "Update your jovVix account password to keep your quizzes and data secure.",
+    "Změň si heslo k účtu v systému STEM_HUB, ať jsou tvoje kvízy a data v bezpečí.",
   robots: "noindex, nofollow",
 });
 
@@ -217,7 +218,7 @@ const handleChangePassword = async () => {
     }
 
     if (password.new !== password.confirm) {
-      passwordRequestError.value = "Passwords do not match.";
+      passwordRequestError.value = "Hesla se neshodují.";
       return;
     }
 
@@ -247,19 +248,21 @@ const handleChangePassword = async () => {
         return;
       }
 
-      const nodeError = errorData?.ui?.nodes
-        ?.flatMap((n) => n.messages || [])
-        ?.find((m) => m.type === "error")?.text;
-      const uiError = errorData?.ui?.messages?.find(
-        (m) => m.type === "error"
-      )?.text;
+      const nodeError = kratosMessageText(
+        errorData?.ui?.nodes
+          ?.flatMap((n) => n.messages || [])
+          ?.find((m) => m.type === "error")
+      );
+      const uiError = kratosMessageText(
+        errorData?.ui?.messages?.find((m) => m.type === "error")
+      );
 
       throw new Error(
         nodeError ||
           uiError ||
           errorData?.error?.message ||
           errorData?.message ||
-          "Failed to update password"
+          "Heslo se nepodařilo změnit."
       );
     }
 
@@ -268,7 +271,7 @@ const handleChangePassword = async () => {
     password.new = "";
     password.confirm = "";
 
-    toast.success("Password updated successfully.");
+    toast.success("Heslo bylo úspěšně změněno.");
 
     navigateTo("/admin");
   } catch (error) {

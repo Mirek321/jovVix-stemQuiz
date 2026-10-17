@@ -76,7 +76,7 @@ func AuthHavingTokenHandler(m *Middleware, c *fiber.Ctx, token string) error {
 			return utils.JSONFail(c, http.StatusUnauthorized, constants.ErrJWTExpired)
 		}
 		m.Logger.Error("Error while checking user identity in join", zap.Error(err))
-		return utils.JSONFail(c, http.StatusInternalServerError, "Error while checking user identity in join")
+		return utils.JSONFail(c, http.StatusInternalServerError, "Nepodařilo se ověřit tvou identitu při připojení")
 	}
 
 	userObj, err := m.userModel.GetById(claims.Subject())
