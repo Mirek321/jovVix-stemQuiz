@@ -3,7 +3,6 @@ package middlewares
 import (
 	"strings"
 
-	"github.com/Improwised/jovvix/api/constants"
 	pMetrics "github.com/Improwised/jovvix/api/pkg/prometheus"
 	fiber "github.com/gofiber/fiber/v2"
 	"github.com/samber/lo"
@@ -24,8 +23,6 @@ var (
 		"authorization": true,
 		"cookie":        true,
 		"set-cookie":    true,
-		strings.ToLower(constants.HeaderAIApiKey):        true,
-		strings.ToLower(constants.HeaderAIVaultPassword): true,
 	}
 )
 

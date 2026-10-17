@@ -31,14 +31,6 @@
           </template>
         </ActionCard>
         <ActionCard
-          action-title="Generate with AI"
-          @card-click="navigateTo('/admin/quiz/list-quiz?generate=1')"
-        >
-          <template #image>
-            <Sparkles class="size-24 text-jv-coral" :stroke-width="1.5" />
-          </template>
-        </ActionCard>
-        <ActionCard
           action-title="My Quizzes"
           @card-click="navigateTo('/admin/quiz/list-quiz')"
         >
@@ -89,7 +81,6 @@
 </template>
 
 <script setup>
-import { Sparkles } from "lucide-vue-next";
 import ActionCard from "~~/components/Quiz/ActionCard.vue";
 
 definePageMeta({

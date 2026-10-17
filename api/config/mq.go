@@ -9,7 +9,6 @@ type MQConfig struct {
 	Redis       RedisConfig
 	Amqp        AmqpConfig
 	Kafka       KafkaConfig
-	GoogleCloud GoogleCloud
 	Sql         Sql
 }
 type RedisConfig struct {
@@ -25,11 +24,6 @@ type AmqpConfig struct {
 type KafkaConfig struct {
 	KafkaBroker   []string `envconfig:"KAFKA_BROKER"`
 	ConsumerGroup string   `envconfig:"CONSUMER_GROUP"`
-}
-
-type GoogleCloud struct {
-	ProjectID      string `envconfig:"PROJECT_ID"`
-	SubscriptionId string `envconfig:"SUBSCRIPTION_ID"`
 }
 
 type Sql struct {
