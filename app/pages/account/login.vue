@@ -17,7 +17,7 @@
             <h1
               class="font-headings text-jv-ink text-[32px] sm:text-[38px] leading-none m-0"
             >
-              Sign In
+              Přihlášení
             </h1>
             <!-- Hand-drawn underline doodle -->
             <svg
@@ -39,7 +39,7 @@
             </svg>
           </div>
           <p class="font-body text-jv-ink/70 text-sm sm:text-base m-0 mt-1">
-            Welcome to Jovvix
+            Vítej ve STEM_HUB
           </p>
         </header>
 
@@ -55,7 +55,7 @@
               for="email"
               class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
             >
-              Email Address
+              E-mail
             </label>
             <div
               class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -74,7 +74,7 @@
                 :class="{
                   'cursor-not-allowed bg-jv-slate/40': isIdentityLocked,
                 }"
-                placeholder="you@example.com"
+                placeholder="ty@example.com"
                 required
               />
             </div>
@@ -87,7 +87,7 @@
                 for="password"
                 class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase"
               >
-                Password
+                Heslo
               </label>
             </div>
             <div
@@ -108,7 +108,7 @@
               <button
                 type="button"
                 class="grid place-items-center size-6 text-jv-ink/70 hover:text-jv-ink transition-colors"
-                :aria-label="showPassword ? 'Hide password' : 'Show password'"
+                :aria-label="showPassword ? 'Skrýt heslo' : 'Zobrazit heslo'"
                 @click="showPassword = !showPassword"
               >
                 <EyeOff
@@ -123,7 +123,7 @@
               to="/account/forgot-password"
               class="font-body text-jv-ink/60 hover:text-jv-coral text-xs sm:text-[13px] no-underline transition-colors self-end"
             >
-              Forgot Password?
+              Zapomenuté heslo?
             </NuxtLink>
             <p
               v-if="errors.password"
@@ -144,10 +144,10 @@
           >
             <template v-if="!csrfToken || !loginURLWithFlowQuery">
               <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-              <span>Loading…</span>
+              <span>Načítání…</span>
             </template>
             <template v-else>
-              <span>Sign In</span>
+              <span>Přihlásit se</span>
               <ArrowRight class="size-[18px]" :stroke-width="2.4" />
             </template>
           </NavigationLink>
@@ -155,12 +155,12 @@
 
         <!-- Footer link -->
         <p class="text-center mt-6 font-body text-jv-ink/70 text-sm m-0">
-          Don't have an account?
+          Ještě nemáš účet?
           <NuxtLink
             :to="createAccountLink"
             class="text-jv-coral underline underline-offset-4 decoration-2 hover:decoration-jv-coral font-semibold ml-1"
           >
-            Create an account
+            Vytvořit účet
           </NuxtLink>
         </p>
       </div>
@@ -187,12 +187,12 @@ useHead({
 });
 
 useSeoMeta({
-  title: "Login - jovVix",
+  title: "Přihlášení – STEM_HUB",
   description:
-    "Log in to jovVix to create, host, and manage your real-time quizzes, view reports, and track participant scores from your dashboard.",
-  ogTitle: "Login - jovVix",
+    "Přihlas se do systému STEM_HUB a vytvářej, spouštěj a spravuj kvízy v reálném čase, prohlížej reporty a sleduj skóre hráčů.",
+  ogTitle: "Přihlášení – STEM_HUB",
   ogDescription:
-    "Log in to jovVix to create, host, and manage your real-time quizzes, view reports, and track participant scores from your dashboard.",
+    "Přihlas se do systému STEM_HUB a vytvářej, spouštěj a spravuj kvízy v reálném čase, prohlížej reporty a sleduj skóre hráčů.",
   ogUrl: seoCanonical,
 });
 
@@ -243,7 +243,7 @@ const kratosUrl = urls.kratosUrl;
           onResponseError({ response }) {
             if (response.status === 400) {
               toast.warning(
-                "Please fill out the form correctly, password or email was incorrect"
+                "Vyplň prosím formulář správně – e-mail nebo heslo nesedí."
               );
             }
           },
@@ -255,11 +255,11 @@ const kratosUrl = urls.kratosUrl;
             if (messages && messages[0]?.type === "error") {
               // error indicating unverified email
               if (messages[0]?.id === 4000010) {
-                toast.info("Please verify your email before logging in.");
+                toast.info("Před přihlášením si prosím ověř e-mail.");
                 return;
               }
               errors.value.password =
-                "The provided credentials are invalid, check for spelling mistakes in your password or email";
+                "Zadaný e-mail nebo heslo není správné. Zkontroluj, jestli v nich nemáš překlep.";
             }
           },
         });

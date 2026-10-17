@@ -5,12 +5,12 @@
         for="edit-question-text"
         class="font-body text-xs font-bold uppercase tracking-wide text-jv-ink"
       >
-        Question
+        Otázka
       </label>
       <input
         id="edit-question-text"
         v-model="editableQuestion.question"
-        placeholder="Edit Question"
+        placeholder="Uprav otázku"
         class="jv-card w-full border border-jv-line bg-jv-white px-4 py-3 font-body text-base font-bold text-jv-ink shadow-soft-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
       />
     </div>
@@ -23,7 +23,7 @@
         class="jv-card flex w-fit cursor-pointer items-center gap-2 border border-jv-line bg-jv-yellow px-4 py-2 font-headings text-sm text-jv-ink shadow-soft-sm transition-transform"
       >
         <Camera class="size-4" :stroke-width="2.4" />
-        {{ processingImage ? "Processing…" : "Replace Image" }}
+        {{ processingImage ? "Zpracovávám…" : "Nahradit obrázek" }}
         <input
           id="image-attachment-question"
           type="file"
@@ -64,7 +64,7 @@
             class="jv-card flex w-fit cursor-pointer items-center gap-2 border border-jv-line bg-jv-yellow-soft px-3 py-1.5 font-headings text-xs text-jv-ink shadow-soft-sm transition-transform"
           >
             <Camera class="size-3.5" :stroke-width="2.4" />
-            Option {{ order }}
+            Možnost {{ order }}
             <input
               :id="`image-attachment-option-${order}`"
               type="file"
@@ -95,7 +95,7 @@
         <input
           v-if="editableQuestion.options_media === 'text'"
           v-model="editableOptions[order]"
-          placeholder="Edit Option"
+          placeholder="Uprav možnost"
           class="jv-card w-full border border-jv-line bg-jv-white px-3 py-2 font-body text-sm text-jv-ink shadow-soft-sm outline-none transition-all focus:translate-x-[1px] focus:translate-y-[1px] focus:shadow-none"
         />
 
@@ -110,7 +110,7 @@
             :value="order"
             class="size-4 accent-jv-coral"
           />
-          Correct answer
+          Správná odpověď
         </label>
       </div>
     </div>
@@ -122,7 +122,7 @@
         @click="updateQuestion"
       >
         <Save class="size-4" :stroke-width="2.4" />
-        Save Changes
+        Uložit změny
       </button>
     </div>
   </div>
@@ -172,7 +172,7 @@ const changeCode = (data, order) => {
 
 const onImageChange = async (e) => {
   if (e.target.files.length === 0) {
-    toast.error("Please select a file to upload.");
+    toast.error("Vyber soubor, který chceš nahrát.");
     return;
   }
 
@@ -220,10 +220,10 @@ const updateQuestion = async () => {
         credentials: "include",
       }
     );
-    toast.success("Question updated successfully!");
+    toast.success("Otázka byla uložena");
   } catch (error) {
     console.error("Failed to update the question", error);
-    toast.error("Failed to update the question.");
+    toast.error("Otázku se nepodařilo uložit.");
   }
 };
 </script>

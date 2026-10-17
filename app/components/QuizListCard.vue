@@ -41,7 +41,9 @@
       class="inline-flex max-w-full items-center gap-1.5 px-2.5 py-1 text-[12px] leading-none text-jv-muted sm:text-[13px]"
     >
       <CircleHelp class="size-3.5" :stroke-width="2.2" />
-      <span class="truncate">{{ questionCount }} Questions</span>
+      <span class="truncate">{{
+        czCount(questionCount, "otázka", "otázky", "otázek")
+      }}</span>
     </span>
 
     <div class="mt-3 border-t border-dashed border-jv-line pt-3">
@@ -50,7 +52,7 @@
         :class="isPlayedQuiz ? 'grid-cols-1' : 'grid-cols-2'"
       >
         <NavigationLink
-          url-name="View Quiz"
+          url-name="Zobrazit kvíz"
           :url="viewUrl"
           class="h-8 rounded-full bg-jv-coral text-white shadow-none"
         />

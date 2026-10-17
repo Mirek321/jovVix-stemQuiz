@@ -113,12 +113,12 @@ export default class UserOperation extends QuizHandler {
       );
 
       if (response.status !== 202) {
-        return { error: `Failed to submit answer` };
+        return { error: "Odpověď se nepodařilo odeslat." };
       }
 
       return { error: null };
     } catch (err) {
-      return { error: err.message || "An unknown error occurred." };
+      return { error: "Odpověď se nepodařilo odeslat. Zkus to prosím znovu." };
     }
   }
 

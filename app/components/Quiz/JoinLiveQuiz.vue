@@ -12,13 +12,12 @@
     <h2
       class="mt-3 sm:mt-4 font-headings text-jv-ink text-[24px] min-[420px]:text-[28px] sm:text-[34px] md:text-[40px] leading-[1.15]"
     >
-      Join a Live Quiz
+      Připoj se ke kvízu
     </h2>
     <p
       class="mt-2 font-body text-jv-ink/80 text-[14px] sm:text-[16px] md:text-[18px] leading-[1.55] max-w-md mx-auto px-2"
     >
-      Enter your event invitation code below to jump straight into the action
-      and compete with friends!
+      Zadej kód kvízu a pusť se rovnou do hry s kamarády!
     </p>
 
     <form
@@ -33,11 +32,11 @@
           name="code"
           inputmode="numeric"
           autocomplete="off"
-          placeholder="Enter 6-digit code"
+          placeholder="Zadej šestimístný kód"
           class="w-full bg-transparent outline-none text-[16px] py-2 placeholder:text-jv-muted/70"
         />
       </div>
-      <Button type="submit" size="sm" variant="accent"> Join Game </Button>
+      <Button type="submit" size="sm" variant="accent"> Připojit se </Button>
     </form>
   </div>
 </template>

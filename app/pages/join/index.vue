@@ -62,7 +62,7 @@
           <button
             type="button"
             class="absolute right-2 top-2 grid size-7 place-items-center rounded-full text-jv-ink/60 transition-colors hover:bg-jv-canvas hover:text-jv-ink"
-            aria-label="Dismiss notice"
+            aria-label="Zavřít upozornění"
             @click="dismissNotice"
           >
             <X class="size-4" :stroke-width="2.4" />
@@ -88,10 +88,10 @@
               <NuxtLink
                 to="/"
                 class="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-jv-line bg-jv-coral px-4 font-body text-[12px] font-black text-white shadow-soft-sm transition-transform sm:text-[13px]"
-                aria-label="Return to home"
+                aria-label="Zpět domů"
               >
                 <Home class="size-3.5" :stroke-width="2.4" />
-                Back to Home
+                Zpět domů
               </NuxtLink>
             </div>
           </div>
@@ -115,7 +115,7 @@
               <h1
                 class="font-headings text-jv-ink text-[32px] sm:text-[38px] leading-none m-0"
               >
-                Join Quiz
+                Připojit se ke kvízu
               </h1>
               <svg
                 class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-yellow"
@@ -136,7 +136,7 @@
               </svg>
             </div>
             <p class="font-body text-jv-ink/70 text-sm sm:text-base m-0 mt-1">
-              Enter the code to join
+              Zadej kód a připoj se
             </p>
           </header>
 
@@ -152,7 +152,7 @@
                 for="code"
                 class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
               >
-                Invitation Code
+                Kód kvízu
               </label>
               <div
                 class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
@@ -174,7 +174,7 @@
                 <span
                   v-if="isCodeValid"
                   class="grid place-items-center size-7 rounded-full bg-jv-mint text-jv-accent-green border border-jv-line shrink-0"
-                  aria-label="Valid code"
+                  aria-label="Platný kód"
                 >
                   <Check class="size-4" :stroke-width="3" />
                 </span>
@@ -187,14 +187,14 @@
                 for="username"
                 class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
               >
-                Your Player Profile
+                Tvůj hráčský profil
               </label>
               <div class="flex items-stretch gap-2.5">
                 <!-- Avatar with reroll -->
                 <NavigationLink
                   type="button"
                   class="relative size-[46px] shrink-0 !p-0 bg-jv-mint !rounded-none !jv-card overflow-hidden shadow-none hover:scale-110"
-                  :aria-label="`Generate new avatar (current: ${avatarName})`"
+                  :aria-label="`Vygenerovat nový avatar (aktuální: ${avatarName})`"
                   @click="rerollAvatar"
                 >
                   <NuxtImg
@@ -226,7 +226,7 @@
                     type="text"
                     name="username"
                     maxlength="12"
-                    placeholder="Pick a name"
+                    placeholder="Vyber si jméno"
                     class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
                   />
                 </div>
@@ -243,7 +243,7 @@
                 :stroke-width="2.2"
               />
               <span class="font-body text-jv-ink text-sm sm:text-base">
-                Welcome,
+                Vítej,
                 <span class="font-bold">{{ firstname || username }}</span>
               </span>
             </div>
@@ -256,14 +256,14 @@
             >
               <template v-if="authChecking">
                 <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-                <span>Loading…</span>
+                <span>Načítání…</span>
               </template>
               <template v-else-if="quickUserPending">
                 <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-                <span>Joining…</span>
+                <span>Připojování…</span>
               </template>
               <template v-else>
-                <span>Enter Lobby</span>
+                <span>Vstoupit do čekárny</span>
                 <ArrowRight class="size-[18px]" :stroke-width="2.4" />
               </template>
             </NavigationLink>
@@ -276,21 +276,21 @@
         class="mt-6 flex flex-col gap-1.5 text-center font-body text-sm text-jv-ink/70"
       >
         <p class="m-0">
-          Don't have a code?
+          Nemáš kód?
           <NuxtLink
             to="/#public-quiz"
             class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
           >
-            Browse Public Games
+            Procházet veřejné kvízy
           </NuxtLink>
         </p>
         <p v-if="!isUserLoggedIn" class="m-0">
-          Want to save your progress?
+          Chceš si ukládat svůj postup?
           <NuxtLink
             to="/account/login"
             class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
           >
-            Login Now
+            Přihlásit se
           </NuxtLink>
         </p>
       </div>
@@ -336,12 +336,12 @@ useHead({
 });
 
 useSeoMeta({
-  title: "Join a Live Quiz - jovVix",
+  title: "Připoj se k živému kvízu – STEM_HUB",
   description:
-    "Enter a game code to join a live quiz on jovVix. Play real-time multiplayer quizzes from any device and compete on the live scoreboard.",
-  ogTitle: "Join a Live Quiz - jovVix",
+    "Zadej kód kvízu a připoj se k živému kvízu v systému STEM_HUB. Hraj kvízy pro více hráčů v reálném čase na jakémkoli zařízení a bojuj o místo v žebříčku.",
+  ogTitle: "Připoj se k živému kvízu – STEM_HUB",
   ogDescription:
-    "Enter a game code to join a live quiz on jovVix. Play real-time multiplayer quizzes from any device and compete on the live scoreboard.",
+    "Zadej kód kvízu a připoj se k živému kvízu v systému STEM_HUB. Hraj kvízy pro více hráčů v reálném čase na jakémkoli zařízení a bojuj o místo v žebříčku.",
   ogType: "website",
   ogUrl: canonicalUrl,
   ogImage: shareImageUrl,
@@ -361,19 +361,19 @@ const codeparam = computed(() => route.query.code || "");
 const sessionNotice = ref(null);
 const noticePresets = {
   "session was completed": {
-    title: "That quiz has ended",
+    title: "Tenhle kvíz už skončil",
     message:
-      "The host has wrapped up this session, so there's no game to rejoin. Enter a new code below or head back home to browse public quizzes.",
+      "Moderátor tuhle hru ukončil, takže se do ní už nejde vrátit. Zadej níže nový kód, nebo se vrať domů a projdi si veřejné kvízy.",
   },
   "quiz-session-validation-failed": {
-    title: "Session no longer active",
+    title: "Hra už není aktivní",
     message:
-      "This quiz session can't be joined anymore. It may have ended, been terminated, or expired.",
+      "K této hře se už nejde připojit. Možná skončila, byla ukončena, nebo vypršela.",
   },
   "invitation code not found": {
-    title: "Invitation code expired",
+    title: "Platnost kódu kvízu vypršela",
     message:
-      "We couldn't find an active quiz for that code. Double-check the code with the host, or try a different one.",
+      "Pro tento kód jsme nenašli žádný aktivní kvíz. Ověř si kód u moderátora, nebo zkus jiný.",
   },
 };
 const dismissNotice = () => {
@@ -387,7 +387,7 @@ onMounted(() => {
     .toLowerCase();
   if (!err) return;
   sessionNotice.value = noticePresets[err] || {
-    title: "Couldn't join that quiz",
+    title: "Ke kvízu se nepodařilo připojit",
     message: route.query.error,
   };
 });
@@ -432,17 +432,17 @@ const join_quiz = async () => {
   username.value = username.value.trim().replace(/\s+/g, "");
 
   if (!code.value || code.value.length !== 6) {
-    toast.error("Please enter a valid quiz code (6 characters)");
+    toast.error("Zadej platný kód kvízu (6 číslic)");
     return;
   }
 
   if (!username.value && !isUserLoggedIn.value) {
-    toast.error("Please add your username");
+    toast.error("Zadej své uživatelské jméno");
     return;
   }
 
   if (username.value.length > 12 && !isUserLoggedIn.value) {
-    toast.error("Username must be a maximum of 12 characters long");
+    toast.error("Uživatelské jméno může mít nejvýše 12 znaků");
     return;
   }
 
@@ -504,7 +504,7 @@ const join_quiz = async () => {
     userError.value = error.message;
     quickUserPending.value = false;
     if (error?.status == 400) {
-      toast.error("Please enter a valid quiz code (6 characters)");
+      toast.error("Zadej platný kód kvízu (6 číslic)");
       code.value = "";
     }
     return;
@@ -538,10 +538,10 @@ const join_quiz = async () => {
       isUserLoggedIn.value = false;
     } else {
       userError.value =
-        response._data?.message || `Unexpected status ${response.status}`;
+        response._data?.message || `Neočekávaný stav ${response.status}`;
     }
   } catch (error) {
-    userError.value = error?.message || "Failed to load user";
+    userError.value = error?.message || "Nepodařilo se načíst uživatele";
   } finally {
     authChecking.value = false;
   }

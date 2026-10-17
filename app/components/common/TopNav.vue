@@ -41,7 +41,7 @@
 
       <NavigationLink
         url="/join"
-        url-name="Play a Quiz"
+        url-name="Zahrát si kvíz"
         class="bg-jv-yellow-2"
       />
     </div>
@@ -51,12 +51,15 @@
 <script setup>
 import NavigationLink from "@/components/common/NavigationLink.vue";
 const navLinks = [
-  { href: "https://jovvix.com/", label: "Home" },
-  { href: "https://jovvix.com/docs/user-guide", label: "User Guide" },
-  { href: "https://jovvix.com/docs/developer-guide", label: "Developer Guide" },
+  { href: "https://jovvix.com/", label: "Domů" },
+  { href: "https://jovvix.com/docs/user-guide", label: "Uživatelská příručka" },
+  {
+    href: "https://jovvix.com/docs/developer-guide",
+    label: "Příručka pro vývojáře",
+  },
   {
     href: "https://jovvix.com/docs/deployment-guide",
-    label: "Deployment Guide",
+    label: "Návod k nasazení",
   },
 ];
 </script>

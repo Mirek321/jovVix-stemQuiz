@@ -11,7 +11,7 @@
         "
         @click="changeComponent('report')"
       >
-        Questions
+        Otázky
         <span
           v-if="props.currentTab === 'report'"
           class="absolute inset-x-0 -bottom-[2px] h-1 bg-jv-yellow"
@@ -28,7 +28,7 @@
         "
         @click="changeComponent('participants')"
       >
-        Participants
+        Účastníci
         <span
           v-if="props.currentTab === 'participants'"
           class="absolute inset-x-0 -bottom-[2px] h-1 bg-jv-yellow"

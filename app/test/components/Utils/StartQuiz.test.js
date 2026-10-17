@@ -31,13 +31,13 @@ describe("StartQuiz test", () => {
 
   it("renders the button correctly", () => {
     expect(wrapper.find("button").exists()).toBe(true);
-    expect(wrapper.text()).toContain("Start Quiz");
+    expect(wrapper.text()).toContain("Spustit kvíz");
   });
 
-  it("disables the button and shows 'Pending...' when requestPending is true", async () => {
+  it("disables the button and shows 'Spouštím…' when requestPending is true", async () => {
     wrapper.vm.requestPending = true;
     await wrapper.vm.$nextTick();
     const button = wrapper.find("button");
-    expect(button.text()).toBe("Pending...");
+    expect(button.text()).toBe("Spouštím…");
   });
 });

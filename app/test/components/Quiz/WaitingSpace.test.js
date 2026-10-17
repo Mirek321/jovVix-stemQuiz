@@ -60,8 +60,10 @@ describe("WaitingSpace test", () => {
 
   it("renders properly", async () => {
     const wrapper = mountComponent();
-    expect(wrapper.find(".join-page-title").text()).toBe("Ready, Steady, Go!");
-    expect(wrapper.find('button[type="submit"]').text()).toBe("Start Quiz");
+    expect(wrapper.find(".join-page-title").text()).toBe(
+      "Připravit, pozor, start!"
+    );
+    expect(wrapper.find('button[type="submit"]').text()).toBe("Spustit kvíz");
   });
 
   it("shows correct invitation code", () => {

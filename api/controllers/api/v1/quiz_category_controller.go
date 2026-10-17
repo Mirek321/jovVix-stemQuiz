@@ -127,7 +127,7 @@ func (ctrl *QuizCategoryController) UpdateCategory(c *fiber.Ctx) error {
 		return utils.JSONError(c, http.StatusInternalServerError, constants.ErrUpdateCategory)
 	}
 
-	return utils.JSONSuccess(c, http.StatusOK, "category updated successfully")
+	return utils.JSONSuccess(c, http.StatusOK, "Kategorie byla upravena")
 }
 
 // DeleteCategory removes a category. Quizzes assigned to it are not deleted;
@@ -148,5 +148,5 @@ func (ctrl *QuizCategoryController) DeleteCategory(c *fiber.Ctx) error {
 		return utils.JSONError(c, http.StatusInternalServerError, constants.ErrDeleteCategory)
 	}
 
-	return utils.JSONSuccess(c, http.StatusOK, "category deleted successfully")
+	return utils.JSONSuccess(c, http.StatusOK, "Kategorie byla smazána")
 }

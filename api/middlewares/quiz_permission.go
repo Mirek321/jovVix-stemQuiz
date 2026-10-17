@@ -22,7 +22,7 @@ func (m *Middleware) QuizPermission(c *fiber.Ctx) error {
 
 	quizId := c.Params(constants.QuizId)
 	if quizId == "" {
-		return utils.JSONError(c, http.StatusBadRequest, "No quiz_id found")
+		return utils.JSONError(c, http.StatusBadRequest, "Chybí parametr quiz_id")
 	}
 
 	isQuizCreator, err := m.sharedQuizzesModel.CheckQuizCreatorExists(quizId, user.ID)

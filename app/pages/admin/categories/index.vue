@@ -10,8 +10,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Categories - jovVix",
-  description: "Manage the categories used to group public quizzes on jovVix.",
+  title: "Kategorie kvízů – STEM_HUB",
+  description:
+    "Spravuj kategorie, do kterých se v systému STEM_HUB řadí veřejné kvízy.",
   robots: "noindex, nofollow",
 });
 
@@ -59,9 +60,11 @@ const formatDate = (iso) => {
   if (!iso) return "";
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return "";
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = date.toLocaleString("en", { month: "short" });
-  return `${day}-${month}-${date.getFullYear()}`;
+  return date.toLocaleDateString("cs-CZ", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
 };
 
 const filteredCategories = computed(() => {
@@ -96,12 +99,14 @@ const handleCreateFromSearch = async () => {
         Accept: "application/json",
       },
     });
-    toast.success("Category created successfully.");
+    toast.success("Kategorie byla vytvořena.");
     searchQuery.value = "";
     refresh();
   } catch (error) {
     toast.error(
-      error?.data?.message || error?.message || "Error while creating category."
+      error?.data?.message ||
+        error?.message ||
+        "Kategorii se nepodařilo vytvořit."
     );
   } finally {
     creating.value = false;
@@ -136,12 +141,14 @@ const handleUpdateCategory = async (category) => {
         Accept: "application/json",
       },
     });
-    toast.success("Category updated successfully.");
+    toast.success("Kategorie byla upravena.");
     cancelEdit();
     refresh();
   } catch (error) {
     toast.error(
-      error?.data?.message || error?.message || "Error while updating category."
+      error?.data?.message ||
+        error?.message ||
+        "Kategorii se nepodařilo upravit."
     );
   } finally {
     savingEdit.value = false;
@@ -160,11 +167,13 @@ const handleDeleteCategory = async (category) => {
         Accept: "application/json",
       },
     });
-    toast.success("Category deleted successfully.");
+    toast.success("Kategorie byla smazána.");
     refresh();
   } catch (error) {
     toast.error(
-      error?.data?.message || error?.message || "Error while deleting category."
+      error?.data?.message ||
+        error?.message ||
+        "Kategorii se nepodařilo smazat."
     );
   } finally {
     deletingId.value = "";
@@ -183,7 +192,7 @@ const handleDeleteCategory = async (category) => {
         <h1
           class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
         >
-          Quiz Categories
+          Kategorie kvízů
         </h1>
         <div
           class="ml-1 mt-1 h-3 w-24 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-28"
@@ -204,12 +213,12 @@ const handleDeleteCategory = async (category) => {
           type="search"
           maxlength="50"
           class="h-full min-w-0 flex-1 bg-transparent text-[15px] text-jv-ink outline-none placeholder:text-jv-ink/45 sm:text-[17px]"
-          placeholder="Search or add a category..."
+          placeholder="Hledej nebo přidej kategorii…"
           @keyup.enter="!hasExactMatch && handleCreateFromSearch()"
         />
       </label>
       <NavigationLink
-        :url-name="creating ? 'Creating...' : 'Create Category'"
+        :url-name="creating ? 'Vytvářím…' : 'Vytvořit kategorii'"
         class="w-full bg-jv-mint py-2 font-[500] sm:w-fit"
         :disabled="creating || hasExactMatch"
         @click="handleCreateFromSearch"
@@ -220,7 +229,7 @@ const handleDeleteCategory = async (category) => {
       v-if="categoriesPending"
       class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
     >
-      Loading...
+      Načítání…
     </div>
 
     <div
@@ -238,10 +247,10 @@ const handleDeleteCategory = async (category) => {
         <h2
           class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[34px]"
         >
-          No Categories Yet!
+          Zatím žádné kategorie
         </h2>
         <p class="mt-2 text-[17px] text-jv-muted">
-          Type a name in the search box above to create your first category.
+          Napiš název do vyhledávání nahoře a vytvoř svou první kategorii.
         </p>
       </div>
     </section>
@@ -254,11 +263,11 @@ const handleDeleteCategory = async (category) => {
         <h2
           class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[34px]"
         >
-          No Category Found!
+          Kategorie nenalezena
         </h2>
         <p class="mt-2 text-[17px] text-jv-muted">
-          There is no category named "{{ searchQuery.trim() }}" yet. Use the
-          Create Category button to add it.
+          Kategorie „{{ searchQuery.trim() }}“ zatím neexistuje. Přidáš ji
+          tlačítkem Vytvořit kategorii.
         </p>
       </div>
     </section>
@@ -267,9 +276,9 @@ const handleDeleteCategory = async (category) => {
       <div
         class="hidden lg:grid grid-cols-[2fr_1fr_180px] gap-4 px-5 py-2 text-[12px] font-black uppercase tracking-[0.1em] text-jv-muted"
       >
-        <div>Category Name</div>
-        <div class="text-center">Created At</div>
-        <div class="text-right">Actions</div>
+        <div>Název kategorie</div>
+        <div class="text-center">Vytvořeno</div>
+        <div class="text-right">Akce</div>
       </div>
 
       <div
@@ -300,7 +309,7 @@ const handleDeleteCategory = async (category) => {
               type="button"
               :disabled="savingEdit || !editingName"
               class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-mint text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-60"
-              aria-label="Save category name"
+              aria-label="Uložit název kategorie"
               @click="handleUpdateCategory(category)"
             >
               <Check class="size-4" :stroke-width="2.5" />
@@ -308,7 +317,7 @@ const handleDeleteCategory = async (category) => {
             <button
               type="button"
               class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
-              aria-label="Cancel rename"
+              aria-label="Zrušit přejmenování"
               @click="cancelEdit"
             >
               <X class="size-4" :stroke-width="2.5" />
@@ -334,7 +343,7 @@ const handleDeleteCategory = async (category) => {
             <span
               class="lg:hidden mr-2 text-[14px] font-bold uppercase tracking-wide text-jv-muted"
             >
-              Created At:
+              Vytvořeno:
             </span>
             <span class="text-[15px] font-bold text-jv-ink">
               {{ formatDate(category.created_at) }}
@@ -345,7 +354,7 @@ const handleDeleteCategory = async (category) => {
             <button
               type="button"
               class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
-              aria-label="Rename category"
+              aria-label="Přejmenovat kategorii"
               @click="startEdit(category)"
             >
               <Pencil class="size-4" :stroke-width="2.4" />
@@ -354,7 +363,7 @@ const handleDeleteCategory = async (category) => {
               type="button"
               :disabled="deletingId === category.id"
               class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-all hover:text-jv-coral disabled:cursor-wait disabled:opacity-60"
-              aria-label="Delete category"
+              aria-label="Smazat kategorii"
               @click="handleDeleteCategory(category)"
             >
               <Trash2 class="size-4" :stroke-width="2.4" />

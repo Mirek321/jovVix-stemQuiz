@@ -11,9 +11,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Results - jovVix",
+  title: "Výsledky kvízu – STEM_HUB",
   description:
-    "View your quiz results, ranking, and per-question analysis after the game.",
+    "Po hře si prohlédni své výsledky, pořadí a analýzu jednotlivých otázek.",
 });
 </script>
 

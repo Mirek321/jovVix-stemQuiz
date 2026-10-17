@@ -51,13 +51,13 @@ func (fc *AnalyticsBoardAdminController) GetAnalyticsForAdmin(ctx *fiber.Ctx) er
 
 	if activeQuizId == "" || !(len(activeQuizId) == 36) {
 		fc.logger.Error("active quiz id is not valid")
-		return utils.JSONFail(ctx, http.StatusBadRequest, errors.New("active quiz id should be valid string").Error())
+		return utils.JSONFail(ctx, http.StatusBadRequest, errors.New("ID aktivního kvízu musí být platný řetězec").Error())
 	}
 
 	analyticsBoardData, err := fc.AnalyticsBoardAdminModel.GetAnalyticsForAdmin(activeQuizId)
 	if err != nil {
 		fc.logger.Error("Error while getting analytics for admin", zap.Error(err))
-		return utils.JSONFail(ctx, http.StatusInternalServerError, errors.New("internal server error").Error())
+		return utils.JSONFail(ctx, http.StatusInternalServerError, errors.New("Interní chyba serveru").Error())
 	}
 
 	return utils.JSONSuccess(ctx, http.StatusOK, analyticsBoardData)

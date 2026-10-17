@@ -27,7 +27,7 @@ const leaveLobby = () => router.push("/join");
           <p
             class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted sm:text-[12px]"
           >
-            Live Quiz Session
+            Živý kvíz
           </p>
           <Skeleton
             class="h-[24px] w-[160px] rounded-[6px] bg-jv-ink/10 sm:h-[30px] sm:w-[220px]"
@@ -39,7 +39,7 @@ const leaveLobby = () => router.push("/join");
         <button
           type="button"
           class="grid size-11 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-12"
-          :aria-label="music ? 'Mute music' : 'Unmute music'"
+          :aria-label="music ? 'Vypnout hudbu' : 'Zapnout hudbu'"
           @click="toggleMusic"
         >
           <Volume2 v-if="music" class="size-5" :stroke-width="2.4" />
@@ -51,7 +51,7 @@ const leaveLobby = () => router.push("/join");
           @click="leaveLobby"
         >
           <LogOut class="size-4 sm:size-5" :stroke-width="2.4" />
-          <span>Leave Lobby</span>
+          <span>Opustit čekárnu</span>
         </button>
       </div>
     </header>
@@ -67,7 +67,7 @@ const leaveLobby = () => router.push("/join");
           <p
             class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted sm:text-[12px]"
           >
-            Playing as
+            Hraješ jako
           </p>
           <Skeleton
             class="h-[18px] w-[120px] rounded-[6px] bg-jv-ink/10 sm:h-[22px] sm:w-[160px]"
@@ -87,12 +87,12 @@ const leaveLobby = () => router.push("/join");
             <h2
               class="font-headings text-[28px] leading-tight sm:text-[36px] md:text-[48px]"
             >
-              Ready, Steady, Go!
+              Připravit, pozor, start!
             </h2>
             <p
               class="mt-1 font-body text-[14px] font-bold text-jv-muted sm:text-[18px]"
             >
-              Connecting to lobby...
+              Připojování do čekárny…
             </p>
           </div>
 
@@ -118,6 +118,6 @@ const leaveLobby = () => router.push("/join");
         </div>
       </div>
     </section>
-    <span class="sr-only">Connecting to quiz lobby…</span>
+    <span class="sr-only">Připojování do čekárny…</span>
   </main>
 </template>

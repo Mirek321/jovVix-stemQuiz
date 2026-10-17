@@ -18,7 +18,7 @@ const rankConfig = computed(() => {
     return {
       bg: "bg-jv-yellow",
       icon: Crown,
-      label: "1st",
+      label: "1.",
       rotate: "",
       scale: "sm:scale-110",
     };
@@ -27,7 +27,7 @@ const rankConfig = computed(() => {
     return {
       bg: "bg-jv-salmon",
       icon: Medal,
-      label: "2nd",
+      label: "2.",
       rotate: "",
       scale: "",
     };
@@ -35,17 +35,13 @@ const rankConfig = computed(() => {
   return {
     bg: "bg-jv-mint",
     icon: Award,
-    label: "3rd",
+    label: "3.",
     rotate: "",
     scale: "",
   };
 });
 
-const getOrdinal = (rank) => {
-  const suffixes = ["th", "st", "nd", "rd"];
-  const v = rank % 100;
-  return rank + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
-};
+const getOrdinal = (rank) => `${rank}.`;
 </script>
 
 <template>
@@ -56,9 +52,9 @@ const getOrdinal = (rank) => {
       rankConfig.rotate,
       rankConfig.scale,
     ]"
-    :aria-label="`${getOrdinal(props.winner.rank)} place: ${
+    :aria-label="`${getOrdinal(props.winner.rank)} místo: ${
       props.winner.firstname
-    } with score ${props.winner.score}`"
+    }, skóre ${props.winner.score}`"
     role="article"
   >
     <div
@@ -69,7 +65,7 @@ const getOrdinal = (rank) => {
         class="size-4 text-jv-ink"
         :stroke-width="2.4"
       />
-      {{ rankConfig.label }} Place
+      {{ rankConfig.label }} místo
     </div>
 
     <div
@@ -77,7 +73,7 @@ const getOrdinal = (rank) => {
     >
       <NuxtImg
         :src="avatar"
-        :alt="`Avatar for ${props.winner.firstname}`"
+        :alt="`Avatar hráče ${props.winner.firstname}`"
         width="96"
         height="96"
         class="size-full object-cover"
@@ -102,7 +98,7 @@ const getOrdinal = (rank) => {
     <div
       class="mt-1 inline-flex items-baseline gap-2 rounded-full border border-jv-line bg-jv-white px-4 py-1.5 shadow-soft-sm"
     >
-      <span class="font-body text-[11px] font-bold text-jv-muted">SCORE</span>
+      <span class="font-body text-[11px] font-bold text-jv-muted">SKÓRE</span>
       <span
         class="font-feature text-[22px] font-black tabular-nums text-jv-ink sm:text-[26px]"
       >

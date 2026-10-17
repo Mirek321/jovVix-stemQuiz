@@ -145,19 +145,19 @@ onUnmounted(() => {
             <h2
               class="font-headings text-[24px] leading-none text-jv-ink min-[420px]:text-[30px] sm:text-[36px] md:text-[40px]"
             >
-              Score Page
+              Výsledky otázky
             </h2>
             <p
               class="mt-2 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
             >
-              Rank board
+              Žebříček
             </p>
           </div>
 
           <button
             type="button"
             class="grid size-10 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-11"
-            :aria-label="music ? 'Mute music' : 'Unmute music'"
+            :aria-label="music ? 'Vypnout hudbu' : 'Zapnout hudbu'"
             @click="toggleMusic"
           >
             <Volume2 v-if="music" class="size-4" :stroke-width="2.4" />
@@ -223,12 +223,12 @@ onUnmounted(() => {
               v-if="selectedAnswer && Number(key) === Number(selectedAnswer)"
               class="absolute -top-3 right-3 inline-flex items-center gap-1 rounded-full border border-jv-line bg-jv-yellow px-2 py-0.5 font-body text-[10px] font-black uppercase tracking-wider text-jv-ink shadow-soft-sm sm:text-[11px]"
             >
-              Your pick
+              Tvoje volba
             </span>
             <span
               v-if="answer.isAnswer"
               class="grid size-10 shrink-0 place-items-center rounded-[6px] border border-jv-line bg-jv-white text-jv-ink sm:size-11"
-              aria-label="Correct answer"
+              aria-label="Správná odpověď"
             >
               <Check class="size-5" :stroke-width="3" />
             </span>
@@ -237,7 +237,7 @@ onUnmounted(() => {
                 selectedAnswer && Number(key) === Number(selectedAnswer)
               "
               class="grid size-10 shrink-0 place-items-center rounded-[6px] border border-jv-line bg-jv-white text-jv-coral sm:size-11"
-              aria-label="Your incorrect answer"
+              aria-label="Tvoje špatná odpověď"
             >
               <X class="size-5" :stroke-width="3" />
             </span>
@@ -254,7 +254,7 @@ onUnmounted(() => {
               >
                 <NuxtImg
                   :src="answer?.value"
-                  :alt="`Option ${key}`"
+                  :alt="`Možnost ${key}`"
                   class="max-h-[120px] w-auto object-contain"
                 />
               </div>
@@ -288,7 +288,7 @@ onUnmounted(() => {
                 :stroke-width="2.4"
               />
               <SkipForward v-else class="size-4" :stroke-width="2.4" />
-              <span>{{ isLastQuestion ? "Finish" : "Skip" }}</span>
+              <span>{{ isLastQuestion ? "Ukončit kvíz" : "Přeskočit" }}</span>
             </button>
           </div>
         </template>
@@ -306,7 +306,7 @@ onUnmounted(() => {
               "
               @click="changeAnalysisTab('ranking')"
             >
-              Rankings
+              Žebříček
               <span
                 v-if="analysisTab === 'ranking'"
                 class="absolute -bottom-[2px] left-2 right-2 h-[3px] bg-jv-coral"
@@ -323,7 +323,7 @@ onUnmounted(() => {
               "
               @click="changeAnalysisTab('chart')"
             >
-              Chart
+              Graf
               <span
                 v-if="analysisTab === 'chart'"
                 class="absolute -bottom-[2px] left-2 right-2 h-[3px] bg-jv-coral"
@@ -359,7 +359,9 @@ onUnmounted(() => {
             >
               <NuxtImg
                 :src="getAvatarUrlByName(user?.img_key)"
-                :alt="`${user.firstname || user.username || 'Player'} avatar`"
+                :alt="`Avatar hráče ${
+                  user.firstname || user.username || 'Hráč'
+                }`"
                 width="48"
                 height="48"
                 loading="lazy"
@@ -400,7 +402,7 @@ onUnmounted(() => {
               class="size-2 rounded-full bg-jv-ink/30"
               aria-hidden="true"
             ></span>
-            No rankings yet
+            Zatím žádné pořadí
           </div>
         </div>
 

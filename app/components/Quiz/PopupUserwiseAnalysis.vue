@@ -2,7 +2,7 @@
   <div class="full-page-popup">
     <div class="popup-content">
       <!-- Your popup content goes here -->
-      <button @click="closePopup">Close Popup</button>
+      <button @click="closePopup">Zavřít</button>
     </div>
   </div>
 </template>

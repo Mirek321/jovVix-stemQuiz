@@ -15,15 +15,15 @@ export function useUserPasswordRules(passwordRef, firstnameRef, lastnameRef) {
     }
 
     if (passwordRef.value.length < rules.minLength) {
-      errors.push("Password must be at least 8 characters long");
+      errors.push("Heslo musí mít aspoň 8 znaků.");
     }
 
     if (!rules.alphanumeric.test(passwordRef.value)) {
-      errors.push("Password must contain letters and numbers");
+      errors.push("Heslo musí obsahovat písmena i číslice.");
     }
 
     if (!rules.specialChar.test(passwordRef.value)) {
-      errors.push("Password must contain at least one special character");
+      errors.push("Heslo musí obsahovat aspoň jeden speciální znak.");
     }
 
     const first = firstnameRef?.value?.toLowerCase();
@@ -33,7 +33,7 @@ export function useUserPasswordRules(passwordRef, firstnameRef, lastnameRef) {
       (first && passwordRef.value.toLowerCase().includes(first)) ||
       (last && passwordRef.value.toLowerCase().includes(last))
     ) {
-      errors.push("Password must not contain your name");
+      errors.push("Heslo nesmí obsahovat tvoje jméno.");
     }
 
     return errors;

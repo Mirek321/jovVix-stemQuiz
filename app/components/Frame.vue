@@ -81,7 +81,7 @@ const music = computed(() => getMusic());
         <button
           type="button"
           class="grid size-10 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
-          :aria-label="music ? 'Mute music' : 'Unmute music'"
+          :aria-label="music ? 'Vypnout hudbu' : 'Zapnout hudbu'"
           @click="setMusic(!music)"
         >
           <Volume2 v-if="music" class="size-5" :stroke-width="2.4" />

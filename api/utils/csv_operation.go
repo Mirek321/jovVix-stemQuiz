@@ -99,7 +99,7 @@ func ExtractQuestionsFromCSV(questions []Question, questionTimeLimit string) ([]
 		// Question type must be a known type (single answer / survey).
 		questionType, typeErr := quizUtilsHelper.CheckQuestionType(strings.TrimSpace(u.Type))
 		if typeErr != nil {
-			rowIssues = append(rowIssues, fmt.Sprintf("%s (got %q, allowed: %s, %s)", constants.ErrQuestionType, u.Type, constants.SingleAnswerString, constants.SurveyString))
+			rowIssues = append(rowIssues, fmt.Sprintf("%s (zadáno %q, povoleno: %s, %s)", constants.ErrQuestionType, u.Type, constants.SingleAnswerString, constants.SurveyString))
 		}
 
 		// Collect non-empty options, preserving their option number.
@@ -126,11 +126,11 @@ func ExtractQuestionsFromCSV(questions []Question, questionTimeLimit string) ([]
 				}
 				answerInt, convErr := strconv.Atoi(a)
 				if convErr != nil {
-					rowIssues = append(rowIssues, fmt.Sprintf("%s (got %q)", constants.ErrInvalidCorrectAnswer, a))
+					rowIssues = append(rowIssues, fmt.Sprintf("%s (zadáno %q)", constants.ErrInvalidCorrectAnswer, a))
 					continue
 				}
 				if _, ok := options[strconv.Itoa(answerInt)]; !ok {
-					rowIssues = append(rowIssues, fmt.Sprintf("%s (option %d does not exist)", constants.ErrInvalidCorrectAnswer, answerInt))
+					rowIssues = append(rowIssues, fmt.Sprintf("%s (možnost %d neexistuje)", constants.ErrInvalidCorrectAnswer, answerInt))
 					continue
 				}
 				answers = append(answers, answerInt)
@@ -154,11 +154,11 @@ func ExtractQuestionsFromCSV(questions []Question, questionTimeLimit string) ([]
 		// Media types: optional (default text), but must be text, image, or code.
 		questionMedia, questionMediaOK := normalizeMedia(u.QuestionMedia)
 		if !questionMediaOK {
-			rowIssues = append(rowIssues, fmt.Sprintf("%s (got %q)", constants.ErrInvalidQuestionMedia, u.QuestionMedia))
+			rowIssues = append(rowIssues, fmt.Sprintf("%s (zadáno %q)", constants.ErrInvalidQuestionMedia, u.QuestionMedia))
 		}
 		optionsMedia, optionsMediaOK := normalizeMedia(u.OptionsMedia)
 		if !optionsMediaOK {
-			rowIssues = append(rowIssues, fmt.Sprintf("%s (got %q)", constants.ErrInvalidOptionsMedia, u.OptionsMedia))
+			rowIssues = append(rowIssues, fmt.Sprintf("%s (zadáno %q)", constants.ErrInvalidOptionsMedia, u.OptionsMedia))
 		}
 
 		// Points: optional, but if present must fall inside the allowed range.
@@ -166,14 +166,14 @@ func ExtractQuestionsFromCSV(questions []Question, questionTimeLimit string) ([]
 		if strings.TrimSpace(u.Points) != "" {
 			parsedPoints, convErr := strconv.Atoi(strings.TrimSpace(u.Points))
 			if convErr != nil || parsedPoints < constants.MinimumPoints || parsedPoints > constants.MaximumPoints {
-				rowIssues = append(rowIssues, fmt.Sprintf("%s (got %q, allowed: %d-%d)", constants.ErrInvalidPoints, u.Points, constants.MinimumPoints, constants.MaximumPoints))
+				rowIssues = append(rowIssues, fmt.Sprintf("%s (zadáno %q, povoleno: %d–%d)", constants.ErrInvalidPoints, u.Points, constants.MinimumPoints, constants.MaximumPoints))
 			} else {
 				points = parsedPoints
 			}
 		}
 
 		if len(rowIssues) > 0 {
-			rowErrors = append(rowErrors, fmt.Sprintf("row %d: %s", rowNo, strings.Join(rowIssues, "; ")))
+			rowErrors = append(rowErrors, fmt.Sprintf("řádek %d: %s", rowNo, strings.Join(rowIssues, "; ")))
 			continue
 		}
 

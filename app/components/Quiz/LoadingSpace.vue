@@ -1,5 +1,5 @@
 <template>
-  <Frame page-title="Loading">
+  <Frame page-title="Načítání">
     <div class="flex flex-col gap-3">
       <Skeleton class="h-6 w-2/3" />
       <Skeleton class="h-4 w-full" />

@@ -34,7 +34,7 @@ const handleStartDemo = async () => {
       onResponse({ response }) {
         if (response.status != 202) {
           requestPending.value = false;
-          toast.error("error while start quiz");
+          toast.error("Kvíz se nepodařilo spustit");
           return;
         }
         if (response.status == 202) {
@@ -57,7 +57,7 @@ const handleStartDemo = async () => {
 </script>
 <template>
   <NavigationLink
-    :url-name="requestPending ? 'Pending...' : 'Start Quiz'"
+    :url-name="requestPending ? 'Spouštím…' : 'Spustit kvíz'"
     class="h-8 rounded-full shadow-none"
     :disabled="requestPending"
     @click="handleStartDemo"

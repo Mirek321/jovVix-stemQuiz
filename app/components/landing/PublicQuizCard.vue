@@ -3,7 +3,7 @@
     type="button"
     class="relative flex w-full cursor-pointer flex-col bg-jv-white p-3 text-left shadow-soft-sm jv-border-rough transition-transform duration-150 hover:-translate-y-1 hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-jv-coral/40 disabled:cursor-wait disabled:opacity-70"
     :disabled="starting"
-    :aria-label="`Start quiz: ${title}`"
+    :aria-label="`Spustit kvíz: ${title}`"
     @click="$emit('start-quiz')"
   >
     <span class="relative block border border-jv-line bg-jv-slate p-2">
@@ -22,7 +22,7 @@
         v-if="starting"
         class="absolute inset-0 grid place-items-center bg-jv-ink/50 text-[13px] font-black uppercase tracking-[0.14em] text-jv-white"
       >
-        Starting...
+        Spouštění…
       </span>
     </span>
 

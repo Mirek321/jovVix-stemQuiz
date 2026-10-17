@@ -77,7 +77,7 @@ const getFinalScoreboardDetails = async (endpoint) => {
     scoreboardData.value = response?.data || [];
   } catch (error) {
     toast.error(
-      error?.data?.message || error?.message || "Failed to load scoreboard"
+      error?.data?.message || error?.message || "Nepodařilo se načíst žebříček"
     );
   } finally {
     requestPending.value = false;
@@ -99,10 +99,10 @@ const getAnalysisDetails = async () => {
     userStatistics.value = questionsAnalysis(data);
   } catch (error) {
     if (error?.statusCode === 401 || error?.response?.status === 401) {
-      toast.error(app.$Unauthorized || "Unauthorized");
+      toast.error(app.$Unauthorized || "Nemáš oprávnění");
     } else {
       toast.error(
-        error?.data?.message || error?.message || "Failed to load analysis"
+        error?.data?.message || error?.message || "Nepodařilo se načíst analýzu"
       );
     }
   } finally {
@@ -198,10 +198,11 @@ const playerCount = computed(() => scoreboardData.value.length);
 
 const rankBadge = computed(() => {
   const r = Number(userRank.value);
-  if (r === 1) return { label: "1st Place", bg: "bg-jv-yellow", icon: Crown };
-  if (r === 2) return { label: "2nd Place", bg: "bg-jv-salmon", icon: Medal };
-  if (r === 3) return { label: "3rd Place", bg: "bg-jv-mint", icon: Award };
-  if (r > 0) return { label: `Rank #${r}`, bg: "bg-jv-lavender", icon: Trophy };
+  if (r === 1) return { label: "1. místo", bg: "bg-jv-yellow", icon: Crown };
+  if (r === 2) return { label: "2. místo", bg: "bg-jv-salmon", icon: Medal };
+  if (r === 3) return { label: "3. místo", bg: "bg-jv-mint", icon: Award };
+  if (r > 0)
+    return { label: `${r}. místo`, bg: "bg-jv-lavender", icon: Trophy };
   return null;
 });
 
@@ -228,7 +229,7 @@ const podiumOrder = computed(() => {
       bg: "bg-jv-mint",
       ring: "ring-jv-mint",
       heightClass: "h-[180px] sm:h-[210px]",
-      label: "2nd",
+      label: "2.",
     },
     {
       slot: "first",
@@ -237,7 +238,7 @@ const podiumOrder = computed(() => {
       bg: "bg-jv-yellow",
       ring: "ring-jv-yellow",
       heightClass: "h-[240px] sm:h-[280px]",
-      label: "1st",
+      label: "1.",
       highlight: true,
     },
     {
@@ -247,13 +248,12 @@ const podiumOrder = computed(() => {
       bg: "bg-jv-salmon",
       ring: "ring-jv-salmon",
       heightClass: "h-[140px] sm:h-[170px]",
-      label: "3rd",
+      label: "3.",
     },
   ];
 });
 
-const podiumName = (winner) =>
-  winner?.firstname || winner?.username || "Player";
+const podiumName = (winner) => winner?.firstname || winner?.username || "Hráč";
 </script>
 
 <template>
@@ -276,7 +276,7 @@ const podiumName = (winner) =>
             <p
               class="font-body text-[10px] font-bold uppercase tracking-[0.16em] text-jv-muted sm:text-[11px]"
             >
-              Final Results
+              Konečné výsledky
             </p>
             <!-- Title can come from the persisted session store; render only on
                the client to avoid SSR/CSR hydration mismatches. -->
@@ -299,18 +299,18 @@ const podiumName = (winner) =>
           <NuxtLink
             to="/"
             class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border border-jv-line bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-5 sm:text-[14px]"
-            aria-label="Return to home"
+            aria-label="Zpět domů"
           >
             <Home class="size-4" :stroke-width="2.4" />
-            Home
+            Domů
           </NuxtLink>
           <button
             type="button"
             class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border border-jv-line bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-5 sm:text-[14px]"
-            aria-label="Continue to scoreboard table view"
+            aria-label="Pokračovat na tabulku žebříčku"
             @click="changeUI(false)"
           >
-            Next
+            Další
             <ArrowRight class="size-4" :stroke-width="2.4" />
           </button>
         </div>
@@ -320,7 +320,7 @@ const podiumName = (winner) =>
         id="main-content"
         class="relative z-10 mx-auto flex w-full max-w-[1180px] flex-1 flex-col px-3 pb-6 pt-2 sm:px-6 sm:pb-10 md:px-10"
         role="main"
-        aria-label="Quiz winners podium"
+        aria-label="Stupně vítězů kvízu"
       >
         <div class="relative flex w-full flex-1 flex-col justify-evenly">
           <!-- Title with confetti-like decorations -->
@@ -340,7 +340,7 @@ const podiumName = (winner) =>
             <h2
               class="text-center text-[40px] leading-none text-jv-ink sm:text-[44px] md:text-[56px]"
             >
-              Quiz Winners!
+              Vítězové kvízu!
             </h2>
           </div>
 
@@ -355,7 +355,7 @@ const podiumName = (winner) =>
               class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line px-5 py-2 font-body text-[14px] font-bold text-jv-muted"
             >
               <Sparkles class="size-4" :stroke-width="2.4" />
-              Loading winners…
+              Načítání vítězů…
             </span>
           </div>
 
@@ -363,7 +363,7 @@ const podiumName = (winner) =>
           <section
             v-else-if="winners.length"
             class="relative mx-auto mt-10 flex w-full max-w-[640px] items-end justify-center gap-3 sm:mt-14 sm:gap-5"
-            aria-label="Top three winners podium"
+            aria-label="Stupně vítězů – první tři"
           >
             <div
               v-for="step in podiumOrder"
@@ -400,7 +400,7 @@ const podiumName = (winner) =>
                 >
                   <NuxtImg
                     :src="getAvatarUrlByName(step.winner?.img_key)"
-                    :alt="`Avatar for ${podiumName(step.winner)}`"
+                    :alt="`Avatar hráče ${podiumName(step.winner)}`"
                     width="96"
                     height="96"
                     class="size-full object-cover"
@@ -480,7 +480,7 @@ const podiumName = (winner) =>
                 class="size-2 rounded-full bg-jv-ink/30"
                 aria-hidden="true"
               ></span>
-              No winners yet
+              Zatím žádní vítězové
             </span>
           </div>
         </div>
@@ -498,7 +498,7 @@ const podiumName = (winner) =>
               class="size-2 rounded-full border border-jv-line bg-jv-mint"
               aria-hidden="true"
             ></span>
-            Tournament completed successfully
+            Kvíz úspěšně dokončen
           </span>
         </div>
       </main>
@@ -517,7 +517,7 @@ const podiumName = (winner) =>
         class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line bg-jv-white px-5 py-2.5 font-body text-[14px] font-bold text-jv-muted shadow-soft-sm"
       >
         <Sparkles class="size-4" :stroke-width="2.4" />
-        Loading scoreboard…
+        Načítání žebříčku…
       </div>
     </div>
 
@@ -535,7 +535,7 @@ const podiumName = (winner) =>
           <p
             class="font-body text-[11px] font-black uppercase tracking-[0.22em] text-jv-muted sm:text-[12px]"
           >
-            Quiz Complete
+            Kvíz dokončen
           </p>
 
           <div
@@ -545,20 +545,27 @@ const podiumName = (winner) =>
               <h1
                 class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[40px]"
               >
-                {{ props.isAdmin ? "Final Scoreboard" : "Great game!" }}
+                {{ props.isAdmin ? "Konečné pořadí" : "Skvělá hra!" }}
               </h1>
               <p
                 v-if="!props.isAdmin"
                 class="mt-2 font-body text-[14px] font-bold text-jv-muted sm:text-[16px]"
               >
-                Here's how everyone stacked up.
+                Takhle jste si vedli.
               </p>
               <p
                 v-else
                 class="mt-2 font-body text-[14px] font-bold text-jv-muted sm:text-[16px]"
               >
-                {{ playerCount }} player{{ playerCount === 1 ? "" : "s" }}
-                completed the quiz.
+                {{
+                  czCount(
+                    playerCount,
+                    "hráč dokončil",
+                    "hráči dokončili",
+                    "hráčů dokončilo"
+                  )
+                }}
+                kvíz.
               </p>
             </div>
 
@@ -584,7 +591,7 @@ const podiumName = (winner) =>
               >
                 <span
                   class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
-                  >Score</span
+                  >Skóre</span
                 >
                 <span
                   class="font-feature text-[16px] font-black tabular-nums text-jv-ink sm:text-[18px]"
@@ -599,7 +606,7 @@ const podiumName = (winner) =>
         <!-- USER STATS (non-admin only) -->
         <section
           v-if="!props.isAdmin"
-          aria-label="Your quiz statistics"
+          aria-label="Tvoje statistiky z kvízu"
           class="contents"
         >
           <div
@@ -609,7 +616,7 @@ const podiumName = (winner) =>
             aria-live="polite"
           >
             <Sparkles class="size-4" :stroke-width="2.4" />
-            Crunching your stats…
+            Počítáme tvoje statistiky…
           </div>
           <QuizStatisticsBadges v-else :user-statistics="userStatistics" />
         </section>
@@ -627,31 +634,31 @@ const podiumName = (winner) =>
           v-if="props.isAdmin"
           class="flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center"
           role="group"
-          aria-label="Admin controls"
+          aria-label="Ovládání pro moderátora"
         >
           <NuxtLink
             to="/"
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Return to home"
+            aria-label="Zpět domů"
           >
             <Home class="size-4" :stroke-width="2.4" />
-            Home
+            Domů
           </NuxtLink>
           <NuxtLink
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="View detailed quiz analysis"
+            aria-label="Zobrazit podrobnou analýzu kvízu"
             @click="showAnalysis"
           >
             <BarChart3 class="size-4" :stroke-width="2.4" />
-            Show Analysis
+            Zobrazit analýzu
           </NuxtLink>
           <NuxtLink
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Switch to winners podium view"
+            aria-label="Přepnout na stupně vítězů"
             @click="changeUI(true)"
           >
             <Crown class="size-4" :stroke-width="2.4" />
-            Show Winners
+            Zobrazit vítěze
           </NuxtLink>
         </div>
 
@@ -664,7 +671,7 @@ const podiumName = (winner) =>
             aria-live="polite"
           >
             <Sparkles class="size-4" :stroke-width="2.4" />
-            Loading question review…
+            Načítání přehledu otázek…
           </div>
           <QuizAnalysis v-else-if="isLoggedIn" :data="analysisData" />
           <QuizAnalysisLoginGate v-else />
@@ -672,23 +679,23 @@ const podiumName = (winner) =>
           <div
             class="mb-2 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center"
             role="group"
-            aria-label="Quiz end actions"
+            aria-label="Akce po skončení kvízu"
           >
             <NuxtLink
               to="/"
               class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-              aria-label="Return to home"
+              aria-label="Zpět domů"
             >
               <Home class="size-4" :stroke-width="2.4" />
-              Home
+              Domů
             </NuxtLink>
             <NuxtLink
               to="/join"
               class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-              aria-label="Join another quiz"
+              aria-label="Připojit se k dalšímu kvízu"
             >
               <ArrowRight class="size-4" :stroke-width="2.4" />
-              Play another
+              Hrát další
             </NuxtLink>
           </div>
         </template>
