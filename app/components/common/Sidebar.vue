@@ -25,6 +25,7 @@
 
       <template v-if="mounted">
         <NavigationLink
+          v-if="isLoggedInAdmin"
           url="/admin/quiz/list-quiz?create=1"
           url-name="Vytvořit kvíz"
         >
@@ -412,22 +413,21 @@ const mobileNavItems = computed(() => {
         active: isActiveRoute("/admin"),
         needsAttention: emailVerified.value === false,
       },
-      {
-        label: "Vytvořit kvíz",
-        url: "/admin/quiz/list-quiz?create=1",
-        icon: Plus,
-      },
+      ...(isLoggedInAdmin.value
+        ? [
+            {
+              label: "Vytvořit kvíz",
+              url: "/admin/quiz/list-quiz?create=1",
+              icon: Plus,
+            },
+          ]
+        : []),
     ];
   }
 
   return [
     { label: "Domů", url: "/", icon: Home, active: true },
     { label: "Zadat kód", url: "/join" },
-    {
-      label: "Vytvořit kvíz",
-      url: "/admin/quiz/list-quiz?create=1",
-      icon: Plus,
-    },
     { label: "Přihlásit se", url: "/account/login" },
     { label: "Zaregistrovat se", url: "/account/register" },
   ];

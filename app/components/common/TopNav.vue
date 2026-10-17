@@ -51,15 +51,8 @@
 <script setup>
 import NavigationLink from "@/components/common/NavigationLink.vue";
 const navLinks = [
-  { href: "https://jovvix.com/", label: "Domů" },
-  { href: "https://jovvix.com/docs/user-guide", label: "Uživatelská příručka" },
-  {
-    href: "https://jovvix.com/docs/developer-guide",
-    label: "Příručka pro vývojáře",
-  },
-  {
-    href: "https://jovvix.com/docs/deployment-guide",
-    label: "Návod k nasazení",
-  },
+  { href: "/", label: "Domů" },
+  { href: "/join", label: "Připojit se ke kvízu" },
+  { href: "https://stemhub.cz", label: "Web STEM Hub" },
 ];
 </script>

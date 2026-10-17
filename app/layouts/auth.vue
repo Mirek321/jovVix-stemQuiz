@@ -48,10 +48,12 @@
 
       <slot />
     </main>
+    <SiteFooter />
   </div>
 </template>
 
 <script setup>
 import { Sparkle } from "lucide-vue-next";
 import TopNav from "@/components/common/TopNav.vue";
+import SiteFooter from "@/components/common/SiteFooter.vue";
 </script>

@@ -8,15 +8,28 @@
       </div>
 
       <h1 class="main-heading text-jv-ink">
-        <span class="block">Open-source kvízy</span>
+        <span class="block">Kvízy STEM_HUB</span>
         <span class="block"
-          >stvořené pro
+          >pro naše
           <span
             class="inline-block jv-highlight mt-2 sm:mt-3 px-3 sm:px-5 md:px-6 py-1 sm:py-2 rounded-[4px]"
-            >živé kvízové zážitky</span
+            >živé akce</span
           >
         </span>
       </h1>
+
+      <p
+        class="max-w-[640px] text-[16px] leading-relaxed text-jv-muted sm:text-[18px]"
+      >
+        Náš systém na kvízy na akcích STEM Hubu. Víc o nás najdeš na
+        <a
+          href="https://stemhub.cz"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-jv-ink underline decoration-jv-orange decoration-2 underline-offset-4 hover:decoration-jv-ink"
+          >stemhub.cz</a
+        >.
+      </p>
 
       <!-- Mobile/sm carousel (under md) -->
       <Carousel
@@ -32,6 +45,7 @@
             <HeroActionCard
               :title="card.title"
               :description="card.description"
+              :href="card.href"
             />
           </CarouselItem>
         </CarouselContent>
@@ -48,6 +62,7 @@
           :key="card.title"
           :title="card.title"
           :description="card.description"
+          :href="card.href"
         />
       </div>
     </div>
@@ -66,16 +81,17 @@ import {
 
 const actionCards = [
   {
-    title: "Demo instance",
-    description: "Až 100 hráčů najednou",
+    title: "Připoj se kódem",
+    description: "Kód kvízu dostaneš přímo na akci.",
   },
   {
-    title: "Vlastní nasazení",
-    description: "Neomezený počet uživatelů a plná kontrola.",
+    title: "Soutěž naživo",
+    description: "Body za správné odpovědi i rychlost.",
   },
   {
     title: "Napiš nám",
-    description: "contact@jovvix.com",
+    description: "info@stemhub.cz",
+    href: "mailto:info@stemhub.cz",
   },
 ];
 </script>
