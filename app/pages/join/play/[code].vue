@@ -7,6 +7,7 @@ import { storeToRefs } from "pinia";
 // custom component
 import UserOperation from "~/composables/user_operation.js";
 import { useSystemEnv } from "~/composables/envs.js";
+import { QUIZ_MODES } from "~/composables/self_paced.js";
 import { useSessionStore } from "~~/store/session";
 
 // define nuxt configs
@@ -45,6 +46,7 @@ const username = computed(() => play.value.username);
 const firstname = computed(() => play.value.firstname);
 const userPlayedQuiz = computed(() => play.value.userPlayedQuiz);
 const sessionId = computed(() => play.value.sessionId);
+const isSelfPaced = computed(() => play.value.mode === QUIZ_MODES.selfPaced);
 
 const selectedAnswer = ref(0);
 const quizState = ref(app.$Running);
@@ -96,6 +98,7 @@ const resolvePlaySession = async () => {
     firstname: who._data?.data?.firstname || "",
     userPlayedQuiz: played?.data?.user_played_quiz,
     sessionId: played?.data?.session_id,
+    mode: played?.data?.mode || QUIZ_MODES.live,
   };
 
   if (!resolved.userPlayedQuiz || !resolved.sessionId || !resolved.username) {
@@ -122,6 +125,12 @@ onMounted(async () => {
 
   if (cancelled.value) return;
 
+  // Self-paced sessions are driven over REST by QuizSelfPacedPlay.
+  if (isSelfPaced.value) {
+    currentComponent.value = "SelfPaced";
+    return;
+  }
+
   try {
     userOperationHandler.value = new UserOperation(
       code,
@@ -137,6 +146,24 @@ onMounted(async () => {
   }
 });
 
+const goToScoreboard = async () => {
+  monitorTerminateQuiz.value = true;
+  const scoreboard = `/join/${encodeURIComponent(
+    username.value
+  )}/scoreboard?user_played_quiz=${userPlayedQuiz.value}`;
+  clearPlaySession();
+  return await router.push(scoreboard);
+};
+
+const handleSelfPacedFinished = async (endedByHost) => {
+  if (endedByHost) toast.info(app.$HostEndedQuizMessage);
+  return await goToScoreboard();
+};
+
+const handleSelfPacedUnavailable = (message) => {
+  router.replace("/join?status=fail&error=" + encodeURIComponent(message));
+};
+
 const handleQuizEvents = async (message) => {
   if (message.status == app.$Error) {
     console.error(message);
@@ -144,13 +171,8 @@ const handleQuizEvents = async (message) => {
       "/error?status=" + message.status + "&error=" + message.data
     );
   } else if (message.event == app.$TerminateQuiz) {
-    monitorTerminateQuiz.value = true;
     toast.info(app.$HostEndedQuizMessage);
-    const scoreboard = `/join/${encodeURIComponent(
-      username.value
-    )}/scoreboard?user_played_quiz=${userPlayedQuiz.value}`;
-    clearPlaySession();
-    return await router.push(scoreboard);
+    return await goToScoreboard();
   } else if (message.event == app.$RedirectToAdmin) {
     return await router.push("/admin/arrange/" + message.data.sessionId);
   } else if (
@@ -327,6 +349,14 @@ onBeforeUnmount(() => {
         @start-quiz="startQuiz"
       >
       </QuizWaitingSpace>
+      <QuizSelfPacedPlay
+        v-else-if="currentComponent === 'SelfPaced'"
+        :user-played-quiz="userPlayedQuiz"
+        :session-id="sessionId"
+        :quiz-title="quizTitle"
+        @finished="handleSelfPacedFinished"
+        @unavailable="handleSelfPacedUnavailable"
+      ></QuizSelfPacedPlay>
       <QuizQuestionSpace
         v-else-if="currentComponent === 'Question'"
         :data="data"

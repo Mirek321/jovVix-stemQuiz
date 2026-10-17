@@ -232,6 +232,8 @@ func setupQuizSocketController(v1 fiber.Router, db *goqu.Database, logger *zap.L
 	v1.Post("/quiz/answer", middleware.Authenticated, middleware.CustomAuthenticated, quizSocketController.SetAnswer)
 	v1.Get("/quiz/terminate", middleware.Authenticated, quizSocketController.Terminate)
 	v1.Get("/quiz/sessions/active", middleware.Authenticated, quizSocketController.ListActiveSessions)
+	v1.Get("/quiz/self/next", middleware.Authenticated, middleware.CustomAuthenticated, quizSocketController.SelfPacedNext)
+	v1.Get(fmt.Sprintf("/active_quizzes/:%s/status", constants.SessionIDParam), middleware.KratosAuthenticated, quizSocketController.SessionStatus)
 
 	return nil
 }

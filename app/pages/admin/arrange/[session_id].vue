@@ -7,6 +7,7 @@ import { Ban } from "lucide-vue-next";
 import { useSystemEnv } from "~/composables/envs.js";
 import { useRouter } from "nuxt/app";
 import AdminOperations from "~~/composables/admin_operation";
+import { QUIZ_MODES, fetchSessionStatus } from "~~/composables/self_paced";
 
 import { useInvitationCodeStore } from "~/store/invitationcode";
 import { useListUserstore } from "~/store/userlist";
@@ -65,6 +66,8 @@ const session_id = route.params.session_id;
 const runningQuizJoinUser = ref(0);
 const isPauseQuiz = ref(false);
 const selectedAnswer = ref(0);
+const selfPacedStatus = ref(null);
+let unmounted = false;
 
 // Public-quiz guests land here with session_id="new" and a quiz_id query — they
 // need to pick a display name before the guest user + public session are created.
@@ -89,12 +92,35 @@ const handleCustomChange = (isFullScreenEvent) => {
   }
 };
 
+// Self-paced sessions have no socket loop; they get their own host screen.
+// Public sessions are always live, so they skip the extra request.
+const loadSelfPacedStatus = async () => {
+  if (route.query.public === "1") return null;
+  try {
+    const status = await fetchSessionStatus(apiUrl, session_id);
+    return status?.mode === QUIZ_MODES.selfPaced ? status : null;
+  } catch (error) {
+    console.error("failed to load session status", error);
+    return null;
+  }
+};
+
 // main functions
-onMounted(() => {
+onMounted(async () => {
   if (!process.client) return;
   // Guests with a pending session pick a name first; the socket setup runs
   // after the name modal submission redirects to the real session URL.
   if (showHostNameModal.value) return;
+
+  const status = await loadSelfPacedStatus();
+  if (unmounted) return;
+  if (status) {
+    selfPacedStatus.value = status;
+    setActiveQuizTitle(status.title);
+    currentComponent.value = "SelfPaced";
+    return;
+  }
+
   try {
     const lastRenderedComponent = getLastComponent();
     if (socketObject && lastRenderedComponent !== "Waiting") {
@@ -178,6 +204,7 @@ const handleHostNameSubmit = async ({ name, avatarName }) => {
 };
 
 onUnmounted(() => {
+  unmounted = true;
   setLastComponent(currentComponent.value);
 });
 
@@ -380,7 +407,7 @@ useSeoMeta({
   />
   <Playground :full-screen-enabled="myRef" @is-full-screen="handleCustomChange">
     <div
-      v-if="currentComponent !== 'Waiting' && currentComponent !== 'Loading'"
+      v-if="!['Waiting', 'Loading', 'SelfPaced'].includes(currentComponent)"
       class="code-display grid grid-cols-1 gap-3 px-4 py-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:px-6 md:px-8"
     >
       <div
@@ -447,6 +474,13 @@ useSeoMeta({
     <QuizWaitingSpaceSkeleton
       v-if="currentComponent == 'Loading'"
     ></QuizWaitingSpaceSkeleton>
+    <QuizSelfPacedHost
+      v-else-if="currentComponent == 'SelfPaced'"
+      :status="selfPacedStatus"
+      :terminating="terminating"
+      @end-quiz="askEndQuiz"
+      @ended="goToScoreboardAfterTerminate"
+    ></QuizSelfPacedHost>
     <QuizWaitingSpace
       v-else-if="currentComponent == 'Waiting'"
       :data="data"

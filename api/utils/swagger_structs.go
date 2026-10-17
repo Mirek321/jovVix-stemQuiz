@@ -514,3 +514,70 @@ type ResError struct {
 		Message string      `json:"message"`
 	} `json:"body"`
 }
+
+// swagger:parameters RequestSessionStatus
+type RequestSessionStatus struct {
+	// in:path
+	// required: true
+	SessionId string `json:"session_id"`
+}
+
+// swagger:response ResponseSessionStatus
+type ResponseSessionStatus struct {
+	// in:body
+	Body struct {
+		Status string `json:"status"`
+		Data   struct {
+			SessionId      string `json:"session_id"`
+			Mode           string `json:"mode"`
+			Code           *int32 `json:"code"`
+			Title          string `json:"title"`
+			IsActive       bool   `json:"is_active"`
+			TotalQuestions int64  `json:"total_questions"`
+			Players        []struct {
+				UserPlayedQuizId string  `json:"user_played_quiz_id"`
+				Username         string  `json:"username"`
+				FirstName        string  `json:"first_name"`
+				ImgKey           *string `json:"img_key"`
+				Answered         int     `json:"answered"`
+				Score            int     `json:"score"`
+				Completed        bool    `json:"completed"`
+			} `json:"players"`
+		} `json:"data"`
+	} `json:"body"`
+}
+
+// swagger:parameters RequestSelfPacedNext
+type RequestSelfPacedNext struct {
+	// in:query
+	// required: true
+	UserPlayedQuiz string `json:"user_played_quiz"`
+	// in:query
+	// required: true
+	SessionId string `json:"session_id"`
+}
+
+// swagger:response ResponseSelfPacedNext
+type ResponseSelfPacedNext struct {
+	// in:body
+	Body struct {
+		Status string `json:"status"`
+		Data   struct {
+			Finished       bool              `json:"finished"`
+			Id             string            `json:"id"`
+			No             int               `json:"no"`
+			TotalQuestions int               `json:"totalQuestions"`
+			Duration       int               `json:"duration"`
+			Points         int               `json:"points"`
+			Question       string            `json:"question"`
+			Options        map[string]string `json:"options"`
+			QuestionType   int               `json:"question_type"`
+			QuestionMedia  string            `json:"question_media"`
+			OptionsMedia   string            `json:"options_media"`
+			Resource       string            `json:"resource"`
+			StartTime      string            `json:"start_time"`
+			ServerTime     string            `json:"server_time"`
+			TotalScore     int               `json:"total_score"`
+		} `json:"data"`
+	} `json:"body"`
+}
