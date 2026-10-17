@@ -288,13 +288,6 @@
             <Upload class="size-4" :stroke-width="2.4" />
           </NavigationLink>
           <NavigationLink
-            url-name="Generate with AI"
-            class="rounded-[999px] bg-jv-yellow"
-            @click="generateAiOpen = true"
-          >
-            <Sparkles class="size-4" :stroke-width="2.4" />
-          </NavigationLink>
-          <NavigationLink
             url-name="Add Question"
             class="rounded-[999px] bg-jv-accent-green text-white"
             @click="openNewQuestionForm"
@@ -583,16 +576,6 @@
     </Teleport>
 
     <ShareQuizModal v-model="shareModalOpen" :quiz-id="quizId" />
-    <GenerateWithAiModal
-      v-model="generateAiOpen"
-      mode="append"
-      :quiz-id="quizId"
-      :quiz-title="quizData?.data?.quiz_title || ''"
-      :quiz-language="quizLanguage"
-      :points="Number(quizData?.data?.points) || 0"
-      :duration-in-seconds="Number(quizData?.data?.duration_in_seconds) || 0"
-      @appended="onAiQuestionsAppended"
-    />
     <DeleteDialog
       v-model="deleteModalOpen"
       title="Delete quiz"
@@ -616,7 +599,6 @@ import {
   Play,
   Plus,
   Share2,
-  Sparkles,
   Trash2,
   Upload,
   X,
@@ -627,9 +609,7 @@ import QuestionFormCard from "@/components/quiz-manage/QuestionFormCard.vue";
 import CodeBlockComponent from "@/components/CodeBlockComponent.vue";
 import ShareQuizModal from "@/components/Quiz/ShareQuizModal.vue";
 import constants from "~~/config/constants";
-import GenerateWithAiModal from "@/components/Quiz/GenerateWithAiModal.vue";
 import { readApiError } from "@/composables/apiError";
-import { detectQuizLanguage } from "@/composables/quizLanguage";
 import { useListUserstore } from "~/store/userlist";
 import { useSessionStore } from "~~/store/session";
 import NavigationLink from "~/components/common/NavigationLink.vue";
@@ -660,7 +640,6 @@ const listUserStore = useListUserstore();
 
 const quizId = computed(() => route.params.quiz_id || "");
 const importModalOpen = ref(false);
-const generateAiOpen = ref(false);
 const shareModalOpen = ref(false);
 const deleteModalOpen = ref(false);
 const importPending = ref(false);
@@ -719,9 +698,6 @@ onMounted(() => {
 
 const questions = computed(() => quizData.value?.data?.data || []);
 const quizTitle = computed(() => quizData.value?.data?.quiz_title || "Quiz");
-const quizLanguage = computed(() =>
-  detectQuizLanguage(questions.value.map((question) => question.question))
-);
 
 const deleteQuizMessage = computed(
   () =>
@@ -1001,12 +977,6 @@ const closeImportModal = () => {
   importModalOpen.value = false;
   csvFile.value = null;
   csvFileName.value = "";
-};
-
-const onAiQuestionsAppended = (count) => {
-  generateAiOpen.value = false;
-  toast.success(`${count} questions added.`);
-  refresh();
 };
 
 const importCsv = async () => {
