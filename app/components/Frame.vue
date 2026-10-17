@@ -52,13 +52,8 @@ const music = computed(() => getMusic());
 <template>
   <div class="flex min-h-[60vh] justify-center px-4 py-6 sm:px-6 sm:py-10">
     <div
-      class="jv-border-rough relative w-full max-w-[800px] -rotate-[0.4deg] bg-jv-white p-5 shadow-brutal-lg sm:p-8"
+      class="jv-border-rough relative w-full max-w-[800px] bg-jv-white p-5 shadow-soft-lg sm:p-8"
     >
-      <span
-        class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-        aria-hidden="true"
-      ></span>
-
       <div class="flex flex-row items-start gap-4">
         <div class="flex-1">
           <h1
@@ -78,14 +73,14 @@ const music = computed(() => getMusic());
         </div>
       </div>
 
-      <hr class="my-4 border-t-[2px] border-dashed border-jv-ink/25" />
+      <hr class="my-4 border-t border-dashed border-jv-line" />
 
       <slot></slot>
 
       <div v-if="props.musicComponent" class="mt-4 flex justify-end">
         <button
           type="button"
-          class="grid size-10 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+          class="grid size-10 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
           :aria-label="music ? 'Mute music' : 'Unmute music'"
           @click="setMusic(!music)"
         >

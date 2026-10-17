@@ -74,16 +74,11 @@ useSeoMeta({
       class="relative mx-auto flex w-full max-w-[640px] flex-col items-center"
     >
       <div
-        class="relative w-full -rotate-[0.6deg] jv-border-rough bg-jv-white p-6 shadow-brutal-lg sm:p-9"
+        class="relative w-full jv-border-rough bg-jv-white p-6 shadow-soft-lg sm:p-9"
       >
-        <span
-          class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[2deg] bg-jv-coral"
-          aria-hidden="true"
-        ></span>
-
         <div class="flex items-start gap-4">
           <span
-            class="grid size-12 shrink-0 rotate-[-3deg] place-items-center rounded-[10px] border-[2px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm sm:size-14"
+            class="grid size-12 shrink-0 place-items-center rounded-[10px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm sm:size-14"
             aria-hidden="true"
           >
             <AlertCircle class="size-6 sm:size-7" :stroke-width="2.4" />
@@ -102,7 +97,7 @@ useSeoMeta({
           </div>
         </div>
 
-        <hr class="my-5 border-t-[2px] border-dashed border-jv-ink/25" />
+        <hr class="my-5 border-t border-dashed border-jv-line" />
 
         <p
           class="font-body text-[14px] font-bold leading-relaxed text-jv-muted sm:text-[15px]"
@@ -117,7 +112,7 @@ useSeoMeta({
         >
           <NuxtLink
             to="/"
-            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
             aria-label="Return to home"
           >
             <Home class="size-4" :stroke-width="2.4" />
@@ -125,7 +120,7 @@ useSeoMeta({
           </NuxtLink>
           <NuxtLink
             to="/admin/quiz/list-quiz"
-            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
             aria-label="Go to my quizzes"
           >
             <Library class="size-4" :stroke-width="2.4" />

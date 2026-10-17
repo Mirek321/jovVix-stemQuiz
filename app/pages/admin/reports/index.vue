@@ -12,14 +12,14 @@
           Quiz Reports
         </h1>
         <div
-          class="ml-1 mt-1 h-3 w-40 rounded-full border-b-[3px] border-jv-yellow sm:ml-2 sm:w-48"
+          class="ml-1 mt-1 h-3 w-40 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-48"
           aria-hidden="true"
         ></div>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 items-center">
         <label
-          class="flex h-11 w-full sm:w-auto min-w-[200px] rotate-[1deg] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-brutal-sm sm:h-12 sm:px-4 cursor-pointer hover:bg-jv-white/80 transition-colors"
+          class="flex h-11 w-full sm:w-auto min-w-[200px] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-soft-sm sm:h-12 sm:px-4 cursor-pointer hover:bg-jv-white/80 transition-colors"
         >
           <Calendar
             class="size-5 shrink-0 text-jv-ink/40"
@@ -32,7 +32,7 @@
           />
         </label>
         <label
-          class="flex h-11 w-full sm:w-auto min-w-[220px] rotate-[-1deg] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-brutal-sm sm:h-12 sm:px-4 hover:bg-jv-white/80 transition-colors"
+          class="flex h-11 w-full sm:w-auto min-w-[220px] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-soft-sm sm:h-12 sm:px-4 hover:bg-jv-white/80 transition-colors"
         >
           <Search class="size-5 shrink-0 text-jv-ink/40" :stroke-width="2.4" />
           <input
@@ -48,7 +48,7 @@
     <!-- State: Pending -->
     <div
       v-if="quizListPending"
-      class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm mt-4"
+      class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm mt-4"
     >
       Loading...
     </div>
@@ -56,7 +56,7 @@
     <!-- State: Error -->
     <div
       v-else-if="quizListError"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm mt-4"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm mt-4"
     >
       Error while fetching data: {{ quizListError }}
     </div>
@@ -155,7 +155,7 @@
       <!-- No Data -->
       <div
         v-if="quizList?.data?.count <= 0"
-        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
         No quiz found.
       </div>
@@ -166,7 +166,7 @@
         v-else
         :key="index"
         role="button"
-        class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr] gap-4 items-center jv-border-rough bg-jv-white px-5 py-4 shadow-brutal-sm hover:translate-y-[-2px] hover:shadow-brutal-md transition-all cursor-pointer"
+        class="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr_1fr] gap-4 items-center jv-border-rough bg-jv-white px-5 py-4 shadow-soft-sm hover:translate-y-[-2px] hover:shadow-soft-md transition-all cursor-pointer"
         @click="viewReport(quiz.id)"
       >
         <!-- Quiz Name -->
@@ -248,7 +248,7 @@
             >Accuracy:</span
           >
           <div
-            class="inline-flex items-center justify-center px-3 py-1.5 jv-border-rough shadow-brutal-sm text-[16px] font-black min-w-[90px]"
+            class="inline-flex items-center justify-center px-3 py-1.5 jv-border-rough shadow-soft-sm text-[16px] font-black min-w-[90px]"
             :class="
               getAccuracyClass(
                 (quiz.correct_answers / (quiz.participants * quiz.questions)) *
@@ -371,8 +371,8 @@ watch(nameInput, (newName) => {
 
 const getAccuracyClass = (accuracy) => {
   if (isNaN(accuracy)) return "bg-jv-white text-jv-ink";
-  if (accuracy >= 60) return "bg-[#d1f4e0] text-[#1e5631]";
+  if (accuracy >= 60) return "bg-jv-mint text-jv-ink";
   if (accuracy >= 40) return "bg-jv-yellow text-jv-ink";
-  return "bg-jv-coral text-white";
+  return "bg-jv-lavender text-jv-ink";
 };
 </script>

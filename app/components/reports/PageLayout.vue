@@ -1,5 +1,5 @@
 <template>
-  <div class="border-b-2 border-jv-ink/15">
+  <div class="border-b border-jv-line">
     <div class="flex items-center gap-8">
       <button
         type="button"

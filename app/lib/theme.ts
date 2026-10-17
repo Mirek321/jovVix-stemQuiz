@@ -5,12 +5,21 @@
  * so that the source of truth stays single.
  */
 
+export const palette = {
+  primary: "var(--jv-primary)",
+  sky: "var(--jv-sky)",
+  violet: "var(--jv-violet)",
+  orange: "var(--jv-orange)",
+  mauve: "var(--jv-mauve)",
+} as const;
+
 export const colors = {
   canvas: "var(--jv-canvas)",
   white: "var(--jv-white)",
   slate: "var(--jv-slate)",
   ink: "var(--jv-ink)",
   ink2: "var(--jv-ink-2)",
+  line: "var(--jv-line)",
   muted: "var(--jv-muted)",
   coral: "var(--jv-coral)",
   yellow: "var(--jv-yellow)",
@@ -43,12 +52,13 @@ export const fonts = {
   body: "var(--font-body)",
   headings: "var(--font-headings)",
   feature: "var(--font-feature)",
+  display: "var(--font-display)",
 } as const;
 
 export const shadows = {
-  brutalSm: "var(--shadow-brutal-sm)",
-  brutal: "var(--shadow-brutal)",
-  brutalLg: "var(--shadow-brutal-lg)",
+  softSm: "var(--shadow-soft-sm)",
+  soft: "var(--shadow-soft)",
+  softLg: "var(--shadow-soft-lg)",
 } as const;
 
 export const radius = {
@@ -68,6 +78,7 @@ export function resolveCssVar(token: string): string {
 }
 
 export const theme = {
+  palette,
   colors,
   accentColors,
   statusColors,

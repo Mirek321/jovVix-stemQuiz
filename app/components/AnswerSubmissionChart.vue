@@ -37,15 +37,15 @@ const chartData = computed(() => {
         responses[option] = 0;
 
         if (props.options[option].isAnswer) {
-          backgroundColors.push("#17B169");
+          backgroundColors.push("#1f9d6b");
         } else {
-          backgroundColors.push("#fd5c63");
+          backgroundColors.push("#b291f3");
         }
         return responses;
       },
       { "Not Attempted": 0 }
     );
-    backgroundColors.push("#FFCC00");
+    backgroundColors.push("#ffaa22");
 
     const responses = props.responses?.reduce((acc, response) => {
       const { String: answer, Valid } = response.answers;

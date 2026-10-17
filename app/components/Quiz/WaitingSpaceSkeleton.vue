@@ -27,10 +27,10 @@ import { Skeleton } from "@/components/ui/skeleton";
         class="grid flex-1 gap-6 md:gap-7 xl:grid-cols-[minmax(0,1fr)_minmax(340px,0.95fr)] xl:items-stretch"
       >
         <div
-          class="relative flex min-h-0 rotate-[-0.4deg] flex-col overflow-hidden bg-jv-white shadow-brutal-sm jv-border-rough sm:shadow-brutal-lg xl:min-h-[640px]"
+          class="relative flex min-h-0 flex-col overflow-hidden bg-jv-white shadow-soft-sm jv-border-rough sm:shadow-soft-lg xl:min-h-[640px]"
         >
           <span
-            class="absolute left-1/2 top-[-2px] z-10 h-4 w-12 -translate-x-1/2 rotate-[-1deg] bg-jv-coral"
+            class="absolute left-1/2 top-[-2px] z-10 h-4 w-12 -translate-x-1/2 bg-jv-coral"
             aria-hidden="true"
           ></span>
 
@@ -42,7 +42,7 @@ import { Skeleton } from "@/components/ui/skeleton";
             </h2>
 
             <div
-              class="mt-4 flex flex-col gap-3 jv-border-rough bg-jv-white p-3 shadow-brutal-sm sm:flex-row sm:items-center sm:justify-between sm:p-4"
+              class="mt-4 flex flex-col gap-3 jv-border-rough bg-jv-white p-3 shadow-soft-sm sm:flex-row sm:items-center sm:justify-between sm:p-4"
             >
               <div
                 class="flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-1"
@@ -57,18 +57,18 @@ import { Skeleton } from "@/components/ui/skeleton";
                 />
               </div>
               <Skeleton
-                class="h-11 w-full shrink-0 rotate-[-1deg] rounded-[999px] border-[3px] border-jv-ink bg-jv-coral/40 shadow-brutal-sm sm:h-12 sm:w-[120px]"
+                class="h-11 w-full shrink-0 rounded-[999px] border border-jv-line bg-jv-coral/40 shadow-soft-sm sm:h-12 sm:w-[120px]"
               />
             </div>
           </div>
 
           <div class="flex flex-1 flex-col px-4 py-5 sm:px-8 sm:py-6 md:px-10">
             <div
-              class="-mt-11 flex flex-col gap-3 jv-border-rough bg-jv-white p-3 shadow-brutal-sm sm:-mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-4 sm:shadow-brutal"
+              class="-mt-11 flex flex-col gap-3 jv-border-rough bg-jv-white p-3 shadow-soft-sm sm:-mt-14 sm:flex-row sm:items-center sm:justify-between sm:p-4 sm:shadow-soft"
             >
               <div class="flex min-w-0 items-center gap-3 sm:gap-4">
                 <span
-                  class="grid size-10 shrink-0 place-items-center border-[2px] border-jv-ink bg-jv-mint text-jv-ink sm:size-11"
+                  class="grid size-10 shrink-0 place-items-center border border-jv-line bg-jv-mint text-jv-ink sm:size-11"
                 >
                   <Keyboard class="size-5" :stroke-width="2.2" />
                 </span>
@@ -86,7 +86,7 @@ import { Skeleton } from "@/components/ui/skeleton";
                 </div>
               </div>
               <Skeleton
-                class="h-11 w-full shrink-0 rotate-[-1deg] rounded-[999px] border-[3px] border-jv-ink bg-jv-coral/40 shadow-brutal-sm sm:h-12 sm:w-[120px]"
+                class="h-11 w-full shrink-0 rounded-[999px] border border-jv-line bg-jv-coral/40 shadow-soft-sm sm:h-12 sm:w-[120px]"
               />
             </div>
 
@@ -94,17 +94,17 @@ import { Skeleton } from "@/components/ui/skeleton";
               class="my-5 flex items-center justify-center gap-3 text-center font-body text-[11px] font-black uppercase tracking-[0.08em] text-jv-muted min-[420px]:text-[12px] sm:my-6 sm:gap-4 sm:text-[13px]"
             >
               <span
-                class="h-px min-w-8 flex-1 border-t-2 border-dashed border-jv-ink/40 sm:max-w-24"
+                class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
               <span class="shrink-0">Or scan QR code</span>
               <span
-                class="h-px min-w-8 flex-1 border-t-2 border-dashed border-jv-ink/40 sm:max-w-24"
+                class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
             </div>
 
             <div class="flex justify-center">
               <div
-                class="grid size-[176px] place-items-center bg-jv-white p-3 shadow-brutal-sm jv-border-rough min-[420px]:size-[196px] sm:size-[220px] sm:p-4 md:size-[240px]"
+                class="grid size-[176px] place-items-center bg-jv-white p-3 shadow-soft-sm jv-border-rough min-[420px]:size-[196px] sm:size-[220px] sm:p-4 md:size-[240px]"
               >
                 <Skeleton class="size-full rounded-none bg-jv-ink/10" />
               </div>
@@ -112,7 +112,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
             <div class="mt-auto pt-5 sm:pt-6">
               <Skeleton
-                class="mx-auto h-[52px] w-full max-w-[390px] rotate-[-1deg] rounded-[999px] border-[3px] border-jv-ink bg-jv-mint/50 shadow-brutal-sm sm:h-16"
+                class="mx-auto h-[52px] w-full max-w-[390px] rounded-[999px] border border-jv-line bg-jv-mint/50 shadow-soft-sm sm:h-16"
               />
               <p
                 class="mt-4 flex items-center justify-center gap-2 text-center font-body text-[12px] leading-[1.4] text-jv-muted sm:text-[13px]"
@@ -125,19 +125,14 @@ import { Skeleton } from "@/components/ui/skeleton";
         </div>
 
         <aside
-          class="relative flex min-h-0 rotate-[0.4deg] flex-col bg-jv-white px-4 py-6 shadow-brutal-sm jv-border-rough sm:px-8 sm:py-8 sm:shadow-brutal-lg md:px-10 xl:min-h-[640px]"
+          class="relative flex min-h-0 flex-col bg-jv-white px-4 py-6 shadow-soft-sm jv-border-rough sm:px-8 sm:py-8 sm:shadow-soft-lg md:px-10 xl:min-h-[640px]"
         >
-          <span
-            class="absolute left-1/2 top-[-10px] h-4 w-12 -translate-x-1/2 rotate-[1deg] bg-jv-salmon"
-            aria-hidden="true"
-          ></span>
-
           <div
             class="flex items-start justify-between gap-3 sm:items-center sm:gap-4"
           >
             <div class="flex min-w-0 items-center gap-3 sm:gap-4">
               <span
-                class="grid size-10 shrink-0 rotate-[-3deg] place-items-center jv-border-rough bg-jv-mint sm:size-12"
+                class="grid size-10 shrink-0 place-items-center jv-border-rough bg-jv-mint sm:size-12"
               >
                 <Users class="size-5 sm:size-6" :stroke-width="2.4" />
               </span>
@@ -148,36 +143,34 @@ import { Skeleton } from "@/components/ui/skeleton";
               </h2>
             </div>
             <Skeleton
-              class="size-11 shrink-0 rotate-[3deg] rounded-none border-[3px] border-jv-ink bg-jv-yellow/60 shadow-brutal-sm sm:size-14"
+              class="size-11 shrink-0 rounded-none border border-jv-line bg-jv-yellow/60 shadow-soft-sm sm:size-14"
             />
           </div>
 
-          <div
-            class="my-5 border-t-2 border-dashed border-jv-ink/20 sm:my-6"
-          ></div>
+          <div class="my-5 border-t border-dashed border-jv-line sm:my-6"></div>
 
           <div class="flex flex-col gap-3 sm:gap-4">
             <div
               v-for="i in 3"
               :key="i"
-              class="flex min-h-14 items-center justify-between gap-3 jv-border-rough bg-jv-white px-3 py-2 shadow-[2px_2px_0_#2D2D2D] sm:min-h-16"
+              class="flex min-h-14 items-center justify-between gap-3 jv-border-rough bg-jv-white px-3 py-2 shadow-soft-sm sm:min-h-16"
             >
               <div class="flex min-w-0 items-center gap-3">
                 <Skeleton
-                  class="size-9 shrink-0 rotate-[-2deg] rounded-none border-[2px] border-jv-ink bg-jv-ink/10 sm:size-10"
+                  class="size-9 shrink-0 rounded-none border border-jv-line bg-jv-ink/10 sm:size-10"
                 />
                 <Skeleton
                   class="h-[18px] w-[140px] rounded-[4px] bg-jv-ink/10 sm:h-[22px] sm:w-[180px]"
                 />
               </div>
               <Skeleton
-                class="size-8 shrink-0 rotate-[2deg] rounded-none border-[2px] border-jv-ink bg-jv-mint/40 sm:size-9"
+                class="size-8 shrink-0 rounded-none border border-jv-line bg-jv-mint/40 sm:size-9"
               />
             </div>
           </div>
 
           <div class="mt-auto pt-6 sm:pt-8">
-            <div class="border-t-2 border-jv-ink/15 pt-5 text-center sm:pt-6">
+            <div class="border-t border-jv-line pt-5 text-center sm:pt-6">
               <div class="mb-3 flex justify-center gap-2 sm:mb-4">
                 <span
                   class="size-2.5 rounded-full bg-jv-coral sm:size-3"

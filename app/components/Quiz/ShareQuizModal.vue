@@ -161,7 +161,7 @@ const deleteUserPermission = async (idVal) => {
     @update:model-value="emits('update:modelValue', $event)"
   >
     <div
-      class="mb-4 h-[3px] w-full rounded-full border-b-[3px] border-dashed border-jv-ink/30"
+      class="mb-4 h-[3px] w-full rounded-full border-b border-dashed border-jv-line"
       aria-hidden="true"
     ></div>
 
@@ -171,7 +171,7 @@ const deleteUserPermission = async (idVal) => {
 
     <div
       v-else-if="quizAuthorizedUsersError"
-      class="jv-border-rough flex items-start gap-3 border-[2px] border-jv-ink p-4 text-[15px] font-semibold"
+      class="jv-border-rough flex items-start gap-3 border border-jv-line p-4 text-[15px] font-semibold"
       :class="
         isPermissionDenied
           ? 'bg-jv-canvas text-jv-ink'
@@ -195,7 +195,7 @@ const deleteUserPermission = async (idVal) => {
           type="button"
           title="Add People"
           aria-label="Add people"
-          class="inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-3 py-1.5 text-[13px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[2deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none"
+          class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1.5 text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform"
           @click="component = 'give-permission'"
         >
           <UserPlus class="size-4" :stroke-width="2.6" />
@@ -241,7 +241,7 @@ const deleteUserPermission = async (idVal) => {
     <template #footer>
       <button
         type="button"
-        class="inline-flex h-10 items-center justify-center rounded-full border-[2px] border-jv-ink bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-11 sm:px-6 sm:text-[15px]"
+        class="inline-flex h-10 items-center justify-center rounded-full border border-jv-line bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-6 sm:text-[15px]"
         @click="close"
       >
         Done

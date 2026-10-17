@@ -92,7 +92,7 @@ const filterOptions = [
 const visibilityFilter = ref("Private");
 const visibilityOptions = ["Private", "Public"];
 
-const { coverUrl, fallbackUrl, tiltClass } = useQuizCover();
+const { coverUrl, fallbackUrl } = useQuizCover();
 
 const emptyState = computed(() => {
   if (selectedFilter.value === "My Quizzes") {
@@ -245,7 +245,6 @@ const quizzes = computed(() =>
     questionCount: quiz.total_questions || 0,
     image: coverUrl(quiz),
     fallback: fallbackUrl(quiz),
-    tiltClass: tiltClass(quiz),
     viewUrl: `/admin/quiz/list-quiz/${quiz.id}`,
     isPublic: !!quiz.is_public,
   }))
@@ -451,7 +450,7 @@ const handleCreateQuiz = async () => {
           Quiz List
         </h1>
         <div
-          class="ml-1 mt-1 h-3 w-24 rounded-full border-b-[3px] border-jv-yellow sm:ml-2 sm:w-28"
+          class="ml-1 mt-1 h-3 w-24 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-28"
           aria-hidden="true"
         ></div>
       </div>
@@ -471,7 +470,7 @@ const handleCreateQuiz = async () => {
         <div ref="filterMenuRef" class="relative w-full sm:w-fit">
           <button
             type="button"
-            class="inline-flex h-11 w-full rotate-[-1deg] items-center justify-between gap-2 jv-border-rough bg-jv-white px-3 text-[16px] font-semibold text-jv-ink shadow-brutal-sm sm:h-12 sm:w-fit sm:justify-start sm:px-4 sm:text-[18px]"
+            class="inline-flex h-11 w-full items-center justify-between gap-2 jv-border-rough bg-jv-white px-3 text-[16px] font-semibold text-jv-ink shadow-soft-sm sm:h-12 sm:w-fit sm:justify-start sm:px-4 sm:text-[18px]"
             :aria-expanded="filterOpen"
             aria-haspopup="listbox"
             @click="filterOpen = !filterOpen"
@@ -492,7 +491,7 @@ const handleCreateQuiz = async () => {
 
           <div
             v-if="filterOpen"
-            class="absolute left-0 top-[52px] z-30 w-full min-w-[190px] rotate-[1deg] jv-border-rough bg-jv-white p-2 shadow-brutal-sm sm:top-14 sm:w-52"
+            class="absolute left-0 top-[52px] z-30 w-full min-w-[190px] jv-border-rough bg-jv-white p-2 shadow-soft-sm sm:top-14 sm:w-52"
             role="listbox"
           >
             <button
@@ -511,7 +510,7 @@ const handleCreateQuiz = async () => {
         </div>
 
         <div
-          class="flex h-11 w-full items-center gap-1 rotate-[0.6deg] jv-border-rough bg-jv-white p-1 shadow-brutal-sm sm:h-12 sm:w-fit"
+          class="flex h-11 w-full items-center gap-1 jv-border-rough bg-jv-white p-1 shadow-soft-sm sm:h-12 sm:w-fit"
           role="group"
           aria-label="Filter by visibility"
         >
@@ -531,7 +530,7 @@ const handleCreateQuiz = async () => {
       </div>
 
       <label
-        class="flex h-11 min-w-0 rotate-[1deg] items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-brutal-sm sm:h-12 sm:gap-3 sm:px-4"
+        class="flex h-11 min-w-0 items-center gap-2.5 jv-border-rough bg-jv-white px-3 shadow-soft-sm sm:h-12 sm:gap-3 sm:px-4"
       >
         <Search class="size-5 shrink-0 text-jv-ink/40" :stroke-width="2.4" />
         <input
@@ -547,7 +546,7 @@ const handleCreateQuiz = async () => {
 
     <div
       v-else-if="quizError"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
     >
       {{ quizError.message }}
     </div>
@@ -580,7 +579,7 @@ const handleCreateQuiz = async () => {
 
     <section
       v-else-if="filteredQuizzes.length < 1"
-      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+      class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-muted shadow-soft-sm"
     >
       {{ noResultsMessage }}
     </section>
@@ -597,7 +596,6 @@ const handleCreateQuiz = async () => {
         :question-count="quiz.questionCount"
         :image="quiz.image"
         :fallback="quiz.fallback"
-        :tilt-class="quiz.tiltClass"
         :view-url="quiz.viewUrl"
         :starting="startingQuizId === quiz.id"
         @start-quiz="handleStartQuiz(quiz.id)"
@@ -613,11 +611,11 @@ const handleCreateQuiz = async () => {
         @click.self="closeCreateQuizModal"
       >
         <form
-          class="w-full max-w-[680px] rotate-[-0.4deg] border-[4px] border-jv-ink bg-jv-white shadow-brutal-lg"
+          class="w-full max-w-[680px] border-[4px] border-jv-line bg-jv-white shadow-soft-lg"
           @submit.prevent="handleCreateQuiz"
         >
           <div
-            class="flex items-center justify-between gap-4 border-b-[3px] border-jv-ink bg-jv-ink px-5 py-4 text-jv-white sm:px-6"
+            class="flex items-center justify-between gap-4 border-b border-jv-line bg-jv-ink px-5 py-4 text-jv-white sm:px-6"
           >
             <h2
               class="font-body text-[24px] font-black leading-none text-jv-white sm:text-[28px]"
@@ -626,7 +624,7 @@ const handleCreateQuiz = async () => {
             </h2>
             <button
               type="button"
-              class="grid size-9 place-items-center text-jv-white transition-transform hover:rotate-[6deg]"
+              class="grid size-9 place-items-center text-jv-white transition-transform"
               aria-label="Close create quiz modal"
               @click="closeCreateQuizModal"
             >
@@ -644,7 +642,7 @@ const handleCreateQuiz = async () => {
               <input
                 v-model.trim="createQuizForm.title"
                 type="text"
-                class="h-14 border-[3px] border-jv-ink bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm"
+                class="h-14 border border-jv-line bg-jv-canvas px-4 text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
               />
             </label>
 
@@ -658,7 +656,7 @@ const handleCreateQuiz = async () => {
                 v-model.trim="createQuizForm.description"
                 maxlength="150"
                 rows="5"
-                class="resize-none border-[3px] border-jv-ink bg-jv-canvas px-4 py-3 text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm"
+                class="resize-none border border-jv-line bg-jv-canvas px-4 py-3 text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
               ></textarea>
             </label>
 
@@ -696,7 +694,7 @@ const handleCreateQuiz = async () => {
                 </span>
                 <select
                   v-model="createQuizForm.category_id"
-                  class="h-14 border-[3px] border-jv-ink bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm"
+                  class="h-14 border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
                 >
                   <option value="">No category (shows under "Other")</option>
                   <option
@@ -717,7 +715,7 @@ const handleCreateQuiz = async () => {
                 </span>
                 <label
                   v-if="!createQuizForm.cover_image"
-                  class="flex h-14 cursor-pointer items-center justify-center gap-2 border-[3px] border-dashed border-jv-ink/40 bg-jv-canvas px-4 text-[15px] font-semibold text-jv-muted transition-colors hover:bg-jv-yellow/20"
+                  class="flex h-14 cursor-pointer items-center justify-center gap-2 border border-dashed border-jv-line bg-jv-canvas px-4 text-[15px] font-semibold text-jv-muted transition-colors hover:bg-jv-yellow/20"
                 >
                   <ImageIcon class="size-4 shrink-0" :stroke-width="2.3" />
                   <span class="truncate">{{
@@ -733,12 +731,12 @@ const handleCreateQuiz = async () => {
                 </label>
                 <div
                   v-else
-                  class="flex h-14 items-center gap-3 border-[3px] border-jv-ink bg-jv-canvas px-3"
+                  class="flex h-14 items-center gap-3 border border-jv-line bg-jv-canvas px-3"
                 >
                   <NuxtImg
                     :src="createQuizForm.cover_image"
                     alt="Cover image preview"
-                    class="h-10 w-14 shrink-0 border-2 border-jv-ink object-cover"
+                    class="h-10 w-14 shrink-0 border border-jv-line object-cover"
                   />
                   <span
                     class="min-w-0 flex-1 truncate text-[14px] font-semibold text-jv-ink"
@@ -759,7 +757,7 @@ const handleCreateQuiz = async () => {
           </div>
 
           <div
-            class="flex flex-col-reverse gap-3 border-t-[3px] border-jv-ink bg-jv-canvas px-5 py-4 sm:flex-row sm:justify-end sm:px-8"
+            class="flex flex-col-reverse gap-3 border-t border-jv-line bg-jv-canvas px-5 py-4 sm:flex-row sm:justify-end sm:px-8"
           >
             <NavigationLink
               url-name="Cancel"

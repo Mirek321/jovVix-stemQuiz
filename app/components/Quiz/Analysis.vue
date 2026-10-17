@@ -41,15 +41,10 @@ const questionsAnalysis = computed(() => {
         v-for="(quiz, index) in questionsAnalysis"
         :key="quiz?.question_id || index"
         :class="[
-          'relative jv-border-rough bg-jv-white p-5 shadow-brutal sm:p-6',
-          index % 2 === 0 ? '-rotate-[0.3deg]' : 'rotate-[0.3deg]',
+          'relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-6',
+          index % 2 === 0 ? '' : '',
         ]"
       >
-        <span
-          class="absolute left-1/2 top-[-10px] z-10 h-3.5 w-14 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-          aria-hidden="true"
-        ></span>
-
         <QuizQuestionAnalysis :question="quiz" :order="index + 1" />
         <QuizOptionsAnalysis
           :options="quiz?.options"
@@ -62,7 +57,7 @@ const questionsAnalysis = computed(() => {
 
     <div
       v-else
-      class="mx-auto mt-3 flex w-fit items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
+      class="mx-auto mt-3 flex w-fit items-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
     >
       <span class="size-2 rounded-full bg-jv-ink/30" aria-hidden="true"></span>
       No question data

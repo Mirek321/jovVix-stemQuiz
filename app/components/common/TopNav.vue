@@ -9,16 +9,21 @@
     >
       <NuxtLink
         to="/"
-        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline w-[120px] lg:w-[150px] h-auto"
+        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline h-auto"
       >
         <NuxtImg
-          src="/images/jovvix-logo.png"
-          alt="jovVix"
-          width="150"
-          height="61"
-          sizes="120px lg:150px"
+          src="/images/stem-logo.png"
+          alt=""
+          class="w-11 shrink-0 lg:w-12"
+          width="56"
+          height="56"
+          sizes="48px lg:56px"
           preload
         />
+        <span
+          class="font-headings text-[18px] font-extrabold leading-none tracking-[0.02em] text-jv-ink whitespace-nowrap lg:text-[20px]"
+          >STEM_HUB</span
+        >
       </NuxtLink>
 
       <ul

@@ -1,6 +1,6 @@
 <template>
   <form
-    class="jv-border-rough bg-jv-white p-4 shadow-brutal-sm sm:p-5 lg:p-6"
+    class="jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5 lg:p-6"
     @submit.prevent="submitForm"
   >
     <div
@@ -21,7 +21,7 @@
 
       <select
         v-model.number="form.type"
-        class="h-10 rounded-md border border-jv-ink/30 bg-jv-white px-3 text-[14px] font-semibold text-jv-ink outline-none focus:border-jv-ink"
+        class="h-10 rounded-md border border-jv-line bg-jv-white px-3 text-[14px] font-semibold text-jv-ink outline-none focus:border-jv-line"
       >
         <option :value="1">Multiple Choice</option>
         <option :value="2">Survey</option>
@@ -39,7 +39,7 @@
         type="text"
         required
         placeholder="Enter question..."
-        class="h-11 w-full rounded-md border border-jv-ink/30 bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-ink focus:shadow-brutal-sm"
+        class="h-11 w-full rounded-md border border-jv-line bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-line focus:shadow-soft-sm"
       />
 
       <div class="flex flex-wrap items-center gap-1.5 pt-1">
@@ -50,8 +50,8 @@
           type="button"
           :class="
             form.question_media === choice.value
-              ? 'border-jv-ink bg-jv-ink text-jv-white'
-              : 'border-jv-ink/25 bg-jv-white text-jv-muted hover:border-jv-ink/60 hover:text-jv-ink'
+              ? 'border-jv-line bg-jv-ink text-jv-white'
+              : 'border-jv-line bg-jv-white text-jv-muted hover:border-jv-line hover:text-jv-ink'
           "
           @click="form.question_media = choice.value"
         >
@@ -65,12 +65,12 @@
         v-model="form.resource"
         rows="5"
         placeholder="Enter code..."
-        class="mt-1 w-full resize-none rounded-md border border-jv-ink/30 bg-jv-canvas px-3 py-2 font-mono text-[14px] text-jv-ink outline-none focus:border-jv-ink focus:shadow-brutal-sm"
+        class="mt-1 w-full resize-none rounded-md border border-jv-line bg-jv-canvas px-3 py-2 font-mono text-[14px] text-jv-ink outline-none focus:border-jv-line focus:shadow-soft-sm"
       ></textarea>
 
       <label
         v-else-if="form.question_media === 'image'"
-        class="mt-1 flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-md border border-dashed border-jv-ink/35 bg-jv-canvas px-3 py-3 text-[14px] font-medium text-jv-muted transition-colors hover:bg-jv-yellow/20"
+        class="mt-1 flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-md border border-dashed border-jv-line bg-jv-canvas px-3 py-3 text-[14px] font-medium text-jv-muted transition-colors hover:bg-jv-yellow/20"
       >
         <ImageIcon class="size-4" :stroke-width="2.3" />
         <span>{{
@@ -103,8 +103,8 @@
             type="button"
             :class="
               form.options_media === choice.value
-                ? 'border-jv-ink bg-jv-ink text-jv-white'
-                : 'border-jv-ink/25 bg-jv-white text-jv-muted hover:border-jv-ink/60 hover:text-jv-ink'
+                ? 'border-jv-line bg-jv-ink text-jv-white'
+                : 'border-jv-line bg-jv-white text-jv-muted hover:border-jv-line hover:text-jv-ink'
             "
             @click="form.options_media = choice.value"
           >
@@ -118,7 +118,7 @@
         <div
           v-for="key in optionKeys"
           :key="key"
-          class="flex min-w-0 items-center gap-3 border-b border-jv-ink/10 py-2.5 pl-2 pr-1 last:border-b-0"
+          class="flex min-w-0 items-center gap-3 border-b border-jv-line py-2.5 pl-2 pr-1 last:border-b-0"
           :class="
             form.type === 1 && Number(key) === Number(correctAnswer)
               ? 'border-l-4 border-l-jv-accent-green bg-jv-accent-green/25 pl-1'
@@ -144,7 +144,7 @@
             type="text"
             :required="Number(key) <= 2"
             :placeholder="`Option ${optionLetter(key)}`"
-            class="h-10 w-full min-w-0 flex-1 rounded-md border border-jv-ink/25 bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-ink focus:shadow-brutal-sm"
+            class="h-10 w-full min-w-0 flex-1 rounded-md border border-jv-line bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-line focus:shadow-soft-sm"
           />
 
           <textarea
@@ -152,12 +152,12 @@
             v-model="form.options[key]"
             rows="2"
             :placeholder="`Code for option ${optionLetter(key)}`"
-            class="min-w-0 flex-1 resize-none rounded-md border border-jv-ink/25 bg-jv-white px-3 py-2 font-mono text-[13px] text-jv-ink outline-none focus:border-jv-ink focus:shadow-brutal-sm"
+            class="min-w-0 flex-1 resize-none rounded-md border border-jv-line bg-jv-white px-3 py-2 font-mono text-[13px] text-jv-ink outline-none focus:border-jv-line focus:shadow-soft-sm"
           ></textarea>
 
           <label
             v-else
-            class="flex h-10 min-w-0 flex-1 cursor-pointer items-center gap-2 rounded-md border border-dashed border-jv-ink/30 bg-jv-white px-3 text-[13px] font-medium text-jv-muted focus-within:shadow-brutal-sm hover:bg-jv-yellow/10"
+            class="flex h-10 min-w-0 flex-1 cursor-pointer items-center gap-2 rounded-md border border-dashed border-jv-line bg-jv-white px-3 text-[13px] font-medium text-jv-muted focus-within:shadow-soft-sm hover:bg-jv-yellow/10"
           >
             <ImageIcon class="size-4 shrink-0" :stroke-width="2.3" />
             <span class="truncate">{{

@@ -91,7 +91,7 @@ defineExpose({ open, close });
         <button
           type="button"
           aria-label="Close fullscreen"
-          class="absolute right-4 top-4 grid size-12 -rotate-3 place-items-center rounded-[10px] border-[3px] border-jv-ink bg-jv-coral text-white shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:right-6 sm:top-6 sm:size-14"
+          class="absolute right-4 top-4 grid size-12 place-items-center rounded-[10px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform sm:right-6 sm:top-6 sm:size-14"
           @click.stop="close"
         >
           <X class="size-6 sm:size-7" :stroke-width="2.6" />
@@ -107,7 +107,7 @@ defineExpose({ open, close });
             Scan to join
           </p>
           <div
-            class="qr-card-fullscreen grid place-items-center bg-jv-white p-4 shadow-brutal-lg jv-border-rough sm:p-6"
+            class="qr-card-fullscreen grid place-items-center bg-jv-white p-4 shadow-soft-lg jv-border-rough sm:p-6"
           >
             <QrCode
               :scan-u-r-l="joinUrl"
@@ -120,7 +120,7 @@ defineExpose({ open, close });
             class="flex flex-wrap items-center justify-center gap-3 text-center sm:gap-5"
           >
             <div
-              class="flex flex-col items-center gap-1 jv-border-rough bg-jv-white px-4 py-2 shadow-brutal-sm sm:px-6 sm:py-3"
+              class="flex flex-col items-center gap-1 jv-border-rough bg-jv-white px-4 py-2 shadow-soft-sm sm:px-6 sm:py-3"
             >
               <span
                 class="font-body text-[10px] font-black uppercase tracking-[0.14em] text-jv-muted sm:text-[12px]"
@@ -134,7 +134,7 @@ defineExpose({ open, close });
               </span>
             </div>
             <div
-              class="flex flex-col items-center gap-1 jv-border-rough bg-jv-white px-4 py-2 shadow-brutal-sm sm:px-6 sm:py-3"
+              class="flex flex-col items-center gap-1 jv-border-rough bg-jv-white px-4 py-2 shadow-soft-sm sm:px-6 sm:py-3"
             >
               <span
                 class="font-body text-[10px] font-black uppercase tracking-[0.14em] text-jv-muted sm:text-[12px]"

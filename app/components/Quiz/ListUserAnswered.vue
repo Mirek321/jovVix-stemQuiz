@@ -82,7 +82,7 @@ const chipAccents = [
   >
     <div
       v-if="answeredCount === 0"
-      class="inline-flex items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:gap-2.5 sm:px-5 sm:py-2.5 sm:text-[14px]"
+      class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:gap-2.5 sm:px-5 sm:py-2.5 sm:text-[14px]"
     >
       <span
         class="size-2 shrink-0 rounded-full bg-jv-ink/30 sm:size-2.5"
@@ -93,10 +93,10 @@ const chipAccents = [
 
     <div v-else class="flex flex-col items-center gap-5 sm:gap-6">
       <div
-        class="inline-flex items-center gap-3 -rotate-[0.4deg] jv-border-rough bg-jv-white px-4 py-2.5 shadow-brutal-sm sm:gap-4 sm:px-5 sm:py-3"
+        class="inline-flex items-center gap-3 jv-border-rough bg-jv-white px-4 py-2.5 shadow-soft-sm sm:gap-4 sm:px-5 sm:py-3"
       >
         <span
-          class="grid size-9 shrink-0 rotate-[-3deg] place-items-center border-[3px] border-jv-ink bg-jv-mint sm:size-11"
+          class="grid size-9 shrink-0 place-items-center border border-jv-line bg-jv-mint sm:size-11"
         >
           <Users class="size-4 sm:size-5" :stroke-width="2.4" />
         </span>
@@ -116,13 +116,13 @@ const chipAccents = [
           v-for="(user, index) in usersSubmittedAnswers"
           :key="user.UserId || user.username || index"
           :class="[
-            'flex items-center gap-3 border-[3px] border-jv-ink px-3 py-2 shadow-brutal-sm sm:gap-3 sm:px-4 sm:py-2.5',
+            'flex items-center gap-3 border border-jv-line px-3 py-2 shadow-soft-sm sm:gap-3 sm:px-4 sm:py-2.5',
             chipAccents[index % chipAccents.length],
-            index % 2 === 0 ? 'rotate-[-0.6deg]' : 'rotate-[0.6deg]',
+            index % 2 === 0 ? '' : '',
           ]"
         >
           <span
-            class="grid size-10 shrink-0 place-items-center overflow-hidden rounded-full border-[2px] border-jv-ink bg-jv-white sm:size-11"
+            class="grid size-10 shrink-0 place-items-center overflow-hidden rounded-full border border-jv-line bg-jv-white sm:size-11"
           >
             <NuxtImg
               :src="getAvatarUrlByName(user?.img_key)"
@@ -147,7 +147,7 @@ const chipAccents = [
             </span>
           </div>
           <span
-            class="grid size-7 shrink-0 rotate-[3deg] place-items-center rounded-full border-[2px] border-jv-ink bg-jv-mint sm:size-8"
+            class="grid size-7 shrink-0 place-items-center rounded-full border border-jv-line bg-jv-mint sm:size-8"
             aria-label="Answered"
           >
             <Check class="size-4" :stroke-width="2.8" />

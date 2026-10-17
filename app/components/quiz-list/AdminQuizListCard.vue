@@ -1,14 +1,8 @@
 <template>
   <article
-    class="group relative flex min-h-[360px] w-full max-w-[260px] flex-col bg-jv-white p-3.5 shadow-brutal-sm jv-border-rough"
-    :class="tiltClass"
+    class="group relative flex min-h-[360px] w-full max-w-[260px] flex-col bg-jv-white p-3.5 shadow-soft-sm jv-border-rough"
   >
-    <span
-      class="absolute left-1/2 top-[-13px] h-4 w-8 -translate-x-1/2 rotate-[-2deg] bg-jv-salmon opacity-90"
-      aria-hidden="true"
-    ></span>
-
-    <div class="relative border-[2px] border-jv-ink bg-jv-slate p-1.5">
+    <div class="relative border border-jv-line bg-jv-slate p-1.5">
       <div class="relative aspect-[5/4] overflow-hidden">
         <QuizCoverImage
           :src="image"
@@ -33,7 +27,7 @@
       <button
         v-if="showActions"
         type="button"
-        class="grid size-7 shrink-0 place-items-center border-2 border-jv-ink bg-jv-white text-jv-ink shadow-[1px_1px_0_#2D2D2D] transition-transform hover:rotate-[3deg]"
+        class="grid size-7 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
         aria-label="Open quiz actions"
         :aria-expanded="actionsOpen"
         @click="toggleActionsMenu"
@@ -43,11 +37,11 @@
 
       <div
         v-if="showActions && actionsOpen"
-        class="absolute right-0 top-9 z-20 w-32 rotate-[1deg] border-[3px] border-jv-ink bg-jv-yellow p-2 shadow-brutal-sm jv-card"
+        class="absolute right-0 top-9 z-20 w-32 border border-jv-line bg-jv-yellow p-2 shadow-soft-sm jv-card"
       >
         <button
           type="button"
-          class="flex w-full items-center gap-2 border-b border-dashed border-jv-ink/25 px-1 py-2 text-left text-[14px] font-bold transition-colors hover:text-jv-coral"
+          class="flex w-full items-center gap-2 border-b border-dashed border-jv-line px-1 py-2 text-left text-[14px] font-bold transition-colors hover:text-jv-coral"
           @click="handleShare"
         >
           <Share2 class="size-4" :stroke-width="2.4" />
@@ -64,7 +58,7 @@
       </div>
     </div>
     <div
-      class="mt-3 flex items-center justify-between gap-2 border-y border-dashed border-jv-ink/20 py-2.5 text-[12px] leading-none text-jv-muted"
+      class="mt-3 flex items-center justify-between gap-2 border-y border-dashed border-jv-line py-2.5 text-[12px] leading-none text-jv-muted"
     >
       <span class="truncate">{{ createdAt }}</span>
       <span class="inline-flex shrink-0 items-center gap-1">
@@ -118,10 +112,6 @@ defineProps({
     default: "",
   },
   fallback: {
-    type: String,
-    default: "",
-  },
-  tiltClass: {
     type: String,
     default: "",
   },

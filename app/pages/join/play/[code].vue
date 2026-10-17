@@ -289,11 +289,11 @@ onBeforeUnmount(() => {
         class="flex justify-center px-3 pt-3 sm:px-6 sm:pt-4 md:px-10"
       >
         <div
-          class="inline-flex max-w-full items-center gap-3 rotate-[-0.4deg] jv-border-rough bg-jv-white px-3 py-2 shadow-brutal-sm sm:gap-4 sm:px-5 sm:py-2.5"
+          class="inline-flex max-w-full items-center gap-3 jv-border-rough bg-jv-white px-3 py-2 shadow-soft-sm sm:gap-4 sm:px-5 sm:py-2.5"
           :title="quizTitle"
         >
           <span
-            class="grid size-9 shrink-0 rotate-[2deg] place-items-center rounded-full border-[2px] border-jv-ink bg-jv-yellow text-jv-ink sm:size-10"
+            class="grid size-9 shrink-0 place-items-center rounded-full border border-jv-line bg-jv-yellow text-jv-ink sm:size-10"
             aria-hidden="true"
           >
             <span class="text-[16px] font-black sm:text-[18px]">Q</span>
@@ -350,8 +350,8 @@ onBeforeUnmount(() => {
 <style scoped>
 .top-bar-red,
 .top-bar-green {
-  background-color: #e41d3b;
-  color: #000000;
+  background-color: var(--jv-accent-red);
+  color: var(--jv-white);
   padding: 10px 0;
   text-align: center;
   opacity: 1;
@@ -360,7 +360,7 @@ onBeforeUnmount(() => {
 }
 
 .top-bar-green {
-  background-color: green;
+  background-color: var(--jv-accent-green);
 }
 
 .text-inside-bar {

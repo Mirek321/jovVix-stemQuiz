@@ -59,7 +59,7 @@ const handleSubmit = () => {
 
 <template>
   <form
-    class="mt-2 jv-border-rough border-[3px] border-jv-ink bg-jv-canvas p-4 shadow-brutal-sm sm:p-5"
+    class="mt-2 jv-border-rough border border-jv-line bg-jv-canvas p-4 shadow-soft-sm sm:p-5"
     @submit.prevent="handleSubmit"
   >
     <h3
@@ -82,7 +82,7 @@ const handleSubmit = () => {
         name="identifier"
         required
         :disabled="props.id !== ''"
-        class="h-12 border-[3px] border-jv-ink bg-jv-white px-3 text-[15px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm disabled:cursor-not-allowed disabled:opacity-60"
+        class="h-12 border border-jv-line bg-jv-white px-3 text-[15px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm disabled:cursor-not-allowed disabled:opacity-60"
       />
     </label>
 
@@ -96,7 +96,7 @@ const handleSubmit = () => {
       <select
         v-model="permission"
         required
-        class="h-12 border-[3px] border-jv-ink bg-jv-white px-3 text-[15px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm"
+        class="h-12 border border-jv-line bg-jv-white px-3 text-[15px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
       >
         <option value="" disabled>Select permission level</option>
         <option value="read">Read</option>
@@ -108,7 +108,7 @@ const handleSubmit = () => {
     <!-- Submit -->
     <button
       type="submit"
-      class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-coral px-5 font-body text-[15px] font-black text-white shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+      class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-5 font-body text-[15px] font-black text-white shadow-soft-sm transition-transform"
     >
       <Send class="size-4" :stroke-width="2.4" />
       {{ props.id ? "Update Access" : "Share Quiz" }}

@@ -49,7 +49,7 @@ watch(
         <div
           v-if="quizError"
           role="alert"
-          class="jv-border-rough flex items-start gap-3 border-2 border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
+          class="jv-border-rough flex items-start gap-3 border border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
         >
           <AlertTriangle
             class="mt-0.5 size-5 shrink-0 text-jv-coral"
@@ -60,7 +60,7 @@ watch(
 
         <div
           v-else-if="quizPending"
-          class="jv-border-rough flex items-center justify-center gap-3 border-2 border-jv-ink bg-jv-white p-8 font-body text-jv-muted shadow-brutal-sm"
+          class="jv-border-rough flex items-center justify-center gap-3 border border-jv-line bg-jv-white p-8 font-body text-jv-muted shadow-soft-sm"
         >
           <span
             class="size-3 animate-pulse rounded-full bg-jv-coral"

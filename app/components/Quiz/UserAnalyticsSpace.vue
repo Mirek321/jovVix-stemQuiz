@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
   <!-- Participant card -->
   <button
     type="button"
-    class="w-full text-left jv-border-rough bg-jv-white p-5 sm:p-6 shadow-brutal-sm transition-transform hover:translate-y-[-2px] hover:shadow-brutal cursor-pointer"
+    class="w-full text-left jv-border-rough bg-jv-white p-5 sm:p-6 shadow-soft-sm transition-transform hover:translate-y-[-2px] hover:shadow-soft cursor-pointer"
     @click="isOpen = true"
   >
     <!-- Top row: avatar + name | stats -->
@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
           :alt="props.data[0].firstname"
           width="56"
           height="56"
-          class="size-14 shrink-0 rounded-full border-[3px] border-jv-ink bg-jv-slate object-cover shadow-brutal-sm"
+          class="size-14 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover shadow-soft-sm"
         />
         <div class="min-w-0">
           <div
@@ -248,11 +248,11 @@ onBeforeUnmount(() => {
       <div class="absolute inset-0 bg-jv-ink/60" @click="isOpen = false"></div>
 
       <div
-        class="relative z-10 flex max-h-[92vh] w-full max-w-[1000px] rotate-[-0.4deg] flex-col border-[4px] border-jv-ink bg-jv-white shadow-brutal-lg"
+        class="relative z-10 flex max-h-[92vh] w-full max-w-[1000px] flex-col border-[4px] border-jv-line bg-jv-white shadow-soft-lg"
       >
         <!-- Dark header -->
         <div
-          class="flex flex-col gap-4 border-b-[3px] border-jv-ink bg-jv-ink px-5 py-4 text-jv-white sm:flex-row sm:items-center sm:justify-between sm:px-6"
+          class="flex flex-col gap-4 border-b border-jv-line bg-jv-ink px-5 py-4 text-jv-white sm:flex-row sm:items-center sm:justify-between sm:px-6"
         >
           <div class="flex items-center gap-3 min-w-0">
             <NuxtImg
@@ -260,7 +260,7 @@ onBeforeUnmount(() => {
               :alt="props.data[0].firstname"
               width="48"
               height="48"
-              class="size-12 shrink-0 rounded-full border-[2px] border-jv-white/30 bg-jv-slate object-cover"
+              class="size-12 shrink-0 rounded-full border border-jv-white/30 bg-jv-slate object-cover"
             />
             <div class="min-w-0">
               <h2
@@ -278,7 +278,7 @@ onBeforeUnmount(() => {
           </div>
 
           <div
-            class="grid grid-cols-3 gap-x-5 gap-y-2 border-[3px] border-jv-white/20 bg-jv-ink/60 px-4 py-2 sm:gap-x-7"
+            class="grid grid-cols-3 gap-x-5 gap-y-2 border border-jv-white/20 bg-jv-ink/60 px-4 py-2 sm:gap-x-7"
           >
             <div>
               <div
@@ -314,7 +314,7 @@ onBeforeUnmount(() => {
 
           <button
             type="button"
-            class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform hover:rotate-[6deg] sm:hidden"
+            class="absolute right-3 top-3 grid size-9 place-items-center text-jv-white transition-transform sm:hidden"
             aria-label="Close"
             @click="isOpen = false"
           >
@@ -330,7 +330,7 @@ onBeforeUnmount(() => {
             <article
               v-for="(quiz, index) in userQuestions"
               :key="index"
-              class="jv-border-rough bg-jv-white p-4 shadow-brutal-sm sm:p-5"
+              class="jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5"
             >
               <!-- Header -->
               <div
@@ -401,7 +401,7 @@ onBeforeUnmount(() => {
                 <li
                   v-for="(option, key) in quiz.options"
                   :key="key"
-                  class="flex min-w-0 items-center gap-3 border-b border-jv-ink/10 py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
+                  class="flex min-w-0 items-center gap-3 border-b border-jv-line py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
                   :class="optionRowClass(quiz, key)"
                 >
                   <span
@@ -437,7 +437,7 @@ onBeforeUnmount(() => {
 
             <div
               v-if="!userQuestions.length"
-              class="jv-border-rough bg-jv-white p-5 text-center text-[16px] font-semibold text-jv-muted shadow-brutal-sm"
+              class="jv-border-rough bg-jv-white p-5 text-center text-[16px] font-semibold text-jv-muted shadow-soft-sm"
             >
               No questions found for this participant.
             </div>

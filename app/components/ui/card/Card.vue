@@ -8,7 +8,6 @@ interface Props {
   tone?: CardVariants["tone"];
   shadow?: CardVariants["shadow"];
   padding?: CardVariants["padding"];
-  tilt?: CardVariants["tilt"];
   as?: string;
   class?: HTMLAttributes["class"];
 }
@@ -18,7 +17,6 @@ const props = withDefaults(defineProps<Props>(), {
   tone: "white",
   shadow: "md",
   padding: "md",
-  tilt: "none",
   as: "div",
   class: undefined,
 });
@@ -35,7 +33,6 @@ const props = withDefaults(defineProps<Props>(), {
           tone: props.tone,
           shadow: props.shadow,
           padding: props.padding,
-          tilt: props.tilt,
         }),
         props.class
       )

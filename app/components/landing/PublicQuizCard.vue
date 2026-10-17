@@ -1,18 +1,12 @@
 <template>
   <button
     type="button"
-    class="relative flex w-full cursor-pointer flex-col bg-jv-white p-3 text-left shadow-brutal-sm jv-border-rough transition-transform duration-150 hover:-translate-y-1 hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-jv-coral/40 disabled:cursor-wait disabled:opacity-70"
-    :class="tiltClass"
+    class="relative flex w-full cursor-pointer flex-col bg-jv-white p-3 text-left shadow-soft-sm jv-border-rough transition-transform duration-150 hover:-translate-y-1 hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-jv-coral/40 disabled:cursor-wait disabled:opacity-70"
     :disabled="starting"
     :aria-label="`Start quiz: ${title}`"
     @click="$emit('start-quiz')"
   >
-    <span
-      class="absolute left-1/2 top-[-13px] h-4 w-8 -translate-x-1/2 rotate-[-2deg] bg-jv-salmon opacity-90"
-      aria-hidden="true"
-    ></span>
-
-    <span class="relative block border-[2px] border-jv-ink bg-jv-slate p-2">
+    <span class="relative block border border-jv-line bg-jv-slate p-2">
       <span class="block h-[118px] overflow-hidden sm:h-[128px]">
         <QuizCoverImage
           :src="image"
@@ -53,10 +47,6 @@ defineProps({
     default: "",
   },
   fallback: {
-    type: String,
-    default: "",
-  },
-  tiltClass: {
     type: String,
     default: "",
   },

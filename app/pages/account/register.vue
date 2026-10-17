@@ -201,15 +201,15 @@ async function setFlowIDAndCSRFToken() {
 <template>
   <div class="relative w-full max-w-[420px] mx-auto z-10">
     <!-- Card with subtle tilt -->
-    <div class="relative rotate-1">
+    <div class="relative">
       <!-- Decorative "clip" tab on top of the card -->
       <span
-        class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border-2 border-jv-ink bg-jv-slate shadow-brutal-sm"
+        class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border border-jv-line bg-jv-slate shadow-soft-sm"
         aria-hidden="true"
       ></span>
 
       <div
-        class="bg-jv-white border-2 border-jv-ink shadow-brutal-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
+        class="bg-jv-white border border-jv-line shadow-soft-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
       >
         <!-- Heading -->
         <header class="flex flex-col items-center gap-1.5 mb-5">
@@ -262,7 +262,7 @@ async function setFlowIDAndCSRFToken() {
               First Name
             </label>
             <div
-              class="flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+              class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
             >
               <User
                 class="size-[18px] text-jv-ink/70 shrink-0"
@@ -296,7 +296,7 @@ async function setFlowIDAndCSRFToken() {
               Last Name
             </label>
             <div
-              class="flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+              class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
             >
               <User
                 class="size-[18px] text-jv-ink/70 shrink-0"
@@ -330,7 +330,7 @@ async function setFlowIDAndCSRFToken() {
               Email Address
             </label>
             <div
-              class="flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+              class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
             >
               <Mail
                 class="size-[18px] text-jv-ink/70 shrink-0"
@@ -364,7 +364,7 @@ async function setFlowIDAndCSRFToken() {
               Password
             </label>
             <div
-              class="flex items-center gap-2.5 bg-jv-white border-2 border-jv-ink jv-card shadow-brutal-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+              class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
             >
               <Lock
                 class="size-[18px] text-jv-ink/70 shrink-0"
