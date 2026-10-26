@@ -48,5 +48,6 @@ Pokyny pro AI agenty (Claude Code, Codex, Cursor…) i lidi, kteří v repozitá
 ## Git a PR
 
 - Commity podle Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:` …). Husky před commitem spouští lint.
-- Popisy PR piš česky: co se mění, proč a jak to bylo otestované.
+- Názvy větví a popisy PR piš anglicky (např. `self-paced-mode`): co se mění, proč a jak to bylo otestované.
+- PR přiřaď @Mirek321 a požádej ho o review.
 - Neodesílej nic přímo do `main`. Větší změny rozděl do menších PR podle témat.
