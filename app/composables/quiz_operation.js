@@ -59,7 +59,7 @@ export default class QuizHandler {
     this.log.push({
       state: "Init",
       message: event,
-      time: new Date().toLocaleString(),
+      time: new Date().toLocaleString("cs-CZ"),
     });
   }
 
@@ -96,7 +96,7 @@ export default class QuizHandler {
       this.log.push({
         state: "Receive",
         message,
-        time: new Date().toLocaleString(),
+        time: new Date().toLocaleString("cs-CZ"),
       });
       this.handler(message, event);
     }
@@ -175,7 +175,7 @@ export default class QuizHandler {
       this.log.push({
         state: "Sent",
         message,
-        time: new Date().toLocaleString(),
+        time: new Date().toLocaleString("cs-CZ"),
       });
     }
   }
@@ -219,7 +219,7 @@ export default class QuizHandler {
     this.log.push({
       state: "err",
       message: event,
-      time: new Date().toLocaleString(),
+      time: new Date().toLocaleString("cs-CZ"),
     });
   }
 
@@ -233,7 +233,7 @@ export default class QuizHandler {
     this.log.push({
       state: "Init",
       message: event,
-      time: new Date().toLocaleString(),
+      time: new Date().toLocaleString("cs-CZ"),
     });
     this.printLog();
   }
