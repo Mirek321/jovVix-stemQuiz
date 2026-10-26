@@ -116,4 +116,6 @@ Barvy STEM Hub: `#320C69` (tmavě fialová, text), `#3FACFF` (modrá), `#B291F3`
 
 © Miroslav Bašista & Viktor Brunclík, 2026 · [stemhub.cz](https://stemhub.cz) · info@stemhub.cz
 
-Vychází z open-source projektu [jovVix](https://github.com/Improwised/jovVix) od Improwised Technologies. Stejně jako původní projekt je šířen pod licencí [GNU AGPL 3.0](LICENSE.txt).
+Vychází z open-source projektu [jovVix](https://github.com/Improwised/jovVix). Autorská práva k původnímu kódu jovVix patří Improwised Technologies a [jeho přispěvatelům](https://github.com/Improwised/jovVix/graphs/contributors). Stejně jako původní projekt je kód šířen pod licencí [GNU AGPL 3.0](LICENSE.txt).
+
+Obrázky a grafika převzaté z jovVix jsou vlastní tvorba nebo pocházejí z [Freepiku](https://www.freepik.com/) a používají se podle jeho [licenčních podmínek](https://www.freepikcompany.com/legal#nav-freepik-license).
