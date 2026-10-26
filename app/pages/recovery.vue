@@ -27,7 +27,7 @@
             <h1
               class="m-0 font-headings text-[26px] leading-none text-jv-ink sm:text-[32px]"
             >
-              Recover Account
+              Obnovení účtu
             </h1>
             <svg
               class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-mint"
@@ -50,8 +50,8 @@
           <p
             class="mt-2 text-center font-body text-sm text-jv-ink/70 sm:text-[15px]"
           >
-            If an account exists for this email, you will receive a recovery
-            code shortly.
+            Pokud k tomuto e-mailu existuje účet, za chvíli ti přijde kód pro
+            obnovení.
           </p>
         </header>
 
@@ -61,7 +61,7 @@
               for="otp"
               class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
             >
-              OTP Code
+              Kód pro obnovení
             </label>
             <div
               class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
@@ -75,7 +75,7 @@
                 id="otp"
                 v-model="otp"
                 type="text"
-                placeholder="Enter OTP code"
+                placeholder="Zadej kód"
                 class="min-w-0 flex-1 border-0 bg-transparent font-body text-sm tracking-[0.15em] text-jv-ink outline-none placeholder:text-jv-ink/40 sm:text-base"
               />
             </div>
@@ -93,18 +93,17 @@
             :disabled="isLoading"
             class="jv-card mt-2 inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg"
           >
-            {{ isLoading ? "Verifying..." : "Submit" }}
+            {{ isLoading ? "Ověřování…" : "Odeslat" }}
             <ArrowRight v-if="!isLoading" class="size-5" :stroke-width="2.4" />
           </button>
         </form>
 
         <div class="mt-5 text-center font-body text-sm text-jv-ink/70">
-          Back to
           <NuxtLink
             to="/account/login"
             class="font-bold text-jv-coral hover:underline"
           >
-            Sign in
+            Zpět na přihlášení
           </NuxtLink>
         </div>
       </div>
@@ -116,6 +115,7 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { KeyRound, ArrowRight, AlertCircle } from "lucide-vue-next";
+import { kratosMessageText } from "~/composables/kratosMessages";
 
 const config = useRuntimeConfig();
 const { kratosUrl } = config.public;
@@ -125,9 +125,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Account Recovery - jovVix",
+  title: "Obnovení účtu – STEM_HUB",
   description:
-    "Recover access to your jovVix account using your secure recovery link.",
+    "Obnov si přístup ke svému účtu v systému STEM_HUB pomocí bezpečného kódu pro obnovení.",
   robots: "noindex, nofollow",
 });
 
@@ -154,7 +154,7 @@ const updateFlowState = (data) => {
   const messages = data?.ui?.messages || [];
   const errorMsg = messages.find((m) => m.type === "error");
   if (errorMsg) {
-    otpError.value = errorMsg.text;
+    otpError.value = kratosMessageText(errorMsg);
   }
 };
 
@@ -163,7 +163,8 @@ const fetchFlowIdAndCsrfToken = async () => {
     flow.value = route.query.flow;
 
     if (!flow.value) {
-      otpError.value = "Recovery session not found. Please request a new code.";
+      otpError.value =
+        "Relace pro obnovení nebyla nalezena. Požádej prosím o nový kód.";
       return;
     }
 
@@ -194,12 +195,13 @@ const verifyOTP = async () => {
     otpError.value = "";
     const cleanOtp = otp.value ? otp.value.trim() : "";
     if (!cleanOtp) {
-      otpError.value = "Please enter the OTP code";
+      otpError.value = "Zadej prosím kód pro obnovení.";
       return;
     }
 
     if (!flow.value) {
-      otpError.value = "Recovery session is missing. Please restart recovery.";
+      otpError.value =
+        "Chybí relace pro obnovení. Začni prosím s obnovením znovu.";
       return;
     }
 
@@ -237,13 +239,15 @@ const verifyOTP = async () => {
     if (otpVerificationResponse.ok) {
       updateFlowState(responseData);
 
-      const uiError = responseData?.ui?.messages?.find(
-        (m) => m.type === "error"
-      )?.text;
+      const uiError = kratosMessageText(
+        responseData?.ui?.messages?.find((m) => m.type === "error")
+      );
 
-      const nodeError = responseData?.ui?.nodes
-        ?.flatMap((n) => n.messages || [])
-        ?.find((m) => m.type === "error")?.text;
+      const nodeError = kratosMessageText(
+        responseData?.ui?.nodes
+          ?.flatMap((n) => n.messages || [])
+          ?.find((m) => m.type === "error")
+      );
 
       if (uiError || nodeError) {
         otpError.value = uiError || nodeError;
@@ -257,18 +261,18 @@ const verifyOTP = async () => {
     }
 
     // 3. Any other non-OK response from Kratos
-    const uiError = responseData?.ui?.messages?.find(
-      (m) => m.type === "error"
-    )?.text;
+    const uiError = kratosMessageText(
+      responseData?.ui?.messages?.find((m) => m.type === "error")
+    );
     const generalError =
       responseData?.error?.message ||
       responseData?.message ||
       responseData?.error?.reason;
     otpError.value =
-      uiError || generalError || "The recovery code is invalid or has expired.";
+      uiError || generalError || "Kód pro obnovení je neplatný nebo vypršel.";
   } catch (error) {
     console.error("Error verifying OTP:", error.message);
-    otpError.value = error.message || "Failed to verify OTP";
+    otpError.value = "Kód se nepodařilo ověřit. Zkus to prosím znovu.";
   } finally {
     isLoading.value = false;
   }

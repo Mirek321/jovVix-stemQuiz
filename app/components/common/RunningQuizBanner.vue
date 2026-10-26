@@ -53,7 +53,7 @@
               <span
                 class="font-headings text-[11px] tracking-[0.22em] uppercase text-jv-ink/80"
               >
-                Live · Quiz running
+                Živě · probíhající kvíz
               </span>
             </div>
 
@@ -61,7 +61,7 @@
               class="font-headings text-[15px] sm:text-base text-jv-ink leading-snug truncate mb-3"
               :title="sessions[0].title || undefined"
             >
-              {{ sessions[0].title || "Your session is still going" }}
+              {{ sessions[0].title || "Tvůj kvíz pořád běží" }}
             </p>
 
             <div class="flex items-stretch gap-2">
@@ -72,17 +72,17 @@
                 @click="resumeQuiz(sessions[0])"
               >
                 <ExternalLink class="size-4" :stroke-width="2.4" />
-                <span>Resume</span>
+                <span>Vrátit se do kvízu</span>
               </button>
               <button
                 type="button"
                 :disabled="stopping"
                 class="inline-flex items-center justify-center gap-1.5 jv-border-even bg-jv-coral px-3 py-2 text-[13px] sm:text-sm font-headings text-white shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
-                aria-label="Stop quiz"
+                aria-label="Ukončit kvíz"
                 @click="openConfirm(sessions[0])"
               >
                 <Ban class="size-4" :stroke-width="2.4" />
-                <span class="sr-only sm:not-sr-only">Stop</span>
+                <span class="sr-only sm:not-sr-only">Ukončit</span>
               </button>
             </div>
           </div>
@@ -101,7 +101,15 @@
             <span
               class="font-headings text-[11px] tracking-[0.18em] uppercase text-jv-ink"
             >
-              Live · {{ sessions.length }} Quiz running
+              Živě ·
+              {{
+                czCount(
+                  sessions.length,
+                  "probíhající kvíz",
+                  "probíhající kvízy",
+                  "probíhajících kvízů"
+                )
+              }}
             </span>
             <span
               class="grid size-6 place-items-center rounded-full bg-jv-yellow border border-jv-line"
@@ -125,12 +133,13 @@
             <span
               class="flex-1 font-headings text-[11px] tracking-[0.18em] uppercase text-jv-ink"
             >
-              Live · {{ sessions.length }} quizzes
+              Živě ·
+              {{ czCount(sessions.length, "kvíz", "kvízy", "kvízů") }}
             </span>
             <button
               type="button"
               class="grid size-8 place-items-center border border-jv-line bg-jv-white transition-transform"
-              aria-label="Collapse running quizzes"
+              aria-label="Sbalit probíhající kvízy"
               @click="expanded = false"
             >
               <ChevronDown class="size-4" :stroke-width="3" />
@@ -148,15 +157,15 @@
               <div class="min-w-0 flex-1">
                 <p
                   class="truncate font-headings text-[13px] sm:text-sm text-jv-ink leading-snug"
-                  :title="item.title || 'Untitled quiz'"
+                  :title="item.title || 'Kvíz bez názvu'"
                 >
-                  {{ item.title || "Untitled quiz" }}
+                  {{ item.title || "Kvíz bez názvu" }}
                 </p>
                 <p
                   v-if="item.invitation_code"
                   class="mt-0.5 font-feature text-[10px] tracking-[0.16em] uppercase text-jv-ink/55"
                 >
-                  Pin {{ item.invitation_code }}
+                  Kód {{ item.invitation_code }}
                 </p>
               </div>
 
@@ -164,8 +173,8 @@
                 type="button"
                 :disabled="resumingId === item.id"
                 class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
-                :aria-label="`Resume ${item.title || 'quiz'}`"
-                :title="`Resume ${item.title || 'quiz'}`"
+                :aria-label="`Vrátit se do kvízu ${item.title || ''}`.trim()"
+                :title="`Vrátit se do kvízu ${item.title || ''}`.trim()"
                 @click="resumeQuiz(item)"
               >
                 <ExternalLink class="size-4" :stroke-width="2.4" />
@@ -174,8 +183,8 @@
                 type="button"
                 :disabled="stopping"
                 class="grid size-10 sm:size-9 shrink-0 place-items-center jv-border-even bg-jv-coral text-white shadow-soft-sm transition-transform disabled:opacity-60 disabled:cursor-not-allowed"
-                :aria-label="`Stop ${item.title || 'quiz'}`"
-                :title="`Stop ${item.title || 'quiz'}`"
+                :aria-label="`Ukončit kvíz ${item.title || ''}`.trim()"
+                :title="`Ukončit kvíz ${item.title || ''}`.trim()"
                 @click="openConfirm(item)"
               >
                 <Ban class="size-4" :stroke-width="2.4" />
@@ -205,17 +214,16 @@
             id="stop-quiz-title"
             class="font-headings text-xl text-jv-ink mb-2"
           >
-            Stop the running quiz?
+            Ukončit probíhající kvíz?
           </h3>
           <p class="text-sm text-jv-ink/75 mb-5">
             <template v-if="pendingStop?.title">
-              This will terminate
-              <span class="font-semibold">{{ pendingStop.title }}</span> for all
-              connected players. This cannot be undone.
+              Kvíz
+              <span class="font-semibold">„{{ pendingStop.title }}“</span> se
+              ukončí všem připojeným hráčům. Tuto akci nejde vrátit.
             </template>
             <template v-else>
-              This will terminate the session for all connected players. This
-              cannot be undone.
+              Kvíz se ukončí všem připojeným hráčům. Tuto akci nejde vrátit.
             </template>
           </p>
           <div class="flex justify-end gap-3">
@@ -225,7 +233,7 @@
               :disabled="stopping"
               @click="closeConfirm"
             >
-              Cancel
+              Zrušit
             </button>
             <button
               type="button"
@@ -234,7 +242,7 @@
               @click="confirmStop"
             >
               <Ban v-if="!stopping" class="size-4" :stroke-width="2.4" />
-              <span>{{ stopping ? "Stopping..." : "Stop quiz" }}</span>
+              <span>{{ stopping ? "Ukončování…" : "Ukončit kvíz" }}</span>
             </button>
           </div>
         </div>
@@ -377,7 +385,7 @@ const resumeQuiz = async (target) => {
   try {
     await sync(true);
     if (!sessions.value.some((s) => s.id === target.id)) {
-      toast.error("That session has already ended.");
+      toast.error("Tento kvíz už skončil.");
       return;
     }
     router.push(`/admin/arrange/${target.id}`);
@@ -407,13 +415,13 @@ const confirmStop = async () => {
       credentials: "include",
     });
     removeActiveSession(target.id);
-    toast.success("Quiz stopped successfully.");
+    toast.success("Kvíz byl ukončen.");
     confirmOpen.value = false;
     pendingStop.value = null;
     await sync(true);
   } catch (error) {
     console.error("failed to stop quiz from banner", error);
-    toast.error("Failed to stop running quiz.");
+    toast.error("Probíhající kvíz se nepodařilo ukončit.");
   } finally {
     stopping.value = false;
   }

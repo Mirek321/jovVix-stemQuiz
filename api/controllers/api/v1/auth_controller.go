@@ -97,7 +97,7 @@ func (ctrl *AuthController) DoKratosAuth(c *fiber.Ctx) error {
 
 			if pqErr.Constraint != constants.UserUkey {
 				ctrl.logger.Debug("user wants to use the username which is already registered")
-				return utils.JSONError(c, http.StatusInternalServerError, fmt.Sprintf("username (%s) already registered", userStruct.Username))
+				return utils.JSONError(c, http.StatusInternalServerError, fmt.Sprintf("Uživatelské jméno (%s) je už obsazené", userStruct.Username))
 			}
 
 			for {
@@ -248,5 +248,5 @@ func (ctrl *AuthController) DeleteRegisteredUser(c *fiber.Ctx) error {
 	}
 	ctrl.logger.Debug("AuthController.DeleteRegisteredUser success", zap.Any("userID", userId), zap.Any("kratosID", kratosId))
 
-	return utils.JSONSuccess(c, http.StatusOK, "user deleted succesfully!")
+	return utils.JSONSuccess(c, http.StatusOK, "Uživatel byl smazán")
 }

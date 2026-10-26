@@ -123,7 +123,7 @@ func (ctrl *UserController) CreateGuestUser(c *fiber.Ctx) error {
 
 	avatarName := c.Query("avatar_name")
 	if username == "" || avatarName == "" {
-		return utils.JSONError(c, http.StatusBadRequest, "please provide username and avatar name")
+		return utils.JSONError(c, http.StatusBadRequest, "Zadej uživatelské jméno a avatar")
 	}
 
 	userObj := models.User{
@@ -146,7 +146,7 @@ func (ctrl *UserController) CreateGuestUser(c *fiber.Ctx) error {
 
 			if pqErr.Constraint != constants.UserUkey {
 				ctrl.logger.Debug("user wants to use the username which is already registered")
-				return utils.JSONError(c, http.StatusInternalServerError, fmt.Sprintf("username (%s) already registered", user.Username))
+				return utils.JSONError(c, http.StatusInternalServerError, fmt.Sprintf("Uživatelské jméno (%s) je už obsazené", user.Username))
 			}
 
 			for {

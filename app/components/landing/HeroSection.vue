@@ -4,16 +4,16 @@
       <div
         class="rounded-[8px] border border-jv-line bg-jv-yellow/30 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14px] md:small-text font-semibold uppercase shadow-soft-sm"
       >
-        EXPLORE, LEARN, QUIZ!
+        OBJEVUJ, UČ SE, HRAJ!
       </div>
 
       <h1 class="main-heading text-jv-ink">
-        <span class="block">Open-Source Quizzing</span>
+        <span class="block">Open-source kvízy</span>
         <span class="block"
-          >Built for
+          >stvořené pro
           <span
             class="inline-block jv-highlight mt-2 sm:mt-3 px-3 sm:px-5 md:px-6 py-1 sm:py-2 rounded-[4px]"
-            >Live Quiz Experiences</span
+            >živé kvízové zážitky</span
           >
         </span>
       </h1>
@@ -66,15 +66,15 @@ import {
 
 const actionCards = [
   {
-    title: "Demo Instance",
-    description: "Up to 100 concurrent users",
+    title: "Demo instance",
+    description: "Až 100 hráčů najednou",
   },
   {
-    title: "Deploy Your Own",
-    description: "Unlimited users & control.",
+    title: "Vlastní nasazení",
+    description: "Neomezený počet uživatelů a plná kontrola.",
   },
   {
-    title: "Get in touch",
+    title: "Napiš nám",
     description: "contact@jovvix.com",
   },
 ];

@@ -7,9 +7,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Scoreboard - jovVix",
+  title: "Žebříček kvízu – STEM_HUB",
   description:
-    "View quiz results and winners on the admin scoreboard. Switch between table view and winners podium display.",
+    "Výsledky a vítězové kvízu v žebříčku. Přepínej mezi tabulkou a stupni vítězů.",
   robots: "noindex, nofollow",
 });
 </script>

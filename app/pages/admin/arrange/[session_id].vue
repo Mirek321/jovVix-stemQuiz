@@ -84,7 +84,7 @@ const quizState = computed(() =>
 // event handlers
 const handleCustomChange = (isFullScreenEvent) => {
   if (!isFullScreenEvent && myRef.value) {
-    toast.error("exit fullscreen mode unexpectedly!!!");
+    toast.error("Režim celé obrazovky byl nečekaně ukončen.");
     // handle unexpected behavior
   }
 };
@@ -123,7 +123,7 @@ onMounted(() => {
 const handleHostNameSubmit = async ({ name, avatarName }) => {
   if (hostNameSubmitting.value) return;
   if (!pendingQuizId.value) {
-    toast.error("Missing quiz to host. Please pick a quiz again.");
+    toast.error("Chybí kvíz ke spuštění. Vyber prosím kvíz znovu.");
     await router.replace("/");
     return;
   }
@@ -159,7 +159,7 @@ const handleHostNameSubmit = async ({ name, avatarName }) => {
     );
     const newSessionId = sessionRes?.data;
     if (!newSessionId) {
-      toast.error("Error while starting quiz.");
+      toast.error("Kvíz se nepodařilo spustit.");
       return;
     }
 
@@ -170,7 +170,7 @@ const handleHostNameSubmit = async ({ name, avatarName }) => {
     await router.replace(`/admin/arrange/${newSessionId}?public=1`);
   } catch (error) {
     toast.error(
-      error?.data?.message || error?.message || "Error while starting quiz."
+      error?.data?.message || error?.message || "Kvíz se nepodařilo spustit."
     );
   } finally {
     hostNameSubmitting.value = false;
@@ -266,7 +266,7 @@ const continueAdmin = () => {
 };
 
 function handleNetworkEvent(message) {
-  toast.warning(message + ", please reload the page");
+  toast.warning(message + ", obnov prosím stránku");
 }
 
 const startQuiz = () => {
@@ -289,9 +289,9 @@ const handlePauseQuiz = () => {
 };
 
 const confirmSkip = (message) => {
-  confirmNeeded.title = "Skip Forcefully !!!";
+  confirmNeeded.title = "Vynutit přeskočení?";
   confirmNeeded.message = message.data;
-  confirmNeeded.positive = "Skip";
+  confirmNeeded.positive = "Přeskočit";
   confirmNeeded.action = "skip";
   confirmNeeded.show = true;
 };
@@ -314,10 +314,10 @@ const goToScoreboardAfterTerminate = async () => {
 };
 
 const askEndQuiz = () => {
-  confirmNeeded.title = "End this quiz?";
+  confirmNeeded.title = "Ukončit kvíz?";
   confirmNeeded.message =
-    "This will end the quiz for all connected players and send them to the results. This cannot be undone.";
-  confirmNeeded.positive = "End Quiz";
+    "Kvíz skončí pro všechny připojené hráče a zobrazí se jim výsledky. Tuto akci nelze vrátit.";
+  confirmNeeded.positive = "Ukončit kvíz";
   confirmNeeded.action = "endQuiz";
   confirmNeeded.show = true;
 };
@@ -333,7 +333,7 @@ const endQuiz = async () => {
     await goToScoreboardAfterTerminate();
   } catch (error) {
     console.error("failed to end quiz", error);
-    toast.error("Failed to end the quiz. Please try again.");
+    toast.error("Kvíz se nepodařilo ukončit. Zkus to prosím znovu.");
   } finally {
     terminating.value = false;
   }
@@ -364,8 +364,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Session - jovVix",
-  description: "Configure and launch your live quiz session on jovVix.",
+  title: "Sezení kvízu – STEM_HUB",
+  description: "Nastav a spusť živé sezení kvízu v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 // custom class to bind component with
@@ -391,7 +391,7 @@ useSeoMeta({
         <span
           class="font-body text-[10px] font-black uppercase tracking-[0.14em] text-jv-muted sm:text-[11px]"
         >
-          Now hosting
+          Právě běží
         </span>
         <span
           class="min-w-0 truncate font-headings text-[18px] leading-tight text-jv-ink sm:text-[22px]"
@@ -403,7 +403,7 @@ useSeoMeta({
         class="flex min-w-0 items-center justify-between gap-2 jv-border-rough bg-jv-white px-3 py-2 shadow-soft-sm sm:col-start-2 sm:justify-self-center sm:justify-start"
       >
         <span class="text-[18px] font-bold text-jv-muted sm:text-[22px]">
-          Code:
+          Kód:
         </span>
         <span
           class="min-w-0 break-all font-feature text-[22px] font-black text-jv-coral sm:text-[28px]"
@@ -422,18 +422,18 @@ useSeoMeta({
           ]"
           @click="handlePauseQuiz"
         >
-          {{ isPauseQuiz ? "RESUME" : "PAUSE" }}
+          {{ isPauseQuiz ? "Pokračovat" : "Pozastavit" }}
         </button>
         <button
           v-if="currentComponent == 'Question' || currentComponent == 'Score'"
           type="button"
           :disabled="terminating"
           class="inline-flex h-11 w-full items-center justify-center gap-2 rounded-[8px] border border-jv-line bg-jv-coral px-5 text-[15px] font-black text-white shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-60 sm:w-fit sm:text-[16px]"
-          aria-label="End quiz for all players"
+          aria-label="Ukončit kvíz pro všechny hráče"
           @click="askEndQuiz"
         >
           <Ban class="size-4" :stroke-width="2.4" />
-          <span>{{ terminating ? "Ending..." : "End Quiz" }}</span>
+          <span>{{ terminating ? "Ukončuji…" : "Ukončit kvíz" }}</span>
         </button>
       </div>
     </div>

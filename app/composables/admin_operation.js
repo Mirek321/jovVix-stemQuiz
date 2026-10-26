@@ -71,7 +71,7 @@ export default class AdminOperations extends QuizHandler {
   }
 
   handleConnectionProblem() {
-    this.errorHandler("problem in connecting with server");
+    this.errorHandler("Nepodařilo se připojit k serveru");
     this.connect();
   }
 

@@ -10,7 +10,7 @@ import (
 	validator "gopkg.in/go-playground/validator.v9"
 )
 
-const VALIDATE_MESSAGE = "fields are invalid."
+const VALIDATE_MESSAGE = "Neplatná pole:"
 
 // ValidateQuizTitle returns a user-facing validation error for a quiz title.
 // Rune counting matches the character limit users see, including non-ASCII titles.
@@ -37,7 +37,7 @@ func ValidatorErrorString(err error) string {
 			msg += strings.ToLower(err.Field()) + ","
 		}
 		msg = strings.TrimSuffix(msg, ",")
-		msg = fmt.Sprintf("%s %s", msg, VALIDATE_MESSAGE)
+		msg = fmt.Sprintf("%s %s", VALIDATE_MESSAGE, msg)
 		return msg
 	}
 	return ""

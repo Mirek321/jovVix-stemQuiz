@@ -10,20 +10,17 @@ const signUpUrl = computed(
 </script>
 
 <template>
-  <section
-    class="mx-auto w-full max-w-[1180px]"
-    aria-label="Per-question review"
-  >
+  <section class="mx-auto w-full max-w-[1180px]" aria-label="Přehled otázek">
     <header class="mx-auto mb-4 max-w-[820px] sm:mb-6">
       <h2
         class="font-headings text-[22px] leading-none text-jv-ink sm:text-[28px]"
       >
-        Question Review
+        Přehled otázek
       </h2>
       <p
         class="mt-1.5 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
       >
-        Log in to see what you got right and where you slipped
+        Přihlas se a uvidíš, co se ti povedlo a kde jsi chyboval/a
       </p>
     </header>
 
@@ -41,26 +38,26 @@ const signUpUrl = computed(
         <p
           class="max-w-[420px] font-body text-[13px] font-bold text-jv-muted sm:text-[15px]"
         >
-          Your answer-by-answer breakdown is saved for members. Log in or create
-          a free account to unlock it. Your results stay right here.
+          Rozbor jednotlivých odpovědí je dostupný jen pro přihlášené. Přihlas
+          se nebo si zdarma založ účet. Tvoje výsledky tu zůstanou.
         </p>
 
         <div class="flex flex-col items-stretch gap-3 sm:flex-row">
           <NuxtLink
             :to="loginUrl"
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Log in to view your question review"
+            aria-label="Přihlas se a zobraz si přehled otázek"
           >
             <LogIn class="size-4" :stroke-width="2.4" />
-            Log In
+            Přihlásit se
           </NuxtLink>
           <NuxtLink
             :to="signUpUrl"
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Create a free account"
+            aria-label="Založit účet zdarma"
           >
             <UserPlus class="size-4" :stroke-width="2.4" />
-            Sign Up
+            Zaregistrovat se
           </NuxtLink>
         </div>
       </div>

@@ -66,9 +66,9 @@ const isPermissionDenied = computed(() => {
 const accessErrorMessage = computed(() => {
   if (!quizAuthorizedUsersError.value) return "";
   if (isPermissionDenied.value) {
-    return 'You don\'t have permission to share this quiz. Ask the quiz owner for "manage" access to invite others.';
+    return "Nemáš oprávnění sdílet tento kvíz. Pokud chceš zvát další lidi, požádej autora kvízu o oprávnění „Může spravovat“.";
   }
-  return "Couldn't load who has access to this quiz. Please try again.";
+  return "Nepodařilo se načíst, kdo má ke kvízu přístup. Zkus to znovu.";
 });
 
 function close() {
@@ -104,12 +104,12 @@ const shareQuiz = async (emailVal, permissionVal) => {
       body: { email: emailVal, permission: permissionVal },
       credentials: "include",
     });
-    toast.success("Quiz shared successfully!");
+    toast.success("Kvíz byl nasdílen");
     quizAuthorizedUsersDataRefresh();
     component.value = "";
   } catch (error) {
     console.error("Failed to share the quiz.", error);
-    toast.error(error.data?.message || "Failed to share the quiz.");
+    toast.error(error.data?.message || "Kvíz se nepodařilo nasdílet.");
   }
 };
 
@@ -124,12 +124,12 @@ const updateUserPermission = async (idVal, emailVal, permissionVal) => {
         credentials: "include",
       }
     );
-    toast.success("User permission updated successfully!");
+    toast.success("Oprávnění bylo upraveno");
     quizAuthorizedUsersDataRefresh();
     component.value = "";
   } catch (error) {
     console.error("Failed to update user permission.", error);
-    toast.error(error.data?.message || "Failed to update user permission.");
+    toast.error(error.data?.message || "Oprávnění se nepodařilo upravit.");
   }
 };
 
@@ -143,11 +143,11 @@ const deleteUserPermission = async (idVal) => {
         credentials: "include",
       }
     );
-    toast.success("User permission deleted successfully!");
+    toast.success("Oprávnění bylo odebráno");
     quizAuthorizedUsersDataRefresh();
   } catch (error) {
     console.error("Failed to delete user permission.", error);
-    toast.error(error.data?.message || "Failed to delete user permission.");
+    toast.error(error.data?.message || "Oprávnění se nepodařilo odebrat.");
   }
 };
 </script>
@@ -155,8 +155,8 @@ const deleteUserPermission = async (idVal) => {
 <template>
   <Modal
     :model-value="props.modelValue"
-    title="Share Quiz"
-    description="Give people access to this quiz and manage their permissions."
+    title="Sdílet kvíz"
+    description="Dej ostatním přístup ke kvízu a spravuj jejich oprávnění."
     size="md"
     @update:model-value="emits('update:modelValue', $event)"
   >
@@ -166,7 +166,7 @@ const deleteUserPermission = async (idVal) => {
     ></div>
 
     <div v-if="quizAuthorizedUsersPending" class="py-6 text-center">
-      <p class="text-[15px] font-semibold text-jv-muted">Loading...</p>
+      <p class="text-[15px] font-semibold text-jv-muted">Načítání…</p>
     </div>
 
     <div
@@ -189,17 +189,17 @@ const deleteUserPermission = async (idVal) => {
           class="flex items-center gap-2 font-body text-[15px] font-black uppercase tracking-[0.14em] text-jv-ink"
         >
           <Users class="size-4" :stroke-width="2.6" />
-          People with access
+          Lidé s přístupem
         </h3>
         <button
           type="button"
-          title="Add People"
-          aria-label="Add people"
+          title="Přidat lidi"
+          aria-label="Přidat lidi"
           class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1.5 text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform"
           @click="component = 'give-permission'"
         >
           <UserPlus class="size-4" :stroke-width="2.6" />
-          Add
+          Přidat
         </button>
       </div>
 
@@ -216,14 +216,14 @@ const deleteUserPermission = async (idVal) => {
           v-if="authorizedUsers.length === 0"
           class="py-4 text-center text-[14px] font-semibold text-jv-muted"
         >
-          No one has access yet. Add someone to get started.
+          Zatím nikdo nemá přístup. Začni tím, že někoho přidáš.
         </li>
       </ul>
 
       <!-- Add-permission form -->
       <ShareQuizForm
         v-if="component === 'give-permission'"
-        form-title="Add People"
+        form-title="Přidat lidi"
         @share-quiz="shareQuiz"
       />
 
@@ -231,7 +231,7 @@ const deleteUserPermission = async (idVal) => {
       <ShareQuizForm
         v-if="component === 'edit-permission'"
         :id="id"
-        form-title="Edit Permission"
+        form-title="Upravit oprávnění"
         :email="email"
         :permission="permission"
         @update-user-permission="updateUserPermission"
@@ -244,7 +244,7 @@ const deleteUserPermission = async (idVal) => {
         class="inline-flex h-10 items-center justify-center rounded-full border border-jv-line bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-6 sm:text-[15px]"
         @click="close"
       >
-        Done
+        Hotovo
       </button>
     </template>
   </Modal>

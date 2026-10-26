@@ -4,22 +4,22 @@ import { AlertTriangle, X } from "lucide-vue-next";
 const props = defineProps({
   modalTitle: {
     type: String,
-    default: "This is a modal Title",
+    default: "Nadpis dialogu",
     required: true,
   },
   modalMessage: {
     type: String,
-    default: "Hello this is a modal message",
+    default: "Text dialogu",
     required: true,
   },
   modelPositiveMessage: {
     type: String,
-    default: "Save",
+    default: "Uložit",
     required: false,
   },
   modelNegativeMessage: {
     type: String,
-    default: "Cancel",
+    default: "Zrušit",
     required: false,
   },
 });
@@ -69,7 +69,7 @@ onUnmounted(() => {
         <button
           type="button"
           class="absolute inset-0 cursor-default bg-jv-ink/60"
-          aria-label="Close"
+          aria-label="Zavřít"
           @click="handleClose(false)"
         ></button>
 
@@ -79,7 +79,7 @@ onUnmounted(() => {
           <button
             type="button"
             class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
-            aria-label="Close"
+            aria-label="Zavřít"
             @click="handleClose(false)"
           >
             <X class="size-4" :stroke-width="2.6" />

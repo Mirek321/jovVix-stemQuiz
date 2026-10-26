@@ -23,8 +23,8 @@
         v-model.number="form.type"
         class="h-10 rounded-md border border-jv-line bg-jv-white px-3 text-[14px] font-semibold text-jv-ink outline-none focus:border-jv-line"
       >
-        <option :value="1">Multiple Choice</option>
-        <option :value="2">Survey</option>
+        <option :value="1">Jedna správná odpověď</option>
+        <option :value="2">Anketní otázka</option>
       </select>
     </div>
 
@@ -32,13 +32,13 @@
       <label
         class="text-[13px] font-semibold uppercase tracking-wide text-jv-muted"
       >
-        Question
+        Otázka
       </label>
       <input
         v-model.trim="form.question"
         type="text"
         required
-        placeholder="Enter question..."
+        placeholder="Zadej otázku…"
         class="h-11 w-full rounded-md border border-jv-line bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-line focus:shadow-soft-sm"
       />
 
@@ -64,7 +64,7 @@
         v-if="form.question_media === 'code'"
         v-model="form.resource"
         rows="5"
-        placeholder="Enter code..."
+        placeholder="Zadej kód…"
         class="mt-1 w-full resize-none rounded-md border border-jv-line bg-jv-canvas px-3 py-2 font-mono text-[14px] text-jv-ink outline-none focus:border-jv-line focus:shadow-soft-sm"
       ></textarea>
 
@@ -75,8 +75,8 @@
         <ImageIcon class="size-4" :stroke-width="2.3" />
         <span>{{
           processingImage
-            ? "Processing image…"
-            : questionFileName || "Upload question image"
+            ? "Zpracovávám obrázek…"
+            : questionFileName || "Nahrát obrázek k otázce"
         }}</span>
         <input
           type="file"
@@ -93,7 +93,7 @@
         <label
           class="text-[13px] font-semibold uppercase tracking-wide text-jv-muted"
         >
-          Options
+          Možnosti
         </label>
         <div class="flex flex-wrap items-center gap-1.5">
           <NavigationLink
@@ -131,7 +131,7 @@
             type="radio"
             :value="Number(key)"
             class="size-5 shrink-0 accent-jv-accent-green"
-            :aria-label="`Correct answer option ${key}`"
+            :aria-label="`Správná odpověď: možnost ${optionLetter(key)}`"
           />
 
           <span class="w-6 shrink-0 text-[14px] font-bold text-jv-coral">
@@ -143,7 +143,7 @@
             v-model.trim="form.options[key]"
             type="text"
             :required="Number(key) <= 2"
-            :placeholder="`Option ${optionLetter(key)}`"
+            :placeholder="`Možnost ${optionLetter(key)}`"
             class="h-10 w-full min-w-0 flex-1 rounded-md border border-jv-line bg-jv-white px-3 text-[15px] font-medium text-jv-ink outline-none placeholder:text-jv-ink/40 focus:border-jv-line focus:shadow-soft-sm"
           />
 
@@ -151,7 +151,7 @@
             v-else-if="form.options_media === 'code'"
             v-model="form.options[key]"
             rows="2"
-            :placeholder="`Code for option ${optionLetter(key)}`"
+            :placeholder="`Kód pro možnost ${optionLetter(key)}`"
             class="min-w-0 flex-1 resize-none rounded-md border border-jv-line bg-jv-white px-3 py-2 font-mono text-[13px] text-jv-ink outline-none focus:border-jv-line focus:shadow-soft-sm"
           ></textarea>
 
@@ -181,10 +181,10 @@
         class="h-11 bg-jv-white text-jv-ink"
         @click="$emit('cancel')"
       >
-        Cancel
+        Zrušit
       </NavigationLink>
       <NavigationLink class="h-11 bg-jv-accent-green text-white">
-        {{ saving ? "Saving..." : submitLabel }}
+        {{ saving ? "Ukládání…" : submitLabel }}
       </NavigationLink>
     </div>
   </form>
@@ -216,8 +216,8 @@ const emit = defineEmits(["save", "cancel"]);
 
 const mediaChoices = [
   { label: "Text", value: "text", icon: Type },
-  { label: "Image", value: "image", icon: ImageIcon },
-  { label: "Code", value: "code", icon: Code2 },
+  { label: "Obrázek", value: "image", icon: ImageIcon },
+  { label: "Kód", value: "code", icon: Code2 },
 ];
 
 const form = reactive({
@@ -289,11 +289,11 @@ const optionKeys = computed(() =>
 const optionLetter = (key) => String.fromCharCode(64 + Number(key));
 
 const title = computed(() =>
-  props.mode === "edit" ? "Edit Question" : "New Question"
+  props.mode === "edit" ? "Upravit otázku" : "Nová otázka"
 );
-const eyebrow = computed(() => (props.mode === "edit" ? "Question" : "Create"));
+const eyebrow = computed(() => (props.mode === "edit" ? "Otázka" : "Vytvořit"));
 const submitLabel = computed(() =>
-  props.mode === "edit" ? "Save Changes" : "Add Question"
+  props.mode === "edit" ? "Uložit změny" : "Přidat otázku"
 );
 const showCancel = computed(
   () => props.mode === "edit" || props.mode === "create"
@@ -332,8 +332,8 @@ const handleOptionImage = async (event, key) => {
 };
 
 const existingImageLabel = (key) => {
-  if (form.options[key]) return `Option ${key} image`;
-  return `Upload image for option ${key}`;
+  if (form.options[key]) return `Obrázek možnosti ${optionLetter(key)}`;
+  return `Nahrát obrázek pro možnost ${optionLetter(key)}`;
 };
 
 const submitForm = () => {

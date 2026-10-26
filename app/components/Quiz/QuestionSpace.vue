@@ -100,10 +100,8 @@ const questionPoints = computed(() => {
 
 const pointsLabel = computed(() => {
   if (questionPoints.value === null) return null;
-  if (questionPoints.value === 0) return "Speed bonus only";
-  return `Worth ${questionPoints.value} ${
-    questionPoints.value === 1 ? "pt" : "pts"
-  }`;
+  if (questionPoints.value === 0) return "Jen bonus za rychlost";
+  return `Za ${czCount(questionPoints.value, "bod", "body", "bodů")}`;
 });
 
 // Determine if current question is the last one
@@ -115,8 +113,8 @@ const isLastQuestion = computed(() => {
 const countdownDisplay = computed(() => {
   if (typeof count.value === "number" && count.value > 0)
     return String(count.value);
-  if (typeof count.value === "string") return "Go!";
-  return "Get Ready";
+  if (typeof count.value === "string") return "Start!";
+  return "Připrav se";
 });
 
 const isCountdownNumber = computed(
@@ -297,7 +295,7 @@ const optionTone = (key) =>
       <p
         class="text-center font-body text-[12px] font-black uppercase tracking-[0.22em] text-jv-muted sm:text-[13px]"
       >
-        Get Ready
+        Připrav se
       </p>
 
       <transition name="pop" mode="out-in">
@@ -354,21 +352,21 @@ const optionTone = (key) =>
             <h2
               class="font-headings text-[24px] leading-none text-jv-ink min-[420px]:text-[30px] sm:text-[36px] md:text-[40px]"
             >
-              Question {{ question.no }}
+              Otázka {{ question.no }}
               <span class="text-jv-muted">/ {{ question.totalQuestions }}</span>
             </h2>
             <p
               v-if="!pointsLabel"
               class="mt-2 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
             >
-              Let's Play
+              Hrajeme!
             </p>
             <Popover v-else>
               <PopoverTrigger as-child>
                 <button
                   type="button"
                   class="mt-2 inline-flex max-w-full items-center gap-1.5 rounded-full border border-jv-line bg-jv-mint px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-soft-sm transition-transform sm:text-[12px]"
-                  aria-label="How scoring works"
+                  aria-label="Jak funguje bodování"
                 >
                   <span class="truncate">{{ pointsLabel }}</span>
                   <Info class="size-3 shrink-0" :stroke-width="2.6" />
@@ -383,24 +381,24 @@ const optionTone = (key) =>
                 <p
                   class="font-headings text-[15px] uppercase tracking-[0.06em]"
                 >
-                  How your score works
+                  Jak se počítá skóre
                 </p>
                 <ul class="mt-3 space-y-1.5">
-                  <li>Correct answer: <b>500</b> base points</li>
+                  <li>Správná odpověď: <b>500</b> základních bodů</li>
                   <li>
-                    Speed bonus: up to <b>400</b>, scaled by how much time is
-                    left
+                    Bonus za rychlost: až <b>400</b> podle toho, kolik času
+                    zbývá
                   </li>
                   <li>
-                    Question points: <b>{{ questionPoints }} &times; 100</b>
+                    Body za otázku: <b>{{ questionPoints }} &times; 100</b>
                   </li>
                   <li>
-                    Streak bonus: from your 2nd correct answer in a row,
-                    <b>+100</b> and growing
+                    Bonus za sérii: od 2. správné odpovědi v řadě
+                    <b>+100</b> a dál roste
                   </li>
                 </ul>
                 <p class="mt-3 text-[12px] font-bold text-jv-muted">
-                  Wrong or unanswered questions score 0 and reset your streak.
+                  Špatná nebo chybějící odpověď dává 0 bodů a nuluje sérii.
                 </p>
               </PopoverContent>
             </Popover>
@@ -410,7 +408,7 @@ const optionTone = (key) =>
             <button
               type="button"
               class="grid size-10 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-11"
-              :aria-label="music ? 'Mute music' : 'Unmute music'"
+              :aria-label="music ? 'Vypnout hudbu' : 'Zapnout hudbu'"
               @click="toggleMusic"
             >
               <Volume2 v-if="music" class="size-4" :stroke-width="2.4" />
@@ -419,7 +417,12 @@ const optionTone = (key) =>
 
             <div
               class="grid size-12 place-items-center rounded-full border border-dashed border-jv-line bg-jv-yellow font-feature text-[20px] font-black text-jv-ink sm:size-[60px] sm:text-[24px]"
-              :aria-label="`${remainingSeconds} seconds remaining`"
+              :aria-label="`Zbývá ${czCount(
+                remainingSeconds,
+                'sekunda',
+                'sekundy',
+                'sekund'
+              )}`"
             >
               {{ remainingSeconds }}
             </div>
@@ -489,7 +492,7 @@ const optionTone = (key) =>
               >
                 <NuxtImg
                   :src="value"
-                  :alt="`Option ${key}`"
+                  :alt="`Možnost ${key}`"
                   class="max-h-[120px] w-auto object-contain"
                 />
               </div>
@@ -531,7 +534,7 @@ const optionTone = (key) =>
               <p
                 class="font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
               >
-                Waiting for participants to answer
+                Čekáme, až hráči odpoví
               </p>
             </div>
             <button
@@ -546,7 +549,7 @@ const optionTone = (key) =>
                 :stroke-width="2.4"
               />
               <SkipForward v-else class="size-4" :stroke-width="2.4" />
-              <span>{{ isLastQuestion ? "Finish Quiz" : "Skip" }}</span>
+              <span>{{ isLastQuestion ? "Ukončit kvíz" : "Přeskočit" }}</span>
             </button>
           </footer>
         </template>
@@ -557,7 +560,7 @@ const optionTone = (key) =>
           class="mt-6 flex items-center justify-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
         >
           <Check class="size-4" :stroke-width="2.6" />
-          Answer locked — waiting for the next question
+          Odpověď odeslána – čekej na další otázku
         </div>
       </article>
     </section>

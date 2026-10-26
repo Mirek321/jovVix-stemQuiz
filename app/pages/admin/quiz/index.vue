@@ -5,10 +5,10 @@
         <h1
           class="font-headings text-[28px] leading-tight text-jv-ink sm:text-[36px]"
         >
-          Quizzes
+          Kvízy
         </h1>
         <p class="mt-2 font-body text-sm text-jv-muted sm:text-base">
-          Pick what you'd like to do today.
+          Co chceš dnes dělat?
         </p>
       </header>
 
@@ -16,7 +16,7 @@
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8"
       >
         <ActionCard
-          action-title="Create New Quiz"
+          action-title="Vytvořit kvíz"
           @card-click="navigateTo('/admin/quiz/list-quiz?create=1')"
         >
           <template #image>
@@ -31,7 +31,7 @@
           </template>
         </ActionCard>
         <ActionCard
-          action-title="My Quizzes"
+          action-title="Moje kvízy"
           @card-click="navigateTo('/admin/quiz/list-quiz')"
         >
           <template #image>
@@ -46,7 +46,7 @@
           </template>
         </ActionCard>
         <ActionCard
-          action-title="Shared Quizzes"
+          action-title="Sdílené kvízy"
           @card-click="navigateTo('/admin/quiz/shared-quiz')"
         >
           <template #image>
@@ -61,7 +61,7 @@
           </template>
         </ActionCard>
         <ActionCard
-          action-title="Shared With Me"
+          action-title="Sdíleno se mnou"
           @card-click="navigateTo('/admin/quiz/share-with-me')"
         >
           <template #image>
@@ -88,8 +88,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "My Quizzes - jovVix",
-  description: "Create, edit, and organize your interactive quizzes on jovVix.",
+  title: "Moje kvízy – STEM_HUB",
+  description:
+    "Vytvářej, upravuj a spravuj své interaktivní kvízy v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 </script>

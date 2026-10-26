@@ -108,15 +108,13 @@ export const useImagePicker = () => {
     if (!file) return null;
 
     if (!app.$validImageTypes.includes(file.type)) {
-      toast.error(
-        "Please upload a valid image file (JPEG, PNG, GIF, WEBP, HEIC, HEIF)."
-      );
+      toast.error("Nahraj platný obrázek (JPEG, PNG, GIF, WEBP, HEIC, HEIF).");
       return null;
     }
 
     if (file.size > config.maxImageUploadSize) {
       const limitMb = Math.round(config.maxImageUploadSize / (1024 * 1024));
-      toast.error(`Please upload an image less than ${limitMb} MB.`);
+      toast.error(`Nahraj obrázek menší než ${limitMb} MB.`);
       return null;
     }
 
@@ -125,7 +123,7 @@ export const useImagePicker = () => {
 
     if (file.size > config.maxImageFileSize) {
       const limitKb = Math.round(config.maxImageFileSize / 1024);
-      toast.error(`Please upload an image less than ${limitKb} KB.`);
+      toast.error(`Nahraj obrázek menší než ${limitKb} KB.`);
       return null;
     }
 

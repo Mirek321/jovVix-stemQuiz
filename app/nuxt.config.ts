@@ -25,16 +25,16 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: {
-        lang: "en",
+        lang: "cs",
       },
-      title: "jovVix - Real-time Quiz Platform",
+      title: "STEM_HUB – kvízy na akcích",
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         {
           name: "description",
           content:
-            "Create and host real-time interactive quizzes with jovVix. Engage your audience with live multiplayer games, instant scoring, and results.",
+            "Kvízový systém STEM_HUB pro naše akce. Připoj se kódem a soutěž v živém kvízu s okamžitým bodováním.",
         },
       ],
       link: [

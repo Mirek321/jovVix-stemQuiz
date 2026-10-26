@@ -57,7 +57,7 @@ const showQuizTitleBar = computed(
 // event handlers
 const handleCustomChange = (isFullScreenEvent) => {
   if (!isFullScreenEvent && myRef.value) {
-    toast.error("exit fullscreen mode unexpectedly!!!");
+    toast.error("Režim celé obrazovky byl nečekaně ukončen.");
     // handle unexpected behavior
   }
 };
@@ -190,7 +190,7 @@ const handleQuizEvents = async (message) => {
     return;
   } else if (message.data === app.$Unauthorized) {
     toast.error(
-      "You are unauthorized to access the resource or Your JWT token is expired"
+      "K tomuto obsahu nemáš přístup, nebo vypršelo tvoje přihlášení."
     );
   } else {
     if (message?.component === "Question") {
@@ -241,7 +241,7 @@ const sendAnswer = async (answers) => {
       selectedAnswer.value = answers[0];
     }
   } catch (err) {
-    toast.error("An error occurred while submitting the answer.");
+    toast.error("Při odesílání odpovědi došlo k chybě.");
   }
 };
 
@@ -251,9 +251,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Play Live Quiz - jovVix",
+  title: "Hraj živý kvíz – STEM_HUB",
   description:
-    "Answer questions in real time and climb the live scoreboard in this jovVix multiplayer quiz game.",
+    "Odpovídej na otázky v reálném čase a stoupej v žebříčku v tomto kvízu pro více hráčů v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -271,13 +271,13 @@ onBeforeUnmount(() => {
     <div v-if="showConnectingBar" class="top-bar-red">
       <div class="doodle">&#128641;</div>
       <div class="text-inside-bar">
-        Problem connecting with server, reconnecting...
+        Problém s připojením k serveru, připojuji znovu…
       </div>
       <button class="close-button" @click="hideConnectingBar">×</button>
     </div>
 
     <div v-if="showReconnectedBar" class="top-bar-green">
-      <div class="text-inside-bar">Reconnected &#128515;</div>
+      <div class="text-inside-bar">Znovu připojeno &#128515;</div>
     </div>
 
     <Playground
@@ -302,7 +302,7 @@ onBeforeUnmount(() => {
             <p
               class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted sm:text-[12px]"
             >
-              Playing
+              Hraješ
             </p>
             <p
               class="min-w-0 truncate font-headings text-[18px] leading-tight text-jv-ink sm:text-[22px]"

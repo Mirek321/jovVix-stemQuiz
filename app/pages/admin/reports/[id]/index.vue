@@ -7,7 +7,7 @@
       <h1
         class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
       >
-        Quiz Analysis
+        Analýza kvízu
       </h1>
       <div
         class="ml-1 mt-1 h-3 w-40 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-48"
@@ -16,9 +16,8 @@
       <p
         class="mt-4 max-w-2xl text-[15px] font-semibold text-jv-muted sm:text-[16px]"
       >
-        A complete performance breakdown for this quiz review per-question
-        accuracy and response times, then dive into individual participant
-        results, all in one place.
+        Kompletní přehled výsledků kvízu na jednom místě: úspěšnost a doba
+        odpovědi u jednotlivých otázek i výsledky každého účastníka.
       </p>
     </div>
 
@@ -36,7 +35,7 @@
             class="flex items-center gap-2 text-[12px] font-black uppercase tracking-[0.16em] text-jv-yellow"
           >
             <Zap class="size-4" :stroke-width="2.6" />
-            Game Recap
+            Shrnutí hry
           </div>
           <h2
             class="mt-3 font-headings text-[28px] leading-tight text-white sm:text-[32px] md:text-[36px]"
@@ -46,8 +45,8 @@
           <p
             class="mt-2 max-w-md text-[14px] font-semibold text-white/70 sm:text-[15px]"
           >
-            Scroll down for the question-by-question breakdown, or use the
-            numbered buttons to jump straight to a question.
+            Níže najdeš rozbor jednotlivých otázek. Číslovanými tlačítky
+            přeskočíš rovnou na konkrétní otázku.
           </p>
         </div>
 
@@ -56,7 +55,7 @@
         >
           <div class="flex items-baseline justify-between">
             <span class="text-[15px] font-bold sm:text-[16px]"
-              >Answered correctly</span
+              >Správné odpovědi</span
             >
             <span class="text-[22px] font-black sm:text-[24px]"
               >{{ roomScore.toFixed(0) }}%</span
@@ -76,7 +75,7 @@
               <div
                 class="text-[10px] font-black uppercase tracking-[0.12em] text-jv-muted"
               >
-                Questions played
+                Odehrané otázky
               </div>
               <div class="mt-auto pt-1 text-[20px] font-black text-jv-ink">
                 {{ totalQuestions }}
@@ -86,7 +85,7 @@
               <div
                 class="text-[10px] font-black uppercase tracking-[0.12em] text-jv-muted"
               >
-                Total Players
+                Počet hráčů
               </div>
               <div class="mt-auto pt-1 text-[20px] font-black text-jv-ink">
                 {{ totalPlayers }}
@@ -96,10 +95,10 @@
               <div
                 class="text-[10px] font-black uppercase tracking-[0.12em] text-jv-muted"
               >
-                Avg. answer time
+                Prům. doba odpovědi
               </div>
               <div class="mt-auto pt-1 text-[20px] font-black text-jv-ink">
-                {{ avgAnswerTime.toFixed(2) }} sec
+                {{ avgAnswerTime.toFixed(2) }} s
               </div>
             </div>
           </div>
@@ -113,14 +112,14 @@
         v-if="quizAnalysisPending"
         class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
-        Loading...
+        Načítání…
       </div>
 
       <div
         v-else-if="quizAnalysisError"
         class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
       >
-        Error while fetching data: {{ quizAnalysisError }}
+        Chyba při načítání dat: {{ quizAnalysisError }}
       </div>
 
       <template v-else-if="quizAnalysis?.data?.length">
@@ -131,7 +130,7 @@
               class="flex items-center gap-2 text-[15px] font-bold text-jv-ink sm:text-[16px]"
             >
               <ListOrdered class="size-5 text-jv-muted" :stroke-width="2.4" />
-              {{ totalQuestions }} Questions
+              {{ czCount(totalQuestions, "otázka", "otázky", "otázek") }}
             </div>
             <div class="flex flex-wrap items-center gap-2">
               <button
@@ -173,7 +172,7 @@
                 <p
                   class="text-[12px] font-bold uppercase tracking-[0.14em] text-jv-coral"
                 >
-                  Question {{ index + 1 }}
+                  Otázka {{ index + 1 }}
                 </p>
                 <h3
                   class="mt-1 break-words text-[20px] font-bold leading-snug text-jv-ink sm:text-[22px]"
@@ -189,18 +188,18 @@
                   <div
                     class="text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
                   >
-                    Avg. time
+                    Prům. čas
                   </div>
                   <div class="mt-0.5 text-[14px] font-bold text-jv-ink">
                     {{ Math.abs((quiz.avg_response_time / 1000).toFixed(2)) }}
-                    sec
+                    s
                   </div>
                 </div>
                 <div>
                   <div
                     class="text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
                   >
-                    Correct
+                    Správně
                   </div>
                   <div
                     class="mt-0.5 text-[14px] font-bold text-jv-accent-green"
@@ -212,7 +211,7 @@
                   <div
                     class="text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
                   >
-                    Incorrect
+                    Špatně
                   </div>
                   <div class="mt-0.5 text-[14px] font-bold text-jv-coral">
                     {{ incorrectCountFor(quiz) }}
@@ -296,7 +295,7 @@
         v-else
         class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
-        No questions found for this quiz.
+        Tento kvíz nemá žádné otázky.
       </div>
     </template>
 
@@ -306,13 +305,13 @@
         v-if="quizUserAnalysispending"
         class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
-        Loading...
+        Načítání…
       </div>
       <div
         v-else-if="fetchError"
         class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
       >
-        Error while fetching data: {{ fetchError }}
+        Chyba při načítání dat: {{ fetchError }}
       </div>
       <div v-else class="flex flex-col gap-4">
         <QuizUserAnalyticsSpace
@@ -347,9 +346,9 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Report Details - jovVix",
+  title: "Detail reportu – STEM_HUB",
   description:
-    "Explore detailed participant scores and question analytics for a jovVix quiz.",
+    "Podrobné skóre účastníků a analýza otázek kvízu v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -427,9 +426,9 @@ const avgAnswerTime = computed(() => {
 
 const overallMessage = computed(() => {
   const score = roomScore.value;
-  if (score >= 80) return "An easy round for this crowd.";
-  if (score >= 60) return "A fair challenge.";
-  return "A tough round.";
+  if (score >= 80) return "Pro tuhle partu hračka.";
+  if (score >= 60) return "Slušná výzva.";
+  return "Pořádně těžké kolo.";
 });
 
 const correctCountFor = (quiz) =>

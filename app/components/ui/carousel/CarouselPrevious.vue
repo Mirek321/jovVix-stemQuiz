@@ -41,7 +41,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel();
   >
     <slot>
       <ArrowLeft />
-      <span class="sr-only">Previous Slide</span>
+      <span class="sr-only">Předchozí snímek</span>
     </slot>
   </Button>
 </template>

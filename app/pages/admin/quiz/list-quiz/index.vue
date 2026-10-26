@@ -44,8 +44,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Library - jovVix",
-  description: "Browse and manage all the quizzes you have created on jovVix.",
+  title: "Knihovna kvízů – STEM_HUB",
+  description: "Procházej a spravuj všechny své kvízy v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -80,48 +80,49 @@ const createQuizForm = ref({
   category_id: "",
   cover_image: "",
 });
-const selectedFilter = ref("All Quiz");
+const selectedFilter = ref("Všechny kvízy");
 const filterOpen = ref(false);
 const filterMenuRef = ref(null);
 const filterOptions = [
-  "All Quiz",
-  "My Quizzes",
-  "Shared By Me",
-  "Shared With Me",
+  "Všechny kvízy",
+  "Moje kvízy",
+  "Sdílím já",
+  "Sdíleno se mnou",
 ];
-const visibilityFilter = ref("Private");
-const visibilityOptions = ["Private", "Public"];
+const visibilityFilter = ref("Soukromé");
+const visibilityOptions = ["Soukromé", "Veřejné"];
 
 const { coverUrl, fallbackUrl } = useQuizCover();
 
 const emptyState = computed(() => {
-  if (selectedFilter.value === "My Quizzes") {
+  if (selectedFilter.value === "Moje kvízy") {
     return {
-      title: "No Quiz Created By You!",
-      message: "Create your first quiz.",
+      title: "Zatím nemáš žádný kvíz",
+      message: "Vytvoř svůj první kvíz.",
       showCreateAction: true,
     };
   }
 
-  if (selectedFilter.value === "Shared By Me") {
+  if (selectedFilter.value === "Sdílím já") {
     return {
-      title: "No Quiz Shared By You!",
-      message: "Share your first quiz.",
+      title: "Zatím nesdílíš žádný kvíz",
+      message: "Nasdílej svůj první kvíz.",
       showCreateAction: false,
     };
   }
 
-  if (selectedFilter.value === "Shared With Me") {
+  if (selectedFilter.value === "Sdíleno se mnou") {
     return {
-      title: "No Quiz Is Shared With You!",
-      message: "Ask someone to share a quiz with you.",
+      title: "Zatím s tebou nikdo nesdílel žádný kvíz",
+      message: "Požádej někoho, ať s tebou nasdílí kvíz.",
       showCreateAction: false,
     };
   }
 
   return {
-    title: "No Quizzes Yet!",
-    message: "Create your first quiz, or ask someone to share one with you.",
+    title: "Zatím žádné kvízy",
+    message:
+      "Vytvoř svůj první kvíz, nebo požádej někoho, ať s tebou nějaký nasdílí.",
     showCreateAction: true,
   };
 });
@@ -204,12 +205,12 @@ watchEffect(() => {
 });
 
 const formatCreatedAt = (value) => {
-  if (!value) return "Created recently";
+  if (!value) return "Vytvořeno nedávno";
 
   const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Created recently";
+  if (Number.isNaN(date.getTime())) return "Vytvořeno nedávno";
 
-  return `Created ${new Intl.DateTimeFormat("en", {
+  return `Vytvořeno ${new Intl.DateTimeFormat("cs", {
     month: "short",
     day: "2-digit",
     year: "numeric",
@@ -221,9 +222,9 @@ const rawQuizzes = computed(() => {
   const byMe = sharedByMeList.value?.data || [];
   const withMe = sharedWithMeList.value?.data || [];
 
-  if (selectedFilter.value === "My Quizzes") return own;
-  if (selectedFilter.value === "Shared By Me") return byMe;
-  if (selectedFilter.value === "Shared With Me") return withMe;
+  if (selectedFilter.value === "Moje kvízy") return own;
+  if (selectedFilter.value === "Sdílím já") return byMe;
+  if (selectedFilter.value === "Sdíleno se mnou") return withMe;
 
   const seen = new Set();
 
@@ -255,14 +256,14 @@ const visibilityCounts = computed(() => {
   const publicCount = list.filter((quiz) => quiz.isPublic).length;
 
   return {
-    Private: list.length - publicCount,
-    Public: publicCount,
+    Soukromé: list.length - publicCount,
+    Veřejné: publicCount,
   };
 });
 
 const filteredQuizzes = computed(() => {
   const query = searchQuery.value.trim().toLowerCase();
-  const isPublicWanted = visibilityFilter.value === "Public";
+  const isPublicWanted = visibilityFilter.value === "Veřejné";
 
   return quizzes.value.filter((quiz) => {
     if (quiz.isPublic !== isPublicWanted) return false;
@@ -276,11 +277,11 @@ const filteredQuizzes = computed(() => {
 });
 
 const noResultsMessage = computed(() => {
-  if (searchQuery.value.trim()) return "No quizzes matched your search.";
+  if (searchQuery.value.trim()) return "Hledání neodpovídá žádný kvíz.";
 
-  return visibilityFilter.value === "Public"
-    ? "No public quizzes here yet."
-    : "No private quizzes here yet.";
+  return visibilityFilter.value === "Veřejné"
+    ? "Zatím tu nejsou žádné veřejné kvízy."
+    : "Zatím tu nejsou žádné soukromé kvízy.";
 });
 
 const handleStartQuiz = async (quizId) => {
@@ -299,7 +300,7 @@ const handleStartQuiz = async (quizId) => {
 
     const activeQuizId = response?.data;
     if (!activeQuizId) {
-      toast.error("Error while starting quiz.");
+      toast.error("Kvíz se nepodařilo spustit.");
       return;
     }
 
@@ -316,7 +317,7 @@ const handleStartQuiz = async (quizId) => {
       sessionStore.setSession(activeQuizId);
     }, 1000);
   } catch (error) {
-    toast.error(error?.message || "Error while starting quiz.");
+    toast.error(error?.message || "Kvíz se nepodařilo spustit.");
   } finally {
     startingQuizId.value = "";
   }
@@ -329,9 +330,9 @@ const handleShareQuiz = (quiz) => {
 
 const deleteQuizMessage = computed(() => {
   const title = quizPendingDelete.value?.title;
-  return `Deleting ${
-    title ? `"${title}"` : "this quiz"
-  } also removes its questions, every session hosted from it, and all player scores and responses. This cannot be undone.`;
+  return `Smazáním ${
+    title ? `kvízu „${title}“` : "tohoto kvízu"
+  } odstraníš i všechny jeho otázky, všechny odehrané hry a skóre i odpovědi hráčů. Tuto akci nejde vrátit.`;
 });
 
 const handleDeleteQuiz = (quiz) => {
@@ -349,12 +350,12 @@ const confirmDeleteQuiz = async () => {
       headers: headers,
       credentials: "include",
     });
-    toast.success("Quiz deleted successfully.");
+    toast.success("Kvíz byl smazán.");
     refresh();
   } catch (error) {
     console.error("Failed to delete quiz", error);
     toast.error(
-      error?.data?.message || error?.message || "Failed to delete quiz."
+      error?.data?.message || error?.message || "Kvíz se nepodařilo smazat."
     );
   } finally {
     quizPendingDelete.value = null;
@@ -416,11 +417,11 @@ const handleCreateQuiz = async () => {
 
     const quizId = response?.data;
     if (!quizId) {
-      toast.error("Error while creating quiz.");
+      toast.error("Kvíz se nepodařilo vytvořit.");
       return;
     }
 
-    toast.success("Quiz created successfully.");
+    toast.success("Kvíz byl vytvořen.");
     closeCreateQuizModal();
     router.push(`/admin/quiz/list-quiz/${quizId}`);
   } catch (error) {
@@ -428,7 +429,7 @@ const handleCreateQuiz = async () => {
       error?.data?.data ||
         error?.data?.message ||
         error?.message ||
-        "Error while creating quiz."
+        "Kvíz se nepodařilo vytvořit."
     );
   } finally {
     createQuizPending.value = false;
@@ -447,7 +448,7 @@ const handleCreateQuiz = async () => {
         <h1
           class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
         >
-          Quiz List
+          Seznam kvízů
         </h1>
         <div
           class="ml-1 mt-1 h-3 w-24 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-28"
@@ -456,7 +457,7 @@ const handleCreateQuiz = async () => {
       </div>
       <div class="flex w-full flex-col gap-3 sm:w-fit sm:flex-row md:mt-1">
         <NavigationLink
-          url-name="Create Quiz"
+          url-name="Vytvořit kvíz"
           class="w-full bg-jv-coral py-2 font-[500] text-white sm:w-fit"
           @click="createQuizOpen = true"
         />
@@ -512,7 +513,7 @@ const handleCreateQuiz = async () => {
         <div
           class="flex h-11 w-full items-center gap-1 jv-border-rough bg-jv-white p-1 shadow-soft-sm sm:h-12 sm:w-fit"
           role="group"
-          aria-label="Filter by visibility"
+          aria-label="Filtrovat podle viditelnosti"
         >
           <button
             v-for="option in visibilityOptions"
@@ -537,7 +538,7 @@ const handleCreateQuiz = async () => {
           v-model="searchQuery"
           type="search"
           class="h-full min-w-0 flex-1 bg-transparent text-[15px] text-jv-ink outline-none placeholder:text-jv-ink/45 sm:text-[17px]"
-          placeholder="Search by name or keyword..."
+          placeholder="Hledej podle názvu nebo klíčového slova…"
         />
       </label>
     </div>
@@ -569,7 +570,7 @@ const handleCreateQuiz = async () => {
           class="flex flex-wrap justify-center gap-3"
         >
           <NavigationLink
-            url-name="Create Quiz"
+            url-name="Vytvořit kvíz"
             class="bg-jv-coral text-white font-[500] py-2"
             @click="createQuizOpen = true"
           />
@@ -620,12 +621,12 @@ const handleCreateQuiz = async () => {
             <h2
               class="font-body text-[24px] font-black leading-none text-jv-white sm:text-[28px]"
             >
-              Create New Quiz
+              Vytvořit kvíz
             </h2>
             <button
               type="button"
               class="grid size-9 place-items-center text-jv-white transition-transform"
-              aria-label="Close create quiz modal"
+              aria-label="Zavřít okno pro vytvoření kvízu"
               @click="closeCreateQuizModal"
             >
               <X class="size-6" :stroke-width="2.4" />
@@ -637,7 +638,7 @@ const handleCreateQuiz = async () => {
               <span
                 class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
               >
-                Quiz Title <span class="text-jv-coral">*</span>
+                Název kvízu <span class="text-jv-coral">*</span>
               </span>
               <input
                 v-model.trim="createQuizForm.title"
@@ -650,7 +651,7 @@ const handleCreateQuiz = async () => {
               <span
                 class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
               >
-                Quiz Description
+                Popis kvízu
               </span>
               <textarea
                 v-model.trim="createQuizForm.description"
@@ -673,11 +674,11 @@ const handleCreateQuiz = async () => {
                 <span
                   class="text-[14px] font-black uppercase tracking-[0.14em] text-jv-ink"
                 >
-                  Make this quiz public
+                  Zveřejnit tento kvíz
                 </span>
                 <span class="text-[14px] font-medium text-jv-muted">
-                  Public quizzes appear under "Explore Public Quizzes" on the
-                  homepage. Anyone can discover them.
+                  Veřejné kvízy se zobrazují na domovské stránce mezi veřejnými
+                  kvízy. Najít je může kdokoli.
                 </span>
               </span>
             </label>
@@ -690,13 +691,15 @@ const handleCreateQuiz = async () => {
                 <span
                   class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
                 >
-                  Category
+                  Kategorie
                 </span>
                 <select
                   v-model="createQuizForm.category_id"
                   class="h-14 border border-jv-line bg-jv-canvas px-4 text-[16px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm"
                 >
-                  <option value="">No category (shows under "Other")</option>
+                  <option value="">
+                    Bez kategorie (zobrazí se v „Ostatní“)
+                  </option>
                   <option
                     v-for="category in categories"
                     :key="category.id"
@@ -711,7 +714,7 @@ const handleCreateQuiz = async () => {
                 <span
                   class="text-[13px] font-black uppercase tracking-[0.16em] text-jv-ink"
                 >
-                  Cover Image
+                  Titulní obrázek
                 </span>
                 <label
                   v-if="!createQuizForm.cover_image"
@@ -719,7 +722,9 @@ const handleCreateQuiz = async () => {
                 >
                   <ImageIcon class="size-4 shrink-0" :stroke-width="2.3" />
                   <span class="truncate">{{
-                    processingCover ? "Processing image…" : "Upload cover image"
+                    processingCover
+                      ? "Zpracovávám obrázek…"
+                      : "Nahrát titulní obrázek"
                   }}</span>
                   <input
                     type="file"
@@ -735,7 +740,7 @@ const handleCreateQuiz = async () => {
                 >
                   <NuxtImg
                     :src="createQuizForm.cover_image"
-                    alt="Cover image preview"
+                    alt="Náhled titulního obrázku"
                     class="h-10 w-14 shrink-0 border border-jv-line object-cover"
                   />
                   <span
@@ -746,7 +751,7 @@ const handleCreateQuiz = async () => {
                   <button
                     type="button"
                     class="grid size-8 shrink-0 place-items-center text-jv-ink transition-colors hover:text-jv-coral"
-                    aria-label="Remove cover image"
+                    aria-label="Odebrat titulní obrázek"
                     @click="removeCoverImage"
                   >
                     <X class="size-4" :stroke-width="2.4" />
@@ -760,12 +765,12 @@ const handleCreateQuiz = async () => {
             class="flex flex-col-reverse gap-3 border-t border-jv-line bg-jv-canvas px-5 py-4 sm:flex-row sm:justify-end sm:px-8"
           >
             <NavigationLink
-              url-name="Cancel"
+              url-name="Zrušit"
               class="bg-jv-white font-[500]"
               @click="closeCreateQuizModal"
             />
             <NavigationLink
-              url-name="Create Quiz"
+              url-name="Vytvořit kvíz"
               class="bg-jv-mint font-[500]"
             />
           </div>
@@ -776,9 +781,9 @@ const handleCreateQuiz = async () => {
     <ShareQuizModal v-model="shareModalOpen" :quiz-id="shareQuizId" />
     <DeleteDialog
       v-model="deleteModalOpen"
-      title="Delete quiz"
+      title="Smazat kvíz"
       :message="deleteQuizMessage"
-      confirm-label="Delete quiz"
+      confirm-label="Smazat kvíz"
       @confirm-delete="confirmDeleteQuiz"
     />
   </main>

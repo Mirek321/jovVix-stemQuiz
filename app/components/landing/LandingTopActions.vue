@@ -2,7 +2,7 @@
   <div class="hidden items-start justify-end gap-6 lg:flex">
     <NavigationLink
       url="/join"
-      url-name="Enter Code"
+      url-name="Zadat kód"
       class="bg-jv-coral text-white font-[500] py-2"
     />
   </div>

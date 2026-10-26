@@ -281,10 +281,10 @@ func (ctrl *QuizController) UpdateQuizSettings(c *fiber.Ctx) error {
 	err = ctrl.quizSvc.UpdateQuizSettings(quizId, quizReq.Points, quizReq.DurationInSeconds, quizReq.QuestionIds, quizReq.CategoryId, quizReq.CoverImage)
 	if err != nil {
 		ctrl.logger.Error("error in updating quiz settings", zap.Error(err))
-		return utils.JSONFail(c, http.StatusBadRequest, "error while updating quiz settings")
+		return utils.JSONFail(c, http.StatusBadRequest, "Nepodařilo se uložit nastavení kvízu")
 	}
 
-	return utils.JSONSuccess(c, http.StatusOK, "quiz settings update success")
+	return utils.JSONSuccess(c, http.StatusOK, "Nastavení kvízu bylo uloženo")
 }
 
 // GetQuizAnalysis for getting quiz details hosted by Admin
@@ -347,7 +347,7 @@ func (qc *QuizController) ListQuizzesAnalysis(c *fiber.Ctx) error {
 	if val, isSet := filters[constants.PageNumberQueryParam]; isSet {
 		page, err = strconv.Atoi(val)
 		if err != nil {
-			return utils.JSONFail(c, http.StatusBadRequest, "Enter page number in integer only.")
+			return utils.JSONFail(c, http.StatusBadRequest, "Číslo stránky musí být celé číslo.")
 		}
 
 		if page <= 0 {

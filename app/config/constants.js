@@ -1,7 +1,7 @@
 export default {
   // Middleware
-  EmailOrPasswordMissing: "email and password are required",
-  IncorrectCredentials: "Error or password incorrect, try again",
+  EmailOrPasswordMissing: "E-mail a heslo jsou povinné",
+  IncorrectCredentials: "Nesprávný e-mail nebo heslo, zkus to znovu",
 
   // Defaults
   InvitationCode: "",
@@ -14,8 +14,8 @@ export default {
   MaximumDurationInSeconds: 300,
   DefaultPoints: 1,
   DefaultDurationInSeconds: 10,
-  ReadyMessage: "Ready to go...",
-  AnswerSubmitted: "Answer submitted successfully",
+  ReadyMessage: "Připrav se…",
+  AnswerSubmitted: "Odpověď odeslána",
 
   // Status
   Fail: "fail",
@@ -45,15 +45,15 @@ export default {
   AskSkip: "ask_skip",
   AskForceSkip: "ask_force_skip",
   ShowScore: "show_score",
-  AdminDisconnectedMessage: "admin is disconnected, please wait...",
+  AdminDisconnectedMessage: "Moderátor se odpojil, chvíli počkej…",
   SkipTimer: "skip_timer",
   EventAnswerSubmittedByUser: "answer submitted by user",
   EventPing: "ping",
   PauseQuiz: "pause_quiz",
-  PauseQuizMessage: "quiz is paused by admin, please wait",
+  PauseQuizMessage: "Moderátor kvíz pozastavil, chvíli počkej",
   ResumeQuiz: "resume_quiz",
-  ResumeQuizMessage: "quiz is resumed, you could play now",
-  HostEndedQuizMessage: "The host has ended the quiz.",
+  ResumeQuizMessage: "Kvíz pokračuje, můžeš hrát dál",
+  HostEndedQuizMessage: "Moderátor ukončil kvíz.",
 
   // Actions
   ActionAnserSubmittedByUser: "answer submitted by user",
@@ -61,14 +61,14 @@ export default {
   // Errors
   Unauthorized: "unauthorized to access resource",
   CodeNotFound: "invitation code not found",
-  ReloadRequired: "there was some error, please reload the page!!!",
+  ReloadRequired: "Něco se pokazilo, obnov prosím stránku.",
   InvitationCodeNotFound: "invitation code not found",
   QuizSessionValidationFailed: "quiz-session-validation-failed",
   SessionWasCompleted: "session was completed",
-  NoAnswerFound: "please select an answer",
+  NoAnswerFound: "Vyber odpověď",
 
   // Messages
-  CsvUploadSuccess: "File uploaded successfully",
+  CsvUploadSuccess: "Soubor byl nahrán",
 
   // Image upload
   validImageTypes: [

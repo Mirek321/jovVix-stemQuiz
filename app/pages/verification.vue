@@ -14,7 +14,7 @@
             <h1
               class="m-0 font-headings text-[28px] leading-none text-jv-ink sm:text-[34px]"
             >
-              Verify Your Email
+              Ověř svůj e-mail
             </h1>
             <svg
               class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-mint"
@@ -37,7 +37,7 @@
           <p
             class="m-0 mt-2 text-center font-body text-sm text-jv-ink/70 sm:text-base"
           >
-            Enter the verification code sent to your email.
+            Zadej ověřovací kód, který jsme ti poslali e-mailem.
           </p>
         </header>
 
@@ -52,7 +52,7 @@
               for="code"
               class="px-0.5 font-body text-xs font-bold uppercase tracking-wide text-jv-ink sm:text-[13px]"
             >
-              Verification Code
+              Ověřovací kód
             </label>
             <div
               class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
@@ -81,7 +81,7 @@
             type="submit"
             class="jv-card mt-2 inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform sm:text-lg"
           >
-            Verify
+            Ověřit
             <ArrowRight class="size-5" :stroke-width="2.4" />
           </button>
         </form>
@@ -93,15 +93,16 @@
 <script setup>
 import { usePush } from "notivue";
 import { ShieldCheck, ArrowRight } from "lucide-vue-next";
+import { kratosMessageText } from "~/composables/kratosMessages";
 
 definePageMeta({
   layout: "auth",
 });
 
 useSeoMeta({
-  title: "Verify Account - jovVix",
+  title: "Ověření účtu – STEM_HUB",
   description:
-    "Verify your jovVix account email to activate quiz hosting and account features.",
+    "Ověř si e-mail ke svému účtu v systému STEM_HUB a odemkni spouštění kvízů a další funkce účtu.",
   robots: "noindex, nofollow",
 });
 
@@ -140,11 +141,11 @@ const fetchFlowIdAndCsrfToken = async () => {
 
     data?.ui?.messages?.forEach((element) => {
       if (element.type === "error") {
-        toast.error(element.text);
+        toast.error(kratosMessageText(element));
       } else if (element.id === 1080001 || element.id === 1080003) {
-        toast.success("Verification code sent to your email.");
+        toast.success("Ověřovací kód jsme ti poslali na e-mail.");
       } else {
-        toast.success(element.text);
+        toast.success(kratosMessageText(element));
       }
     });
     if (data.state === "passed_challenge") {

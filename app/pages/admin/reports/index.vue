@@ -9,7 +9,7 @@
         <h1
           class="font-headings text-[38px] leading-none text-jv-ink min-[420px]:text-[44px] sm:text-[52px] md:text-[56px]"
         >
-          Quiz Reports
+          Reporty kvízů
         </h1>
         <div
           class="ml-1 mt-1 h-3 w-40 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-48"
@@ -39,7 +39,7 @@
             v-model="nameInput"
             type="search"
             class="h-full min-w-0 flex-1 bg-transparent text-[15px] font-semibold text-jv-ink outline-none placeholder:text-jv-ink/45 sm:text-[16px]"
-            placeholder="Search quiz"
+            placeholder="Hledat kvíz"
           />
         </label>
       </div>
@@ -50,7 +50,7 @@
       v-if="quizListPending"
       class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm mt-4"
     >
-      Loading...
+      Načítání…
     </div>
 
     <!-- State: Error -->
@@ -58,7 +58,7 @@
       v-else-if="quizListError"
       class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm mt-4"
     >
-      Error while fetching data: {{ quizListError }}
+      Chyba při načítání dat: {{ quizListError }}
     </div>
 
     <!-- State: Success -->
@@ -72,7 +72,7 @@
           class="flex items-center gap-1 cursor-pointer hover:text-jv-ink transition-colors"
           @click="sortEventHandler('title')"
         >
-          QUIZ NAME
+          NÁZEV KVÍZU
           <ChevronUp
             v-if="orderBy === 'title' && order === 'asc'"
             class="size-4"
@@ -88,8 +88,8 @@
           class="flex items-center justify-center text-center gap-1 cursor-pointer hover:text-jv-ink transition-colors"
           @click="sortEventHandler('participants')"
         >
-          TOTAL <br />
-          PARTICIPANTS
+          POČET <br />
+          ÚČASTNÍKŮ
           <ChevronUp
             v-if="orderBy === 'participants' && order === 'asc'"
             class="size-4"
@@ -105,7 +105,7 @@
           class="flex items-center gap-1 cursor-pointer hover:text-jv-ink transition-colors"
           @click="sortEventHandler('activated_from')"
         >
-          STARTED AT
+          ZAČÁTEK
           <ChevronUp
             v-if="orderBy === 'activated_from' && order === 'asc'"
             class="size-4"
@@ -121,7 +121,7 @@
           class="flex items-center gap-1 cursor-pointer hover:text-jv-ink transition-colors"
           @click="sortEventHandler('activated_to')"
         >
-          ENDED AT
+          KONEC
           <ChevronUp
             v-if="orderBy === 'activated_to' && order === 'asc'"
             class="size-4"
@@ -137,8 +137,8 @@
           class="flex items-center justify-center text-center gap-1 cursor-pointer hover:text-jv-ink transition-colors"
           @click="sortEventHandler('questions')"
         >
-          TOTAL <br />
-          QUESTIONS
+          POČET <br />
+          OTÁZEK
           <ChevronUp
             v-if="orderBy === 'questions' && order === 'asc'"
             class="size-4"
@@ -149,7 +149,9 @@
           />
           <ChevronsUpDown v-else class="size-4 opacity-40" />
         </div>
-        <div class="flex items-center justify-center text-center">ACCURACY</div>
+        <div class="flex items-center justify-center text-center">
+          ÚSPĚŠNOST
+        </div>
       </div>
 
       <!-- No Data -->
@@ -157,7 +159,7 @@
         v-if="quizList?.data?.count <= 0"
         class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
-        No quiz found.
+        Žádný kvíz nenalezen.
       </div>
 
       <!-- Cards List -->
@@ -185,7 +187,7 @@
         <div class="lg:text-center text-[22px] font-black text-jv-ink">
           <span
             class="lg:hidden text-[14px] text-jv-muted font-bold mr-2 uppercase tracking-wide"
-            >Participants:</span
+            >Účastníci:</span
           >
           {{ quiz.participants }}
         </div>
@@ -194,7 +196,7 @@
         <div>
           <span
             class="lg:hidden text-[14px] text-jv-muted font-bold mr-2 uppercase tracking-wide"
-            >Started At:</span
+            >Začátek:</span
           >
           <div
             class="inline-block lg:block text-[15px] font-bold text-jv-ink leading-snug"
@@ -215,7 +217,7 @@
         <div>
           <span
             class="lg:hidden text-[14px] text-jv-muted font-bold mr-2 uppercase tracking-wide"
-            >Ended At:</span
+            >Konec:</span
           >
           <div
             class="inline-block lg:block text-[15px] font-bold text-jv-ink leading-snug"
@@ -236,7 +238,7 @@
         <div class="lg:text-center text-[22px] font-black text-jv-ink">
           <span
             class="lg:hidden text-[14px] text-jv-muted font-bold mr-2 uppercase tracking-wide"
-            >Questions:</span
+            >Otázky:</span
           >
           {{ quiz.questions }}
         </div>
@@ -245,7 +247,7 @@
         <div class="lg:flex lg:justify-center">
           <span
             class="lg:hidden text-[14px] text-jv-muted font-bold mr-2 uppercase tracking-wide"
-            >Accuracy:</span
+            >Úspěšnost:</span
           >
           <div
             class="inline-flex items-center justify-center px-3 py-1.5 jv-border-rough shadow-soft-sm text-[16px] font-black min-w-[90px]"
@@ -290,9 +292,8 @@ definePageMeta({
 });
 
 useSeoMeta({
-  title: "Quiz Reports - jovVix",
-  description:
-    "View performance reports and analytics for your jovVix quiz sessions.",
+  title: "Reporty kvízů – STEM_HUB",
+  description: "Prohlédni si reporty a analýzu svých kvízů v systému STEM_HUB.",
   robots: "noindex, nofollow",
 });
 
@@ -315,11 +316,11 @@ const {
     quizList.data.data = quizList.data?.data?.map((quiz) => {
       quiz.activated_from.Time = format(
         formatISO(quiz.activated_from.Time),
-        "dd-MMM-yyyy HH:mm:ss"
+        "dd.MM.yyyy HH:mm:ss"
       );
       quiz.activated_to.Time = format(
         formatISO(quiz.activated_to.Time),
-        "dd-MMM-yyyy HH:mm:ss"
+        "dd.MM.yyyy HH:mm:ss"
       );
       return quiz;
     });

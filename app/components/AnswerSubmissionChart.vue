@@ -97,20 +97,20 @@ const chartOptions = ref({
         callback: function (value) {
           const val = this.getLabelForValue(value);
           if (props.optionsMedia == "text") {
-            let xAxisName = props.options[val]?.value || "Not Attempted";
+            let xAxisName = props.options[val]?.value || "Bez odpovědi";
             if (xAxisName.length > 15) {
               xAxisName = xAxisName.slice(0, 15) + "...";
             }
             return xAxisName;
           }
           const mapping = {
-            1: "Option A",
-            2: "Option B",
-            3: "Option C",
-            4: "Option D",
-            5: "Option E",
+            1: "Možnost A",
+            2: "Možnost B",
+            3: "Možnost C",
+            4: "Možnost D",
+            5: "Možnost E",
           };
-          const xAxisName = mapping[val] || "Not Attempted";
+          const xAxisName = mapping[val] || "Bez odpovědi";
 
           return xAxisName;
         },

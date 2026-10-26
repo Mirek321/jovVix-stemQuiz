@@ -22,9 +22,9 @@ const { baseUrl } = useRuntimeConfig().public;
 const defaultShareImage = new URL("/og-image.png", baseUrl).href;
 
 useSeoMeta({
-  ogSiteName: "jovVix",
+  ogSiteName: "STEM_HUB",
   ogType: "website",
-  ogLocale: "en_US",
+  ogLocale: "cs_CZ",
   ogImage: defaultShareImage,
   twitterCard: "summary_large_image",
   twitterImage: defaultShareImage,

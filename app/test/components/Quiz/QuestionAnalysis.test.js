@@ -47,7 +47,7 @@ let wrapper = mountComponent();
 
 describe("QuestionDetail.vue", () => {
   it("renders the question order and text", () => {
-    expect(wrapper.find(".text-primary").text()).toContain("Question: 1");
+    expect(wrapper.find(".text-primary").text()).toContain("Otázka 1");
     expect(wrapper.find("h3").text()).toBe(defaultProps.question.question);
   });
 
@@ -82,7 +82,7 @@ describe("QuestionDetail.vue", () => {
     expect(avgTime.text()).toContain("AVG. Response Time: 6.33/ 30 seconds");
 
     const mcqBadge = wrapper.find(".badge.bg-light-info");
-    expect(mcqBadge.text()).toBe("M.C.Q.");
+    expect(mcqBadge.text()).toBe("Výběr odpovědi");
 
     const progressCircular = wrapper.findComponent(VProgressCircular);
     expect(progressCircular.exists()).toBe(true);
@@ -104,7 +104,7 @@ describe("QuestionDetail.vue", () => {
     expect(responseTime.text()).toContain("Response Time: 1.92 seconds");
 
     const attemptedBadge = wrapper.find(".badge.bg-success");
-    expect(attemptedBadge.text()).toBe("Attempted");
+    expect(attemptedBadge.text()).toBe("Zodpovězeno");
   });
 
   it("renders not attempted badge when user has not attempted the question", () => {
@@ -112,7 +112,7 @@ describe("QuestionDetail.vue", () => {
     wrapper.unmount();
     wrapper = mountComponent();
     const notAttemptedBadge = wrapper.find("span.bg-danger");
-    expect(notAttemptedBadge.text()).toBe("Not Attempted");
+    expect(notAttemptedBadge.text()).toBe("Bez odpovědi");
   });
 
   it("renders edit and delete buttons for editable questions", async () => {

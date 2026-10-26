@@ -18,7 +18,11 @@ const props = defineProps({
 
 const emits = defineEmits(["showEditForm", "deleteUserPermission"]);
 
-const permissionLabels = { read: "Read", write: "Write", share: "Manage" };
+const permissionLabels = {
+  read: "Jen čtení",
+  write: "Může upravovat",
+  share: "Může spravovat",
+};
 const permissionLabel = computed(
   () => permissionLabels[props.user.permission] ?? props.user.permission
 );
@@ -43,7 +47,7 @@ const showEditForm = () => {
       <span class="relative shrink-0">
         <NuxtImg
           src="https://api.dicebear.com/10.x/clay/svg?seed=Jade"
-          alt="User avatar"
+          alt="Avatar uživatele"
           class="size-10 rounded-full border border-jv-line bg-jv-canvas"
           width="40"
           height="40"
@@ -62,7 +66,9 @@ const showEditForm = () => {
           {{ props.user.first_name.String }}
           {{ props.user.last_name?.String }}
         </h4>
-        <h4 v-else class="text-[15px] font-black text-jv-ink">Unknown</h4>
+        <h4 v-else class="text-[15px] font-black text-jv-ink">
+          Neznámý uživatel
+        </h4>
         <div class="truncate text-[13px] font-semibold text-jv-muted">
           {{ props.user.shared_to }}
         </div>
@@ -80,13 +86,13 @@ const showEditForm = () => {
         v-if="props.isSelf"
         class="rounded-full border border-jv-line bg-jv-canvas px-2.5 py-1 text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink"
       >
-        You
+        Ty
       </span>
       <template v-else>
         <button
           type="button"
-          title="Edit Permission"
-          aria-label="Edit permission"
+          title="Upravit oprávnění"
+          aria-label="Upravit oprávnění"
           class="grid size-8 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
           @click="showEditForm"
         >
@@ -94,8 +100,8 @@ const showEditForm = () => {
         </button>
         <button
           type="button"
-          title="Delete Permission"
-          aria-label="Delete permission"
+          title="Odebrat oprávnění"
+          aria-label="Odebrat oprávnění"
           class="grid size-8 place-items-center rounded-[8px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform"
           @click="emits('deleteUserPermission', props.user.id)"
         >

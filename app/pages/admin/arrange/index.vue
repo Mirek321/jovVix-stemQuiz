@@ -17,46 +17,47 @@ const presentation = computed(() => {
 
   if (err === "session was completed") {
     return {
-      title: "Quiz Session Has Ended",
+      title: "Kvíz skončil",
       message:
-        "This quiz session is already finished. You can't return to the host controls once a quiz wraps up — head home to start a new one or review results from the dashboard.",
+        "Tohle sezení kvízu už skončilo. Po skončení kvízu se k ovládání moderátora vrátit nedá – na úvodní stránce můžeš spustit nový kvíz nebo si projít výsledky v přehledu.",
     };
   }
   if (err === "quiz-session-validation-failed") {
     return {
-      title: "Quiz Session No Longer Active",
+      title: "Sezení kvízu už není aktivní",
       message:
-        "This quiz session can no longer be hosted. It may have ended, been terminated, or expired. Start a new session to host again.",
+        "Tohle sezení kvízu už nejde moderovat. Mohlo skončit, být ukončeno nebo vypršet. Pro nové hraní spusť nové sezení.",
     };
   }
   if (err === "invitation code not found") {
     return {
-      title: "Invitation Code No Longer Valid",
+      title: "Kód kvízu už neplatí",
       message:
-        "The invitation code for this session is no longer active. The session has likely ended.",
+        "Kód kvízu pro toto sezení už není aktivní. Sezení nejspíš skončilo.",
     };
   }
   return {
-    title: "No Active Quiz Session",
+    title: "Žádné aktivní sezení kvízu",
     message:
-      "There's nothing to host here right now. Head back home, or jump into your quizzes to start a new session.",
+      "Teď tu není co moderovat. Vrať se na úvodní stránku nebo otevři své kvízy a spusť nové sezení.",
   };
 });
 
 useHead({
-  title: "Quiz Session Ended - Admin",
+  title: "Sezení kvízu skončilo - Admin",
   meta: [
     {
       name: "description",
       content:
-        "The quiz session you were hosting has ended. Return home or visit your dashboard to start a new quiz.",
+        "Sezení kvízu, které jsi moderoval/a, skončilo. Vrať se na úvodní stránku nebo do přehledu a spusť nový kvíz.",
     },
   ],
 });
 
 useSeoMeta({
-  title: "Arrange Quiz - jovVix",
-  description: "Set up and arrange a quiz session before going live on jovVix.",
+  title: "Příprava kvízu – STEM_HUB",
+  description:
+    "Připrav si sezení kvízu, než ho v systému STEM_HUB spustíš naživo.",
   robots: "noindex, nofollow",
 });
 </script>
@@ -108,23 +109,23 @@ useSeoMeta({
         <div
           class="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center"
           role="group"
-          aria-label="Recovery navigation"
+          aria-label="Navigace zpět"
         >
           <NuxtLink
             to="/"
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Return to home"
+            aria-label="Zpět na úvodní stránku"
           >
             <Home class="size-4" :stroke-width="2.4" />
-            Back to Home
+            Zpět domů
           </NuxtLink>
           <NuxtLink
             to="/admin/quiz/list-quiz"
             class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
-            aria-label="Go to my quizzes"
+            aria-label="Přejít na moje kvízy"
           >
             <Library class="size-4" :stroke-width="2.4" />
-            My Quizzes
+            Moje kvízy
           </NuxtLink>
         </div>
       </div>

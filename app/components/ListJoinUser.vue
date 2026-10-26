@@ -19,10 +19,10 @@ const { listUsers } = storeToRefs(listUserStore);
           v-if="listUsers.length === 0"
           class="m-0 font-headings text-base text-jv-ink sm:text-lg"
         >
-          Waiting for Participants...
+          Čekáme na hráče…
         </h5>
         <h5 v-else class="m-0 font-headings text-base text-jv-ink sm:text-lg">
-          {{ listUsers.length }} Participants
+          {{ czCount(listUsers.length, "hráč", "hráči", "hráčů") }}
         </h5>
       </div>
     </div>

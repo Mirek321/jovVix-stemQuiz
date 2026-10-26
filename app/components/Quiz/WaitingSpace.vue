@@ -92,7 +92,7 @@ const joinUrl = computed(() => `${baseUrl}/join`);
 const joinUrlWithCode = computed(() => `${joinUrl.value}?code=${code.value}`);
 
 const getParticipantName = (user) =>
-  user?.UserName || user?.username || user?.name || "Player";
+  user?.UserName || user?.username || user?.name || "Hráč";
 
 const quizTitle = computed(
   () =>
@@ -100,13 +100,13 @@ const quizTitle = computed(
     props.data?.quizTitle ||
     props.data?.title ||
     props.data?.data?.quizTitle ||
-    "Live Quiz"
+    "Živý kvíz"
 );
 
 const waitingMessage = computed(() => {
   const raw = props.data?.data;
   if (typeof raw === "string" && raw.length) return raw;
-  return "Quiz will start soon..";
+  return "Kvíz brzy začne…";
 });
 
 const toggleMusic = () => setMusic(!music.value);
@@ -117,7 +117,7 @@ const leaveLobby = () => {
 
 const displayName = computed(() => {
   const name = (props.userName || "").trim();
-  return name || "Player";
+  return name || "Hráč";
 });
 
 const userAvatar = computed(() => {
@@ -214,17 +214,17 @@ watch(
           <p
             class="font-body text-[11px] font-black uppercase tracking-[0.18em] text-jv-muted sm:text-[13px] sm:justify-self-center"
           >
-            Quiz Lobby
+            Čekárna
           </p>
 
           <div class="flex shrink-0 justify-end sm:justify-self-end">
             <NuxtLink
               to="/"
               class="inline-flex h-9 items-center justify-center gap-1.5 rounded-[8px] border border-jv-line bg-jv-white px-3 font-body text-[13px] font-bold text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:gap-2 sm:px-5 sm:text-[18px]"
-              aria-label="Return to home"
+              aria-label="Zpět domů"
             >
               <Home class="size-4 sm:size-5" :stroke-width="2.4" />
-              <span>Home</span>
+              <span>Domů</span>
             </NuxtLink>
           </div>
         </div>
@@ -241,7 +241,7 @@ watch(
         <p
           class="mx-auto mt-3 max-w-[680px] text-[15px] leading-[1.5] text-jv-muted sm:text-[18px] md:text-[20px]"
         >
-          Share the code with players. The quiz will start when you're ready!
+          Pošli kód hráčům. Kvíz spustíš, až budeš připravený!
         </p>
       </header>
 
@@ -261,7 +261,7 @@ watch(
             <h2
               class="join-page-title font-headings text-[30px] leading-tight text-jv-ink min-[420px]:text-[34px] sm:text-[42px] lg:text-[48px]"
             >
-              Ready, Steady, Go!
+              Připravit, pozor, start!
             </h2>
 
             <div
@@ -273,7 +273,7 @@ watch(
                 <p
                   class="shrink-0 font-body text-[12px] font-black uppercase tracking-[0.08em] text-jv-muted"
                 >
-                  Join at
+                  Připoj se na
                 </p>
                 <p
                   class="min-w-0 break-all font-body text-[16px] font-extrabold leading-[1.35] text-jv-ink min-[420px]:text-[17px] sm:text-[20px] md:text-[22px]"
@@ -288,7 +288,7 @@ watch(
                 @click="copyToClipBoard(joinUrlWithCode)"
               >
                 <Copy class="size-4" :stroke-width="2.5" />
-                <span>Copy</span>
+                <span>Kopírovat</span>
               </button>
             </div>
           </div>
@@ -309,7 +309,7 @@ watch(
                   <p
                     class="shrink-0 font-body text-[12px] font-black uppercase tracking-[0.08em] text-jv-muted"
                   >
-                    Quiz code
+                    Kód kvízu
                   </p>
                   <h3
                     class="code min-w-0 break-all font-feature text-[22px] font-black leading-none text-jv-ink min-[420px]:text-[24px] sm:text-[26px]"
@@ -325,7 +325,7 @@ watch(
                 @click="copyToClipBoard(code)"
               >
                 <Copy class="size-4" :stroke-width="2.5" />
-                <span>Copy</span>
+                <span>Kopírovat</span>
               </button>
             </div>
 
@@ -335,7 +335,7 @@ watch(
               <span
                 class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
-              <span class="shrink-0">Or scan QR code</span>
+              <span class="shrink-0">Nebo naskenuj QR kód</span>
               <span
                 class="h-px min-w-8 flex-1 border-t border-dashed border-jv-line sm:max-w-24"
               ></span>
@@ -353,7 +353,7 @@ watch(
                 @click="openQrFullscreen"
               >
                 <Maximize2 class="size-4" :stroke-width="2.4" />
-                <span>Enlarge QR for easy scan</span>
+                <span>Zvětšit QR kód</span>
               </button>
             </div>
 
@@ -362,13 +362,13 @@ watch(
                 type="submit"
                 class="mx-auto flex h-[52px] w-full max-w-[390px] items-center justify-center rounded-[999px] border border-jv-line bg-jv-mint px-5 font-headings text-[16px] text-jv-ink shadow-soft-sm transition-transform sm:h-16 sm:px-6 sm:text-[18px]"
               >
-                Start Quiz
+                Spustit kvíz
               </button>
               <p
                 class="mt-4 flex items-center justify-center gap-2 text-center font-body text-[12px] leading-[1.4] text-jv-muted sm:text-[13px]"
               >
                 <Info class="size-4" :stroke-width="2.3" />
-                <span>Host can start the quiz at any time</span>
+                <span>Kvíz můžeš spustit kdykoli</span>
               </p>
             </div>
           </div>
@@ -389,7 +389,7 @@ watch(
               <h2
                 class="min-w-0 break-words font-headings text-[28px] leading-tight text-jv-ink min-[420px]:text-[32px] sm:text-[42px] xl:text-[48px]"
               >
-                Participants
+                Hráči
               </h2>
             </div>
             <span
@@ -434,7 +434,7 @@ watch(
               </div>
               <span
                 class="grid size-8 shrink-0 place-items-center border border-jv-line bg-jv-mint sm:size-9"
-                aria-label="Joined"
+                aria-label="Připojen"
               >
                 <Check class="size-5" :stroke-width="2.4" />
               </span>
@@ -454,7 +454,7 @@ watch(
               <p
                 class="mt-5 font-body text-[18px] font-bold text-jv-muted sm:text-[22px]"
               >
-                Waiting for participants...
+                Čekáme na hráče…
               </p>
             </div>
           </div>
@@ -473,7 +473,7 @@ watch(
               <p
                 class="font-body text-[18px] text-jv-muted sm:text-[22px] md:text-[24px]"
               >
-                Waiting for more players...
+                Čekáme na další hráče…
               </p>
             </div>
           </div>
@@ -507,7 +507,7 @@ watch(
           <p
             class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted sm:text-[12px]"
           >
-            Live Quiz Session
+            Živý kvíz
           </p>
           <h2
             class="relative truncate font-headings text-[22px] leading-tight sm:text-[28px] md:text-[32px]"
@@ -525,7 +525,7 @@ watch(
         <button
           type="button"
           class="grid size-11 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-12"
-          :aria-label="music ? 'Mute music' : 'Unmute music'"
+          :aria-label="music ? 'Vypnout hudbu' : 'Zapnout hudbu'"
           @click="toggleMusic"
         >
           <Volume2 v-if="music" class="size-5" :stroke-width="2.4" />
@@ -537,7 +537,7 @@ watch(
           @click="leaveLobby"
         >
           <LogOut class="size-4 sm:size-5" :stroke-width="2.4" />
-          <span>Leave Lobby</span>
+          <span>Opustit čekárnu</span>
         </button>
       </div>
     </header>
@@ -552,7 +552,7 @@ watch(
           <NuxtImg
             v-if="userAvatar"
             :src="userAvatar"
-            :alt="`${displayName} avatar`"
+            :alt="`Avatar hráče ${displayName}`"
             width="48"
             height="48"
             class="size-full object-cover"
@@ -563,7 +563,7 @@ watch(
           <p
             class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted sm:text-[12px]"
           >
-            Playing as
+            Hraješ jako
           </p>
           <p
             class="min-w-0 truncate font-headings text-[18px] leading-tight text-jv-ink sm:text-[22px]"
@@ -585,12 +585,12 @@ watch(
             <h2
               class="font-headings text-[28px] leading-tight sm:text-[36px] md:text-[48px]"
             >
-              Ready, Steady, Go!
+              Připravit, pozor, start!
             </h2>
             <p
               class="mt-1 font-body text-[14px] font-bold text-jv-muted sm:text-[18px]"
             >
-              Quiz will start soon
+              Kvíz brzy začne
             </p>
           </div>
 

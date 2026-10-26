@@ -16,20 +16,17 @@ const questionsAnalysis = computed(() => {
 </script>
 
 <template>
-  <section
-    class="mx-auto w-full max-w-[1180px]"
-    aria-label="Per-question review"
-  >
+  <section class="mx-auto w-full max-w-[1180px]" aria-label="Přehled otázek">
     <header class="mx-auto mb-4 max-w-[820px] sm:mb-6">
       <h2
         class="font-headings text-[22px] leading-none text-jv-ink sm:text-[28px]"
       >
-        Question Review
+        Přehled otázek
       </h2>
       <p
         class="mt-1.5 font-body text-[12px] font-bold text-jv-muted sm:text-[14px]"
       >
-        See what you got right and where you slipped
+        Podívej se, co se ti povedlo a kde jsi chyboval/a
       </p>
     </header>
 
@@ -60,7 +57,7 @@ const questionsAnalysis = computed(() => {
       class="mx-auto mt-3 flex w-fit items-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
     >
       <span class="size-2 rounded-full bg-jv-ink/30" aria-hidden="true"></span>
-      No question data
+      Žádná data k otázkám
     </div>
   </section>
 </template>

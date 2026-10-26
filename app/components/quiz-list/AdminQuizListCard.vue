@@ -28,7 +28,7 @@
         v-if="showActions"
         type="button"
         class="grid size-7 shrink-0 place-items-center border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform"
-        aria-label="Open quiz actions"
+        aria-label="Otevřít akce kvízu"
         :aria-expanded="actionsOpen"
         @click="toggleActionsMenu"
       >
@@ -45,7 +45,7 @@
           @click="handleShare"
         >
           <Share2 class="size-4" :stroke-width="2.4" />
-          <span>Share</span>
+          <span>Sdílet</span>
         </button>
         <button
           type="button"
@@ -53,7 +53,7 @@
           @click="handleDelete"
         >
           <Trash2 class="size-4" :stroke-width="2.4" />
-          <span>Delete</span>
+          <span>Smazat</span>
         </button>
       </div>
     </div>
@@ -63,7 +63,7 @@
       <span class="truncate">{{ createdAt }}</span>
       <span class="inline-flex shrink-0 items-center gap-1">
         <CircleHelp class="size-3" :stroke-width="2.2" />
-        {{ questionCount }} Questions
+        {{ czCount(questionCount, "otázka", "otázky", "otázek") }}
       </span>
     </div>
     <div class="mt-auto pt-3.5">
@@ -73,12 +73,12 @@
       >
         <NavigationLink
           v-if="showActions"
-          url-name="View Quiz"
+          url-name="Zobrazit kvíz"
           :url="viewUrl"
           class="h-8 rounded-full bg-jv-coral px-1 font-body text-[12px] font-semibold text-white shadow-none md:px-1 md:text-[14px]"
         />
         <NavigationLink
-          url-name="Start Quiz"
+          url-name="Spustit kvíz"
           class="h-8 rounded-full px-1 font-body text-[12px] font-semibold shadow-none md:px-1 md:text-[14px]"
           @click="$emit('start-quiz')"
         />
