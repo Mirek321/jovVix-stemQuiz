@@ -235,8 +235,10 @@ func (qc *quizSocketController) SelfPacedNext(c *fiber.Ctx) error {
 
 	options, err := qc.userQuizResponseModel.GetOptionsForPlayer(userPlayedQuizId, question.ID, question.Options)
 	if err != nil {
+		// Never fall back to the unshuffled options: the answer would later be
+		// translated with the stored order and point at a different option.
 		qc.logger.Error("error getting player-specific option order", zap.Error(err))
-		options = question.Options
+		return utils.JSONFail(c, http.StatusInternalServerError, constants.UnknownError)
 	}
 
 	progress, err := qc.userQuizResponseModel.GetSelfPacedProgress(userPlayedQuizId)
@@ -306,7 +308,9 @@ func (qc *quizSocketController) setSelfPacedAnswer(c *fiber.Ctx, session models.
 	}
 
 	now := time.Now().UTC()
-	timedOut := utils.IsSelfPacedTimedOut(now, deliveredAt, answerDurationInSeconds)
+	// Empty keys come from the client's auto-submit when its timer runs out,
+	// usually still inside the grace window, so they count as a timeout too.
+	timedOut := len(answer.AnswerKeys) == 0 || utils.IsSelfPacedTimedOut(now, deliveredAt, answerDurationInSeconds)
 
 	var (
 		points       sql.NullInt16

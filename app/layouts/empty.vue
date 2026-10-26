@@ -7,7 +7,7 @@
       <div class="flex-1">
         <slot></slot>
       </div>
-      <SiteFooter />
+      <SiteFooter v-if="!hideFooter" />
     </div>
   </div>
 </template>
@@ -18,4 +18,6 @@ import SiteFooter from "@/components/common/SiteFooter.vue";
 
 const route = useRoute();
 const hideSidebar = computed(() => route.meta.hideSidebar === true);
+// Game screens (question, timer) stay full-height without the footer.
+const hideFooter = computed(() => route.meta.hideFooter === true);
 </script>
