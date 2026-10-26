@@ -22,7 +22,7 @@ const avatar = computed(() => {
 <template>
   <div class="mb-8 flex justify-center">
     <div
-      class="jv-card flex items-center gap-3 border-2 border-jv-ink bg-jv-white py-1.5 pl-1.5 pr-5 shadow-brutal-sm"
+      class="jv-card flex items-center gap-3 border border-jv-line bg-jv-white py-1.5 pl-1.5 pr-5 shadow-soft-sm"
     >
       <NuxtImg
         :src="avatar || 'https://api.dicebear.com/10.x/clay/svg?seed=Eden'"
@@ -30,7 +30,7 @@ const avatar = computed(() => {
         width="60"
         height="60"
         loading="lazy"
-        class="size-[60px] shrink-0 rounded-full border-2 border-jv-ink object-cover"
+        class="size-[60px] shrink-0 rounded-full border border-jv-line object-cover"
       />
       <h5 class="m-0 font-headings text-base text-jv-ink sm:text-lg">
         {{ props.userName }}

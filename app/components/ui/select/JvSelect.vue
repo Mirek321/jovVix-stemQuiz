@@ -58,7 +58,7 @@ const selectedItem = computed(() =>
       :aria-required="required || undefined"
       :class="
         cn(
-          'flex h-14 w-full items-center justify-between gap-3 border-[3px] border-jv-ink bg-jv-canvas px-4 text-left text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-brutal-sm disabled:cursor-not-allowed disabled:opacity-60',
+          'flex h-14 w-full items-center justify-between gap-3 border border-jv-line bg-jv-canvas px-4 text-left text-[17px] font-semibold text-jv-ink outline-none transition-shadow focus:shadow-soft-sm disabled:cursor-not-allowed disabled:opacity-60',
           props.class
         )
       "
@@ -82,7 +82,7 @@ const selectedItem = computed(() =>
       <SelectContent
         position="popper"
         :side-offset="6"
-        class="z-[1100] max-h-[280px] w-[var(--reka-select-trigger-width)] overflow-hidden jv-border-rough bg-jv-white shadow-brutal"
+        class="z-[1100] max-h-[280px] w-[var(--reka-select-trigger-width)] overflow-hidden jv-border-rough bg-jv-white shadow-soft"
       >
         <SelectViewport class="max-h-[274px] overflow-y-auto p-1">
           <SelectItem

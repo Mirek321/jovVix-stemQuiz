@@ -9,11 +9,11 @@ export { default as CardFooter } from "./CardFooter.vue";
 export const cardVariants = cva("relative bg-jv-white text-jv-ink", {
   variants: {
     variant: {
-      default: "jv-card border-[3px] border-jv-ink",
+      default: "jv-card border border-jv-line",
       rough: "jv-border-rough",
       even: "jv-border-even",
       uneven: "jv-border-uneven",
-      flat: "border-[2px] border-jv-ink rounded-md",
+      flat: "border border-jv-line rounded-md",
       ghost: "",
     },
     tone: {
@@ -29,9 +29,9 @@ export const cardVariants = cva("relative bg-jv-white text-jv-ink", {
     },
     shadow: {
       none: "",
-      sm: "shadow-brutal-sm",
-      md: "shadow-brutal",
-      lg: "shadow-brutal-lg",
+      sm: "shadow-soft-sm",
+      md: "shadow-soft",
+      lg: "shadow-soft-lg",
     },
     padding: {
       none: "",
@@ -39,18 +39,12 @@ export const cardVariants = cva("relative bg-jv-white text-jv-ink", {
       md: "p-4 sm:p-6",
       lg: "p-6 sm:p-8",
     },
-    tilt: {
-      none: "",
-      left: "-rotate-[0.6deg]",
-      right: "rotate-[0.6deg]",
-    },
   },
   defaultVariants: {
     variant: "default",
     tone: "white",
     shadow: "md",
     padding: "md",
-    tilt: "none",
   },
 });
 

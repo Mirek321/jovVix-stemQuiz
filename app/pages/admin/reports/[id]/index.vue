@@ -10,7 +10,7 @@
         Quiz Analysis
       </h1>
       <div
-        class="ml-1 mt-1 h-3 w-40 rounded-full border-b-[3px] border-jv-yellow sm:ml-2 sm:w-48"
+        class="ml-1 mt-1 h-3 w-40 rounded-full border-b border-jv-yellow sm:ml-2 sm:w-48"
         aria-hidden="true"
       ></div>
       <p
@@ -28,7 +28,7 @@
     <!-- Game recap (visible on both tabs once data is loaded) -->
     <section
       v-if="quizAnalysis?.data?.length"
-      class="jv-border-rough bg-jv-ink p-5 text-white shadow-brutal sm:p-7 md:p-8"
+      class="jv-border-rough bg-jv-ink p-5 text-white shadow-soft sm:p-7 md:p-8"
     >
       <div class="flex flex-col gap-6 lg:flex-row lg:items-center">
         <div class="flex-1 min-w-0">
@@ -52,7 +52,7 @@
         </div>
 
         <div
-          class="jv-border-rough bg-jv-white p-4 text-jv-ink shadow-brutal-sm sm:p-5 lg:w-[340px]"
+          class="jv-border-rough bg-jv-white p-4 text-jv-ink shadow-soft-sm sm:p-5 lg:w-[340px]"
         >
           <div class="flex items-baseline justify-between">
             <span class="text-[15px] font-bold sm:text-[16px]"
@@ -111,21 +111,21 @@
     <template v-if="currentTab === 'report'">
       <div
         v-if="quizAnalysisPending"
-        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
         Loading...
       </div>
 
       <div
         v-else-if="quizAnalysisError"
-        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
       >
         Error while fetching data: {{ quizAnalysisError }}
       </div>
 
       <template v-else-if="quizAnalysis?.data?.length">
         <!-- Question pager strip -->
-        <div class="jv-border-rough bg-jv-white p-4 shadow-brutal-sm sm:p-5">
+        <div class="jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5">
           <div class="flex flex-wrap items-center gap-3">
             <div
               class="flex items-center gap-2 text-[15px] font-bold text-jv-ink sm:text-[16px]"
@@ -138,7 +138,7 @@
                 v-for="n in totalQuestions"
                 :key="n"
                 type="button"
-                class="flex h-8 w-8 items-center justify-center jv-border-rough text-[14px] font-black shadow-brutal-sm transition-transform hover:translate-y-[-1px]"
+                class="flex h-8 w-8 items-center justify-center jv-border-rough text-[14px] font-black shadow-soft-sm transition-transform hover:translate-y-[-1px]"
                 :class="
                   activeQuestionIndex === n
                     ? 'bg-jv-coral text-white'
@@ -160,7 +160,7 @@
             :key="index"
             role="button"
             tabindex="0"
-            class="jv-border-rough bg-jv-white p-4 shadow-brutal-sm sm:p-5 scroll-mt-24 cursor-pointer transition-transform hover:rotate-[0.25deg] focus:outline-none focus:shadow-brutal"
+            class="jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5 scroll-mt-24 cursor-pointer transition-transform focus:outline-none focus:shadow-soft"
             @click="openQuestionModal(quiz, index)"
             @keydown.enter.prevent="openQuestionModal(quiz, index)"
             @keydown.space.prevent="openQuestionModal(quiz, index)"
@@ -245,7 +245,7 @@
               <li
                 v-for="(option, order) in quiz.options"
                 :key="order"
-                class="flex min-w-0 items-center gap-3 border-b border-jv-ink/10 py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
+                class="flex min-w-0 items-center gap-3 border-b border-jv-line py-3 pl-3 pr-2 text-[15px] font-medium text-jv-ink last:border-b-0"
                 :class="
                   quiz.correct_answer.includes(Number(order))
                     ? 'border-l-4 border-l-jv-accent-green bg-jv-accent-green/25 pl-2'
@@ -294,7 +294,7 @@
 
       <div
         v-else
-        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
         No questions found for this quiz.
       </div>
@@ -304,13 +304,13 @@
     <template v-if="currentTab === 'participants'">
       <div
         v-if="quizUserAnalysispending"
-        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-center text-[18px] font-semibold text-jv-muted shadow-soft-sm"
       >
         Loading...
       </div>
       <div
         v-else-if="fetchError"
-        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-brutal-sm"
+        class="jv-border-rough bg-jv-white p-5 text-[18px] font-semibold text-jv-coral shadow-soft-sm"
       >
         Error while fetching data: {{ fetchError }}
       </div>

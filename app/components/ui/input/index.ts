@@ -6,7 +6,7 @@ export { default as Textarea } from "./Textarea.vue";
 export { default as Label } from "./Label.vue";
 
 export const inputVariants = cva(
-  "w-full font-body text-jv-ink placeholder:text-jv-muted bg-jv-white border-[2px] border-jv-ink outline-none transition-shadow focus:shadow-brutal-sm disabled:cursor-not-allowed disabled:opacity-60",
+  "w-full font-body text-jv-ink placeholder:text-jv-muted bg-jv-white border border-jv-line outline-none transition-shadow focus:shadow-soft-sm disabled:cursor-not-allowed disabled:opacity-60",
   {
     variants: {
       size: {

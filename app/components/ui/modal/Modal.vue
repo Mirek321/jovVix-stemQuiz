@@ -84,21 +84,16 @@ onBeforeUnmount(() => {
         <div
           :class="
             cn(
-              'jv-modal-card relative z-10 w-full jv-border-rough bg-jv-white p-5 shadow-brutal-lg sm:p-7',
+              'jv-modal-card relative z-10 w-full jv-border-rough bg-jv-white p-5 shadow-soft-lg sm:p-7',
               widthClass[props.size],
               props.class
             )
           "
         >
-          <span
-            class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-            aria-hidden="true"
-          ></span>
-
           <button
             v-if="!props.hideClose"
             type="button"
-            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:right-4 sm:top-4"
+            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
             aria-label="Close"
             @click="close"
           >

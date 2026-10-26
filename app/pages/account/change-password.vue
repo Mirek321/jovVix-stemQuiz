@@ -1,13 +1,13 @@
 <template>
   <div class="relative z-10 mx-auto w-full max-w-[460px]">
-    <div class="relative rotate-1">
+    <div class="relative">
       <span
-        class="jv-card absolute -top-[8px] left-1/2 z-20 h-3 w-12 -translate-x-1/2 border-2 border-jv-ink bg-jv-slate shadow-brutal-sm"
+        class="jv-card absolute -top-[8px] left-1/2 z-20 h-3 w-12 -translate-x-1/2 border border-jv-line bg-jv-slate shadow-soft-sm"
         aria-hidden="true"
       ></span>
 
       <div
-        class="jv-card border-2 border-jv-ink bg-jv-white px-6 py-7 shadow-brutal-lg sm:px-8 sm:py-9"
+        class="jv-card border border-jv-line bg-jv-white px-6 py-7 shadow-soft-lg sm:px-8 sm:py-9"
       >
         <header class="mb-6 flex flex-col items-center gap-1.5">
           <div class="relative inline-block">
@@ -53,7 +53,7 @@
               New Password
             </label>
             <div
-              class="jv-card flex items-center gap-2.5 border-2 border-jv-ink bg-jv-white px-3 py-2.5 shadow-brutal-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
+              class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
             >
               <Lock
                 class="size-[18px] shrink-0 text-jv-ink/70"
@@ -78,7 +78,7 @@
               Confirm Password
             </label>
             <div
-              class="jv-card flex items-center gap-2.5 border-2 border-jv-ink bg-jv-white px-3 py-2.5 shadow-brutal-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
+              class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
             >
               <Lock
                 class="size-[18px] shrink-0 text-jv-ink/70"
@@ -100,7 +100,7 @@
               passwordRequestError ||
               (passwordSubmitted && passwordErrors.length)
             "
-            class="flex flex-col gap-1 rounded-[8px] border-[2px] border-jv-coral bg-jv-coral/10 px-3 py-2"
+            class="flex flex-col gap-1 rounded-[8px] border border-jv-coral bg-jv-coral/10 px-3 py-2"
           >
             <p
               v-if="passwordRequestError"
@@ -129,13 +129,13 @@
           <div class="mt-2 flex flex-col gap-3">
             <button
               type="submit"
-              class="jv-card inline-flex h-12 items-center justify-center gap-2 border-2 border-jv-ink bg-jv-coral font-headings text-base text-white shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:text-lg"
+              class="jv-card inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform sm:text-lg"
             >
               Change Password
             </button>
             <button
               type="button"
-              class="jv-card inline-flex h-11 items-center justify-center border-2 border-jv-ink bg-jv-white font-headings text-base text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+              class="jv-card inline-flex h-11 items-center justify-center border border-jv-line bg-jv-white font-headings text-base text-jv-ink shadow-soft-sm transition-transform"
               @click="handleCancel"
             >
               Cancel

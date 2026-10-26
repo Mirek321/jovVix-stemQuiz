@@ -287,7 +287,7 @@ const podiumName = (winner) =>
               >
                 <span class="relative z-10">{{ tournamentTitle }}</span>
                 <span
-                  class="absolute bottom-[2px] left-0 z-0 h-[6px] w-[80%] max-w-[180px] rotate-[-1deg] bg-jv-yellow/70"
+                  class="absolute bottom-[2px] left-0 z-0 h-[6px] w-[80%] max-w-[180px] bg-jv-yellow/70"
                   aria-hidden="true"
                 ></span>
               </h2>
@@ -298,7 +298,7 @@ const podiumName = (winner) =>
         <div class="flex items-center gap-2 sm:gap-3">
           <NuxtLink
             to="/"
-            class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border-[2px] border-jv-ink bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[-1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-11 sm:px-5 sm:text-[14px]"
+            class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border border-jv-line bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-5 sm:text-[14px]"
             aria-label="Return to home"
           >
             <Home class="size-4" :stroke-width="2.4" />
@@ -306,7 +306,7 @@ const podiumName = (winner) =>
           </NuxtLink>
           <button
             type="button"
-            class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border-[2px] border-jv-ink bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[-1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-11 sm:px-5 sm:text-[14px]"
+            class="inline-flex h-10 items-center justify-center gap-1.5 rounded-[8px] border border-jv-line bg-jv-white px-4 font-body text-[13px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-11 sm:px-5 sm:text-[14px]"
             aria-label="Continue to scoreboard table view"
             @click="changeUI(false)"
           >
@@ -352,7 +352,7 @@ const podiumName = (winner) =>
             aria-live="polite"
           >
             <span
-              class="inline-flex items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 px-5 py-2 font-body text-[14px] font-bold text-jv-muted"
+              class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line px-5 py-2 font-body text-[14px] font-bold text-jv-muted"
             >
               <Sparkles class="size-4" :stroke-width="2.4" />
               Loading winners…
@@ -373,7 +373,7 @@ const podiumName = (winner) =>
               <template v-if="step.winner">
                 <!-- Name tag -->
                 <span
-                  class="relative z-10 inline-flex max-w-full rotate-[-1deg] items-center justify-center rounded-[6px] border-[2px] border-jv-ink bg-jv-ink px-2.5 py-1 font-feature text-[11px] font-black uppercase tracking-[0.06em] text-white shadow-brutal-sm sm:text-[12px]"
+                  class="relative z-10 inline-flex max-w-full items-center justify-center rounded-[6px] border border-jv-line bg-jv-ink px-2.5 py-1 font-feature text-[11px] font-black uppercase tracking-[0.06em] text-white shadow-soft-sm sm:text-[12px]"
                 >
                   <span class="block max-w-[88px] truncate sm:max-w-[120px]">
                     {{ podiumName(step.winner) }}
@@ -391,7 +391,7 @@ const podiumName = (winner) =>
                 <!-- Avatar: colored ring matches the podium color of this rank. -->
                 <span
                   :class="[
-                    'relative z-10 mt-1 grid place-items-center overflow-hidden rounded-full border-[3px] border-jv-ink bg-jv-white shadow-brutal-sm ring-4 ring-offset-[2px] ring-offset-jv-canvas',
+                    'relative z-10 mt-1 grid place-items-center overflow-hidden rounded-full border border-jv-line bg-jv-white shadow-soft-sm ring-4 ring-offset-[2px] ring-offset-jv-canvas',
                     step.ring,
                     step.rank === 1
                       ? 'size-[72px] sm:size-[88px]'
@@ -410,7 +410,7 @@ const podiumName = (winner) =>
                 <!-- Step / pedestal -->
                 <div
                   :class="[
-                    'relative mt-2 flex w-full items-center justify-center border-[2px] border-jv-ink shadow-brutal-sm',
+                    'relative mt-2 flex w-full items-center justify-center border border-jv-line shadow-soft-sm',
                     step.bg,
                     step.heightClass,
                   ]"
@@ -437,12 +437,12 @@ const podiumName = (winner) =>
               <!-- Placeholder when fewer than 3 winners exist -->
               <template v-else>
                 <span
-                  class="inline-flex items-center gap-1 rounded-full border-[2px] border-dashed border-jv-ink/25 px-3 py-1 font-body text-[11px] font-bold text-jv-muted"
+                  class="inline-flex items-center gap-1 rounded-full border border-dashed border-jv-line px-3 py-1 font-body text-[11px] font-bold text-jv-muted"
                 >
                   —
                 </span>
                 <span
-                  class="mt-1 grid place-items-center overflow-hidden rounded-full border-[3px] border-dashed border-jv-ink/25 bg-jv-white"
+                  class="mt-1 grid place-items-center overflow-hidden rounded-full border border-dashed border-jv-line bg-jv-white"
                   :class="
                     step.rank === 1
                       ? 'size-[72px] sm:size-[88px]'
@@ -452,7 +452,7 @@ const podiumName = (winner) =>
                 ></span>
                 <div
                   :class="[
-                    'relative mt-2 flex w-full items-center justify-center border-[2px] border-dashed border-jv-ink/25 bg-jv-white',
+                    'relative mt-2 flex w-full items-center justify-center border border-dashed border-jv-line bg-jv-white',
                     step.heightClass,
                   ]"
                 >
@@ -474,7 +474,7 @@ const podiumName = (winner) =>
           <!-- Empty state -->
           <div v-else class="mt-12 flex justify-center" role="status">
             <span
-              class="inline-flex items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 px-4 py-2 font-body text-[13px] font-bold text-jv-muted"
+              class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted"
             >
               <span
                 class="size-2 rounded-full bg-jv-ink/30"
@@ -492,10 +492,10 @@ const podiumName = (winner) =>
           aria-live="polite"
         >
           <span
-            class="inline-flex items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 bg-jv-white px-4 py-2 font-body text-[12px] font-bold text-jv-muted sm:text-[13px]"
+            class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line bg-jv-white px-4 py-2 font-body text-[12px] font-bold text-jv-muted sm:text-[13px]"
           >
             <span
-              class="size-2 rounded-full border border-jv-ink bg-jv-mint"
+              class="size-2 rounded-full border border-jv-line bg-jv-mint"
               aria-hidden="true"
             ></span>
             Tournament completed successfully
@@ -514,7 +514,7 @@ const podiumName = (winner) =>
       aria-live="polite"
     >
       <div
-        class="inline-flex items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 bg-jv-white px-5 py-2.5 font-body text-[14px] font-bold text-jv-muted shadow-brutal-sm"
+        class="inline-flex items-center gap-2 rounded-full border border-dashed border-jv-line bg-jv-white px-5 py-2.5 font-body text-[14px] font-bold text-jv-muted shadow-soft-sm"
       >
         <Sparkles class="size-4" :stroke-width="2.4" />
         Loading scoreboard…
@@ -530,13 +530,8 @@ const podiumName = (winner) =>
       <div class="mx-auto flex w-full max-w-[1180px] flex-col gap-6 sm:gap-8">
         <!-- HERO: celebrate the user / show admin title -->
         <header
-          class="relative -rotate-[0.4deg] jv-border-rough bg-jv-white p-5 shadow-brutal sm:p-7"
+          class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7"
         >
-          <span
-            class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[2deg] bg-jv-coral"
-            aria-hidden="true"
-          ></span>
-
           <p
             class="font-body text-[11px] font-black uppercase tracking-[0.22em] text-jv-muted sm:text-[12px]"
           >
@@ -573,7 +568,7 @@ const podiumName = (winner) =>
             >
               <span
                 :class="[
-                  'inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink px-3 py-1.5 font-feature text-[13px] font-black text-jv-ink shadow-brutal-sm sm:text-[14px]',
+                  'inline-flex items-center gap-2 rounded-full border border-jv-line px-3 py-1.5 font-feature text-[13px] font-black text-jv-ink shadow-soft-sm sm:text-[14px]',
                   rankBadge.bg,
                 ]"
               >
@@ -585,7 +580,7 @@ const podiumName = (winner) =>
                 {{ rankBadge.label }}
               </span>
               <span
-                class="inline-flex items-baseline gap-1.5 rounded-full border-[2px] border-jv-ink bg-jv-white px-3 py-1.5 shadow-brutal-sm"
+                class="inline-flex items-baseline gap-1.5 rounded-full border border-jv-line bg-jv-white px-3 py-1.5 shadow-soft-sm"
               >
                 <span
                   class="font-body text-[10px] font-bold uppercase tracking-[0.12em] text-jv-muted"
@@ -609,7 +604,7 @@ const podiumName = (winner) =>
         >
           <div
             v-if="analysisPending"
-            class="mx-auto flex w-fit items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 bg-jv-white px-5 py-2.5 font-body text-[13px] font-bold text-jv-muted shadow-brutal-sm sm:text-[14px]"
+            class="mx-auto flex w-fit items-center gap-2 rounded-full border border-dashed border-jv-line bg-jv-white px-5 py-2.5 font-body text-[13px] font-bold text-jv-muted shadow-soft-sm sm:text-[14px]"
             role="status"
             aria-live="polite"
           >
@@ -636,14 +631,14 @@ const podiumName = (winner) =>
         >
           <NuxtLink
             to="/"
-            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
             aria-label="Return to home"
           >
             <Home class="size-4" :stroke-width="2.4" />
             Home
           </NuxtLink>
           <NuxtLink
-            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
             aria-label="View detailed quiz analysis"
             @click="showAnalysis"
           >
@@ -651,7 +646,7 @@ const podiumName = (winner) =>
             Show Analysis
           </NuxtLink>
           <NuxtLink
-            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+            class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-coral px-6 font-body text-[14px] font-black text-white shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
             aria-label="Switch to winners podium view"
             @click="changeUI(true)"
           >
@@ -664,7 +659,7 @@ const podiumName = (winner) =>
         <template v-if="!props.isAdmin">
           <div
             v-if="analysisPending || authPending"
-            class="mx-auto flex w-fit items-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/30 bg-jv-white px-5 py-2.5 font-body text-[13px] font-bold text-jv-muted shadow-brutal-sm sm:text-[14px]"
+            class="mx-auto flex w-fit items-center gap-2 rounded-full border border-dashed border-jv-line bg-jv-white px-5 py-2.5 font-body text-[13px] font-bold text-jv-muted shadow-soft-sm sm:text-[14px]"
             role="status"
             aria-live="polite"
           >
@@ -681,7 +676,7 @@ const podiumName = (winner) =>
           >
             <NuxtLink
               to="/"
-              class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-white px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
               aria-label="Return to home"
             >
               <Home class="size-4" :stroke-width="2.4" />
@@ -689,7 +684,7 @@ const podiumName = (winner) =>
             </NuxtLink>
             <NuxtLink
               to="/join"
-              class="inline-flex h-11 items-center justify-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-yellow px-6 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:h-12 sm:text-[15px]"
+              class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-6 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform sm:h-12 sm:text-[15px]"
               aria-label="Join another quiz"
             >
               <ArrowRight class="size-4" :stroke-width="2.4" />

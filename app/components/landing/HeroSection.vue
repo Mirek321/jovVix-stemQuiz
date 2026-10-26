@@ -1,12 +1,8 @@
 <template>
-  <section
-    class="grid items-start gap-6 sm:gap-10 lg:gap-12 xl:gap-20 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_400px]"
-  >
-    <div
-      class="flex flex-col gap-3 items-start order-2 lg:order-1 w-full min-w-0"
-    >
+  <section class="grid items-start">
+    <div class="flex flex-col gap-3 items-start w-full min-w-0">
       <div
-        class="rounded-[8px] border-[3px] border-jv-ink bg-jv-yellow/30 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14px] md:small-text font-semibold uppercase shadow-brutal-sm"
+        class="rounded-[8px] border border-jv-line bg-jv-yellow/30 px-2.5 py-1 sm:px-3 sm:py-1.5 text-[12px] sm:text-[14px] md:small-text font-semibold uppercase shadow-soft-sm"
       >
         EXPLORE, LEARN, QUIZ!
       </div>
@@ -36,7 +32,6 @@
             <HeroActionCard
               :title="card.title"
               :description="card.description"
-              :tilt-class="card.tiltClass"
             />
           </CarouselItem>
         </CarouselContent>
@@ -53,36 +48,7 @@
           :key="card.title"
           :title="card.title"
           :description="card.description"
-          :tilt-class="card.tiltClass"
         />
-      </div>
-    </div>
-
-    <div class="mx-auto max-w-[500px] pt-1 lg:pt-4 order-1 lg:order-2">
-      <div class="relative rotate-[3deg]">
-        <span
-          class="absolute left-1/2 top-[-10px] z-20 h-5 w-14 -translate-x-1/2 rounded-[7px] border-[2px] border-jv-ink bg-jv-slate shadow-brutal-sm"
-          aria-hidden="true"
-        ></span>
-        <div
-          class="relative overflow-hidden bg-jv-white p-2 sm:p-3 shadow-brutal-lg jv-border-rough"
-        >
-          <NuxtImg
-            src="/images/landing/homepage-hero-section.png"
-            alt="Live quiz preview"
-            width="334"
-            height="258"
-            densities="1x"
-            format="webp"
-            preload
-            class="w-full h-auto"
-          />
-        </div>
-        <div
-          class="absolute bottom-[-15px] left-0 sm:left-[-14px] grid size-10 sm:size-12 rotate-[-10deg] place-items-center rounded-[8px] border-[3px] border-jv-ink bg-white text-jv-coral shadow-brutal-sm"
-        >
-          <Users class="size-5 sm:size-6" :stroke-width="2.5" />
-        </div>
       </div>
     </div>
   </section>
@@ -90,7 +56,6 @@
 
 <script setup>
 import HeroActionCard from "@/components/landing/HeroActionCard.vue";
-import { Users } from "lucide-vue-next";
 import {
   Carousel,
   CarouselContent,
@@ -103,17 +68,14 @@ const actionCards = [
   {
     title: "Demo Instance",
     description: "Up to 100 concurrent users",
-    tiltClass: "rotate-[-0.7deg]",
   },
   {
     title: "Deploy Your Own",
     description: "Unlimited users & control.",
-    tiltClass: "rotate-[0.6deg]",
   },
   {
     title: "Get in touch",
     description: "contact@jovvix.com",
-    tiltClass: "rotate-[-0.4deg]",
   },
 ];
 </script>

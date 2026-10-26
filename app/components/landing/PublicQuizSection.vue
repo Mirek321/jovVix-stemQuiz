@@ -9,7 +9,7 @@
         class="flex items-center gap-2 font-headings text-[22px] min-[420px]:text-[26px] sm:text-[30px] md:text-[34px] leading-[1.2] text-jv-ink"
       >
         <span
-          class="grid size-6 sm:size-7 shrink-0 place-items-center rounded-full border-[3px] border-jv-coral text-jv-coral"
+          class="grid size-6 sm:size-7 shrink-0 place-items-center rounded-full border border-jv-coral text-jv-coral"
         >
           <Compass class="size-3.5 sm:size-4" :stroke-width="2.6" />
         </span>
@@ -57,7 +57,6 @@
                 :title="quiz.title"
                 :image="coverUrl(quiz)"
                 :fallback="fallbackUrl(quiz)"
-                :tilt-class="tiltClass(quiz)"
                 :eager="groupIndex === 0 && quizIndex === 0"
                 :starting="startingQuizId === quiz.id"
                 @start-quiz="handleStartQuiz(quiz.id)"
@@ -102,7 +101,7 @@ const { data } = await useFetch(`${apiUrl}/quizzes/public`, {
 
 const publicQuizzes = computed(() => data.value?.data || []);
 
-const { coverUrl, fallbackUrl, tiltClass } = useQuizCover();
+const { coverUrl, fallbackUrl } = useQuizCover();
 
 const groupedQuizzes = computed(() => {
   const groups = new Map();

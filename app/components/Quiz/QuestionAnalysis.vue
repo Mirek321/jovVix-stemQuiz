@@ -121,7 +121,7 @@ const userResultChip = computed(() => {
     >
       <span
         v-if="props.order !== 0"
-        class="inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-yellow px-3 py-1 font-feature text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink shadow-brutal-sm sm:text-[13px]"
+        class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-3 py-1 font-feature text-[12px] font-black uppercase tracking-[0.08em] text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
         Question {{ props.order }}
       </span>
@@ -129,7 +129,7 @@ const userResultChip = computed(() => {
       <div v-if="props.isEditable" class="flex items-center gap-2">
         <button
           type="button"
-          class="grid size-9 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+          class="grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
           title="Edit question"
           @click="editQuestion(props.question?.question_id)"
         >
@@ -137,7 +137,7 @@ const userResultChip = computed(() => {
         </button>
         <button
           type="button"
-          class="grid size-9 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-coral text-white shadow-brutal-sm transition-transform hover:rotate-[-2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+          class="grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-coral text-white shadow-soft-sm transition-transform"
           title="Delete question"
           @click="showDeleteDialog = true"
         >
@@ -162,7 +162,7 @@ const userResultChip = computed(() => {
       <NuxtImg
         :src="props.question?.resource"
         alt="Question image"
-        class="max-h-[220px] w-auto border-[3px] border-jv-ink bg-jv-white object-contain shadow-brutal-sm"
+        class="max-h-[220px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
       />
     </div>
     <div v-if="props.question?.question_media === 'code'" class="mt-4">
@@ -174,7 +174,7 @@ const userResultChip = computed(() => {
       class="mt-4 flex flex-wrap items-center gap-2 sm:gap-3"
     >
       <span
-        class="inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-brutal-sm sm:text-[13px]"
+        class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
         <Clock class="size-3.5" :stroke-width="2.4" />
         AVG.
@@ -182,13 +182,13 @@ const userResultChip = computed(() => {
         <span class="text-jv-muted">/ {{ props.question?.duration }}s</span>
       </span>
       <span
-        class="inline-flex items-center rounded-full border-[2px] border-jv-ink bg-jv-lavender px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-brutal-sm sm:text-[13px]"
+        class="inline-flex items-center rounded-full border border-jv-line bg-jv-lavender px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
         {{ props.question?.type === 1 ? "M.C.Q." : "Survey" }}
       </span>
       <span
         :class="[
-          'inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-brutal-sm sm:text-[13px]',
+          'inline-flex items-center gap-2 rounded-full border border-jv-line px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]',
           correctPercentColor,
         ]"
       >
@@ -202,7 +202,7 @@ const userResultChip = computed(() => {
       class="mt-4 flex flex-wrap items-center gap-2 sm:gap-3"
     >
       <span
-        class="inline-flex items-center gap-2 rounded-full border-[2px] border-jv-ink bg-jv-white px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-brutal-sm sm:text-[13px]"
+        class="inline-flex items-center gap-2 rounded-full border border-jv-line bg-jv-white px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]"
       >
         <Clock class="size-3.5" :stroke-width="2.4" />
         <template v-if="props.question?.response_time > 0">
@@ -212,7 +212,7 @@ const userResultChip = computed(() => {
       </span>
       <span
         :class="[
-          'inline-flex items-center gap-1.5 rounded-full border-[2px] border-jv-ink px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-brutal-sm sm:text-[13px]',
+          'inline-flex items-center gap-1.5 rounded-full border border-jv-line px-3 py-1 font-feature text-[12px] font-black text-jv-ink shadow-soft-sm sm:text-[13px]',
           userResultChip.bg,
         ]"
       >

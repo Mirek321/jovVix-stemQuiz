@@ -27,15 +27,13 @@ const props = defineProps({
 
 const canvas = ref(null);
 
-// Theme colours (jv-*) mixed with a few classic celebratory tones.
+// STEM Hub palette.
 const COLORS = [
-  "#fde047", // jv-yellow
-  "#ff6b6b", // jv-coral
-  "#d1fae5", // jv-mint
-  "#e4dff4", // jv-lavender
-  "#d4b524", // gold
-  "#ff4fa3", // pink
-  "#a855f7", // purple
+  "#320c69", // primary
+  "#3facff", // sky
+  "#b291f3", // violet
+  "#ffaa22", // orange
+  "#c39ad8", // mauve
   "#ffffff", // white
 ];
 

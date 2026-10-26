@@ -1,21 +1,26 @@
 <template>
   <!-- Desktop sidebar (lg and up) -->
   <aside
-    class="hidden lg:flex bg-jv-ivory min-w-56 h-screen flex-col justify-between border-r-[4px] border-jv-ink px-8 py-5 overflow-y-hidden"
+    class="hidden lg:flex bg-jv-ivory min-w-56 h-screen flex-col justify-between border-r-[4px] border-jv-line px-8 py-5 overflow-y-hidden"
   >
     <div class="flex flex-col gap-4">
       <NuxtLink
         to="/"
-        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline w-[100px] lg:w-[180px] h-auto"
+        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline h-auto"
       >
         <NuxtImg
-          src="/images/jovvix-logo.png"
-          alt="jovVix"
-          width="180"
-          height="73"
-          sizes="100px lg:180px"
+          src="/images/stem-logo.png"
+          alt=""
+          class="w-11 shrink-0 lg:w-12"
+          width="80"
+          height="80"
+          sizes="56px lg:80px"
           preload
         />
+        <span
+          class="font-headings text-[18px] font-extrabold leading-none tracking-[0.02em] text-jv-ink whitespace-nowrap lg:text-[20px]"
+          >STEM_HUB</span
+        >
       </NuxtLink>
 
       <template v-if="mounted">
@@ -74,7 +79,7 @@
       </div>
       <div
         v-else-if="showAdminNav"
-        class="flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-brutal-sm"
+        class="flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-soft-sm"
       >
         <NuxtImg
           :src="userAvatar"
@@ -82,7 +87,7 @@
           width="40"
           height="40"
           loading="lazy"
-          class="size-10 shrink-0 rounded-full border-[2px] border-jv-ink bg-jv-slate object-cover"
+          class="size-10 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover"
         />
         <span
           class="min-w-0 flex-1 truncate font-headings text-[15px] text-jv-ink"
@@ -103,12 +108,12 @@
             align="end"
             side="top"
             :side-offset="8"
-            class="w-44 bg-jv-white p-1.5 shadow-brutal"
+            class="w-44 bg-jv-white p-1.5 shadow-soft"
           >
             <NavigationLink
               type="button"
               aria-label="Profile menu"
-              class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:rotate-0 hover:bg-jv-coral hover:border-2 hover:jv-border-even hover:rounded-md"
+              class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:bg-jv-coral hover:border hover:jv-border-even hover:rounded-md"
               @click="handleDesktopLogout"
             >
               <LogOut class="size-4" :stroke-width="2.4" />
@@ -126,25 +131,30 @@
 
   <!-- Mobile/Tablet header (md and below) -->
   <header
-    class="lg:hidden sticky top-0 z-40 border-b-[3px] border-jv-ink bg-jv-ivory/95 px-4 sm:px-6 py-3 backdrop-blur"
+    class="lg:hidden sticky top-0 z-40 border-b border-jv-line bg-jv-ivory/95 px-4 sm:px-6 py-3 backdrop-blur"
   >
     <div class="flex items-center justify-between gap-3">
       <NuxtLink
         to="/"
-        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline w-[120px] lg:w-[150px] h-auto"
+        class="flex items-center gap-2 text-[20px] sm:text-[22px] md:text-[24px] font-black tracking-[-0.5px] text-jv-ink no-underline h-auto"
       >
         <NuxtImg
-          src="/images/jovvix-logo.png"
-          alt="jovVix"
-          width="150"
-          height="61"
-          sizes="120px lg:150px"
+          src="/images/stem-logo.png"
+          alt=""
+          class="w-11 shrink-0 lg:w-12"
+          width="56"
+          height="56"
+          sizes="48px lg:56px"
         />
+        <span
+          class="font-headings text-[18px] font-extrabold leading-none tracking-[0.02em] text-jv-ink whitespace-nowrap lg:text-[20px]"
+          >STEM_HUB</span
+        >
       </NuxtLink>
 
       <button
         type="button"
-        class="grid size-10 place-items-center rounded-[10px] border-[3px] border-jv-ink bg-jv-yellow text-jv-ink shadow-brutal-sm active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-transform"
+        class="grid size-10 place-items-center rounded-[10px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm transition-transform"
         :aria-expanded="open"
         aria-label="Toggle navigation menu"
         aria-controls="mobile-nav"
@@ -166,7 +176,7 @@
           :key="item.url"
           :to="item.url"
           :class="[
-            'inline-flex items-center justify-center gap-1.5 jv-border-uneven px-4 py-2 text-sm font-headings text-jv-ink no-underline shadow-brutal-sm transition-transform hover:rotate-[2deg]',
+            'inline-flex items-center justify-center gap-1.5 jv-border-uneven px-4 py-2 text-sm font-headings text-jv-ink no-underline shadow-soft-sm transition-transform ',
             item.active ? 'bg-jv-yellow/70' : 'bg-jv-white',
             item.highlight ? 'bg-jv-coral !text-white' : '',
           ]"
@@ -187,7 +197,7 @@
         </NuxtLink>
         <div
           v-if="showAdminNav"
-          class="col-span-full mt-1 flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-brutal-sm"
+          class="col-span-full mt-1 flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-soft-sm"
         >
           <NuxtImg
             :src="userAvatar"
@@ -195,7 +205,7 @@
             width="36"
             height="36"
             loading="lazy"
-            class="size-9 shrink-0 rounded-full border-[2px] border-jv-ink bg-jv-slate object-cover"
+            class="size-9 shrink-0 rounded-full border border-jv-line bg-jv-slate object-cover"
           />
           <span
             class="min-w-0 flex-1 truncate font-headings text-[15px] text-jv-ink"
@@ -215,12 +225,12 @@
             <PopoverContent
               align="end"
               :side-offset="8"
-              class="w-44 bg-jv-white p-1.5 shadow-brutal"
+              class="w-44 bg-jv-white p-1.5 shadow-soft"
             >
               <NavigationLink
                 type="button"
                 aria-label="Profile menu"
-                class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:rotate-0 hover:bg-jv-coral hover:border-2 hover:jv-border-even hover:rounded-md"
+                class="px-3 py-2 justify-start w-full bg-white !p-2 border-0 shadow-none text-sm hover:bg-jv-coral hover:border hover:jv-border-even hover:rounded-md"
                 @click="handleMobileLogout"
               >
                 <LogOut class="size-4" :stroke-width="2.4" />
@@ -234,13 +244,13 @@
         <div
           v-for="i in 4"
           :key="i"
-          class="inline-flex items-center justify-center gap-1.5 jv-border-uneven bg-jv-white px-4 py-2 shadow-brutal-sm"
+          class="inline-flex items-center justify-center gap-1.5 jv-border-uneven bg-jv-white px-4 py-2 shadow-soft-sm"
         >
           <Skeleton class="size-4 rounded-full bg-jv-ink/10" />
           <Skeleton class="h-3 w-16 bg-jv-ink/10" />
         </div>
         <div
-          class="col-span-full mt-1 flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-brutal-sm"
+          class="col-span-full mt-1 flex items-center gap-3 jv-border-uneven bg-jv-white px-3 py-2 shadow-soft-sm"
         >
           <Skeleton class="size-9 rounded-full bg-jv-ink/10" />
           <Skeleton class="h-4 flex-1 bg-jv-ink/10" />
@@ -421,8 +431,8 @@ const mobileNavItems = computed(() => {
 
 const navItemClass = (item) =>
   item.active
-    ? "rounded-full border-2 border-dashed border-jv-ink/40 bg-jv-yellow/20 text-jv-ink shadow-none hover:rotate-0"
-    : "border-0 bg-transparent shadow-none hover:rotate-0";
+    ? "rounded-full border border-dashed border-jv-line bg-jv-yellow/20 text-jv-ink shadow-none "
+    : "border-0 bg-transparent shadow-none ";
 
 const handleDesktopLogout = async () => {
   desktopMenuOpen.value = false;

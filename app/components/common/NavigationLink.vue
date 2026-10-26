@@ -35,7 +35,7 @@ const props = defineProps({
   },
   variant: {
     type: String,
-    default: "brutal",
+    default: "pill",
   },
   class: {
     type: [String, Array, Object],
@@ -46,13 +46,13 @@ const props = defineProps({
 const sharedClasses =
   "inline-flex items-center justify-center whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed aria-disabled:opacity-60 aria-disabled:cursor-not-allowed aria-disabled:pointer-events-none";
 
-const brutalClasses =
-  "font-headings text-center jv-border-uneven shadow-brutal transition-transform transform transform-gpu backface-hidden active:shadow-none bg-jv-yellow gap-1.5 px-5 sm:px-6 md:px-7 py-2.5 md:py-3 text-sm md:text-lg hover:rotate-[2deg] disabled:hover:rotate-0 disabled:active:shadow-brutal";
+const pillClasses =
+  "font-headings font-semibold text-center jv-border-uneven shadow-soft-sm transition-all duration-150 hover:-translate-y-px hover:shadow-soft active:translate-y-0 active:scale-[0.98] disabled:hover:translate-y-0 bg-jv-yellow text-jv-ink gap-2 px-5 sm:px-6 py-2.5 text-sm md:text-[15px]";
 
 const toggleClasses =
   "gap-1.5 rounded-md border px-2.5 h-8 text-[13px] font-semibold transition-colors";
 
 const variantClasses = computed(() =>
-  props.variant === "toggle" ? toggleClasses : brutalClasses
+  props.variant === "toggle" ? toggleClasses : pillClasses
 );
 </script>

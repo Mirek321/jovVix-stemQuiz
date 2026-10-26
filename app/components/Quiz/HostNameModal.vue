@@ -92,17 +92,17 @@ onUnmounted(() => {
         ></button>
 
         <div
-          class="jv-modal-card relative z-10 w-full max-w-[440px] rotate-1 jv-card border-2 border-jv-ink bg-jv-white px-6 py-7 shadow-brutal-lg sm:px-8 sm:py-9"
+          class="jv-modal-card relative z-10 w-full max-w-[440px] jv-card border border-jv-line bg-jv-white px-6 py-7 shadow-soft-lg sm:px-8 sm:py-9"
         >
           <span
-            class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border-2 border-jv-ink bg-jv-slate shadow-brutal-sm"
+            class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border border-jv-line bg-jv-slate shadow-soft-sm"
             aria-hidden="true"
           ></span>
 
           <button
             v-if="allowClose"
             type="button"
-            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:right-4 sm:top-4"
+            class="absolute right-3 top-3 grid size-9 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:right-4 sm:top-4"
             :disabled="submitting"
             aria-label="Close"
             @click="handleClose"
@@ -152,7 +152,7 @@ onUnmounted(() => {
               <div class="flex items-stretch gap-2.5">
                 <NavigationLink
                   type="button"
-                  class="relative size-[46px] shrink-0 overflow-hidden bg-jv-mint !p-0 shadow-none !jv-card !rounded-none hover:rotate-0 hover:scale-110"
+                  class="relative size-[46px] shrink-0 overflow-hidden bg-jv-mint !p-0 shadow-none !jv-card !rounded-none hover:scale-110"
                   :aria-label="`Generate new avatar (current: ${avatarName})`"
                   @click="rerollAvatar"
                 >
@@ -164,7 +164,7 @@ onUnmounted(() => {
                     class="absolute inset-0 size-full object-cover"
                   />
                   <span
-                    class="absolute -bottom-1 -right-1 grid size-5 place-items-center rounded-full border-2 border-jv-canvas bg-jv-ink text-white"
+                    class="absolute -bottom-1 -right-1 grid size-5 place-items-center rounded-full border border-jv-canvas bg-jv-ink text-white"
                     aria-hidden="true"
                   >
                     <RefreshCw class="size-2.5" :stroke-width="2.5" />
@@ -172,7 +172,7 @@ onUnmounted(() => {
                 </NavigationLink>
 
                 <div
-                  class="flex flex-1 items-center gap-2.5 border-2 border-jv-ink bg-jv-white px-3 jv-card shadow-brutal-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
+                  class="flex flex-1 items-center gap-2.5 border border-jv-line bg-jv-white px-3 jv-card shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
                 >
                   <User
                     class="size-[18px] shrink-0 text-jv-ink/70"
@@ -230,6 +230,6 @@ onUnmounted(() => {
 .jv-modal-enter-from .jv-modal-card,
 .jv-modal-leave-to .jv-modal-card {
   opacity: 0;
-  transform: scale(0.92) rotate(-2deg);
+  transform: scale(0.96) translateY(8px);
 }
 </style>

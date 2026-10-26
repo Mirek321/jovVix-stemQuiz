@@ -49,7 +49,7 @@ const quizErrorMessage = computed(() => {
 
       <div
         v-else-if="quizError"
-        class="jv-border-rough border-2 border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
+        class="jv-border-rough border border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
       >
         {{ quizErrorMessage }}
       </div>
@@ -57,10 +57,10 @@ const quizErrorMessage = computed(() => {
       <template v-else>
         <div
           v-if="quizList?.data.length < 1"
-          class="jv-border-rough flex flex-col items-center gap-4 border-2 border-jv-ink bg-jv-white p-8 text-center shadow-brutal sm:p-12"
+          class="jv-border-rough flex flex-col items-center gap-4 border border-jv-line bg-jv-white p-8 text-center shadow-soft sm:p-12"
         >
           <div
-            class="grid size-16 place-items-center rounded-[12px] border-2 border-jv-ink bg-jv-yellow shadow-brutal-sm"
+            class="grid size-16 place-items-center rounded-[12px] border border-jv-line bg-jv-yellow shadow-soft-sm"
           >
             <Inbox class="size-8 text-jv-ink" :stroke-width="2.4" />
           </div>

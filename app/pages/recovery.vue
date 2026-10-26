@@ -1,23 +1,27 @@
 <template>
   <div class="relative z-10 mx-auto w-full max-w-[440px]">
-    <div class="relative rotate-1">
+    <div class="relative">
       <span
-        class="jv-card absolute -top-[8px] left-1/2 z-20 h-3 w-12 -translate-x-1/2 border-2 border-jv-ink bg-jv-slate shadow-brutal-sm"
+        class="jv-card absolute -top-[8px] left-1/2 z-20 h-3 w-12 -translate-x-1/2 border border-jv-line bg-jv-slate shadow-soft-sm"
         aria-hidden="true"
       ></span>
 
       <div
-        class="jv-card border-2 border-jv-ink bg-jv-white px-6 py-7 shadow-brutal-lg sm:px-8 sm:py-9"
+        class="jv-card border border-jv-line bg-jv-white px-6 py-7 shadow-soft-lg sm:px-8 sm:py-9"
       >
         <header class="mb-6 flex flex-col items-center gap-2">
-          <NuxtLink to="/" class="inline-block">
+          <NuxtLink to="/" class="flex items-center gap-2 no-underline">
             <NuxtImg
-              src="/images/jovvix-logo.png"
-              alt="Jovvix"
-              width="89"
-              height="36"
-              class="h-9 w-auto"
+              src="/images/stem-logo.png"
+              alt=""
+              width="56"
+              height="56"
+              class="h-12 w-auto"
             />
+            <span
+              class="font-headings text-[18px] font-extrabold leading-none tracking-[0.02em] text-jv-ink whitespace-nowrap lg:text-[20px]"
+              >STEM_HUB</span
+            >
           </NuxtLink>
           <div class="relative inline-block">
             <h1
@@ -60,7 +64,7 @@
               OTP Code
             </label>
             <div
-              class="jv-card flex items-center gap-2.5 border-2 border-jv-ink bg-jv-white px-3 py-2.5 shadow-brutal-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
+              class="jv-card flex items-center gap-2.5 border border-jv-line bg-jv-white px-3 py-2.5 shadow-soft-sm transition-all focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none"
               :class="{ 'border-jv-coral': otpError }"
             >
               <KeyRound
@@ -87,7 +91,7 @@
           <button
             type="submit"
             :disabled="isLoading"
-            class="jv-card mt-2 inline-flex h-12 items-center justify-center gap-2 border-2 border-jv-ink bg-jv-coral font-headings text-base text-white shadow-brutal-sm transition-transform hover:rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:rotate-0 sm:text-lg"
+            class="jv-card mt-2 inline-flex h-12 items-center justify-center gap-2 border border-jv-line bg-jv-coral font-headings text-base text-white shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-70 sm:text-lg"
           >
             {{ isLoading ? "Verifying..." : "Submit" }}
             <ArrowRight v-if="!isLoading" class="size-5" :stroke-width="2.4" />

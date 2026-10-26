@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 export { default as Badge } from "./Badge.vue";
 
 export const badgeVariants = cva(
-  "inline-flex items-center gap-1 font-body font-bold border-[2px] border-jv-ink",
+  "inline-flex items-center gap-1 font-body font-bold border border-jv-line",
   {
     variants: {
       variant: {
@@ -28,8 +28,8 @@ export const badgeVariants = cva(
       },
       shadow: {
         none: "",
-        sm: "shadow-brutal-sm",
-        md: "shadow-brutal",
+        sm: "shadow-soft-sm",
+        md: "shadow-soft",
       },
     },
     defaultVariants: {

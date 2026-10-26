@@ -3,7 +3,7 @@
     <div
       v-for="n in 6"
       :key="n"
-      class="jv-border-rough flex items-center gap-4 border-2 border-jv-ink bg-jv-white p-4 shadow-brutal-sm sm:p-5"
+      class="jv-border-rough flex items-center gap-4 border border-jv-line bg-jv-white p-4 shadow-soft-sm sm:p-5"
     >
       <Skeleton class="size-12 shrink-0 rounded-full" />
       <div class="flex flex-1 flex-col gap-2">

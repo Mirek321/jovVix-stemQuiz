@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-5xl">
       <div
         v-if="questionPending"
-        class="jv-border-rough flex items-center justify-center gap-3 border-2 border-jv-ink bg-jv-white p-8 font-body text-jv-muted shadow-brutal-sm"
+        class="jv-border-rough flex items-center justify-center gap-3 border border-jv-line bg-jv-white p-8 font-body text-jv-muted shadow-soft-sm"
       >
         <span
           class="size-3 animate-pulse rounded-full bg-jv-coral"
@@ -15,14 +15,14 @@
       <div
         v-else-if="questionError"
         role="alert"
-        class="jv-border-rough border-2 border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
+        class="jv-border-rough border border-jv-coral bg-jv-coral/10 p-4 font-body text-jv-ink"
       >
         {{ questionError }}
       </div>
 
       <div
         v-else
-        class="jv-border-rough border-2 border-jv-ink bg-jv-white p-4 shadow-brutal sm:p-6"
+        class="jv-border-rough border border-jv-line bg-jv-white p-4 shadow-soft sm:p-6"
       >
         <QuizEditQuestion
           :question="questionData?.data"

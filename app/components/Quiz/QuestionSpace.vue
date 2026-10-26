@@ -247,6 +247,42 @@ onUnmounted(() => {
   }
   clearTimeout(skipCoolTimer);
 });
+
+// One palette colour per answer slot (A–E), cycling if there are more.
+const OPTION_TONES = [
+  {
+    badge: "bg-jv-primary text-white",
+    border: "border-jv-primary/25 hover:border-jv-primary",
+    fill: "bg-jv-lavender",
+    ring: "ring-jv-primary",
+  },
+  {
+    badge: "bg-jv-sky text-jv-ink",
+    border: "border-jv-sky/35 hover:border-jv-sky",
+    fill: "bg-jv-mint",
+    ring: "ring-jv-sky",
+  },
+  {
+    badge: "bg-jv-violet text-jv-ink",
+    border: "border-jv-violet/40 hover:border-jv-violet",
+    fill: "bg-jv-lavender",
+    ring: "ring-jv-violet",
+  },
+  {
+    badge: "bg-jv-orange text-jv-ink",
+    border: "border-jv-orange/40 hover:border-jv-orange",
+    fill: "bg-jv-yellow-soft",
+    ring: "ring-jv-orange",
+  },
+  {
+    badge: "bg-jv-mauve text-jv-ink",
+    border: "border-jv-mauve/45 hover:border-jv-mauve",
+    fill: "bg-jv-lavender",
+    ring: "ring-jv-mauve",
+  },
+];
+const optionTone = (key) =>
+  OPTION_TONES[(Number(key) - 1 + OPTION_TONES.length) % OPTION_TONES.length];
 </script>
 
 <template>
@@ -256,13 +292,8 @@ onUnmounted(() => {
     class="flex min-h-[75vh] flex-col items-center justify-center bg-jv-canvas px-4 py-10 text-jv-ink sm:py-14"
   >
     <article
-      class="relative w-full max-w-[460px] -rotate-[0.4deg] jv-border-rough bg-jv-white px-6 py-9 shadow-brutal sm:px-10 sm:py-12"
+      class="relative w-full max-w-[460px] jv-border-rough bg-jv-white px-6 py-9 shadow-soft sm:px-10 sm:py-12"
     >
-      <span
-        class="absolute left-1/2 top-[-12px] h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-        aria-hidden="true"
-      ></span>
-
       <p
         class="text-center font-body text-[12px] font-black uppercase tracking-[0.22em] text-jv-muted sm:text-[13px]"
       >
@@ -273,7 +304,7 @@ onUnmounted(() => {
         <div
           v-if="isCountdownNumber"
           :key="String(count)"
-          class="mx-auto mt-5 grid size-[180px] place-items-center rounded-full border-[3px] border-dashed border-jv-ink bg-jv-yellow font-headings text-[110px] leading-none text-jv-ink sm:size-[220px] sm:text-[140px]"
+          class="mx-auto mt-5 grid size-[180px] place-items-center rounded-full border border-dashed border-jv-line bg-jv-yellow font-headings text-[110px] leading-none text-jv-ink sm:size-[220px] sm:text-[140px]"
         >
           {{ countdownDisplay }}
         </div>
@@ -304,19 +335,14 @@ onUnmounted(() => {
   >
     <section class="mx-auto w-full max-w-[1180px]">
       <article
-        class="relative -rotate-[0.4deg] jv-border-rough bg-jv-white p-5 shadow-brutal sm:p-7 md:p-9"
+        class="relative jv-border-rough bg-jv-white p-5 shadow-soft sm:p-7 md:p-9"
       >
-        <span
-          class="absolute left-1/2 top-[-12px] z-10 h-4 w-16 -translate-x-1/2 rotate-[1deg] bg-jv-coral"
-          aria-hidden="true"
-        ></span>
-
         <!-- Header: question count + timer -->
         <header class="flex items-start justify-between gap-4">
           <div class="min-w-0 flex-1">
             <p
               v-if="quizTitle"
-              class="mb-2 inline-flex max-w-full items-center gap-2 rotate-[-0.6deg] rounded-full border-[2px] border-jv-ink bg-jv-yellow px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-brutal-sm sm:text-[12px]"
+              class="mb-2 inline-flex max-w-full items-center gap-2 rounded-full border border-jv-line bg-jv-yellow px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-soft-sm sm:text-[12px]"
               :title="quizTitle"
             >
               <span
@@ -341,7 +367,7 @@ onUnmounted(() => {
               <PopoverTrigger as-child>
                 <button
                   type="button"
-                  class="mt-2 inline-flex max-w-full items-center gap-1.5 rotate-[0.5deg] rounded-full border-[2px] border-jv-ink bg-jv-mint px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none sm:text-[12px]"
+                  class="mt-2 inline-flex max-w-full items-center gap-1.5 rounded-full border border-jv-line bg-jv-mint px-3 py-1 font-body text-[11px] font-black uppercase tracking-[0.12em] text-jv-ink shadow-soft-sm transition-transform sm:text-[12px]"
                   aria-label="How scoring works"
                 >
                   <span class="truncate">{{ pointsLabel }}</span>
@@ -352,7 +378,7 @@ onUnmounted(() => {
                 side="bottom"
                 align="start"
                 :side-offset="8"
-                class="w-72 jv-border-rough bg-jv-white p-4 font-body text-[13px] text-jv-ink shadow-brutal"
+                class="w-72 jv-border-rough bg-jv-white p-4 font-body text-[13px] text-jv-ink shadow-soft"
               >
                 <p
                   class="font-headings text-[15px] uppercase tracking-[0.06em]"
@@ -383,7 +409,7 @@ onUnmounted(() => {
           <div class="flex shrink-0 items-center gap-2 sm:gap-3">
             <button
               type="button"
-              class="grid size-10 place-items-center rounded-[8px] border-[2px] border-jv-ink bg-jv-white text-jv-ink shadow-brutal-sm transition-transform hover:rotate-[2deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none sm:size-11"
+              class="grid size-10 place-items-center rounded-[8px] border border-jv-line bg-jv-white text-jv-ink shadow-soft-sm transition-transform sm:size-11"
               :aria-label="music ? 'Mute music' : 'Unmute music'"
               @click="toggleMusic"
             >
@@ -392,7 +418,7 @@ onUnmounted(() => {
             </button>
 
             <div
-              class="grid size-12 place-items-center rounded-full border-[3px] border-dashed border-jv-ink bg-jv-yellow font-feature text-[20px] font-black text-jv-ink sm:size-[60px] sm:text-[24px]"
+              class="grid size-12 place-items-center rounded-full border border-dashed border-jv-line bg-jv-yellow font-feature text-[20px] font-black text-jv-ink sm:size-[60px] sm:text-[24px]"
               :aria-label="`${remainingSeconds} seconds remaining`"
             >
               {{ remainingSeconds }}
@@ -400,9 +426,7 @@ onUnmounted(() => {
           </div>
         </header>
 
-        <div
-          class="my-5 border-t-[2px] border-dashed border-jv-ink/30 sm:my-6"
-        ></div>
+        <div class="my-5 border-t border-dashed border-jv-line sm:my-6"></div>
 
         <!-- Question text -->
         <h3
@@ -418,7 +442,7 @@ onUnmounted(() => {
           <NuxtImg
             :src="question.resource"
             :alt="question.question"
-            class="max-h-[260px] w-auto border-[3px] border-jv-ink bg-jv-white object-contain shadow-brutal-sm"
+            class="max-h-[260px] w-auto border border-jv-line bg-jv-white object-contain shadow-soft-sm"
           />
         </div>
         <div v-else-if="question.question_media === 'code'" class="mt-5">
@@ -433,20 +457,28 @@ onUnmounted(() => {
             type="button"
             :disabled="!answerable || isSubmitted"
             :class="[
-              'group flex w-full items-center gap-3 border-[2px] border-jv-ink bg-jv-white px-3 py-3 text-left transition-all sm:gap-4 sm:px-4 sm:py-4',
+              'group relative flex w-full items-center gap-3 overflow-hidden rounded-2xl border-2 bg-jv-white px-3 py-3 text-left transition-all duration-150 sm:gap-4 sm:px-4 sm:py-4',
+              optionTone(key).border,
               answerable && !isSubmitted
-                ? 'cursor-pointer shadow-brutal-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none'
-                : 'shadow-brutal-sm',
+                ? 'cursor-pointer shadow-soft-sm hover:-translate-y-0.5 hover:shadow-soft active:scale-[0.99]'
+                : 'shadow-soft-sm',
               isSubmitted && selectedKey === Number(key)
-                ? 'bg-jv-yellow outline-[3px] outline-offset-[2px] outline-jv-ink'
+                ? [
+                    optionTone(key).fill,
+                    'ring-4 ring-offset-2',
+                    optionTone(key).ring,
+                  ]
                 : '',
-              isSubmitted && selectedKey !== Number(key) ? 'opacity-50' : '',
+              isSubmitted && selectedKey !== Number(key) ? 'opacity-45' : '',
               !answerable ? 'cursor-default' : '',
             ]"
             @click="handleOptionClick(key)"
           >
             <span
-              class="grid size-9 shrink-0 place-items-center rounded-[6px] border-[2px] border-jv-ink bg-jv-white font-feature text-[14px] font-black text-jv-ink sm:size-11 sm:text-[16px]"
+              :class="[
+                'grid size-10 shrink-0 place-items-center rounded-xl font-feature text-[15px] font-extrabold sm:size-12 sm:text-[17px]',
+                optionTone(key).badge,
+              ]"
             >
               {{ String.fromCharCode(64 + Number(key)) }}
             </span>
@@ -467,14 +499,14 @@ onUnmounted(() => {
               />
               <span
                 v-else
-                class="block break-words font-body text-[15px] font-black leading-snug text-jv-ink sm:text-[18px] md:text-[20px]"
+                class="block break-words font-body text-[15px] font-bold leading-snug text-jv-ink sm:text-[18px] md:text-[20px]"
               >
                 {{ value }}
               </span>
             </div>
             <Check
               v-if="isSubmitted && selectedKey === Number(key)"
-              class="size-5 shrink-0 text-jv-ink"
+              class="size-6 shrink-0 text-jv-ink"
               :stroke-width="3"
             />
           </button>
@@ -482,9 +514,7 @@ onUnmounted(() => {
 
         <!-- Admin footer: waiting status + skip -->
         <template v-if="isAdmin">
-          <div
-            class="mt-6 border-t-[2px] border-dashed border-jv-ink/30 sm:mt-7"
-          ></div>
+          <div class="mt-6 border-t border-dashed border-jv-line sm:mt-7"></div>
           <footer
             class="mt-4 flex flex-col items-stretch justify-between gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
@@ -506,7 +536,7 @@ onUnmounted(() => {
             </div>
             <button
               type="button"
-              class="inline-flex h-10 items-center justify-center gap-2 self-end rounded-full border-[2px] border-jv-ink bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-brutal-sm transition-transform hover:-rotate-[1deg] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 sm:h-11 sm:self-auto sm:px-6 sm:text-[15px]"
+              class="inline-flex h-10 items-center justify-center gap-2 self-end rounded-full border border-jv-line bg-jv-white px-5 font-body text-[14px] font-black text-jv-ink shadow-soft-sm transition-transform disabled:cursor-not-allowed disabled:opacity-50 sm:h-11 sm:self-auto sm:px-6 sm:text-[15px]"
               :disabled="skipCooling"
               @click="handleSkip"
             >
@@ -524,7 +554,7 @@ onUnmounted(() => {
         <!-- User submission acknowledgement -->
         <div
           v-if="answerable && isSubmitted"
-          class="mt-6 flex items-center justify-center gap-2 rounded-full border-[2px] border-dashed border-jv-ink/40 px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
+          class="mt-6 flex items-center justify-center gap-2 rounded-full border border-dashed border-jv-line px-4 py-2 font-body text-[13px] font-bold text-jv-muted sm:text-[14px]"
         >
           <Check class="size-4" :stroke-width="2.6" />
           Answer locked — waiting for the next question
