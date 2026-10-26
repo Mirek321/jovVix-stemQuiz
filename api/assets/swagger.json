@@ -1134,6 +1134,59 @@
           }
         }
       }
+    },
+    "/v1/quizzes/{quiz_id}/visibility": {
+      "put": {
+        "description": "Publish or hide an existing quiz. Only allowlisted public-quiz admins may do this.",
+        "consumes": [
+          "application/json"
+        ],
+        "schemes": [
+          "http",
+          "https"
+        ],
+        "tags": [
+          "Quiz"
+        ],
+        "operationId": "RequestUpdateQuizVisibility",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "QuizId",
+            "name": "quiz_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "is_public": {
+                  "type": "boolean",
+                  "x-go-name": "IsPublic"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GenericResOk"
+          },
+          "400": {
+            "$ref": "#/responses/GenericResFailNotFound"
+          },
+          "403": {
+            "$ref": "#/responses/GenericResFailConflict"
+          },
+          "500": {
+            "$ref": "#/responses/GenericResError"
+          }
+        }
+      }
     }
   },
   "definitions": {

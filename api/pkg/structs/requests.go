@@ -65,6 +65,10 @@ type ReqUpdateQuizSettings struct {
 	CoverImage        *string  `json:"cover_image"`
 }
 
+type ReqUpdateQuizVisibility struct {
+	IsPublic *bool `json:"is_public" validate:"required"`
+}
+
 type ReqCreateQuestion struct {
 	Question          string            `json:"question" validate:"required"`
 	Type              int               `json:"type" validate:"required"`

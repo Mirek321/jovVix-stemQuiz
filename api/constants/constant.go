@@ -70,6 +70,7 @@ const (
 	ErrRegisterQuiz                = "Nepodařilo se vytvořit kvíz"
 	ErrCreatingDemoQuiz            = "Nepodařilo se vytvořit ukázkový kvíz"
 	ErrQuizNotPublic               = "Tento kvíz není veřejný"
+	ErrHideOrphanedQuiz            = "Kvíz bez autora nejde skrýt, nikdo by se k němu už nedostal"
 	ErrGetTotalJoinUser            = "Nepodařilo se zjistit počet připojených uživatelů"
 	ErrShareQuiz                   = "Nepodařilo se sdílet kvíz"
 	ErrListShareQuiz               = "Nepodařilo se načíst seznam sdílených kvízů"

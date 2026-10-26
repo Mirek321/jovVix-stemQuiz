@@ -370,6 +370,31 @@ const confirmDeleteQuiz = async () => {
   }
 };
 
+const toggleQuizVisibility = async (quiz) => {
+  const isPublic = !quiz.isPublic;
+  try {
+    await $fetch(`${url.apiUrl}/quizzes/${quiz.id}/visibility`, {
+      method: "PUT",
+      headers: headers,
+      credentials: "include",
+      body: { is_public: isPublic },
+    });
+    toast.success(
+      isPublic
+        ? `Kvíz „${quiz.title}“ je teď veřejný.`
+        : `Kvíz „${quiz.title}“ je teď soukromý.`
+    );
+    refresh();
+  } catch (error) {
+    console.error("Failed to change quiz visibility", error);
+    toast.error(
+      error?.data?.data ||
+        error?.data?.message ||
+        "Viditelnost kvízu se nepodařilo změnit."
+    );
+  }
+};
+
 const handleSelectFilter = (option) => {
   selectedFilter.value = option;
   filterOpen.value = false;
@@ -619,9 +644,12 @@ const handleCreateQuiz = async () => {
         :fallback="quiz.fallback"
         :view-url="quiz.viewUrl"
         :starting="startingQuizId === quiz.id"
+        :is-public="quiz.isPublic"
+        :can-change-visibility="canCreatePublicQuiz"
         @start-quiz="askStartMode(quiz.id)"
         @share="handleShareQuiz(quiz)"
         @delete="handleDeleteQuiz(quiz)"
+        @toggle-visibility="toggleQuizVisibility(quiz)"
       />
     </section>
 
