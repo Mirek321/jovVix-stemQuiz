@@ -180,6 +180,29 @@ func (model *QuizModel) UpdateQuizPublicMeta(transaction *goqu.TxDatabase, quizI
 	return err
 }
 
+// SetQuizVisibility publishes or hides a quiz. Category and cover image are
+// kept when hiding so publishing again restores them; every public-catalog
+// read (listing, cover, categories) already filters on is_public.
+func (model *QuizModel) SetQuizVisibility(quizId string, isPublic bool) error {
+	record := goqu.Record{
+		"is_public":  isPublic,
+		"updated_at": time.Now(),
+	}
+
+	result, err := model.db.Update(QuizzesTable).Set(record).Where(goqu.Ex{"id": quizId}).Executor().Exec()
+	if err != nil {
+		return err
+	}
+	affected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if affected == 0 {
+		return sql.ErrNoRows
+	}
+	return nil
+}
+
 // GetPublicQuizzes returns quizzes whose creator has marked them public,
 // most recent first, with their question counts and category names attached.
 func (model *QuizModel) GetPublicQuizzes() ([]QuizWithQuestions, error) {

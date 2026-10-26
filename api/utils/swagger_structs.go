@@ -415,6 +415,18 @@ type RequestUpdateUserPermissionOfQuiz struct {
 	}
 }
 
+// swagger:parameters RequestUpdateQuizVisibility
+type RequestUpdateQuizVisibility struct {
+	// in:path
+	// required: true
+	QuizId string `json:"quiz_id"`
+	// in:body
+	// required: true
+	Body struct {
+		structs.ReqUpdateQuizVisibility
+	}
+}
+
 // swagger:parameters RequestDeleteUserPermissionOfQuiz
 type RequestDeleteUserPermissionOfQuiz struct {
 	// in:query

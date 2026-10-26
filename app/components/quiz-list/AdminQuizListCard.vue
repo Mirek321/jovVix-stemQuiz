@@ -37,7 +37,7 @@
 
       <div
         v-if="showActions && actionsOpen"
-        class="absolute right-0 top-9 z-20 w-32 border border-jv-line bg-jv-yellow p-2 shadow-soft-sm jv-card"
+        class="absolute right-0 top-9 z-20 w-36 border border-jv-line bg-jv-yellow p-2 shadow-soft-sm jv-card"
       >
         <button
           type="button"
@@ -46,6 +46,16 @@
         >
           <Share2 class="size-4" :stroke-width="2.4" />
           <span>Sdílet</span>
+        </button>
+        <button
+          v-if="canChangeVisibility"
+          type="button"
+          class="flex w-full items-center gap-2 border-b border-dashed border-jv-line px-1 py-2 text-left text-[14px] font-bold transition-colors hover:text-jv-coral"
+          @click="handleToggleVisibility"
+        >
+          <EyeOff v-if="isPublic" class="size-4" :stroke-width="2.4" />
+          <Globe v-else class="size-4" :stroke-width="2.4" />
+          <span>{{ isPublic ? "Skrýt" : "Zveřejnit" }}</span>
         </button>
         <button
           type="button"
@@ -90,7 +100,14 @@
 <script setup>
 import { ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
-import { CircleHelp, MoreVertical, Share2, Trash2 } from "lucide-vue-next";
+import {
+  CircleHelp,
+  EyeOff,
+  Globe,
+  MoreVertical,
+  Share2,
+  Trash2,
+} from "lucide-vue-next";
 import NavigationLink from "@/components/common/NavigationLink.vue";
 import QuizCoverImage from "@/components/QuizCoverImage.vue";
 
@@ -127,9 +144,22 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  isPublic: {
+    type: Boolean,
+    default: false,
+  },
+  canChangeVisibility: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const emit = defineEmits(["share", "delete", "start-quiz"]);
+const emit = defineEmits([
+  "share",
+  "delete",
+  "start-quiz",
+  "toggle-visibility",
+]);
 const actionsMenuRef = ref(null);
 const actionsOpen = ref(false);
 
@@ -146,6 +176,11 @@ onClickOutside(actionsMenuRef, closeActionsMenu);
 const handleShare = () => {
   closeActionsMenu();
   emit("share");
+};
+
+const handleToggleVisibility = () => {
+  closeActionsMenu();
+  emit("toggle-visibility");
 };
 
 const handleDelete = () => {

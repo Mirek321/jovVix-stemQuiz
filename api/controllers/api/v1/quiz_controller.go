@@ -287,6 +287,69 @@ func (ctrl *QuizController) UpdateQuizSettings(c *fiber.Ctx) error {
 	return utils.JSONSuccess(c, http.StatusOK, "Nastavení kvízu bylo uloženo")
 }
 
+// UpdateQuizVisibility publishes or hides an existing quiz.
+// swagger:route PUT /v1/quizzes/{quiz_id}/visibility Quiz RequestUpdateQuizVisibility
+//
+// Publish or hide an existing quiz. Only allowlisted public-quiz admins may do this.
+//
+//		Consumes:
+//		- application/json
+//
+//		Schemes: http, https
+//
+//		Responses:
+//		  200: GenericResOk
+//	     400: GenericResFailNotFound
+//	     403: GenericResFailConflict
+//		  500: GenericResError
+func (ctrl *QuizController) UpdateQuizVisibility(c *fiber.Ctx) error {
+	quizId := c.Params(constants.QuizId)
+
+	var req structs.ReqUpdateQuizVisibility
+	if err := json.Unmarshal(c.Body(), &req); err != nil {
+		ctrl.logger.Error("validate req error", zap.Error(err))
+		return utils.JSONFail(c, http.StatusBadRequest, err.Error())
+	}
+	if err := validator.New().Struct(req); err != nil {
+		return utils.JSONFail(c, http.StatusBadRequest, utils.ValidatorErrorString(err))
+	}
+
+	// Same allowlist as publishing a quiz on creation.
+	user, ok := quizUtilsHelper.ConvertType[models.User](c.Locals(constants.ContextUser))
+	if !ok || !ctrl.appConfig.Quiz.IsPublicQuizAdmin(user.Email) {
+		return utils.JSONFail(c, http.StatusForbidden, constants.ErrUnauthorized)
+	}
+
+	// A public quiz whose creator deleted their account has no owner; hiding it
+	// would make it unreachable for everyone.
+	if !*req.IsPublic {
+		quiz, err := ctrl.quizModel.GetQuizById(quizId)
+		if err != nil {
+			if err == sql.ErrNoRows {
+				return utils.JSONFail(c, http.StatusBadRequest, constants.ErrQuizNotFound)
+			}
+			ctrl.logger.Error("error fetching quiz for visibility update", zap.Error(err))
+			return utils.JSONError(c, http.StatusInternalServerError, constants.UnknownError)
+		}
+		if quiz.CreatorID == nil {
+			return utils.JSONFail(c, http.StatusBadRequest, constants.ErrHideOrphanedQuiz)
+		}
+	}
+
+	if err := ctrl.quizModel.SetQuizVisibility(quizId, *req.IsPublic); err != nil {
+		if err == sql.ErrNoRows {
+			return utils.JSONFail(c, http.StatusBadRequest, constants.ErrQuizNotFound)
+		}
+		ctrl.logger.Error("error updating quiz visibility", zap.Error(err))
+		return utils.JSONError(c, http.StatusInternalServerError, constants.UnknownError)
+	}
+
+	if *req.IsPublic {
+		return utils.JSONSuccess(c, http.StatusOK, "Kvíz je teď veřejný")
+	}
+	return utils.JSONSuccess(c, http.StatusOK, "Kvíz je teď soukromý")
+}
+
 // GetQuizAnalysis for getting quiz details hosted by Admin
 // swagger:route GET /v1/admin/reports/{active_quiz_id}/analysis Reports RequestGetQuizAnalysis
 //

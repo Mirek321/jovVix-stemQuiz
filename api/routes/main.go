@@ -266,6 +266,7 @@ func setupQuizController(v1 fiber.Router, db *goqu.Database, logger *zap.Logger,
 	quizzes.Post("/", quizController.CreateQuiz)
 	quizzes.Get("/", quizController.GetAdminUploadedQuizzes)
 	quizzes.Put(fmt.Sprintf("/:%s/settings", constants.QuizId), middleware.QuizPermission, middleware.VerifyQuizEditAccess, quizController.UpdateQuizSettings)
+	quizzes.Put(fmt.Sprintf("/:%s/visibility", constants.QuizId), middleware.QuizPermission, middleware.VerifyQuizEditAccess, quizController.UpdateQuizVisibility)
 	quizzes.Delete(fmt.Sprintf("/:%s", constants.QuizId), middleware.QuizPermission, middleware.VerifyQuizEditAccess, quizController.DeleteQuizById)
 
 	report := admin.Group("/reports")
