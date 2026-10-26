@@ -384,6 +384,7 @@ const handleAnalysisTabChange = (tab) => (analysisTab.value = tab);
 definePageMeta({
   layout: "empty",
   hideSidebar: true,
+  hideFooter: true,
   // Public-quiz guests transition from /admin/arrange/new?... to /admin/arrange/<sessionId>?...
   // — keying on fullPath forces a fresh mount so the captured `session_id` const picks up
   // the real session id and the admin socket connects against it.

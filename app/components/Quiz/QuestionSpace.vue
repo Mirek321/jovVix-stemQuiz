@@ -276,7 +276,7 @@ const OPTION_TONES = [
     ring: "ring-jv-primary",
   },
   {
-    badge: "bg-jv-sky text-white",
+    badge: "bg-jv-sky text-jv-ink",
     border: "border-jv-sky/35 hover:border-jv-sky",
     fill: "bg-jv-mint",
     ring: "ring-jv-sky",
