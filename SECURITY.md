@@ -1,58 +1,60 @@
-# Security Policy
+# Bezpečnostní zásady
 
-## Supported Versions
+## Podporované verze
 
-Only the latest version of jovVix receives security updates.
+Bezpečnostní opravy dostává jen aktuální verze ve větvi `main`.
 
-## Reporting a Vulnerability
+## Nahlášení zranitelnosti
 
-**Please do NOT report security vulnerabilities through public GitHub issues.**
+**Bezpečnostní chyby prosím nehlas přes veřejné GitHub issues.**
 
-Instead, please report them via email to **security@improwised.com**.
+Pošli je e-mailem na **info@stemhub.cz** s předmětem „Bezpečnost“. Ozveme se co nejdřív.
 
-You should receive a response within **48 hours**. If for some reason you do not, please follow up to ensure we received your original message.
+Do hlášení uveď:
 
-Please include the following information in your report:
+- typ problému (např. SQL injection, XSS, obejití přihlášení)
+- cesty ke zdrojovým souborům, kterých se problém týká
+- umístění kódu (větev, commit nebo přímý odkaz)
+- případné zvláštní nastavení potřebné k vyvolání
+- postup krok za krokem, jak problém vyvolat
+- ukázku nebo proof-of-concept (pokud je to možné)
+- dopad: jak by mohl útočník chybu zneužít
 
-- Type of issue (e.g., SQL injection, XSS, authentication bypass)
-- Full paths of source file(s) related to the manifestation of the issue
-- The location of the affected source code (tag/branch/commit or direct URL)
-- Any special configuration required to reproduce the issue
-- Step-by-step instructions to reproduce the issue
-- Proof-of-concept or exploit code (if possible)
-- Impact of the issue, including how an attacker might exploit it
+Díky těmto informacím hlášení rychleji posoudíme.
 
-This information will help us triage your report more quickly.
+## Co můžeš čekat
 
-## What to Expect
+- **Potvrzení:** dáme vědět, že jsme hlášení dostali.
+- **Posouzení:** ověříme zranitelnost a její dopad.
+- **Oprava:** připravíme opravu.
+- **Zveřejnění:** termín zveřejnění s tebou domluvíme.
 
-- **Acknowledgment:** We will acknowledge receipt of your vulnerability report within 48 hours.
-- **Assessment:** We will confirm the vulnerability and determine its impact.
-- **Fix:** We will develop a fix and prepare a release.
-- **Disclosure:** We will coordinate with you on the timing of public disclosure.
+## Bezpečný přístav
 
-We aim to resolve critical vulnerabilities within **7 days** of confirmation.
+Proti výzkumníkům nepodnikneme právní kroky, pokud:
 
-## Safe Harbor
+- se v dobré víře snaží neporušit soukromí, nezničit data a nenarušit provoz
+- pracují jen s vlastními účty nebo s výslovným souhlasem jejich majitele
+- zranitelnost nezneužijí víc, než je nutné k ověření, že existuje
+- chybu nahlásí včas a nezveřejní ji dřív, než je k dispozici oprava
 
-We support safe harbor for security researchers who:
+## Působnost
 
-- Make a good faith effort to avoid privacy violations, data destruction, or disruption to our services
-- Only interact with accounts you own or with explicit permission of the account holder
-- Do not exploit a vulnerability beyond what is necessary to confirm its existence
-- Report vulnerabilities promptly and do not publicly disclose them until a fix is available
+Zásady platí pro:
 
-We will not pursue legal action against researchers who follow these guidelines.
+- aplikaci STEM_HUB kvízy (frontend i backend)
+- konfiguraci nasazení v Dockeru
+- API endpointy a přihlašování
 
-## Scope
+Zásady neplatí pro:
 
-This security policy applies to:
+- služby a závislosti třetích stran (hlas je jejich správcům)
+- sociální inženýrství vůči správcům nebo přispěvatelům
 
-- The jovVix application (frontend and backend)
-- Docker deployment configurations
-- API endpoints and authentication flows
+## Chyby v původním jovVixu
 
-This security policy does NOT apply to:
+Pokud se zranitelnost týká i původního projektu [jovVix](https://github.com/Improwised/jovVix), nahlas ji také jeho autorům podle jejich bezpečnostních zásad (security@improwised.com).
 
-- Third-party services or dependencies (report these to their maintainers)
-- Social engineering attacks against maintainers or contributors
+---
+
+Tyto zásady vycházejí z bezpečnostních zásad projektu jovVix (© Improwised Technologies a přispěvatelé).

@@ -16,8 +16,8 @@ This guide walks you through setting up jovVix for local development.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Improwised/jovVix.git
-cd jovVix
+git clone https://github.com/Mirek321/jovVix-stemQuiz.git
+cd jovVix-stemQuiz
 
 # 2. Start all services
 docker-compose up --build
@@ -40,7 +40,6 @@ docker-compose up --build
 | `kratos` | 4434 | Ory Kratos admin API |
 | `mailpit` | 8025 | Email testing UI |
 | `mailpit` | 1025 | SMTP server |
-| `minio` | 9000 | Object storage |
 
 ## Local Development (Without Docker)
 

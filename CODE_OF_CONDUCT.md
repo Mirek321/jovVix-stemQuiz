@@ -1,57 +1,50 @@
-# Code of Conduct
+# Kodex chování
 
-## Our Pledge
+## Náš závazek
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+Jako členové, přispěvatelé a správci projektu STEM_HUB kvízy se zavazujeme, že účast v naší komunitě bude pro každého bez obtěžování, bez ohledu na věk, tělesnou postavu, viditelné či neviditelné postižení, etnický původ, pohlavní znaky, genderovou identitu a její vyjádření, úroveň zkušeností, vzdělání, sociálně-ekonomické postavení, národnost, vzhled, rasu, náboženství nebo sexuální identitu a orientaci.
 
-We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+Zavazujeme se jednat tak, aby naše komunita byla otevřená, přátelská, rozmanitá, inkluzivní a zdravá.
 
-## Our Standards
+## Naše standardy
 
-Examples of behavior that contributes to a positive environment for our community include:
+Příklady chování, které přispívá k pozitivnímu prostředí:
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the overall community
+* empatie a laskavost k ostatním
+* respekt k odlišným názorům, pohledům a zkušenostem
+* dávání a přijímání konstruktivní zpětné vazby
+* přijetí odpovědnosti, omluva těm, kterých se naše chyby dotkly, a poučení se z nich
+* soustředění na to, co je nejlepší nejen pro nás jako jednotlivce, ale pro celou komunitu
 
-Examples of unacceptable behavior include:
+Příklady nepřijatelného chování:
 
-* The use of sexualized language or imagery, and sexual attention or
-  advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
-  address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+* sexualizovaný jazyk nebo obrazový obsah a jakékoli sexuální návrhy
+* trollování, urážlivé nebo ponižující komentáře a osobní či politické útoky
+* veřejné nebo soukromé obtěžování
+* zveřejňování soukromých údajů jiných lidí, například adresy nebo e-mailu, bez jejich výslovného souhlasu
+* jiné chování, které lze rozumně považovat za nevhodné v profesním prostředí
 
+## Odpovědnost správců
 
-## Our Responsibilities
+Správci projektu vysvětlují, jaké chování je přijatelné, a na nepřijatelné chování reagují přiměřeně a spravedlivě.
 
-Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+Správci mají právo a povinnost odstranit, upravit nebo odmítnout komentáře, commity, kód, úpravy wiki, issues a další příspěvky, které jsou v rozporu s tímto kodexem. Mohou také dočasně nebo trvale vyloučit přispěvatele za jiné chování, které považují za nevhodné, výhrůžné, urážlivé nebo škodlivé.
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+## Působnost
 
+Tento kodex platí ve všech prostorech komunity a také tehdy, když někdo oficiálně zastupuje komunitu na veřejnosti, například přes oficiální e-mail, oficiální účet na sociálních sítích nebo jako pověřený zástupce na online či offline akci.
 
+## Vymáhání
 
-## Scope
+Případy urážlivého, obtěžujícího nebo jinak nepřijatelného chování nahlaste týmu STEM Hub na **info@stemhub.cz**.
 
-This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event.
+Tým každou stížnost posoudí a prošetří a zareaguje způsobem, který odpovídá okolnostem. Tým zachová důvěrnost vůči tomu, kdo incident nahlásil. Podrobnější pravidla vymáhání mohou být zveřejněna zvlášť.
 
+Správci, kteří kodex v dobré víře nedodržují nebo nevymáhají, mohou čelit dočasným nebo trvalým důsledkům podle rozhodnutí ostatních členů vedení projektu.
 
-## Enforcement
+## Původ
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team of Jovvix open-source community
-
-The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
-
-Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
-
-## Attribution
-
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
+Tento kodex je český překlad kodexu chování projektu [jovVix](https://github.com/Improwised/jovVix) (© Improwised Technologies a přispěvatelé), který vychází z [Contributor Covenant][homepage], verze 1.4, dostupného na [http://contributor-covenant.org/version/1/4][version].
 
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/

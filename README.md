@@ -112,6 +112,12 @@ Pokyny pro AI agenty i vývojáře (konvence, design, častá úskalí) najdeš 
 
 Barvy STEM Hub: `#320C69` (tmavě fialová, text), `#3FACFF` (modrá), `#B291F3` (fialová), `#FFAA22` (oranžová), `#C39AD8` (lila) a pozadí `#F5F2F4`. Firemní písma jsou Proxima Nova a Authentia Textured. Protože na ně nemáme licenci, používají se náhrady Nunito Sans a Shantell Sans (obě umí českou diakritiku). Tokeny jsou v [app/assets/css/main.css](app/assets/css/main.css).
 
+## Přispívání
+
+- [CONTRIBUTING.md](CONTRIBUTING.md): jak přispět, názvy větví, commity a pull requesty
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md): kodex chování
+- [SECURITY.md](SECURITY.md): jak nahlásit bezpečnostní chybu
+
 ## Autoři a licence
 
 © Miroslav Bašista & Viktor Brunclík, 2026 · [stemhub.cz](https://stemhub.cz) · info@stemhub.cz
