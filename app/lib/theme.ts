@@ -40,6 +40,14 @@ export const accentColors = {
   orange: "var(--jv-accent-orange)",
 } as const;
 
+// Canvas-based charts cannot resolve CSS variables, so they need the raw
+// values. Keep these in sync with the --jv-* tokens in assets/css/main.css.
+export const chartColors = {
+  correct: "#1f9d6b", // --jv-accent-green
+  wrong: "#e5484d", // --jv-accent-red
+  notAttempted: "#ffaa22", // --jv-orange
+} as const;
+
 export const statusColors = {
   success: accentColors.green,
   warning: accentColors.gold,
@@ -81,6 +89,7 @@ export const theme = {
   palette,
   colors,
   accentColors,
+  chartColors,
   statusColors,
   fonts,
   shadows,
