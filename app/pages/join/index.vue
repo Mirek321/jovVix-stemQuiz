@@ -1,305 +1,315 @@
 <template>
-  <div
-    class="min-h-screen bg-jv-canvas relative flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 overflow-hidden"
-  >
-    <!-- Decorative background grid -->
+  <div class="flex min-h-screen flex-col bg-jv-canvas">
     <div
-      class="absolute inset-0 jv-grid pointer-events-none"
-      aria-hidden="true"
-    ></div>
-
-    <!-- Decorative sparkles & squiggle -->
-    <div
-      class="absolute hidden sm:block left-[10%] top-[18%] rotate-12 text-jv-coral pointer-events-none"
-      aria-hidden="true"
+      class="flex-1 relative flex items-center justify-center px-4 sm:px-6 py-6 sm:py-8 overflow-hidden"
     >
-      <Sparkle class="size-7 md:size-9 fill-current" :stroke-width="2" />
-    </div>
-    <div
-      class="absolute hidden md:block right-[10%] top-[14%] -rotate-12 text-jv-yellow pointer-events-none"
-      aria-hidden="true"
-    >
-      <svg
-        width="120"
-        height="48"
-        viewBox="0 0 120 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M2 28 Q 22 4, 42 22 T 82 26 T 118 14"
-          stroke="currentColor"
-          stroke-width="3.5"
-          stroke-linecap="round"
-          fill="none"
-        />
-      </svg>
-    </div>
-    <div
-      class="absolute hidden md:block right-[14%] bottom-[18%] -rotate-12 text-jv-mint pointer-events-none"
-      aria-hidden="true"
-    >
-      <Sparkle class="size-6 fill-current" :stroke-width="2" />
-    </div>
-
-    <div
-      class="relative w-full max-w-[440px] mx-auto z-10 flex flex-col items-center"
-    >
-      <!-- Session-ended notice (shown when redirected here from /join/play with an error) -->
+      <!-- Decorative background grid -->
       <div
-        v-if="sessionNotice"
-        class="mb-5 w-full"
-        role="alert"
-        aria-live="polite"
+        class="absolute inset-0 jv-grid pointer-events-none"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Decorative sparkles & squiggle -->
+      <div
+        class="absolute hidden sm:block left-[10%] top-[18%] rotate-12 text-jv-coral pointer-events-none"
+        aria-hidden="true"
       >
-        <div
-          class="relative jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5"
+        <Sparkle class="size-7 md:size-9 fill-current" :stroke-width="2" />
+      </div>
+      <div
+        class="absolute hidden md:block right-[10%] top-[14%] -rotate-12 text-jv-yellow pointer-events-none"
+        aria-hidden="true"
+      >
+        <svg
+          width="120"
+          height="48"
+          viewBox="0 0 120 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span
-            class="absolute -top-[10px] left-6 z-10 h-3 w-10 bg-jv-coral"
-            aria-hidden="true"
-          ></span>
-          <button
-            type="button"
-            class="absolute right-2 top-2 grid size-7 place-items-center rounded-full text-jv-ink/60 transition-colors hover:bg-jv-canvas hover:text-jv-ink"
-            aria-label="Zavřít upozornění"
-            @click="dismissNotice"
+          <path
+            d="M2 28 Q 22 4, 42 22 T 82 26 T 118 14"
+            stroke="currentColor"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            fill="none"
+          />
+        </svg>
+      </div>
+      <div
+        class="absolute hidden md:block right-[14%] bottom-[18%] -rotate-12 text-jv-mint pointer-events-none"
+        aria-hidden="true"
+      >
+        <Sparkle class="size-6 fill-current" :stroke-width="2" />
+      </div>
+
+      <div
+        class="relative w-full max-w-[440px] mx-auto z-10 flex flex-col items-center"
+      >
+        <!-- Session-ended notice (shown when redirected here from /join/play with an error) -->
+        <div
+          v-if="sessionNotice"
+          class="mb-5 w-full"
+          role="alert"
+          aria-live="polite"
+        >
+          <div
+            class="relative jv-border-rough bg-jv-white p-4 shadow-soft-sm sm:p-5"
           >
-            <X class="size-4" :stroke-width="2.4" />
-          </button>
-          <div class="flex items-start gap-3 pr-6">
             <span
-              class="grid size-9 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm"
+              class="absolute -top-[10px] left-6 z-10 h-3 w-10 bg-jv-coral"
               aria-hidden="true"
+            ></span>
+            <button
+              type="button"
+              class="absolute right-2 top-2 grid size-7 place-items-center rounded-full text-jv-ink/60 transition-colors hover:bg-jv-canvas hover:text-jv-ink"
+              aria-label="Zavřít upozornění"
+              @click="dismissNotice"
             >
-              <AlertCircle class="size-4" :stroke-width="2.4" />
-            </span>
-            <div class="min-w-0">
-              <p
-                class="font-headings text-[16px] leading-tight text-jv-ink sm:text-[18px]"
+              <X class="size-4" :stroke-width="2.4" />
+            </button>
+            <div class="flex items-start gap-3 pr-6">
+              <span
+                class="grid size-9 shrink-0 place-items-center rounded-[8px] border border-jv-line bg-jv-yellow text-jv-ink shadow-soft-sm"
+                aria-hidden="true"
               >
-                {{ sessionNotice.title }}
-              </p>
-              <p
-                class="mt-1 font-body text-[13px] font-bold leading-snug text-jv-muted sm:text-[14px]"
-              >
-                {{ sessionNotice.message }}
-              </p>
-              <NuxtLink
-                to="/"
-                class="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-jv-line bg-jv-coral px-4 font-body text-[12px] font-black text-white shadow-soft-sm transition-transform sm:text-[13px]"
-                aria-label="Zpět domů"
-              >
-                <Home class="size-3.5" :stroke-width="2.4" />
-                Zpět domů
-              </NuxtLink>
+                <AlertCircle class="size-4" :stroke-width="2.4" />
+              </span>
+              <div class="min-w-0">
+                <p
+                  class="font-headings text-[16px] leading-tight text-jv-ink sm:text-[18px]"
+                >
+                  {{ sessionNotice.title }}
+                </p>
+                <p
+                  class="mt-1 font-body text-[13px] font-bold leading-snug text-jv-muted sm:text-[14px]"
+                >
+                  {{ sessionNotice.message }}
+                </p>
+                <NuxtLink
+                  to="/"
+                  class="mt-3 inline-flex h-9 items-center justify-center gap-1.5 rounded-full border border-jv-line bg-jv-coral px-4 font-body text-[12px] font-black text-white shadow-soft-sm transition-transform sm:text-[13px]"
+                  aria-label="Zpět domů"
+                >
+                  <Home class="size-3.5" :stroke-width="2.4" />
+                  Zpět domů
+                </NuxtLink>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Card -->
-      <div class="relative w-full">
-        <!-- "clip" tab -->
-        <span
-          class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border border-jv-line bg-jv-slate shadow-soft-sm"
-          aria-hidden="true"
-        ></span>
+        <!-- Card -->
+        <div class="relative w-full">
+          <!-- "clip" tab -->
+          <span
+            class="absolute left-1/2 -top-[8px] z-20 h-3 w-12 -translate-x-1/2 jv-card border border-jv-line bg-jv-slate shadow-soft-sm"
+            aria-hidden="true"
+          ></span>
 
-        <div
-          class="bg-jv-white border border-jv-line shadow-soft-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
-        >
-          <!-- Heading -->
-          <header class="flex flex-col items-center gap-1.5 mb-6">
-            <div class="relative inline-block">
-              <h1
-                class="font-headings text-jv-ink text-[32px] sm:text-[38px] leading-none m-0"
-              >
-                Připojit se ke kvízu
-              </h1>
-              <svg
-                class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-yellow"
-                width="120"
-                height="14"
-                viewBox="0 0 120 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M3 9 Q 20 1, 40 7 T 78 6 T 117 4"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  fill="none"
-                />
-              </svg>
-            </div>
-            <p class="font-body text-jv-ink/70 text-sm sm:text-base m-0 mt-1">
-              Zadej kód a připoj se
-            </p>
-          </header>
-
-          <!-- Form -->
-          <form
-            method="POST"
-            class="flex flex-col gap-4"
-            @submit.prevent="join_quiz"
+          <div
+            class="bg-jv-white border border-jv-line shadow-soft-lg jv-card px-6 sm:px-8 py-7 sm:py-9"
           >
-            <!-- Invitation code -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="code"
-                class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
-              >
-                Kód kvízu
-              </label>
-              <div
-                class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
-              >
-                <Hash
-                  class="size-[18px] text-jv-ink/70 shrink-0"
-                  :stroke-width="2.2"
-                />
-                <input
-                  id="code"
-                  v-model="codeDisplay"
-                  type="text"
-                  inputmode="numeric"
-                  autocomplete="off"
-                  maxlength="7"
-                  placeholder="000 000"
-                  class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body font-bold text-jv-ink placeholder:text-jv-ink/30 text-base sm:text-lg tracking-[0.15em]"
-                />
-                <span
-                  v-if="isCodeValid"
-                  class="grid place-items-center size-7 rounded-full bg-jv-mint text-jv-accent-green border border-jv-line shrink-0"
-                  aria-label="Platný kód"
+            <!-- Heading -->
+            <header class="flex flex-col items-center gap-1.5 mb-6">
+              <div class="relative inline-block">
+                <h1
+                  class="font-headings text-jv-ink text-[32px] sm:text-[38px] leading-none m-0"
                 >
-                  <Check class="size-4" :stroke-width="3" />
-                </span>
-              </div>
-            </div>
-
-            <!-- Player profile (guest) -->
-            <div v-if="!isUserLoggedIn" class="flex flex-col gap-1.5">
-              <label
-                for="username"
-                class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
-              >
-                Tvůj hráčský profil
-              </label>
-              <div class="flex items-stretch gap-2.5">
-                <!-- Avatar with reroll -->
-                <NavigationLink
-                  type="button"
-                  class="relative size-[46px] shrink-0 !p-0 bg-jv-mint !rounded-none !jv-card overflow-hidden shadow-none hover:scale-110"
-                  :aria-label="`Vygenerovat nový avatar (aktuální: ${avatarName})`"
-                  @click="rerollAvatar"
+                  Připojit se ke kvízu
+                </h1>
+                <svg
+                  class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-jv-yellow"
+                  width="120"
+                  height="14"
+                  viewBox="0 0 120 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-                  <NuxtImg
-                    :src="avatarUrl"
-                    :alt="avatarName"
-                    width="96"
-                    height="96"
-                    class="absolute inset-0 size-full object-cover"
+                  <path
+                    d="M3 9 Q 20 1, 40 7 T 78 6 T 117 4"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    fill="none"
                   />
-                  <span
-                    class="absolute -bottom-1 -right-1 grid place-items-center size-5 rounded-full bg-jv-ink text-white border border-jv-canvas"
-                    aria-hidden="true"
-                  >
-                    <RefreshCw class="size-2.5" :stroke-width="2.5" />
-                  </span>
-                </NavigationLink>
+                </svg>
+              </div>
+              <p class="font-body text-jv-ink/70 text-sm sm:text-base m-0 mt-1">
+                Zadej kód a připoj se
+              </p>
+            </header>
 
-                <!-- Username -->
-                <div
-                  class="flex-1 flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3"
+            <!-- Form -->
+            <form
+              method="POST"
+              class="flex flex-col gap-4"
+              @submit.prevent="join_quiz"
+            >
+              <!-- Invitation code -->
+              <div class="flex flex-col gap-1.5">
+                <label
+                  for="code"
+                  class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
                 >
-                  <User
+                  Kód kvízu
+                </label>
+                <div
+                  class="flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3 py-2.5"
+                >
+                  <Hash
                     class="size-[18px] text-jv-ink/70 shrink-0"
                     :stroke-width="2.2"
                   />
                   <input
-                    id="username"
-                    v-model.trim="username"
+                    id="code"
+                    v-model="codeDisplay"
                     type="text"
-                    name="username"
-                    maxlength="12"
-                    placeholder="Vyber si jméno"
-                    class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    maxlength="7"
+                    placeholder="000 000"
+                    class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body font-bold text-jv-ink placeholder:text-jv-ink/30 text-base sm:text-lg tracking-[0.15em]"
                   />
+                  <span
+                    v-if="isCodeValid"
+                    class="grid place-items-center size-7 rounded-full bg-jv-mint text-jv-accent-green border border-jv-line shrink-0"
+                    aria-label="Platný kód"
+                  >
+                    <Check class="size-4" :stroke-width="3" />
+                  </span>
                 </div>
               </div>
-            </div>
 
-            <!-- Welcome (signed in) -->
-            <div
-              v-else
-              class="flex items-center gap-2 bg-jv-yellow-soft border border-jv-line jv-card shadow-soft-sm px-3 py-2.5"
-            >
-              <User
-                class="size-[18px] text-jv-ink/70 shrink-0"
-                :stroke-width="2.2"
-              />
-              <span class="font-body text-jv-ink text-sm sm:text-base">
-                Vítej,
-                <span class="font-bold">{{ firstname || username }}</span>
-              </span>
-            </div>
+              <!-- Player profile (guest) -->
+              <div v-if="!isUserLoggedIn" class="flex flex-col gap-1.5">
+                <label
+                  for="username"
+                  class="font-body text-jv-ink text-xs sm:text-[13px] font-bold tracking-wide uppercase px-0.5"
+                >
+                  Tvůj hráčský profil
+                </label>
+                <div class="flex items-stretch gap-2.5">
+                  <!-- Avatar with reroll -->
+                  <NavigationLink
+                    type="button"
+                    class="relative size-[46px] shrink-0 !p-0 bg-jv-mint !rounded-none !jv-card overflow-hidden shadow-none hover:scale-110"
+                    :aria-label="`Vygenerovat nový avatar (aktuální: ${avatarName})`"
+                    @click="rerollAvatar"
+                  >
+                    <NuxtImg
+                      :src="avatarUrl"
+                      :alt="avatarName"
+                      width="96"
+                      height="96"
+                      class="absolute inset-0 size-full object-cover"
+                    />
+                    <span
+                      class="absolute -bottom-1 -right-1 grid place-items-center size-5 rounded-full bg-jv-ink text-white border border-jv-canvas"
+                      aria-hidden="true"
+                    >
+                      <RefreshCw class="size-2.5" :stroke-width="2.5" />
+                    </span>
+                  </NavigationLink>
 
-            <!-- Submit -->
-            <NavigationLink
-              type="submit"
-              class="mt-1 w-full bg-jv-coral text-white py-2.5 sm:py-3 text-sm sm:text-base"
-              :disabled="authChecking || quickUserPending"
+                  <!-- Username -->
+                  <div
+                    class="flex-1 flex items-center gap-2.5 bg-jv-white border border-jv-line jv-card shadow-soft-sm focus-within:translate-x-[1px] focus-within:translate-y-[1px] focus-within:shadow-none transition-all px-3"
+                  >
+                    <User
+                      class="size-[18px] text-jv-ink/70 shrink-0"
+                      :stroke-width="2.2"
+                    />
+                    <input
+                      id="username"
+                      v-model.trim="username"
+                      type="text"
+                      name="username"
+                      maxlength="12"
+                      placeholder="Vyber si jméno"
+                      class="flex-1 min-w-0 bg-transparent border-0 outline-none font-body text-jv-ink placeholder:text-jv-ink/40 text-sm sm:text-base"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Welcome (signed in) -->
+              <div
+                v-else
+                class="flex items-center gap-2 bg-jv-yellow-soft border border-jv-line jv-card shadow-soft-sm px-3 py-2.5"
+              >
+                <User
+                  class="size-[18px] text-jv-ink/70 shrink-0"
+                  :stroke-width="2.2"
+                />
+                <span class="font-body text-jv-ink text-sm sm:text-base">
+                  Vítej,
+                  <span class="font-bold">{{ firstname || username }}</span>
+                </span>
+              </div>
+
+              <!-- Submit -->
+              <NavigationLink
+                type="submit"
+                class="mt-1 w-full bg-jv-coral text-white py-2.5 sm:py-3 text-sm sm:text-base"
+                :disabled="authChecking || quickUserPending"
+              >
+                <template v-if="authChecking">
+                  <Loader2
+                    class="size-[18px] animate-spin"
+                    :stroke-width="2.4"
+                  />
+                  <span>Načítání…</span>
+                </template>
+                <template v-else-if="quickUserPending">
+                  <Loader2
+                    class="size-[18px] animate-spin"
+                    :stroke-width="2.4"
+                  />
+                  <span>Připojování…</span>
+                </template>
+                <template v-else>
+                  <span>Vstoupit do čekárny</span>
+                  <ArrowRight class="size-[18px]" :stroke-width="2.4" />
+                </template>
+              </NavigationLink>
+            </form>
+          </div>
+        </div>
+
+        <!-- Below-card links -->
+        <div
+          class="mt-6 flex flex-col gap-1.5 text-center font-body text-sm text-jv-ink/70"
+        >
+          <p class="m-0">
+            Nemáš kód?
+            <NuxtLink
+              to="/#public-quiz"
+              class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
             >
-              <template v-if="authChecking">
-                <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-                <span>Načítání…</span>
-              </template>
-              <template v-else-if="quickUserPending">
-                <Loader2 class="size-[18px] animate-spin" :stroke-width="2.4" />
-                <span>Připojování…</span>
-              </template>
-              <template v-else>
-                <span>Vstoupit do čekárny</span>
-                <ArrowRight class="size-[18px]" :stroke-width="2.4" />
-              </template>
-            </NavigationLink>
-          </form>
+              Procházet veřejné kvízy
+            </NuxtLink>
+          </p>
+          <p v-if="!isUserLoggedIn" class="m-0">
+            Chceš si ukládat svůj postup?
+            <NuxtLink
+              to="/account/login"
+              class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
+            >
+              Přihlásit se
+            </NuxtLink>
+          </p>
         </div>
       </div>
-
-      <!-- Below-card links -->
-      <div
-        class="mt-6 flex flex-col gap-1.5 text-center font-body text-sm text-jv-ink/70"
-      >
-        <p class="m-0">
-          Nemáš kód?
-          <NuxtLink
-            to="/#public-quiz"
-            class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
-          >
-            Procházet veřejné kvízy
-          </NuxtLink>
-        </p>
-        <p v-if="!isUserLoggedIn" class="m-0">
-          Chceš si ukládat svůj postup?
-          <NuxtLink
-            to="/account/login"
-            class="text-jv-coral underline underline-offset-4 decoration-2 font-semibold ml-1"
-          >
-            Přihlásit se
-          </NuxtLink>
-        </p>
-      </div>
     </div>
+    <SiteFooter />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import SiteFooter from "@/components/common/SiteFooter.vue";
 import { useRouter } from "vue-router";
 import { usePush } from "notivue";
 import { useUsersStore } from "~~/store/users";

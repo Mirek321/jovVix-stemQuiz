@@ -10,7 +10,13 @@
     <p
       class="mt-1 text-[11px] sm:text-[14px] leading-tight text-jv-muted break-words"
     >
-      {{ description }}
+      <a
+        v-if="href"
+        :href="href"
+        class="font-semibold text-jv-ink underline decoration-jv-orange underline-offset-2"
+        >{{ description }}</a
+      >
+      <template v-else>{{ description }}</template>
     </p>
   </article>
 </template>
@@ -24,6 +30,10 @@ defineProps({
   description: {
     type: String,
     required: true,
+  },
+  href: {
+    type: String,
+    default: "",
   },
 });
 </script>

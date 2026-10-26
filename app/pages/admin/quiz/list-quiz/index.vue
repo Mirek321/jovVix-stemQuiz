@@ -373,7 +373,7 @@ const closeFilter = () => {
 
 onClickOutside(filterMenuRef, closeFilter);
 
-const closeCreateQuizModal = () => {
+const resetCreateQuizForm = () => {
   createQuizOpen.value = false;
   createQuizForm.value = {
     title: "",
@@ -383,6 +383,10 @@ const closeCreateQuizModal = () => {
     cover_image: "",
   };
   coverImageName.value = "";
+};
+
+const closeCreateQuizModal = () => {
+  resetCreateQuizForm();
   if (route.query.create === "1") {
     router.replace({ path: route.path, query: {} });
   }
@@ -422,8 +426,16 @@ const handleCreateQuiz = async () => {
     }
 
     toast.success("Kvíz byl vytvořen.");
-    closeCreateQuizModal();
-    router.push(`/admin/quiz/list-quiz/${quizId}`);
+    // One navigation only: a separate replace() to strip ?create=1 would
+    // cancel this push and leave the form open. Replacing the ?create=1
+    // entry also keeps Back from reopening the form.
+    resetCreateQuizForm();
+    const target = `/admin/quiz/list-quiz/${quizId}`;
+    if (route.query.create === "1") {
+      router.replace(target);
+    } else {
+      router.push(target);
+    }
   } catch (error) {
     toast.error(
       error?.data?.data ||
@@ -567,7 +579,7 @@ const handleCreateQuiz = async () => {
         </p>
         <div
           v-if="emptyState.showCreateAction"
-          class="flex flex-wrap justify-center gap-3"
+          class="mt-6 flex flex-wrap justify-center gap-3"
         >
           <NavigationLink
             url-name="Vytvořit kvíz"
