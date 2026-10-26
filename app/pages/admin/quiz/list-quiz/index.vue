@@ -11,6 +11,7 @@ import {
 import { usePush } from "notivue";
 import AdminQuizListCard from "@/components/quiz-list/AdminQuizListCard.vue";
 import ShareQuizModal from "@/components/Quiz/ShareQuizModal.vue";
+import StartModeModal from "@/components/Quiz/StartModeModal.vue";
 import { useListUserstore } from "~/store/userlist";
 import { useSessionStore } from "~~/store/session";
 import { useUsersStore } from "~~/store/users";
@@ -65,6 +66,8 @@ const canCreatePublicQuiz = computed(
 
 const searchQuery = ref("");
 const startingQuizId = ref("");
+const startModeQuizId = ref("");
+const startModeOpen = ref(false);
 const shareModalOpen = ref(false);
 const shareQuizId = ref("");
 const deleteModalOpen = ref(false);
@@ -284,11 +287,16 @@ const noResultsMessage = computed(() => {
     : "Zatím tu nejsou žádné soukromé kvízy.";
 });
 
-const handleStartQuiz = async (quizId) => {
+const askStartMode = (quizId) => {
+  startModeQuizId.value = quizId;
+  startModeOpen.value = true;
+};
+
+const handleStartQuiz = async (quizId, mode) => {
   try {
     startingQuizId.value = quizId;
     const response = await $fetch(
-      `${url.apiUrl}/quizzes/${quizId}/demo_session`,
+      `${url.apiUrl}/quizzes/${quizId}/demo_session?mode=${mode}`,
       {
         method: "POST",
         credentials: "include",
@@ -611,7 +619,7 @@ const handleCreateQuiz = async () => {
         :fallback="quiz.fallback"
         :view-url="quiz.viewUrl"
         :starting="startingQuizId === quiz.id"
-        @start-quiz="handleStartQuiz(quiz.id)"
+        @start-quiz="askStartMode(quiz.id)"
         @share="handleShareQuiz(quiz)"
         @delete="handleDeleteQuiz(quiz)"
       />
@@ -791,6 +799,10 @@ const handleCreateQuiz = async () => {
     </Teleport>
 
     <ShareQuizModal v-model="shareModalOpen" :quiz-id="shareQuizId" />
+    <StartModeModal
+      v-model="startModeOpen"
+      @select="(mode) => handleStartQuiz(startModeQuizId, mode)"
+    />
     <DeleteDialog
       v-model="deleteModalOpen"
       title="Smazat kvíz"

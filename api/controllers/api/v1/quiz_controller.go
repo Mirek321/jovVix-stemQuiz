@@ -442,7 +442,12 @@ func (ctrl *QuizController) GenerateDemoSession(c *fiber.Ctx) error {
 	quizId := c.Params(constants.QuizId)
 	userId := quizUtilsHelper.GetString(c.Locals(constants.ContextUid))
 
-	activeQuiz, err := ctrl.activeQuizModel.GetActiveQuizByQuizIDAndAdminID(quizId, userId)
+	mode, err := utils.ParseSessionMode(c.Query(constants.ModeQueryParam))
+	if err != nil {
+		return utils.JSONFail(c, http.StatusBadRequest, constants.ErrInvalidSessionMode)
+	}
+
+	activeQuiz, err := ctrl.activeQuizModel.GetActiveQuizByQuizIDAndAdminID(quizId, userId, mode)
 	if err == nil {
 		return utils.JSONSuccess(c, http.StatusAccepted, activeQuiz.ID)
 	}
@@ -460,7 +465,16 @@ func (ctrl *QuizController) GenerateDemoSession(c *fiber.Ctx) error {
 		return utils.JSONError(c, http.StatusInternalServerError, err.Error())
 	}
 
-	sessionId, err := ctrl.activeQuizModel.CreateActiveQuiz(quiz.Title, quizId, userId, sql.NullTime{}, sql.NullTime{})
+	questionCount, err := ctrl.questionModel.CountQuizQuestions(quizId)
+	if err != nil {
+		ctrl.logger.Error("error counting quiz questions", zap.Error(err))
+		return utils.JSONError(c, http.StatusInternalServerError, err.Error())
+	}
+	if questionCount == 0 {
+		return utils.JSONFail(c, http.StatusBadRequest, constants.ErrQuizHasNoQuestions)
+	}
+
+	sessionId, err := ctrl.activeQuizModel.CreateActiveQuiz(quiz.Title, quizId, userId, sql.NullTime{}, sql.NullTime{}, mode)
 
 	if err != nil {
 		ctrl.logger.Error("error in creating demo session", zap.Error(err))
@@ -471,6 +485,15 @@ func (ctrl *QuizController) GenerateDemoSession(c *fiber.Ctx) error {
 	if err != nil {
 		ctrl.logger.Error("error in creating demo session questions", zap.Error(err))
 		return utils.JSONFail(c, http.StatusBadRequest, constants.ErrCreatingDemoQuiz)
+	}
+
+	// Self-paced sessions have no live lobby, so they are activated right away
+	// and players can join with the code immediately.
+	if mode == constants.ModeSelfPaced {
+		if _, err := ctrl.activeQuizModel.ActivateSession(sessionId, userId); err != nil {
+			ctrl.logger.Error("error activating self-paced session", zap.Error(err))
+			return utils.JSONFail(c, http.StatusBadRequest, constants.ErrCreatingDemoQuiz)
+		}
 	}
 
 	return utils.JSONSuccess(c, http.StatusAccepted, sessionId)
@@ -497,7 +520,16 @@ func (ctrl *QuizController) GeneratePublicSession(c *fiber.Ctx) error {
 		return utils.JSONFail(c, http.StatusForbidden, constants.ErrQuizNotPublic)
 	}
 
-	sessionId, err := ctrl.activeQuizModel.CreateActiveQuiz(quiz.Title, quizId, userId, sql.NullTime{}, sql.NullTime{})
+	questionCount, err := ctrl.questionModel.CountQuizQuestions(quizId)
+	if err != nil {
+		ctrl.logger.Error("error counting quiz questions", zap.Error(err))
+		return utils.JSONError(c, http.StatusInternalServerError, err.Error())
+	}
+	if questionCount == 0 {
+		return utils.JSONFail(c, http.StatusBadRequest, constants.ErrQuizHasNoQuestions)
+	}
+
+	sessionId, err := ctrl.activeQuizModel.CreateActiveQuiz(quiz.Title, quizId, userId, sql.NullTime{}, sql.NullTime{}, constants.ModeLive)
 	if err != nil {
 		ctrl.logger.Error("error in creating public session", zap.Error(err))
 		return utils.JSONFail(c, http.StatusBadRequest, constants.ErrCreatingDemoQuiz)

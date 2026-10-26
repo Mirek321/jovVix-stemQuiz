@@ -3,9 +3,13 @@
 import { useNuxtApp } from "nuxt/app";
 import { usePush } from "notivue";
 import { useMusicStore } from "~~/store/music";
+import { useInvitationCodeStore } from "~~/store/invitationcode";
+import usecopyToClipboard from "~~/composables/copy_to_clipboard";
 import {
   Check,
+  Copy,
   Info,
+  Link2,
   SkipForward,
   Trophy,
   Volume2,
@@ -49,9 +53,25 @@ const props = defineProps({
     required: false,
   },
 });
-const emits = defineEmits(["sendAnswer", "askSkip"]);
+const emits = defineEmits(["sendAnswer", "askSkip", "timeUp"]);
 
 const answerable = computed(() => !props.isAdmin);
+
+// The host keeps the join code on screen during the game so latecomers can
+// still get in.
+const { baseUrl } = useRuntimeConfig().public;
+const invitationCodeStore = useInvitationCodeStore();
+const joinCode = computed(() =>
+  invitationCodeStore.invitationCode
+    ? String(invitationCodeStore.invitationCode)
+    : ""
+);
+const joinUrlDisplay = computed(
+  () => `${baseUrl.replace(/^https?:\/\//, "")}/join`
+);
+const joinUrlWithCode = computed(
+  () => `${baseUrl}/join?code=${joinCode.value}`
+);
 
 const clockOffset = ref(0); // Calculated once, used for all timers
 const isOffsetCalculated = ref(false);
@@ -194,6 +214,7 @@ function handleTimer() {
       clearInterval(timer.value);
       timer.value = null;
       time.value = duration;
+      if (answerable.value && !isSubmitted.value) emits("timeUp");
     }
   }, 100);
 }
@@ -428,6 +449,39 @@ const optionTone = (key) =>
             </div>
           </div>
         </header>
+
+        <div
+          v-if="isAdmin && joinCode"
+          class="mt-4 flex flex-wrap items-center gap-2 rounded-2xl bg-jv-lavender px-3 py-2 text-[13px] text-jv-ink sm:gap-3 sm:px-4 sm:text-[14px]"
+        >
+          <span class="text-jv-muted">
+            Připoj se na
+            <strong class="text-jv-ink">{{ joinUrlDisplay }}</strong>
+          </span>
+          <span class="text-jv-muted">· Kód</span>
+          <strong
+            class="font-feature text-[18px] font-extrabold tracking-[0.12em] sm:text-[20px]"
+            >{{ joinCode }}</strong
+          >
+          <span class="ml-auto flex gap-2">
+            <button
+              type="button"
+              class="inline-flex h-8 items-center gap-1.5 rounded-full bg-jv-white px-3 font-semibold shadow-soft-sm transition hover:shadow-soft"
+              @click="usecopyToClipboard(joinCode)"
+            >
+              <Copy class="size-3.5" :stroke-width="2.4" />
+              Kopírovat kód
+            </button>
+            <button
+              type="button"
+              class="inline-flex h-8 items-center gap-1.5 rounded-full bg-jv-white px-3 font-semibold shadow-soft-sm transition hover:shadow-soft"
+              @click="usecopyToClipboard(joinUrlWithCode)"
+            >
+              <Link2 class="size-3.5" :stroke-width="2.4" />
+              Kopírovat odkaz
+            </button>
+          </span>
+        </div>
 
         <div class="my-5 border-t border-dashed border-jv-line sm:my-6"></div>
 
