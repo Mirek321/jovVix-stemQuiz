@@ -6,6 +6,7 @@
 
 <script setup>
 import { Bar } from "vue-chartjs";
+import { chartColors } from "@/lib/theme";
 
 const props = defineProps({
   options: {
@@ -37,15 +38,15 @@ const chartData = computed(() => {
         responses[option] = 0;
 
         if (props.options[option].isAnswer) {
-          backgroundColors.push("#1f9d6b");
+          backgroundColors.push(chartColors.correct);
         } else {
-          backgroundColors.push("#b291f3");
+          backgroundColors.push(chartColors.wrong);
         }
         return responses;
       },
       { "Not Attempted": 0 }
     );
-    backgroundColors.push("#ffaa22");
+    backgroundColors.push(chartColors.notAttempted);
 
     const responses = props.responses?.reduce((acc, response) => {
       const { String: answer, Valid } = response.answers;
